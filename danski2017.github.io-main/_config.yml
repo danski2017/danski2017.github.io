@@ -1,0 +1,28 @@
+title: Atlas Solver Hub
+description: Weak-field multi-source general relativity research hub for multi-body gravitational simulation, geodesic diagnostics, papers, figures, and experiments. Est. March 2026
+url: "https://danski2017.github.io"
+baseurl: ""
+
+# Site Settings
+theme: minima
+plugins:
+  - jekyll-seo-tag
+
+# Header Navigation
+header_pages:
+  - research-program.md
+  - papers.md
+  - hypotheses.md
+  - experiments.md
+  - figures.md
+  - atlas-solver.md
+  - about.md
+
+# This is the "Ghost Fix"
+# By setting author and email to a single space, we override the 
+# theme's default behavior of repeating the Site Title in the list.
+author: " "
+email: ""
+
+minima:
+  social_links: []
