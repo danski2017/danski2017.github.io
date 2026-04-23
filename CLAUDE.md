@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project context
+
+This repository is part of the **Deep Gravity** project — the broader research effort being developed in Claude. Work done here (site updates, new pages, papers, figures) should be understood as the public-facing output of that project.
+
 ## What this site is
 
 GitHub Pages site (https://danski2017.github.io) — the public research hub for the Atlas Solver project, a weak-field multi-source GR computational geometry platform. Built with Jekyll + Minima theme, deployed automatically on push to the default branch.
