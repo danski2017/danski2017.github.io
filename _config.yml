@@ -12,7 +12,7 @@ plugins:
 header_pages:
   - research-program.md
   - papers.md
-  - hypotheses.md
+  - resources.md
   - experiments.md
   - figures.md
   - atlas-solver.md
