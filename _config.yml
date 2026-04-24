@@ -8,6 +8,10 @@ theme: minima
 plugins:
   - jekyll-seo-tag
 
+markdown: kramdown
+kramdown:
+math_engine: mathjax
+
 # Header Navigation
 header_pages:
   - research-program.md
