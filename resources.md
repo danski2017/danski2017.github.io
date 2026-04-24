@@ -30,3 +30,15 @@ permalink: /resources/
 
 ## Technical Discussion & Forums
 * [Physics Forums (Relativity)](https://www.physicsforums.com/forums/special-and-general-relativity.70/) – A leading technical community for discussing complex problems in special and general relativity.
+
+## Simulation Projects & Numerical Data
+* [SXS (Simulating eXtreme Spacetimes)](https://www.black-holes.org/) – The premier source for high-precision numerical relativity simulations, particularly for binary black hole mergers.
+* [SXS Visualization Gallery](https://www.black-holes.org/gallery/visualizations) – High-quality movies and images of merging black holes and exotic spacetimes.
+* [Spectral Einstein Code (SpEC) Documentation](https://www.black-holes.org/code/SpEC.html) – Technical information on the core code used for landmark relativistic simulations.
+* [SpECTRE Gallery (GitHub)](https://github.com/sxs-collaboration/spectre) – Next-generation code previews for handling complex fluid dynamics and extreme mass ratios.
+
+## Gravitational Wave Multimedia Archives
+* [LIGO Lab Image Gallery](https://www.ligo.caltech.edu/gallery) – The official archive for scientific charts, simulation stills, and gravitational wave event posters.
+* [LIGO Video Gallery](https://www.ligo.caltech.edu/video) – Featuring educational journeys and simulations of warped space-time around colliding black holes.
+* [LIGO Northwestern Multimedia](https://ciera.northwestern.edu/gallery/) – Organized collections focusing on binary neutron star mergers and "death spirals."
+* [Virgo Collaboration Gallery](https://www.virgo-gw.eu/gallery/) – The European counterpart resource for localized sky maps and detector-specific visualizations.
