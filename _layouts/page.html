@@ -11,21 +11,34 @@ layout: default
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
 
 <div class="giscus">
   <script src="https://giscus.app/client.js"
-          data-repo="danski2017/danski2017.github.io"
-          data-repo-id="R_kgDOME_9Sg"
-          data-category="General"
-          data-category-id="DIC_kwDOME_9Ss4Cf9Dk"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="light"
-          data-lang="en"
-          crossorigin="anonymous"
-          async>
+    data-repo="danski2017/danski2017.github.io"
+    data-repo-id="R_kgDOME_9Sg"
+    data-category="General"
+    data-category-id="DIC_kwDOME_9Ss4Cf9Dk"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
   </script>
 </div>
