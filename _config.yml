@@ -12,10 +12,10 @@ plugins:
 header_pages:
   - research-program.md
   - papers.md
-  - resources.md
   - experiments.md
   - figures.md
   - atlas-solver.md
+  - resources.md
   - about.md
 
 # This is the "Ghost Fix"
