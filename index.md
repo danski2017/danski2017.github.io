@@ -14,9 +14,9 @@ layout: default
 
 ## **Paper I - Gravitational Coherence Surface**
 
-*The Gravitational Coherence Surface: Signal-to-Noise Limits on Gravitational Identity*
+*The Gravitational Coherence Surface* 
 
-Introduces the Gravitational Coherence Surface as an operational boundary of gravitational distinguishability within standard general relativity.
+Parity Horizons of Gravitational Identity
 
 [Read Paper](The%20Gravitational%20Coherence%20Surface.pdf)
 
