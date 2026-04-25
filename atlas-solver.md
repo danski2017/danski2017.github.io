@@ -3,8 +3,6 @@ layout: page
 title: Atlas Solver
 ---
 
-# Atlas Solver
-
 The **Atlas Solver** is a high-fidelity, multi-source General Relativity (GR) computational laboratory. It is engineered to resolve complex gravitational structures in the "weak-field" regime where non-linear residues and multi-body interactions emerge.
 
 ## Technical Architecture & Pipeline
