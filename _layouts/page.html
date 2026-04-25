@@ -5,27 +5,30 @@ layout: default
   <h1 class="post-title">{{ page.title | escape }}</h1>
 </header>
 
-<div class="post-content">
-  {{ content }}
-</div>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script>
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,
-      processEnvironments: true
+      processEscapes: true
     },
     options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      renderActions: {
+        addMenu: [] // Simplifies rendering for speed
+      }
+    },
+    startup: {
+      typeset: true
     }
   };
 </script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<div class="giscus">
+<div class="post-content">
+  {{ content }}
+</div>
+
+<div class="giscus" style="margin-top: 50px;">
   <script src="https://giscus.app/client.js"
     data-repo="danski2017/danski2017.github.io"
     data-repo-id="R_kgDOME_9Sg"
