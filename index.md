@@ -11,7 +11,7 @@ description: A specialized laboratory for multi-body gravitational simulations a
 <br>
 ---
 
-# ** Science Facing Papers **
+#  Science Facing Papers 
 
 ## **Paper I - The Gravitational Coherence Surface**
 *Parity Horizons of Gravitational Identity*
