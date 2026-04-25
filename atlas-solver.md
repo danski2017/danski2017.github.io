@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Atlas Solver
 ---
 
@@ -17,14 +17,18 @@ The solver defines the global background manifold $g_{\mu\nu}$ by constructing a
 ### 2. Connection Adjudication
 At the core of the engine is the computation of the affine connection (Christoffel symbols):
 
+{::nomarkdown}
 $$\Gamma^\alpha_{\beta\gamma} = \frac{1}{2}g^{\alpha\delta}(\partial_\gamma g_{\delta\beta} + \partial_\beta g_{\delta\gamma} - \partial_\delta g_{\beta\gamma})$$
+{:/}
 
 The solver isolates **Mesoscale Residues**—the specific curvature artifacts that occur when multiple gradients overlap—preventing the "smoothing out" of critical structural data.
 
 ### 3. Geodesic Integration
 Test particle worldlines are determined by integrating the geodesic equation:
 
+{::nomarkdown}
 $$\frac{d^2x^\mu}{d\tau^2} + \Gamma^\mu_{\alpha\beta}\frac{dx^\alpha}{d\tau}\frac{dx^\beta}{d\tau} = 0$$
+{:/}
 
 This high-precision tracking serves as a primary diagnostic for underlying gravitational structure, capturing behaviors that are invisible to standard N-body simulations.
 
