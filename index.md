@@ -13,16 +13,14 @@ layout: default
 
 
 ## ** Paper I - The Gravitational Coherence Surface **
-
 *Parity Horizons of Gravitational Identity*
-
 [Read Paper](The%20Gravitational%20Coherence%20Surface.pdf)
 
 ## ** Paper II - Many Source Parity Networks (GCS II) **
-
 *Interaction Dynamics of High-Density Source Distributions*
-
 [Read Paper](Many%20Source%20Parity%20Networks_GCS_II_.pdf)
 
-## ** Paper III - Coming Soon **
+## ** Paper III - Mesoscale Gravitational Readability (GCS III) **
+*Geometric Methods for Curvature Analysis in Complex Systems*
+[Read Paper](Mesoscale_Gravitational_Readability_GCS_III_final.pdf)
 
