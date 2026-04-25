@@ -12,18 +12,17 @@ layout: default
 # **Science Facing Papers**
 
 
-## **Paper I - The Gravitational Coherence Surface**
+## ** Paper I - The Gravitational Coherence Surface **
 
 *Parity Horizons of Gravitational Identity*
 
 [Read Paper](The%20Gravitational%20Coherence%20Surface.pdf)
 
+## ** Paper II - Many Source Parity Networks (GCS II) **
 
-## **Paper II  - Coming Soon**
+*Interaction Dynamics of High-Density Source Distributions*
 
-## **Paper III - Coming Soon**
+[Read Paper](Many%20Source%20Parity%20Networks_GCS_II_.pdf)
 
-## **Paper IV  - Coming Soon**
-
-## **Paper V  - Coming Soon**
+## ** Paper III - Coming Soon **
 
