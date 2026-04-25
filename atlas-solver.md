@@ -34,8 +34,3 @@ This high-precision tracking serves as a primary diagnostic for underlying gravi
 The engine continuously monitors the **Gravitational Coherence Surface (GCS)**. This defines the operational limit where individual source identities transition into a coherent background flux, providing a mathematically grounded "edge" to the simulation domain.
 
 ---
-
-## Research Applications
-* **Multi-Source Environments:** High-resolution evaluation of overlapping gravitational fields.
-* **Structural Fidelity:** Consistent handling of extended systems within a unified geometric framework.
-* **Trajectory Diagnostics:** Using geodesic deviations to map underlying mass-energy distributions.
