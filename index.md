@@ -1,6 +1,7 @@
 ---
-title: Multi-Body General Relativity Simulation | Atlas Solver Hub
 layout: default
+title: Atlas Solver Hub | Numerical Relativity & GCS Theory
+description: A specialized laboratory for multi-body gravitational simulations and the study of Gravitational Coherence Surfaces (GCS).
 ---
 
 # **General Relativity • Multi-Body Curvature**
