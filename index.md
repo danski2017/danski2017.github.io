@@ -12,11 +12,9 @@ layout: default
 # **Science Facing Papers**
 
 
-## **Paper I - Gravitational Coherence Surface**
+## **Paper I - The Gravitational Coherence Surface**
 
-*The Gravitational Coherence Surface* 
-
-Parity Horizons of Gravitational Identity
+*Parity Horizons of Gravitational Identity*
 
 [Read Paper](The%20Gravitational%20Coherence%20Surface.pdf)
 
