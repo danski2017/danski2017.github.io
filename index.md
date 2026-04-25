@@ -8,6 +8,7 @@ layout: default
 *Atlas Solver Hub is an independent research platform focused on multi-body (n-body) general relativity, weak-field gravitational simulation, and geometric methods for modeling curvature in complex gravitational systems. The project explores how spacetime curvature behaves beyond simple two-body approximations through numerical simulation, geodesic analysis, and visualization.*
 
 <br><br>
+---
 
 # ** Science Facing Papers **
 
