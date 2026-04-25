@@ -17,4 +17,4 @@ For questions, collaboration, or discussion regarding the Atlas Solver Project a
 
 Email: [danski2017@gmail.com](mailto:danski2017@gmail.com)
 
-[Connect on Facebook](https://www.facebook.com/dan.scieszinski)
+Social Media: [Connect on Facebook](https://www.facebook.com/dan.scieszinski)
