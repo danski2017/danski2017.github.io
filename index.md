@@ -18,7 +18,7 @@ layout: default
 
 Introduces the Gravitational Coherence Surface as an operational boundary of gravitational distinguishability within standard general relativity.
 
-[Read Paper](/Gravitational_Coherence_Surface.pdf)
+[Read Paper](The%20Gravitational%20Coherence%20Surface.pdf)
 
 
 ## **Paper II  - Coming Soon**
