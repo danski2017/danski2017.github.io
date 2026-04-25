@@ -9,8 +9,7 @@ layout: default
 
 <br><br>
 
-# **Science Facing Papers**
-
+# ** Science Facing Papers **
 
 ## ** Paper I - The Gravitational Coherence Surface **
 *Parity Horizons of Gravitational Identity*
@@ -23,4 +22,8 @@ layout: default
 ## ** Paper III - Mesoscale Gravitational Readability (GCS III) **
 *Geometric Methods for Curvature Analysis in Complex Systems*
 [Read Paper](Mesoscale_Gravitational_Readability_GCS_III_final.pdf)
+
+## ** Paper IV - Proof of Concept Extraction (GCS IV) **
+*Algorithmic Implementation and Empirical Validation Metrics*
+[Read Paper](Proof_of_Concept_Extraction_GCS_IV_final.pdf)
 
