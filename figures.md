@@ -15,7 +15,7 @@ layout: default
 ## Technical Highlights
 <div style="display: flex; gap: 15px; justify-content: space-between; margin-bottom: 3rem;">
   <div style="flex: 1; text-align: center;">
-    <img src="path/to/sub1.png" alt="Sub 1" style="width: 100%; border-radius: 4px;">
+    <img src="images/ems_parent_support_slow_rotation_black.gif" alt="Sub 1" style="width: 100%; border-radius: 4px;">
     <p><small><strong>Focus A:</strong> Brief caption here.</small></p>
   </div>
   <div style="flex: 1; text-align: center;">
