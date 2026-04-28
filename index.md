@@ -36,7 +36,7 @@ description: A specialized laboratory for multi-body gravitational simulations a
 ## **Paper V — The Nesting Domain Handoff Problem**
 *Parity Networks and the Modular Structure of Gravitational Scenes*
 
-[Read Paper V.](Nesting_Domain_Handoff_GCS_V_.pdf)
+[Read Paper](Nesting_Domain_Handoff_GCS_V_.pdf)
 
 
 
