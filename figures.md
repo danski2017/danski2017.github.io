@@ -30,7 +30,7 @@ layout: default
   
   <div style="flex: 1; text-align: center;">
     <video id="focusC" width="100%" height="auto" autoplay loop muted playsinline style="border-radius: 4px; display: block;">
-      <source src="images/IMG_4424.mp4" type="video/mp4">
+      <source src="images/binaryB_rotation.mov" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <p><small><strong>Focus C:</strong> High-Resolution Diagnostic</small></p>
