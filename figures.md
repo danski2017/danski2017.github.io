@@ -7,7 +7,7 @@ layout: default
 
 <div style="width: 100%; text-align: center; margin-bottom: 2rem;">
   <video width="50%" height="auto" controls autoplay loop muted style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-    <source src="images/binaryB_rotation.mp4" type="video/mp4">
+    <source src="images/mutual network rotate.mov" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   <p><em>Primary Visualization: 12 star cluster</em></p>
