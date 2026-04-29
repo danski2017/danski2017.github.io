@@ -23,7 +23,7 @@ layout: default
     <p><small><strong>Focus B:</strong> Brief caption here.</small></p>
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="path/to/sub3.png" alt="Sub 3" style="width: 100%; border-radius: 4px;">
+    <img src="images/IMG_4424.GIF" alt="Sub 3" style="width: 100%; border-radius: 4px;">
     <p><small><strong>Focus C:</strong> Brief caption here.</small></p>
   </div>
 </div>
