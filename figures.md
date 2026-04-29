@@ -19,7 +19,7 @@ layout: default
     <p><small><strong>Focus A:</strong> Brief caption here.</small></p>
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="path/to/sub2.png" alt="Sub 2" style="width: 100%; border-radius: 4px;">
+    <img src="images/integrated_handoff_structure.png" alt="Sub 2" style="width: 100%; border-radius: 4px;">
     <p><small><strong>Focus B:</strong> Brief caption here.</small></p>
   </div>
   <div style="flex: 1; text-align: center;">
