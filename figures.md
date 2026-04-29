@@ -34,7 +34,7 @@ layout: default
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
   
   <div style="text-align: center;"><img src="images/local_patch_extreme_ratio_anisotropy_pass_patch_frame_3d.png" style="width:100%;"><p><small>Fig 01: Caption</small></p></div>
-  <div style="text-align: center;"><img src="https://via.placeholder.com/150" style="width:100%;"><p><small>Fig 02: Caption</small></p></div>
+  <div style="text-align: center;"><img src="images/relational_network_rotate_5.mp4" style="width:100%;"><p><small>Fig 02: Caption</small></p></div>
   <div style="text-align: center;"><img src="https://via.placeholder.com/150" style="width:100%;"><p><small>Fig 03: Caption</small></p></div>
   <div style="text-align: center;"><img src="https://via.placeholder.com/150" style="width:100%;"><p><small>Fig 04: Caption</small></p></div>
   <div style="text-align: center;"><img src="https://via.placeholder.com/150" style="width:100%;"><p><small>Fig 05: Caption</small></p></div>
