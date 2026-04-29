@@ -20,13 +20,16 @@ layout: default
     <img src="images/ems_parent_support_slow_rotation_black.gif" alt="Focus A" style="width: 100%; border-radius: 4px;">
     <p><small><strong>Focus A:</strong> Brief caption here.</small></p>
   </div>
+  
   <div style="flex: 1; text-align: center;">
     <img src="images/integrated_handoff_structure.png" alt="Focus B" style="width: 100%; border-radius: 4px;">
     <p><small><strong>Focus B:</strong> Brief caption here.</small></p>
   </div>
+  
   <div style="flex: 1; text-align: center;">
-    <video id="focusC" width="100%" autoplay loop muted playsinline style="border-radius: 4px;">
+    <video id="focusC" width="100%" height="auto" autoplay loop muted playsinline style="border-radius: 4px; display: block;">
       <source src="images/IMG_4424.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
     <p><small><strong>Focus C:</strong> Brief caption here.</small></p>
   </div>
