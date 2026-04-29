@@ -22,10 +22,11 @@ layout: default
     <img src="images/integrated_handoff_structure.png" alt="Sub 2" style="width: 100%; border-radius: 4px;">
     <p><small><strong>Focus B:</strong> Brief caption here.</small></p>
   </div>
-  <div style="flex: 1; text-align: center;">
-    <img src="images/IMG_4424.GIF" alt="Sub 3" style="width: 100%; border-radius: 4px;">
-    <p><small><strong>Focus C:</strong> Brief caption here.</small></p>
-  </div>
+<div style="flex: 1; text-align: center;">
+  <video width="100%" autoplay loop muted playsinline style="border-radius: 4px;">
+    <source src="images/IMG_4424.mp4" type="video/mp4">
+  </video>
+  <p><small><strong>Focus C:</strong> Brief caption here.</small></p>
 </div>
 
 <hr>
