@@ -4,6 +4,7 @@ title: Philosophy
 permalink: /philosophy/
 ---
 
+<div style="max-width: 900px; margin-left: auto; margin-right: auto; padding-right: 15%; line-height: 1.8; font-family: 'Georgia', serif; text-align: justify;">
 <div style="text-align: center; margin-bottom: 50px;">
   <h1 style="font-size: 2.5em; margin-bottom: 0;">The Geometry of Belonging</h1>
   <p style="font-size: 1.2em; color: #666;">On gravitational identity, nested reality, and what it means to declare a scene</p>
@@ -178,3 +179,5 @@ That's the framework telling the truth.
 *Atlas Solver is an ongoing theoretical and computational research project. The philosophical reflections in this piece sit at the speculative frontier of the work and are labeled as such. The authors make no claim of observational detection or modification of general relativity.*
 
 *© Atlas Solver Project · All rights reserved*
+
+</div>
