@@ -4,10 +4,12 @@ title: Philosophy
 permalink: /philosophy/
 ---
 
-# The Geometry of Belonging
-### On gravitational identity, nested reality, and what it means to declare a scene
+<div style="text-align: center; margin-bottom: 50px;">
+  <h1 style="font-size: 2.5em; margin-bottom: 0;">The Geometry of Belonging</h1>
+  <p style="font-size: 1.2em; color: #666;">On gravitational identity, nested reality, and what it means to declare a scene</p>
+</div>
 
-*The following is a philosophical reflection on ideas emerging from the Atlas Solver project. It sits at the speculative frontier of the work — labeled as such, offered in that spirit, and written for anyone who has ever wondered why physics feels like it keeps finding the same pattern at every scale.*
+>*The following is a philosophical reflection on ideas emerging from the Atlas Solver project. It sits at the speculative frontier of the work—labeled as such, offered in that spirit, and written for anyone who has ever wondered why physics feels like it keeps finding the same pattern at every scale.*
 
 ---
 
