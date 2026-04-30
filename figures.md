@@ -47,7 +47,7 @@ layout: default
     <p><small>Fig 01</small></p>
   </div>
   <div style="text-align: center;">
-    <img src="images/frame_0000.png" style="width: 100%;">
+    <img src="images/IMG_4480.PNG" style="width: 100%;">
     <p><small>Fig 02</small></p>
   </div>
   <div style="text-align: center;">
