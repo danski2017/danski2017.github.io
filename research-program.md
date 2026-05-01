@@ -40,12 +40,4 @@ The program investigates how curvature behaves in relativistic n-body systems, w
 
 <br>
 
-<img
-  src="/images/"
-  alt="Geodesic curvature structure in multi-body general relativity"
-  style="max-width: 100%; height: auto;"
-/>
-
-</div>
-
 </div>
