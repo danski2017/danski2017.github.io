@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Experiments | Atlas Solver Lab
+title: Experiments
 description: Interactive simulations and numerical visualizations of GCS parity networks.
 ---
 
