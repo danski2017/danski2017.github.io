@@ -155,12 +155,14 @@ That's the framework telling the truth.
 </div>
 
 <blockquote style="border-left: 4px solid #eee; padding-left: 20px; margin: 20px 0; color: #555; font-style: italic;">
-  A brief introduction or abstract for the new philosophical exploration goes here.
+  Internal musings on a gemoetric identity crisis.
 </blockquote>
 
 <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
 
-<h2 style="font-size: 1.8em; color: #111; margin-top: 40px;">Section Header</h2>
+<br>
+
+<h2 style="font-size: 1.8em; color: #111; margin-top: 40px;">Towards a Global Parity</h2>
 
 The following is a philosophical reflection emerging from attempts to model relational gravitational scenes digitally. It is not a new theory of physics. It does not propose a hidden background, a new force, or a replacement for relativity. It asks a narrower question: if modern physics removes the old idea of an absolute stage, what kind of objective structure remains?
 
