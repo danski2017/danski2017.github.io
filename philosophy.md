@@ -154,17 +154,15 @@ That's the framework telling the truth.
   <p style="font-size: 1.25em; color: #666; font-style: italic;">Relational Objectivity After the Loss of the Stage</p>
 </div>
 
+<br>
+
 <blockquote style="border-left: 4px solid #eee; padding-left: 20px; margin: 20px 0; color: #555; font-style: italic;">
-  Internal musings on a gemoetric identity crisis.
+Internal musings on a geometric identity crisis. The following is a philosophical reflection emerging from attempts to model relational gravitational scenes digitally. It is not a new theory of physics. It does not propose a hidden background, a new force, or a replacement for relativity. It asks a narrower question: if modern physics removes the old idea of an absolute stage, what kind of objective structure remains?
 </blockquote>
 
 <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
 
-<br>
-
 <h2 style="font-size: 1.8em; color: #111; margin-top: 40px;">Towards a Global Parity</h2>
-
-The following is a philosophical reflection emerging from attempts to model relational gravitational scenes digitally. It is not a new theory of physics. It does not propose a hidden background, a new force, or a replacement for relativity. It asks a narrower question: if modern physics removes the old idea of an absolute stage, what kind of objective structure remains?
 
 There is a temptation, after relativity, to think the old stage has vanished and taken objectivity with it.
 
