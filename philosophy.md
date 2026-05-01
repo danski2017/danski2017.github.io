@@ -21,8 +21,6 @@ permalink: /philosophy/
 
 <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
 
-<br>
-
 <h2 style="font-size: 1.8em; color: #111; margin-top: 40px;">A Proton Walks Into a Void</h2>
 
 Imagine a single proton floating in the emptiness between galaxies. No neighbors. No electrons orbiting it. No nuclear companions. Just three quarks — two up, one down — bound together by forces so powerful that nothing in the observable universe has ever separated them.
@@ -163,8 +161,6 @@ Internal musings on a geometric identity crisis. The following is a philosophica
 </blockquote>
 
 <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
-
-<br>
 
 <h2 style="font-size: 1.8em; color: #111; margin-top: 40px;">Towards a Global Parity</h2>
 
