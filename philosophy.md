@@ -154,8 +154,6 @@ That's the framework telling the truth.
   <p style="font-size: 1.25em; color: #666; font-style: italic;">Relational Objectivity After the Loss of the Stage</p>
 </div>
 
-<br>
-
 <blockquote style="border-left: 4px solid #eee; padding-left: 20px; margin: 20px 0; color: #555; font-style: italic;">
 Internal musings on a geometric identity crisis. The following is a philosophical reflection emerging from attempts to model relational gravitational scenes digitally. It is not a new theory of physics. It does not propose a hidden background, a new force, or a replacement for relativity. It asks a narrower question: if modern physics removes the old idea of an absolute stage, what kind of objective structure remains?
 </blockquote>
