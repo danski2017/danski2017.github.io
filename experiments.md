@@ -21,8 +21,6 @@ description: Interactive simulations and numerical visualizations of GCS parity 
 ## **Experiment I - Three-Body Jurisdiction Geometry**
 *Numerical visualization of the Electric Weyl Tensor and GCS Parity Faces in a 3-source static slice.*
 
-[View Source Code](https://github.com/danski2017/danski2017.github.io/blob/main/images/three_body_jurisdiction_v0_1.html)
-
 ---
 
 ## **Experiment II - Recursive Domain Handoff**
