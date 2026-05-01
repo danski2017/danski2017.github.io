@@ -13,6 +13,8 @@ permalink: /philosophy/
   <p style="font-size: 1.25em; color: #666; font-style: italic;">On gravitational identity, nested reality, and what it means to declare a scene</p>
 </div>
 
+<br>
+
 <blockquote style="border-left: 4px solid #eee; padding-left: 20px; margin: 20px 0; color: #555; font-style: italic;">
   The following is a philosophical reflection on ideas emerging from the Atlas Solver project. It sits at the speculative frontier of the work—labeled as such, offered in that spirit, and written for anyone who has ever wondered why physics feels like it keeps finding the same pattern at every scale.
 </blockquote>
