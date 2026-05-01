@@ -164,6 +164,8 @@ Internal musings on a geometric identity crisis. The following is a philosophica
 
 <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
 
+<br>
+
 <h2 style="font-size: 1.8em; color: #111; margin-top: 40px;">Towards a Global Parity</h2>
 
 There is a temptation, after relativity, to think the old stage has vanished and taken objectivity with it.
