@@ -4,7 +4,7 @@ title: Atlas Solver Hub | Numerical Relativity & GCS Theory
 description: A specialized laboratory for multi-body gravitational simulations and the study of Gravitational Coherence Surfaces (GCS).
 ---
 
-# ** General Relativity • Multi-Body Curvature **
+# **General Relativity • Multi-Body Curvature**
 
 *Atlas Solver Hub is an independent research platform focused on multi-body (n-body) general relativity, weak-field gravitational simulation, and geometric methods for modeling curvature in complex gravitational systems. The project explores how spacetime curvature behaves beyond simple two-body approximations through numerical simulation, geodesic analysis, and visualization.*
 
