@@ -14,8 +14,8 @@ math_engine: mathjax
 
 # Header Navigation
 header_pages:
-  - philosophy.md
   - research-program.md
+  - philosophy.md
   - experiments.md
   - figures.md
   - atlas-solver.md
