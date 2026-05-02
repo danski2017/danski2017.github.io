@@ -46,6 +46,4 @@ description: A specialized laboratory for multi-body gravitational simulations a
     </ul>
     <p style="background: #f9f9f9; padding: 10px; border-radius: 5px; color: #333;">
 
-  </div>
 
-</div>
