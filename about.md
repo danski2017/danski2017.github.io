@@ -7,7 +7,7 @@ title: About
 
 Atlas Solver Hub is the public research resource for the Atlas Solver platform, a weak-field multi-source GR computational geometry laboratory.
 
-## ** Lead Researcher **
+## **Lead Researcher**
 
 Daniel Scieszinski is an independent researcher working in geometric methods in General Relativity, weak-field curvature structure, and multi-body spacetime simulation. Alongside this research, Daniel works professionally in IT and insurance analysis and is also an artist and author. His work often focuses on long-horizon projects that combine technical systems, geometry, and creative structure.
 
