@@ -12,8 +12,10 @@ description: Interactive simulations and numerical visualizations of GCS parity 
 
 ---
 
-## **Experiment I - Local Stellar Neighborhood - N Parity Stack 2×3 Matrix**
-*An empirical campaign visualizing 57 local stellar sources. This matrix explores source-source pairwise foam versus source-context sovereignty cores across three tiers of potential support and acceleration magnitude. This visualization maps the 6 pc box using a $120^3$ grid. By utilizing lawful geometry for the wireframe resolution, we avoid the artifacts typically introduced by marching cubes in weak-field nesting.*
+## **Experiment I - Local Stellar Neighborhood - N Parity Stack**
+*An empirical campaign visualizing 57 local stellar sources, tracing a field where relations take form. Here, source–source parity networks and source–context parity surfaces emerge across three tiers of support, each shaped by gradients of acceleration. 
+
+The geometry is carried directly by General Relativity, not yet a full wireframe solution, but a disciplined unveiling of the field’s internal grammar. No marching cubes, no imposed skins, only the native contours of parity, where nested scenes preserve their identity and continuity without artifact or distortion.*
 
 <div class="experiment-container" style="width:100%; background:#020509; border-radius:8px; overflow:hidden; border:1px solid rgba(25,50,100,0.3); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
     <iframe 
