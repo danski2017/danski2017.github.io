@@ -4,9 +4,57 @@ title: Philosophy
 permalink: /philosophy/
 ---
 
-<div style="display: flex; gap: 60px; align-items: flex-start; margin: 0 auto; line-height: 1.8; font-family: 'Georgia', serif; color: #333;" markdown="1">
+<style>
+.philosophy-grid {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  line-height: 1.8;
+  font-family: 'Georgia', serif;
+  color: #333;
+}
+.philosophy-article {
+  flex: 1;
+  min-width: 0;
+  text-align: justify;
+}
+.philosophy-article-right {
+  flex: 1;
+  min-width: 0;
+  text-align: justify;
+  border-left: 1px solid #eee;
+  padding-left: 50px;
+}
+@media (max-width: 780px) {
+  .philosophy-grid {
+    flex-direction: column;
+    gap: 0;
+  }
+  .philosophy-article-right {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+    margin-top: 40px;
+  }
+  .philosophy-article h1,
+  .philosophy-article-right h1 {
+    font-size: 2em !important;
+  }
+  .philosophy-article h2,
+  .philosophy-article-right h2 {
+    font-size: 1.4em !important;
+  }
+  .philosophy-article,
+  .philosophy-article-right {
+    text-align: left;
+  }
+}
+</style>
 
-<div style="flex: 1; text-align: justify;" markdown="1">
+<div class="philosophy-grid" markdown="1">
+
+<div class="philosophy-article" markdown="1">
 
 <div style="text-align: center; margin-bottom: 60px; margin-top: 40px;">
   <h1 id="geometry-of-belonging" style="font-size: 2.8em; font-weight: 700; margin-bottom: 10px; color: #111;">The Geometry of Belonging</h1>
@@ -177,7 +225,7 @@ That's the framework telling the truth.
 
 </div>
 
-<div style="flex: 1; border-left: 1px solid #eee; padding-left: 50px; text-align: justify;" markdown="1">
+<div class="philosophy-article-right" markdown="1">
 
 <div style="text-align: center; margin-bottom: 60px; margin-top: 40px;">
   <h1 id="no-background-not-no-structure" style="font-size: 2.8em; font-weight: 700; margin-bottom: 10px; color: #111;">No Background, Not No Structure</h1>
