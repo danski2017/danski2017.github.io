@@ -42,3 +42,7 @@ permalink: /resources/
 * [LIGO Video Gallery](https://www.ligo.caltech.edu/video) – Featuring educational journeys and simulations of warped space-time around colliding black holes.
 * [LIGO Northwestern Multimedia](https://ciera.northwestern.edu/gallery/) – Organized collections focusing on binary neutron star mergers and "death spirals."
 * [Virgo Collaboration Gallery](https://www.virgo-gw.eu/gallery/) – The European counterpart resource for localized sky maps and detector-specific visualizations.
+
+## Geometric Methods & Mathematical Analogs
+* [Voronoi Diagram](https://mathworld.wolfram.com/VoronoiDiagram.html) – *Wolfram MathWorld.* The classical framework for partitioning space into regions of nearest-source dominance — the conceptual precursor to Atlas parity surfaces. The key distinction: Voronoi cells are bounded by equal Euclidean distance; GCS jurisdiction cells are bounded by equal gravitational potential, which curves boundaries toward lighter sources and expands them around heavier ones.
+* [Power Diagram](https://en.wikipedia.org/wiki/Power_diagram) – *Wikipedia.* The weighted generalization of the Voronoi diagram, and the closest classical analog to the Atlas parity surface framework. By assigning a scalar weight to each seed (analogous to source mass), Power diagram boundaries curve in ways that qualitatively mirror GCS jurisdiction boundaries — though the Atlas framework operates in three dimensions with potential fields governed by the inverse-square law rather than algebraic weights.
