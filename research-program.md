@@ -3,9 +3,56 @@ layout: default
 title: Research Program
 ---
 
-<div style="display: flex; gap: 60px; align-items: flex-start; line-height: 1.7;" markdown="1">
+<style>
+.research-grid {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  line-height: 1.7;
+}
+.research-main {
+  flex: 1;
+  min-width: 0;
+}
+.research-sidebar {
+  flex: 1;
+  min-width: 0;
+  border-left: 1px solid #eee;
+  padding-left: 40px;
+}
+.research-explainer {
+  max-width: 860px;
+  line-height: 1.8;
+}
+.research-explainer .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 780px) {
+  .research-grid {
+    flex-direction: column;
+    gap: 0;
+  }
+  .research-sidebar {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+    margin-top: 40px;
+  }
+  .research-explainer table {
+    font-size: 0.82em;
+  }
+  .research-explainer table th,
+  .research-explainer table td {
+    padding: 0.45rem 0.55rem;
+  }
+}
+</style>
 
-<div style="flex: 1;" markdown="1">
+<div class="research-grid" markdown="1">
+
+<div class="research-main" markdown="1">
 
 # Research Program
 
@@ -29,7 +76,7 @@ The program investigates how curvature behaves in relativistic n-body systems, w
 
 </div>
 
-<div style="flex: 1; border-left: 1px solid #eee; padding-left: 40px;" markdown="1">
+<div class="research-sidebar" markdown="1">
 
 # Active Research Papers
 
@@ -42,9 +89,11 @@ The program investigates how curvature behaves in relativistic n-body systems, w
 
 </div>
 
+</div>
+
 <hr style="border: 0; border-top: 1px solid #eee; margin: 60px 0 50px;">
 
-<div style="max-width: 860px; line-height: 1.8;" markdown="1">
+<div class="research-explainer" markdown="1">
 
 ## What Is the GCS, and How Does It Relate to Classical Gravitational Boundaries?
 
@@ -76,10 +125,14 @@ Three elements must be declared to define a GCS: the scene (which sources are in
 
 For a source of mass *M* at distance *D* from a dominant neighbor of mass *M′*, the two scales are:
 
+<div class="table-scroll">
+
 | Boundary | Formula | Primary question |
 |---|---|---|
 | Hill radius | r_H = D (M / 3M′)^(1/3) | Where can satellite orbits remain stable? |
 | GCS monopole radius | r_0 = D (M / M′)^(1/2) | Where does the declared contribution reach parity with derived context? |
+
+</div>
 
 The ratio between them is r_0 / r_H = 3^(1/3) (M / M′)^(1/6). The 1/6 exponent is the structural fact worth pausing on. Across four orders of magnitude in planetary mass ratio — from Mercury to Jupiter — this ratio varies by less than a factor of five, sitting at roughly 10–70% of the Hill radius. For Earth in the solar context, the simplified monopole GCS lies at approximately 17% of Earth's Hill radius.
 
