@@ -22,7 +22,7 @@ The program investigates how curvature behaves in relativistic n-body systems, w
 <br>
 
 <img
-  src="/images/psUk3n_lsyb_tsP5YHe0IBhxS7m3MPA2nvQjuD6rhhcieaRHM66D9g8OyxsIDEQt6KM2iI_Du3UG_pKpRDMUuUnfjVbf62-G_jupxx8OYqfr0PEpb_-2FrdOnffqjs64pSQLs0QN1wlkIFsICP-HDTIWPSRgknESPSUo2St7cpg.jpeg"
+  src="/images/geodesic_curvature_multi_body.jpeg"
   alt="Geodesic curvature structure in multi-body general relativity"
   style="max-width: 100%; height: auto;"
 />

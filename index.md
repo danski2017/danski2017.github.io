@@ -49,6 +49,8 @@ description: A specialized laboratory for multi-body gravitational simulations a
       <li><strong>Nesting Domain Handoff:</strong> Finalizing modular scene handoff protocols.</li>
       <li><strong>Visualization:</strong> Refining lawful geometry renders for 3-body systems.</li>
     </ul>
-    <p style="background: #f9f9f9; padding: 10px; border-radius: 5px; color: #333;">
+  </div>
+
+</div>
 
 
