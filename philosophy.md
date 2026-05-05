@@ -4,12 +4,60 @@ title: Philosophy
 permalink: /philosophy/
 ---
 
-<div style="display: flex; gap: 60px; align-items: flex-start; margin: 0 auto; line-height: 1.8; font-family: 'Georgia', serif; color: #333;" markdown="1">
+<style>
+.philosophy-grid {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  line-height: 1.8;
+  font-family: 'Georgia', serif;
+  color: #333;
+}
+.philosophy-article {
+  flex: 1;
+  min-width: 0;
+  text-align: justify;
+}
+.philosophy-article-right {
+  flex: 1;
+  min-width: 0;
+  text-align: justify;
+  border-left: 1px solid #eee;
+  padding-left: 50px;
+}
+@media (max-width: 780px) {
+  .philosophy-grid {
+    flex-direction: column;
+    gap: 0;
+  }
+  .philosophy-article-right {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+    margin-top: 40px;
+  }
+  .philosophy-article h1,
+  .philosophy-article-right h1 {
+    font-size: 2em !important;
+  }
+  .philosophy-article h2,
+  .philosophy-article-right h2 {
+    font-size: 1.4em !important;
+  }
+  .philosophy-article,
+  .philosophy-article-right {
+    text-align: left;
+  }
+}
+</style>
 
-<div style="flex: 1; text-align: justify;" markdown="1">
+<div class="philosophy-grid" markdown="1">
+
+<div class="philosophy-article" markdown="1">
 
 <div style="text-align: center; margin-bottom: 60px; margin-top: 40px;">
-  <h1 style="font-size: 2.8em; font-weight: 700; margin-bottom: 10px; color: #111;">The Geometry of Belonging</h1>
+  <h1 id="geometry-of-belonging" style="font-size: 2.8em; font-weight: 700; margin-bottom: 10px; color: #111;">The Geometry of Belonging</h1>
   <p style="font-size: 1.25em; color: #666; font-style: italic;">On gravitational identity, nested reality, and what it means to declare a scene</p>
 </div>
 
@@ -147,12 +195,40 @@ That's not a limitation of the framework.
 
 That's the framework telling the truth.
 
+<div style="margin-top: 50px; padding-top: 25px; border-top: 1px solid #eee;">
+  <p style="font-size: 0.8em; color: #aaa; margin-bottom: 10px; font-family: sans-serif; letter-spacing: 0.06em; text-transform: uppercase;">Share this article</p>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23geometry-of-belonging" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #1877F2; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23geometry-of-belonging&text=The+Geometry+of+Belonging+%E2%80%94+Atlas+Solver+Hub" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #000; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">X / Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23geometry-of-belonging" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #0A66C2; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">LinkedIn</a>
+  </div>
 </div>
 
-<div style="flex: 1; border-left: 1px solid #eee; padding-left: 50px; text-align: justify;" markdown="1">
+<div style="margin-top: 50px;">
+  <script src="https://giscus.app/client.js"
+    data-repo="danski2017/danski2017.github.io"
+    data-repo-id="R_kgDOME_9Sg"
+    data-category="General"
+    data-category-id="DIC_kwDOME_9Ss4Cf9Dk"
+    data-mapping="specific"
+    data-term="philosophy-geometry-of-belonging"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+
+</div>
+
+<div class="philosophy-article-right" markdown="1">
 
 <div style="text-align: center; margin-bottom: 60px; margin-top: 40px;">
-  <h1 style="font-size: 2.8em; font-weight: 700; margin-bottom: 10px; color: #111;">No Background, Not No Structure</h1>
+  <h1 id="no-background-not-no-structure" style="font-size: 2.8em; font-weight: 700; margin-bottom: 10px; color: #111;">No Background, Not No Structure</h1>
   <p style="font-size: 1.25em; color: #666; font-style: italic;">Relational Objectivity After the Loss of the Stage</p>
 </div>
 
@@ -337,3 +413,31 @@ There may be no cosmic platform beneath the world, no universal view from which 
 The task is not to rebuild the old background.
 
 It is to learn the geometry of a world that has structure without a stage.
+
+<div style="margin-top: 50px; padding-top: 25px; border-top: 1px solid #eee;">
+  <p style="font-size: 0.8em; color: #aaa; margin-bottom: 10px; font-family: sans-serif; letter-spacing: 0.06em; text-transform: uppercase;">Share this article</p>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23no-background-not-no-structure" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #1877F2; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23no-background-not-no-structure&text=No+Background%2C+Not+No+Structure+%E2%80%94+Atlas+Solver+Hub" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #000; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">X / Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23no-background-not-no-structure" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #0A66C2; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">LinkedIn</a>
+  </div>
+</div>
+
+<div style="margin-top: 50px;">
+  <script src="https://giscus.app/client.js"
+    data-repo="danski2017/danski2017.github.io"
+    data-repo-id="R_kgDOME_9Sg"
+    data-category="General"
+    data-category-id="DIC_kwDOME_9Ss4Cf9Dk"
+    data-mapping="specific"
+    data-term="philosophy-no-background-not-no-structure"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
