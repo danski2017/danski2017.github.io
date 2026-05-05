@@ -13,13 +13,28 @@ description: Interactive simulations and numerical visualizations of GCS parity 
 ---
 
 ## **Experiment I - Local Stellar Neighborhood - N Parity Stack**
-*An empirical campaign visualizing 57 local stellar sources, tracing a field where relations take form. Here, source–source parity networks and source–context parity surfaces emerge across three tiers of support, each shaped by gradients of acceleration. 
 
-The geometry is carried directly by General Relativity, not yet a full wireframe solution, but a disciplined unveiling of the field’s internal grammar. No marching cubes, no imposed skins, only the native contours of parity, where nested scenes preserve their identity and continuity without artifact or distortion.*
+*An empirical campaign visualizing 57 local stellar sources, tracing a field where relations take form. Here, source–source parity networks and source–context parity surfaces emerge across three tiers of support, each shaped by gradients of acceleration.*
+
+### Local Stellar Neighborhood (LSN) v1.0
+**Status:** Active Experiment  
+**Technical Framework:** Three.js / Lawful Geometry Wireframe  
+
+This visualization renders a high-precision parity stack matrix of the Local Stellar Neighborhood. Unlike standard averaging methods, this model utilizes strict geometric nesting to maintain the integrity of the Gravitational Coherence Surface (GCS) across the local cluster.
+
+* **View Experiment:** [atlas_lsn_v1.html](./images/atlas_lsn_v1.html)
+* **Key Features:**
+    * 2×3 Parity Stack Matrix integration.
+    * Zero-averaging "Lawful Geometry" wireframes.
+    * Full-scale parity network density.
+
+---
+
+*The geometry is carried directly by General Relativity, not yet a full wireframe solution, but a disciplined unveiling of the field’s internal grammar. No marching cubes, no imposed skins, only the native contours of parity, where nested scenes preserve their identity and continuity without artifact or distortion.*
 
 <div class="experiment-container" style="width:100%; background:#020509; border-radius:8px; overflow:hidden; border:1px solid rgba(25,50,100,0.3); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
     <iframe 
-        src="images/Atlas%20%E2%80%94%20Parity%20Stack%202%C3%973%20Matrix%20%C2%B7%20LSN%20v0.1.html" 
+        src="images/atlas_lsn_v1.html" 
         width="100%" 
         height="800px" 
         style="border:none; display:block;" 
