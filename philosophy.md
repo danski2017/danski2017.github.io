@@ -156,6 +156,25 @@ That's the framework telling the truth.
   </div>
 </div>
 
+<div style="margin-top: 50px;">
+  <script src="https://giscus.app/client.js"
+    data-repo="danski2017/danski2017.github.io"
+    data-repo-id="R_kgDOME_9Sg"
+    data-category="General"
+    data-category-id="DIC_kwDOME_9Ss4Cf9Dk"
+    data-mapping="specific"
+    data-term="philosophy-geometry-of-belonging"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+
 </div>
 
 <div style="flex: 1; border-left: 1px solid #eee; padding-left: 50px; text-align: justify;" markdown="1">
@@ -354,4 +373,23 @@ It is to learn the geometry of a world that has structure without a stage.
     <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23no-background-not-no-structure&text=No+Background%2C+Not+No+Structure+%E2%80%94+Atlas+Solver+Hub" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #000; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">X / Twitter</a>
     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdanski2017.github.io%2Fphilosophy%2F%23no-background-not-no-structure" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 16px; background: #0A66C2; color: white; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-family: sans-serif; font-weight: 600;">LinkedIn</a>
   </div>
+</div>
+
+<div style="margin-top: 50px;">
+  <script src="https://giscus.app/client.js"
+    data-repo="danski2017/danski2017.github.io"
+    data-repo-id="R_kgDOME_9Sg"
+    data-category="General"
+    data-category-id="DIC_kwDOME_9Ss4Cf9Dk"
+    data-mapping="specific"
+    data-term="philosophy-no-background-not-no-structure"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
 </div>
