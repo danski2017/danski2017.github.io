@@ -41,3 +41,74 @@ The program investigates how curvature behaves in relativistic n-body systems, w
 <br>
 
 </div>
+
+<hr style="border: 0; border-top: 1px solid #eee; margin: 60px 0 50px;">
+
+<div style="max-width: 860px; line-height: 1.8;" markdown="1">
+
+## What Is the GCS, and How Does It Relate to Classical Gravitational Boundaries?
+
+A gravitational coherence surface (GCS) is a *parity horizon of gravitational identity*: the surface where a declared gravitational contribution reaches equality with its derived gravitational context.
+
+To a reader familiar with celestial mechanics, the natural first question is: how is this different from a Hill sphere, a Roche lobe, or a sphere of influence? The short answer is that they answer different questions. The longer answer is worth unpacking — and Paper I works through it explicitly.
+
+### The Classical Boundaries and What They Answer
+
+The field already has well-tested tools for defining regions of gravitational influence:
+
+- **The Hill sphere** (Hill, 1878) marks where satellite orbits can remain dynamically stable in the circular restricted three-body approximation. It answers: *where can a moon survive?*
+- **The Roche lobe** marks the region of gravitational dominance in binary systems, relevant to mass transfer. It answers: *where is material gravitationally bound to which body?*
+- **The Laplace sphere of influence** defines where patched-conic trajectory stitching should switch reference frames. It answers: *where should a spacecraft trajectory calculation change dominant body?*
+
+These are genuine, useful, well-tested constructs. The GCS program cites them directly and does not claim to replace them.
+
+### The Different Question
+
+None of these tools ask the question the GCS asks:
+
+> *Where does a declared gravitational contribution remain readable as itself within the context of the scene in which it is embedded?*
+
+The shift is precise but significant. Hill spheres, Roche lobes, and spheres of influence were developed to solve specific problems — orbital stability, mass transfer, trajectory design. In each case, the geometry was a means to an end. GCS treats the parity geometry as the *subject*: a structure worth studying in its own right, across arbitrary source counts, scales, and readability rules.
+
+Three elements must be declared to define a GCS: the scene (which sources are in play), the contribution (whose readability is being tested), and the readability rule (the comparison metric). The context is then *derived* from the rest of the scene — it is not assumed or freely chosen. This three-declaration structure makes every GCS a reproducible mathematical object rather than an intuitive approximation.
+
+### The Quantitative Relationship to the Hill Sphere
+
+For a source of mass *M* at distance *D* from a dominant neighbor of mass *M′*, the two scales are:
+
+| Boundary | Formula | Primary question |
+|---|---|---|
+| Hill radius | r_H = D (M / 3M′)^(1/3) | Where can satellite orbits remain stable? |
+| GCS monopole radius | r_0 = D (M / M′)^(1/2) | Where does the declared contribution reach parity with derived context? |
+
+The ratio between them is r_0 / r_H = 3^(1/3) (M / M′)^(1/6). The 1/6 exponent is the structural fact worth pausing on. Across four orders of magnitude in planetary mass ratio — from Mercury to Jupiter — this ratio varies by less than a factor of five, sitting at roughly 10–70% of the Hill radius. For Earth in the solar context, the simplified monopole GCS lies at approximately 17% of Earth's Hill radius.
+
+The two surfaces are not competing. They coexist at different radii and answer different questions. Neither is a force cutoff.
+
+### The Earth–Moon–Sun Lesson
+
+The Earth–Moon system is the cleanest introductory example. The Moon is dynamically Earth-bound — this is not in dispute. But the Sun's absolute gravitational acceleration at the Moon exceeds Earth's. A simplified Earth-monopole parity estimate places Earth's monopole readability radius in the solar context at approximately 261,000 km, while the Moon orbits at approximately 384,000 km.
+
+This is not a contradiction. It separates three things that gravitational intuition tends to conflate:
+
+1. **Dynamical membership** — whether the Moon remains in Earth's orbital system
+2. **Contribution-context parity** — where Earth's declared monopole reaches equality with the derived solar context
+3. **Full nested-scene structure** — how the Earth–Moon system is read inside the larger solar scene
+
+The GCS separates these layers with precision. Ordinary influence language tends to collapse them into one.
+
+### Why Environmental Dependence Is a Feature, Not a Problem
+
+A GCS is not a fixed property of a source. It is a property of a *source-in-a-scene*. Change the scene and the parity surface moves.
+
+A 10⁶ solar-mass globular cluster has a monopole parity boundary of roughly 36 parsecs inside a dense galactic-disk context. In a sparse, void-like context, the same cluster's parity boundary expands to roughly 16 kiloparsecs — a factor of 442. Same mass, same source, different scene, different GCS.
+
+This sensitivity is not a weakness. It is the observational lever. Catalog the same object in two different environments and the parity geometry reports two different surfaces. That makes the GCS an empirically estimable diagnostic rather than an intrinsic constant attached to a source.
+
+### What This Unlocks
+
+The single-source GCS is the entry point. In many-source scenes, pairwise comparisons between each source's contribution assemble into a **parity network** — a structured geometry of faces, seams, and junctions encoding the full relational topology of the gravitational scene.
+
+The result is a lawful, renderable weak-field wireframe of the gravitational scene — not an artistic approximation, but a geometry derived directly from declared sources under honest accounting. That structure has not been produced by prior influence-boundary methods, because those methods were designed to answer specific dynamical questions, not to render the full relational geometry of a scene.
+
+</div>
