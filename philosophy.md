@@ -2,6 +2,8 @@
 layout: page
 title: Philosophy
 permalink: /philosophy/
+description: Two essays on structure, identity, and the geometry of relational fields — from Relational Labs.
+image: /images/v12_three_tier_500source.png
 ---
 
 <style>
