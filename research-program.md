@@ -165,3 +165,16 @@ The single-source GCS is the entry point. In many-source scenes, pairwise compar
 The result is a lawful, renderable weak-field wireframe of the gravitational scene — not an artistic approximation, but a geometry derived directly from declared sources under honest accounting. That structure has not been produced by prior influence-boundary methods, because those methods were designed to answer specific dynamical questions, not to render the full relational geometry of a scene.
 
 </div>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
