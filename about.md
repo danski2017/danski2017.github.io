@@ -5,7 +5,7 @@ title: About
 
 # About
 
-Atlas Solver Hub is the public research resource for the Atlas Solver platform, a weak-field multi-source GR computational geometry laboratory.
+Relational Labs is the public research home for the Atlas Solver platform, a weak-field multi-source GR computational geometry laboratory.
 
 ## **Lead Researcher**
 

@@ -1,44 +1,74 @@
 ---
 layout: default
-title: Atlas Solver Hub | Numerical Relativity & GCS Theory
-description: A specialized laboratory for multi-body gravitational simulations and the study of Gravitational Coherence Surfaces (GCS).
+title: Relational Labs | Numerical Relativity & GCS Theory
+description: Relational Labs is an independent research platform for multi-body gravitational simulation, GCS theory, geodesic diagnostics, and weak-field general relativity.
 ---
+
+<style>
+.index-grid {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+.index-papers {
+  flex: 2;
+  min-width: 0;
+}
+.index-updates {
+  flex: 1;
+  min-width: 0;
+  border-left: 1px solid #eee;
+  padding-left: 25px;
+}
+@media (max-width: 780px) {
+  .index-grid {
+    flex-direction: column;
+    gap: 0;
+  }
+  .index-updates {
+    border-left: none;
+    border-top: 1px solid #eee;
+    padding-left: 0;
+    padding-top: 30px;
+    margin-top: 30px;
+  }
+}
+</style>
 
 # **General Relativity • Multi-Body Curvature**
 
-*Atlas Solver Hub is an independent research platform focused on multi-body (n-body) general relativity, weak-field gravitational simulation, and geometric methods for modeling curvature in complex gravitational systems. The project explores how spacetime curvature behaves beyond simple two-body approximations through numerical simulation, geodesic analysis, and visualization.*
+*Relational Labs is an independent research platform focused on multi-body (n-body) general relativity, weak-field gravitational simulation, and geometric methods for modeling curvature in complex gravitational systems. The project explores how spacetime curvature behaves beyond simple two-body approximations through numerical simulation, geodesic analysis, and visualization.*
 
 <br>
 ---
 
-<div style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+<div class="index-grid">
 
-  <div style="flex: 2; min-width: 300px;">
+  <div class="index-papers">
     <h1>Science Facing Papers</h1>
 
-    <h3><strong>Paper I - The Gravitational Coherence Surface</strong></h3>
+    <h3><strong>Paper I — The Gravitational Coherence Surface</strong></h3>
     <p><em>Parity Horizons of Gravitational Identity</em><br>
     <a href="The%20Gravitational%20Coherence%20Surface.pdf">Read Paper</a></p>
 
-    <h3><strong>Paper II - Many Source Parity Networks (GCS II)</strong></h3>
+    <h3><strong>Paper II — Many Source Parity Networks (GCS II)</strong></h3>
     <p><em>Interaction Dynamics of High-Density Source Distributions</em><br>
     <a href="Many%20Source%20Parity%20Networks_GCS_II_.pdf">Read Paper</a></p>
 
-    <h3><strong>Paper III - Mesoscale Gravitational Readability (GCS III)</strong></h3>
+    <h3><strong>Paper III — Mesoscale Gravitational Readability (GCS III)</strong></h3>
     <p><em>Geometric Methods for Curvature Analysis in Complex Systems</em><br>
     <a href="Mesoscale_Gravitational_Readability_GCS_III_final.pdf">Read Paper</a></p>
 
-    <h3><strong>Paper IV - Proof of Concept Extraction (GCS IV)</strong></h3>
+    <h3><strong>Paper IV — Proof of Concept Extraction (GCS IV)</strong></h3>
     <p><em>Algorithmic Implementation and Empirical Validation Metrics</em><br>
     <a href="Proof_of_Concept_Extraction_GCS_IV_final.pdf">Read Paper</a></p>
 
     <h3><strong>Paper V — The Nesting Domain Handoff Problem</strong></h3>
     <p><em>Parity Networks and the Modular Structure of Gravitational Scenes</em><br>
     <a href="Nesting_Domain_Handoff_GCS_V_.pdf">Read Paper</a></p>
-  
   </div>
 
-  <div style="flex: 1; min-width: 250px; border-left: 1px solid #444; padding-left: 25px;">
+  <div class="index-updates">
     <h1>Lab Updates</h1>
     <p><strong>May 2026 —</strong> First full Riemann run completed with encouraging results. Analysis underway.</p>
     <p><strong>Current Focus:</strong></p>
@@ -46,6 +76,6 @@ description: A specialized laboratory for multi-body gravitational simulations a
       <li><strong>Nesting Domain Handoff:</strong> Finalizing modular scene handoff protocols.</li>
       <li><strong>Visualization:</strong> Refining lawful geometry renders for 3-body systems.</li>
     </ul>
-    <p style="background: #f9f9f9; padding: 10px; border-radius: 5px; color: #333;">
+  </div>
 
-
+</div>
