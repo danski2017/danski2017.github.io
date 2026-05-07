@@ -40,6 +40,7 @@ description: A specialized laboratory for multi-body gravitational simulations a
 
   <div style="flex: 1; min-width: 250px; border-left: 1px solid #444; padding-left: 25px;">
     <h1>Lab Updates</h1>
+    <p><strong>May 2026 —</strong> First full Riemann run completed with encouraging results. Analysis underway.</p>
     <p><strong>Current Focus:</strong></p>
     <ul>
       <li><strong>Nesting Domain Handoff:</strong> Finalizing modular scene handoff protocols.</li>
