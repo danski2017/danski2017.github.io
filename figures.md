@@ -5,7 +5,7 @@ layout: default
 
 <div class="figures-page">
 
-## Featured Rendering
+<h2>Featured Rendering</h2>
 
 <div class="figures-showcase-primary">
   <div class="figures-primary-card">
@@ -23,7 +23,7 @@ layout: default
 
 <hr class="figures-rule">
 
-## Technical Highlights
+<h2>Technical Highlights</h2>
 
 <div class="figures-showcase-secondary">
   <div class="figures-feature-card">
@@ -60,7 +60,7 @@ layout: default
 
 <hr class="figures-rule">
 
-## Network Simulations & Major Renders
+<h2>Network Simulations & Major Renders</h2>
 
 <div class="figures-showcase-secondary">
   <div class="figures-feature-card">
@@ -96,7 +96,7 @@ layout: default
 
 <hr class="figures-rule">
 
-## Neutral Isotropic Boundary Studies
+<h2>Neutral Isotropic Boundary Studies</h2>
 
 <div class="figures-showcase-secondary">
   <div class="figures-feature-card">
@@ -130,7 +130,7 @@ layout: default
 
 <hr class="figures-rule">
 
-## Archive & Supplementary Data
+<h2>Archive & Supplementary Data</h2>
 
 <div class="figures-gallery">
   <div class="figures-gallery-card">
@@ -138,7 +138,7 @@ layout: default
       <img src="images/local_patch_extreme_ratio_anisotropy_pass_patch_frame_3d.png" alt="Local patch extreme ratio anisotropy">
       <figcaption>
         <span class="figures-caption-title">Fig 01</span>
-        Local patch — extreme ratio anisotropy
+        Arrangement of iron atoms
       </figcaption>
     </figure>
   </div>
