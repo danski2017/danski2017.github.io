@@ -68,11 +68,15 @@ description: Relational Labs is an independent research platform for multi-body 
     <h3><strong>Paper V — The Nesting Domain Handoff Problem</strong></h3>
     <p><em>Parity Networks and the Modular Structure of Gravitational Scenes</em><br>
     <a href="Nesting_Domain_Handoff_GCS_V_.pdf">Read Paper</a></p>
+
+    <h3><strong>Paper VI — The Gravitational Field-Relation Operator</strong></h3>
+    <p><em>Direct Construction of Gravitational Parity Networks from Source-Context Residuals</em><br>
+    <a href="Gravitational_Field_Relation_Operator_public_GCS%20VI.pdf">Read Paper</a></p>
   </div>
 
   <div class="index-updates">
     <h1>Lab Updates</h1>
-    <p><strong>May 2026 —</strong> First full Riemann run completed with encouraging results. Analysis underway.</p>
+    <p><strong>May 2026 —</strong> Paper VI released: <em>The Gravitational Field-Relation Operator</em>. First full Riemann run completed with encouraging results. Analysis underway.</p>
     <p><strong>Current Focus:</strong></p>
     <ul>
       <li><strong>Nesting Domain Handoff:</strong> Finalizing modular scene handoff protocols.</li>
