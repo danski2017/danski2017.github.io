@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Atlas · Dynamic Lattice</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Space Mono',monospace}
+canvas{display:block;touch-action:none}
+#ui{position:fixed;z-index:200;display:flex;gap:10px;align-items:center}
+@media(min-width:601px){#ui{top:18px;right:18px}}
+@media(max-width:600px){#ui{bottom:20px;right:18px}}
+.ub{
+  width:48px;height:48px;border-radius:10px;
+  background:rgba(8,8,12,.88);border:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.55);font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  user-select:none;
+}
+.ub:hover,.ub.on{border-color:rgba(255,215,0,.45);color:#FFD700}
+
+/* ─── Slider panel ─── */
+#panel{
+  position:fixed;z-index:250;
+  background:rgba(3,3,8,.92);border:1px solid rgba(255,255,255,.07);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-radius:12px;padding:14px 16px 12px;
+  transition:opacity .25s,transform .25s;
+  opacity:0;pointer-events:none;transform:translateY(6px);
+}
+#panel.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+@media(min-width:601px){#panel{top:76px;right:18px;width:220px}}
+@media(max-width:600px){#panel{bottom:80px;right:18px;width:220px}}
+
+.sl{margin-bottom:10px}
+.sl:last-child{margin-bottom:0}
+.sl-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.sl-name{font-size:8px;color:rgba(255,255,255,.5);letter-spacing:.06em}
+.sl-val{font-size:8px;color:rgba(255,255,255,.3)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:3px;border-radius:2px;
+  background:rgba(255,255,255,.1);outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:rgba(140,140,150,1);transition:background .15s;
+}
+input[type=range]::-webkit-slider-thumb:active{background:#FFD700}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#888;border:none}
+#lbl{
+  position:fixed;top:18px;left:18px;z-index:100;pointer-events:none;
+}
+.lt{font-size:10px;font-weight:700;color:rgba(255,215,0,.55);letter-spacing:.15em;text-transform:uppercase}
+.ls{font-size:8px;color:rgba(255,255,255,.2);letter-spacing:.05em;margin-top:2px}
+#spd{
+  position:fixed;z-index:100;pointer-events:none;
+  font-family:'Space Mono',monospace;font-size:8px;
+  color:rgba(255,255,255,.18);letter-spacing:.04em;
+}
+@media(min-width:601px){#spd{bottom:14px;left:16px}}
+@media(max-width:600px){#spd{top:18px;left:18px;margin-top:40px}}
+</style>
+</head>
+<body>
+
+<div id="lbl">
+  <div class="lt">Atlas · Dynamic Lattice</div>
+  <div class="ls">4-source orbiting · live lattice recomputation</div>
+</div>
+
+<div id="ui">
+  <button class="ub on" id="bPlay" title="Play/Pause">&#9646;&#9646;</button>
+  <button class="ub" id="bFly" title="Flythrough camera">&#9654;</button>
+  <button class="ub" id="bMenu" title="Controls">&#9776;</button>
+</div>
+
+<div id="panel">
+  <div class="sl">
+    <div class="sl-top"><span class="sl-name">Grid opacity</span><span class="sl-val" id="vGrid">30</span></div>
+    <input type="range" min="0" max="100" value="30" id="sGrid">
+  </div>
+  <div class="sl">
+    <div class="sl-top"><span class="sl-name">Sources opacity</span><span class="sl-val" id="vSrc">100</span></div>
+    <input type="range" min="0" max="100" value="100" id="sSrc">
+  </div>
+  <div class="sl">
+    <div class="sl-top"><span class="sl-name">Displacement strength</span><span class="sl-val" id="vDisp">75</span></div>
+    <input type="range" min="0" max="150" value="75" id="sDisp">
+  </div>
+  <div class="sl">
+    <div class="sl-top"><span class="sl-name">Orbit speed</span><span class="sl-val" id="vSpd">100</span></div>
+    <input type="range" min="0" max="300" value="100" id="sSpd">
+  </div>
+</div>
+
+<div id="spd"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════
+   SOURCE DATA
+═══════════════════════════════════════════════════════ */
+const SRC = [
+  {name:'S1', mass:1.00, orig:[1.20, 0.25, 0.90]},
+  {name:'S2', mass:0.72, orig:[-0.95, 0.85, -0.35]},
+  {name:'S3', mass:0.33, orig:[0.35, -1.10, -0.75]},
+  {name:'S4', mass:0.11, orig:[-0.45, -0.20, 1.30]}
+];
+const CX = 0.0375, CY = -0.05, CZ = 0.275;
+
+/* Orbital parameters: each source orbits the centroid in xz-plane */
+const orbits = SRC.map((s, i) => {
+  const dx = s.orig[0] - CX, dz = s.orig[2] - CZ;
+  const r = Math.sqrt(dx*dx + dz*dz);
+  const theta0 = Math.atan2(dz, dx);
+  /* lighter sources orbit faster */
+  const speed = 0.12 + 0.25 * (1 - s.mass);
+  return { r, theta0, y: s.orig[1], speed };
+});
+
+function srcPosAt(idx, t) {
+  const o = orbits[idx];
+  const th = o.theta0 + o.speed * t * orbitSpeedMul;
+  return [CX + o.r * Math.cos(th), o.y, CZ + o.r * Math.sin(th)];
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDERER
+═══════════════════════════════════════════════════════ */
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x000000, 1);
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(42, window.innerWidth/window.innerHeight, 0.01, 300);
+camera.position.set(9, 5.5, 11);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.07;
+controls.rotateSpeed = 0.65; controls.zoomSpeed = 0.85;
+controls.minDistance = 1; controls.maxDistance = 60;
+controls.target.set(CX, CY, CZ);
+
+window.addEventListener('resize', () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+});
+
+/* ═══════════════════════════════════════════════════════
+   SOURCE MARKERS
+═══════════════════════════════════════════════════════ */
+function dotTex(r,g,b) {
+  const s=64, c=document.createElement('canvas');
+  c.width=c.height=s; const ctx=c.getContext('2d');
+  const gr=ctx.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+  gr.addColorStop(0,`rgba(${r},${g},${b},1)`);
+  gr.addColorStop(.4,`rgba(${r},${g},${b},.8)`);
+  gr.addColorStop(1,`rgba(${r},${g},${b},0)`);
+  ctx.fillStyle=gr; ctx.fillRect(0,0,s,s);
+  return new THREE.CanvasTexture(c);
+}
+
+const srcGeo = new THREE.BufferGeometry();
+const srcPositions = new Float32Array(SRC.length * 3);
+const srcSizes = new Float32Array(SRC.map(s => 0.07 + 0.24 * Math.sqrt(s.mass)));
+srcGeo.setAttribute('position', new THREE.BufferAttribute(srcPositions, 3));
+srcGeo.setAttribute('size', new THREE.BufferAttribute(srcSizes, 1));
+const srcMat = new THREE.ShaderMaterial({
+  uniforms: { map: {value: dotTex(255,215,0)}, opacity: {value: 1.0} },
+  vertexShader: `attribute float size;
+    void main(){gl_PointSize=size*130.;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+  fragmentShader: `uniform sampler2D map; uniform float opacity;
+    void main(){vec4 t=texture2D(map,gl_PointCoord);if(t.a<.01)discard;gl_FragColor=vec4(1.,.84,0.,t.a*opacity);}`,
+  transparent:true, depthWrite:false
+});
+scene.add(new THREE.Points(srcGeo, srcMat));
+
+/* ═══════════════════════════════════════════════════════
+   DEFORMED LATTICE (dynamic)
+═══════════════════════════════════════════════════════ */
+const GRID_N = 10, HW = 4.2, N_SUB = 5;
+let L_SCALE = 0.75;
+const L_REF = 0.6, L_EPS2 = 0.06;
+const gStep = 2*HW/(GRID_N-1);
+
+/* Pre-compute edge list (original undeformed endpoints) */
+const latticeEdges = [];
+function addE(i0,j0,k0,i1,j1,k1) {
+  latticeEdges.push([
+    CX-HW+i0*gStep, CY-HW+j0*gStep, CZ-HW+k0*gStep,
+    CX-HW+i1*gStep, CY-HW+j1*gStep, CZ-HW+k1*gStep
+  ]);
+}
+for(let i=0;i<GRID_N;i++) for(let j=0;j<GRID_N;j++) for(let k=0;k<GRID_N-1;k++) addE(i,j,k,i,j,k+1);
+for(let i=0;i<GRID_N;i++) for(let j=0;j<GRID_N-1;j++) for(let k=0;k<GRID_N;k++) addE(i,j,k,i,j+1,k);
+for(let i=0;i<GRID_N-1;i++) for(let j=0;j<GRID_N;j++) for(let k=0;k<GRID_N;k++) addE(i,j,k,i+1,j,k);
+
+const nLattSegs = latticeEdges.length * N_SUB;
+const lattPos = new Float32Array(nLattSegs * 6);
+const lattGeo = new THREE.BufferGeometry();
+lattGeo.setAttribute('position', new THREE.BufferAttribute(lattPos, 3));
+const lattMesh = new THREE.LineSegments(lattGeo,
+  new THREE.LineBasicMaterial({color:0x8899BB, transparent:true, opacity:0.30, depthWrite:false}));
+scene.add(lattMesh);
+
+function updateLattice(sources) {
+  let idx = 0;
+  for (let ei = 0; ei < latticeEdges.length; ei++) {
+    const e = latticeEdges[ei];
+    let ppx, ppy, ppz, first = true;
+    for (let si = 0; si <= N_SUB; si++) {
+      const t = si / N_SUB;
+      const ox = e[0]+(e[3]-e[0])*t;
+      const oy = e[1]+(e[4]-e[1])*t;
+      const oz = e[2]+(e[5]-e[2])*t;
+
+      let dx=0, dy=0, dz=0;
+      for (let si2=0; si2<sources.length; si2++) {
+        const s = sources[si2];
+        const ex=s[0]-ox, ey=s[1]-oy, ez=s[2]-oz;
+        const r2=ex*ex+ey*ey+ez*ez+L_EPS2;
+        const r3=Math.pow(r2,1.5);
+        const m = SRC[si2].mass;
+        dx+=m*ex/r3; dy+=m*ey/r3; dz+=m*ez/r3;
+      }
+      const mag=Math.sqrt(dx*dx+dy*dy+dz*dz);
+      const d=L_SCALE*Math.tanh(mag/L_REF)/(mag+1e-10);
+      const px=ox+dx*d, py=oy+dy*d, pz=oz+dz*d;
+
+      if (!first) {
+        lattPos[idx++]=ppx; lattPos[idx++]=ppy; lattPos[idx++]=ppz;
+        lattPos[idx++]=px;  lattPos[idx++]=py;  lattPos[idx++]=pz;
+      }
+      ppx=px; ppy=py; ppz=pz; first=false;
+    }
+  }
+  lattGeo.attributes.position.needsUpdate = true;
+}
+
+
+
+
+
+/* ═══════════════════════════════════════════════════════
+   PANEL & SLIDERS
+═══════════════════════════════════════════════════════ */
+let orbitSpeedMul = 1.0;
+
+document.getElementById('bMenu').addEventListener('click', function(){
+  const p = document.getElementById('panel');
+  const open = p.classList.toggle('open');
+  this.classList.toggle('on', open);
+});
+
+document.getElementById('sGrid').addEventListener('input', function(){
+  const v = parseFloat(this.value)/100;
+  lattMesh.material.opacity = v;
+  document.getElementById('vGrid').textContent = this.value;
+});
+
+document.getElementById('sSrc').addEventListener('input', function(){
+  const v = parseFloat(this.value)/100;
+  srcMat.uniforms.opacity.value = v;
+  document.getElementById('vSrc').textContent = this.value;
+});
+
+document.getElementById('sDisp').addEventListener('input', function(){
+  L_SCALE = parseFloat(this.value)/100;
+  document.getElementById('vDisp').textContent = this.value;
+});
+
+document.getElementById('sSpd').addEventListener('input', function(){
+  orbitSpeedMul = parseFloat(this.value)/100;
+  document.getElementById('vSpd').textContent = this.value;
+});
+
+/* ═══════════════════════════════════════════════════════
+   CONTROLS
+═══════════════════════════════════════════════════════ */
+let playing = true, flying = false, t0 = performance.now();
+
+document.getElementById('bPlay').addEventListener('click', function(){
+  playing = !playing;
+  this.classList.toggle('on', playing);
+  this.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+  if (playing) t0 = performance.now() - pausedAt * 1000;
+});
+
+let pausedAt = 0;
+
+document.getElementById('bFly').addEventListener('click', function(){
+  flying = !flying;
+  this.classList.toggle('on', flying);
+  controls.enabled = !flying;
+});
+
+/* ═══════════════════════════════════════════════════════
+   RENDER LOOP
+═══════════════════════════════════════════════════════ */
+const spdEl = document.getElementById('spd');
+let frameCount = 0;
+
+(function loop() {
+  requestAnimationFrame(loop);
+
+  let t;
+  if (playing) {
+    t = (performance.now() - t0) / 1000;
+    pausedAt = t;
+  } else {
+    t = pausedAt;
+  }
+
+  /* Compute current source positions */
+  const cur = SRC.map((_, i) => srcPosAt(i, t));
+
+  /* Update source markers */
+  for (let i=0; i<cur.length; i++) {
+    srcPositions[i*3]   = cur[i][0];
+    srcPositions[i*3+1] = cur[i][1];
+    srcPositions[i*3+2] = cur[i][2];
+  }
+  srcGeo.attributes.position.needsUpdate = true;
+
+  /* Update field geometry */
+  updateLattice(cur);
+
+  /* Flythrough camera */
+  if (flying) {
+    const s = t * 0.08;
+    const r = 7 + 5*Math.cos(s*0.6);
+    camera.position.set(CX+r*Math.cos(s), CY+1.8*Math.sin(s*0.4)+2, CZ+r*Math.sin(s));
+    camera.lookAt(CX+0.4*Math.sin(s*0.3), CY+0.25*Math.cos(s*0.5), CZ+0.4*Math.sin(s*0.7));
+  } else {
+    controls.update();
+  }
+
+  renderer.render(scene, camera);
+
+  /* FPS readout */
+  if (++frameCount % 30 === 0) {
+    spdEl.textContent = `lattice: ${latticeEdges.length}×${N_SUB} · live recompute`;
+  }
+})();
+</script>
+</body>
+</html>
