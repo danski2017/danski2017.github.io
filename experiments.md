@@ -100,7 +100,34 @@ This visualization renders a high-precision parity stack matrix of the Local Ste
 
 ---
 
-## **Experiment IV — Recursive Domain Handoff (Forthcoming)**
+## **Experiment IV — Dynamic Sponge Lattice**
+
+*An interactive three-dimensional field viewer. Four gravitational sources orbit a common centroid while the surrounding lattice deforms in real-time — every node displaced each frame by the combined field of all four sources. Use the controls to pause, fly through the scene, or tune displacement strength, orbit speed, and opacity independently.*
+
+**Status:** Active Experiment  
+**Technical Framework:** Three.js / Live Field Recomputation
+
+* **View Experiment:** [atlas_dynamic_sponge_lattice.html](./atlas_dynamic_sponge_lattice.html)
+* **Key Features:**
+    * Four orbiting sources with distinct mass ratios (1.00 / 0.72 / 0.33 / 0.11).
+    * Full lattice recomputed per frame — no precomputed frames.
+    * Play/pause, flythrough camera, and sliders for displacement strength, orbit speed, and grid opacity.
+
+<div class="experiment-container" style="width:100%; background:#000; border-radius:8px; overflow:hidden; border:1px solid rgba(25,50,100,0.3); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+    <iframe
+        src="atlas_dynamic_sponge_lattice.html"
+        width="100%"
+        height="700px"
+        style="border:none; display:block;"
+        loading="lazy">
+    </iframe>
+</div>
+
+<br>
+
+---
+
+## **Experiment V — Recursive Domain Handoff (Forthcoming)**
 
 <br>
 
