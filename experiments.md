@@ -121,6 +121,15 @@ description: Interactive simulations and numerical visualizations of GCS parity 
   text-decoration: none;
 }
 .exp-card-link:hover { text-decoration: underline; }
+.exp-open-links {
+  margin-top: 7px;
+  font-size: 0.78rem;
+}
+.exp-open-links a {
+  color: #888;
+  text-decoration: none;
+}
+.exp-open-links a:hover { color: #333; text-decoration: underline; }
 .exp-card-forthcoming {
   border-style: dashed;
   opacity: 0.55;
@@ -168,6 +177,9 @@ description: Interactive simulations and numerical visualizations of GCS parity 
 <div class="exp-frame" style="background:#000;">
   <iframe src="atlas_dynamic_sponge_lattice.html" height="640px" loading="lazy"></iframe>
 </div>
+<div class="exp-open-links">
+  <a href="atlas_dynamic_sponge_lattice.html" target="_blank" rel="noopener">Open full screen &nearr;</a>
+</div>
 </div>
 
 <div class="exp-showcase-item">
@@ -176,6 +188,9 @@ description: Interactive simulations and numerical visualizations of GCS parity 
 <div class="exp-showcase-desc">57 local stellar sources rendered as a full parity stack matrix. Source–source parity networks and source–context parity surfaces emerge across three tiers of support, shaped by gradients of acceleration.</div>
 <div class="exp-frame" style="background:#020509;">
   <iframe src="images/atlas_lsn_v1.html" height="700px" loading="lazy"></iframe>
+</div>
+<div class="exp-open-links">
+  <a href="images/atlas_lsn_v1.html" target="_blank" rel="noopener">Open full screen &nearr;</a>
 </div>
 </div>
 
