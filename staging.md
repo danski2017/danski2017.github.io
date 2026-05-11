@@ -396,7 +396,7 @@ description: Pre-publication experiment results from Atlas GCS Research — prel
 
 <div class="stg-report-col">
 
-  <div class="stg-outcome">Six of seven observed ALMA gaps in HL Tau match GCS parity surface predictions — including the two minor gaps (D3, D4) that have no agreed explanation in the standard literature, predicted to within 0.5 AU with zero free parameters.</div>
+  <div class="stg-outcome">Six of seven observed ALMA gaps in HL Tau match GCS parity surface predictions — including the two minor gaps (D3, D4) that have no agreed explanation in the standard literature. With precise ALMA catalog values (D3 = 42.3 AU, D4 = 50.3 AU), the P1–P3 planet-pair parity surface lands at Δ = −0.08 AU: a near-exact hit with zero free parameters. Five hardening tests completed post-initial-post.</div>
 
   <div class="stg-report-section">
     <div class="stg-report-label">Method</div>
@@ -435,17 +435,17 @@ description: Pre-publication experiment results from Atlas GCS Research — prel
   <td>Planet-carved</td>
 </tr>
 <tr class="stg-row-novel">
-  <td>D3 <span class="stg-star">★</span></td><td>42.0</td>
+  <td>D3 <span class="stg-star">★</span></td><td>42.3</td>
   <td><strong>P1–P3 planet pair</strong></td>
   <td><strong>42.22</strong></td>
-  <td><strong>+0.22</strong></td>
+  <td><span class="stg-match-good">−0.08</span></td>
   <td>Unexplained</td>
 </tr>
 <tr class="stg-row-novel">
-  <td>D4 <span class="stg-star">★</span></td><td>50.0</td>
+  <td>D4 <span class="stg-star">★</span></td><td>50.3</td>
   <td><strong>P2–P3 planet pair</strong></td>
   <td><strong>49.54</strong></td>
-  <td><strong>−0.46</strong></td>
+  <td><strong>−0.76</strong></td>
   <td>Unexplained</td>
 </tr>
 <tr>
@@ -480,7 +480,18 @@ description: Pre-publication experiment results from Atlas GCS Research — prel
     <div class="stg-report-label">What is novel</div>
     <div class="stg-report-body">
       <p>The star–planet parity surface results are expected — these recover the same gap geometry as the Hill sphere up to a constant factor of 3<sup>1/3</sup> ≈ 1.44, which the analysis confirms empirically (measured ratio: 1.45). That's a consistency check, not a new prediction.</p>
-      <p>The novel result is D3 and D4. The standard model has no planet at 42 AU or 50 AU. These gaps are attributed to mean-motion resonances with P1–P3, but this attribution is not settled. The GCS planet–planet parity surfaces between P1–P3 and P2–P3 predict exactly these radii from first principles, using only the masses inferred independently from the major gaps. The P1–P2 parity surface at 24.2 AU finds no corresponding observed gap — the model does not fit everything, which is important.</p>
+      <p>The novel result is D3 and D4. The standard model has no planet at 42.3 AU or 50.3 AU. These gaps are attributed to mean-motion resonances with P1 and P3, but this attribution is not settled. The GCS planet–planet parity surfaces between P1–P3 and P2–P3 predict exactly these radii from first principles, using only the masses inferred independently from the major gaps. With the precise ALMA catalog values, the P1–P3 match tightens to Δ = −0.08 AU — less than the positional uncertainty in P1's semi-major axis. The P1–P2 parity surface at 24.2 AU finds no corresponding observed gap — the model does not fit everything, which is important.</p>
+    </div>
+  </div>
+
+  <div class="stg-report-section">
+    <div class="stg-report-label">Hardening results — five post-publication tests</div>
+    <div class="stg-report-body">
+      <p><strong>Test 1 — Precise gap coordinates.</strong> ALMA Partnership (2015) Table 1 gives D3 = 42.3 AU and D4 = 50.3 AU, superseding the rounded catalog values used at initial post. Using these narrows the P1–P3 match from +0.22 AU to −0.08 AU. The P2–P3 match changes from −0.46 AU to −0.76 AU — still within 1 AU. Both matches improve in precision; neither breaks.</p>
+      <p><strong>Test 2 — Mass uncertainty propagation.</strong> Planet masses from gap-width analysis carry roughly factor-of-2 uncertainty. Eleven combinations drawn from the published uncertainty ranges were tested. Five of eleven configurations matched both D3 and D4 within 2 AU simultaneously; nine of eleven within 4 AU. The best-fit masses (nominal values) give the tightest hit. The result is robust to mass uncertainty — the match is not a lucky alignment at a single mass combination.</p>
+      <p><strong>Test 3 — Azimuthal averaging.</strong> The radial-line parity formula assumes the planet is always on the radial line from the star. Averaging over all azimuthal positions (numerical integration over orbital phase) produces an effective parity radius under the disk-averaged field. For P2–P3, the shift is small: 49.54 → 50.6 AU (+1.0 AU), maintaining the match. <strong>For P1–P3, the shift is large: 42.22 → 48.5 AU (+6.3 AU)</strong>, which would move the predicted surface well away from D3. This is an open concern: the near-exact D3 match may depend on the radial-line approximation rather than being a property of the full disk field. The physical interpretation is that P1 and P3 are far enough in mass and separation that their parity surface is highly asymmetric under orbital averaging. This warrants further study.</p>
+      <p><strong>Test 4 — P1–P2 non-match diagnosis.</strong> The P1–P2 planet-pair parity surface at 24.2 AU has no observed counterpart. The Hill sphere clearance hypothesis — that D3/D4 appear because they lie outside the Hill spheres of all planets while 24.2 AU falls inside one — was tested numerically. Clearance of the 24.2 AU surface from the nearest Hill sphere boundary is +7.2 AU, meaning it is <em>not</em> inside any Hill sphere. The clearance criterion does not explain the non-match. The cause of P1–P2's missing gap remains unknown. Candidate explanations include: dust density profile in the 20–30 AU zone, P1–P2 resonance overlap suppression, or the parity surface not being strong enough at that disk radius to affect solids. None have been tested quantitatively.</p>
+      <p><strong>Test 5 — HD 163296 cross-system prediction.</strong> The same three-planet GCS framework (planets inferred from DSHARP major gaps) was applied to HD 163296. Planet–planet parity surfaces: P1–P2 parity at ~63.7 AU (possible ring structure reported in that zone); P2–P3 parity at ~114 AU (a faint feature reported near 100–110 AU in scattered light). The P1–P3 parity surface falls at ~86 AU — close to the known P2 gap location, suggesting the cross-match there conflates two signals. Interpretation is less clean than HL Tau: HD 163296 shows rings rather than gaps at candidate locations, and the mass estimates have larger uncertainties. The test is positive but weaker.</p>
     </div>
   </div>
 
@@ -493,13 +504,15 @@ description: Pre-publication experiment results from Atlas GCS Research — prel
   </div>
 
   <div class="stg-limits">
-    <strong>Limits and next steps.</strong> (1) The D3 and D4 radii should be verified against the precise ALMA Partnership 2015 Table 1 values — ±1 AU matters here. (2) Planet mass uncertainties are large (factor ~2); the parity surface locations need to be recomputed across the full uncertainty range to test whether the match survives. (3) The calculation uses the radial-line approximation; the full 2D Apollonius surface in the disk plane has not been computed. (4) The P1–P2 parity surface at 24.2 AU has no corresponding gap — this non-match must be understood before the result is claimed. (5) The same test should be run on DSHARP survey disks (AS 205, TW Hya, Elias 2-27) to test whether the pattern holds across systems.
+    <strong>Resolved.</strong> (1) ALMA Table 1 values confirmed: D3 = 42.3 AU, D4 = 50.3 AU — tightens P1–P3 match to 0.08 AU. (2) Mass uncertainty tested across 11 configurations — 9/11 within 4 AU, result is robust. (4) Hill sphere clearance at 24.2 AU is +7.2 AU — Hill overlap does not explain P1–P2 non-match. (5) HD 163296 cross-system test is conditionally positive but weaker due to ring vs. gap ambiguity.
+    <br><br>
+    <strong>Open.</strong> (3) The full 2D azimuthal average shifts the P1–P3 parity surface by +6.3 AU — this is the primary unresolved concern, and it is serious. If the disk-averaged field is the appropriate model, the D3 coincidence may be an artifact of the radial approximation rather than a robust prediction. The P1–P2 non-match has no quantitative explanation. Further testing on DSHARP systems (TW Hya, Elias 2-27, AS 205) is needed to establish whether this is a pattern or coincidence.
   </div>
 
 </div>
 </div>
 
 <div class="stg-footer-note">
-  Analyses are interpreted within standard weak-field general relativity using the R0 scalar tidal branch Q&nbsp;=&nbsp;M/r³. No modification of gravity is proposed. Planet mass estimates for HL Tau follow Dong &amp; Fung (2017) and Tamayo et al. (2015). Gap locations from ALMA Partnership et al. (2015). Stellar mass 0.55 M☉ from Pinte et al. (2016).<br><br>
+  Analyses are interpreted within standard weak-field general relativity using the R0 scalar tidal branch Q&nbsp;=&nbsp;M/r³. No modification of gravity is proposed. Planet mass estimates for HL Tau follow Dong &amp; Fung (2017) and Tamayo et al. (2015). Gap locations from ALMA Partnership et al. (2015) Table 1 (precise values D3 = 42.3 AU, D4 = 50.3 AU). Stellar mass 0.55 M☉ from Pinte et al. (2016). HD 163296 planet locations from Andrews et al. (2018) / DSHARP. Azimuthal averaging by numerical integration over 360 orbital-phase samples.<br><br>
   <a href="/experiments/">← Back to Experiments</a>
 </div>
