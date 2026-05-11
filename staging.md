@@ -193,10 +193,81 @@ description: Pre-publication experiment results from Atlas GCS Research — prel
   border-top: 1px solid #eee;
 }
 
+/* ── card stats grid (used for analysis entries) ── */
+.stg-stats {
+  padding-top: 10px;
+  border-top: 1px solid #f2f2f2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+}
+.stg-stat-label {
+  font-size: 0.60rem;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1px;
+}
+.stg-stat-value {
+  font-size: 0.82rem;
+  color: #333;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* ── HL Tau disk thumbnail ── */
+.stg-thumb-hltau {
+  background:
+    radial-gradient(circle,
+      #0a0400 3%,
+      #c87020 7%,  #0d0500 11%,
+      #a05818 16%, #0d0500 21%,
+      #784010 28%, #0d0500 34%,
+      #542c08 43%, #0d0500 51%,
+      #3a1e04 62%, #0a0300 73%,
+      #1e0e02 86%, #050200 100%);
+  color: rgba(255,175,60,0.55);
+}
+
+/* ── result table ── */
+.stg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  margin: 10px 0 4px;
+  font-family: 'Space Mono', 'Courier New', monospace;
+}
+.stg-table th {
+  text-align: left;
+  padding: 5px 8px;
+  font-size: 0.60rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bbb;
+  border-bottom: 2px solid #eee;
+  white-space: nowrap;
+}
+.stg-table td {
+  padding: 5px 8px;
+  color: #555;
+  border-bottom: 1px solid #f5f5f5;
+}
+.stg-table tr.stg-row-novel td {
+  background: #fffbe6;
+  color: #3a2800;
+  font-weight: bold;
+}
+.stg-table tr.stg-row-fail td { color: #bbb; }
+.stg-match-good { color: #2a7a2a; font-weight: bold; }
+.stg-match-fail { color: #ccc; }
+.stg-star { color: #cc8800; }
+
 /* ── responsive ── */
 @media (max-width: 700px) {
   .stg-entry { flex-direction: column; gap: 24px; }
   .stg-card-col { flex: none; width: 100%; }
+  .stg-table { font-size: 0.70rem; }
+  .stg-table th, .stg-table td { padding: 4px 5px; }
 }
 </style>
 
@@ -278,7 +349,157 @@ description: Pre-publication experiment results from Atlas GCS Research — prel
 </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════
+     ENTRY: HL Tau Disk Gap Prediction
+════════════════════════════════════════════════════ -->
+<div class="stg-entry">
+
+<div class="stg-card-col">
+  <div class="stg-card">
+    <div class="stg-card-thumb stg-thumb-hltau">HL Tau · ALMA disk</div>
+    <div class="stg-card-body">
+      <div class="stg-card-meta">
+        <span class="stg-card-num">Analysis I</span>
+        <span class="stg-badge stg-badge-staging">Staging</span>
+      </div>
+      <div class="stg-card-title">HL Tau Disk Gap Prediction</div>
+      <div class="stg-card-date">Posted May 2026</div>
+      <div class="stg-stats">
+        <div>
+          <div class="stg-stat-label">System</div>
+          <div class="stg-stat-value">HL Tauri</div>
+        </div>
+        <div>
+          <div class="stg-stat-label">Gaps tested</div>
+          <div class="stg-stat-value">7 (D1–D7)</div>
+        </div>
+        <div>
+          <div class="stg-stat-label">Stellar mass</div>
+          <div class="stg-stat-value">0.55 M☉</div>
+        </div>
+        <div>
+          <div class="stg-stat-label">Free params</div>
+          <div class="stg-stat-value">Zero</div>
+        </div>
+        <div>
+          <div class="stg-stat-label">Branch</div>
+          <div class="stg-stat-value">R0 (M/r³)</div>
+        </div>
+        <div>
+          <div class="stg-stat-label">Data source</div>
+          <div class="stg-stat-value">ALMA 2015</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stg-report-col">
+
+  <div class="stg-outcome">Six of seven observed ALMA gaps in HL Tau match GCS parity surface predictions — including the two minor gaps (D3, D4) that have no agreed explanation in the standard literature, predicted to within 0.5 AU with zero free parameters.</div>
+
+  <div class="stg-report-section">
+    <div class="stg-report-label">Method</div>
+    <div class="stg-report-body">
+      <p>Three planets are inferred from the three major dust gaps in HL Tau (D1, D2, D5) by independent hydrodynamic gap-width analysis (Dong &amp; Fung 2017; Tamayo et al. 2015): P1 at 13.1 AU (0.35 M<sub>J</sub>), P2 at 33.0 AU (0.17 M<sub>J</sub>), P3 at 68.6 AU (0.26 M<sub>J</sub>). Taking these as fixed, GCS parity surfaces are computed under the R0 scalar tidal branch Q = M/r³.</p>
+      <p>Two classes of parity surface are computed. <strong>Star–planet surfaces</strong> give the inner and outer boundaries of each planet's tidal domain: r<sub>in</sub> = a/(1+q<sup>1/3</sup>), r<sub>out</sub> = a/(1−q<sup>1/3</sup>), where q = M<sub>p</sub>/M<sub>★</sub>. <strong>Planet–planet surfaces</strong> give the parity radius between each pair of planets along their connecting radial line: r = (a<sub>j</sub> + β·a<sub>i</sub>)/(1+β), where β = (M<sub>j</sub>/M<sub>i</sub>)<sup>1/3</sup>. All three planet–planet pairs are computed. No parameters were adjusted to improve any match.</p>
+    </div>
+  </div>
+
+  <div class="stg-report-section">
+    <div class="stg-report-label">Results</div>
+    <div class="stg-report-body">
+
+<table class="stg-table">
+<thead>
+<tr>
+  <th>Gap</th>
+  <th>Observed (AU)</th>
+  <th>GCS source</th>
+  <th>Predicted (AU)</th>
+  <th>Δ (AU)</th>
+  <th>Prior status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>D1</td><td>13.2</td>
+  <td>Star–P1 outer edge</td>
+  <td>14.31</td><td>+1.11</td>
+  <td>Planet-carved</td>
+</tr>
+<tr>
+  <td>D2</td><td>32.3</td>
+  <td>Star–P2 inner edge</td>
+  <td>30.94</td><td>−1.36</td>
+  <td>Planet-carved</td>
+</tr>
+<tr class="stg-row-novel">
+  <td>D3 <span class="stg-star">★</span></td><td>42.0</td>
+  <td><strong>P1–P3 planet pair</strong></td>
+  <td><strong>42.22</strong></td>
+  <td><strong>+0.22</strong></td>
+  <td>Unexplained</td>
+</tr>
+<tr class="stg-row-novel">
+  <td>D4 <span class="stg-star">★</span></td><td>50.0</td>
+  <td><strong>P2–P3 planet pair</strong></td>
+  <td><strong>49.54</strong></td>
+  <td><strong>−0.46</strong></td>
+  <td>Unexplained</td>
+</tr>
+<tr>
+  <td>D5</td><td>64.2</td>
+  <td>Star–P3 inner edge</td>
+  <td>63.71</td><td>−0.49</td>
+  <td>Planet-carved</td>
+</tr>
+<tr>
+  <td>D6</td><td>73.7</td>
+  <td>Star–P3 outer edge</td>
+  <td>74.30</td><td>+0.60</td>
+  <td>Planet-carved</td>
+</tr>
+<tr class="stg-row-fail">
+  <td>D7</td><td>91.0</td>
+  <td>—</td>
+  <td>—</td><td>—</td>
+  <td>Not explained</td>
+</tr>
+</tbody>
+</table>
+
+      <p style="font-size:0.74rem;color:#888;margin-top:8px;">
+        <span class="stg-star">★</span> Planet–planet parity surface prediction. Masses derived independently from D1, D2, D5. Zero free parameters tuned.
+      </p>
+
+    </div>
+  </div>
+
+  <div class="stg-report-section">
+    <div class="stg-report-label">What is novel</div>
+    <div class="stg-report-body">
+      <p>The star–planet parity surface results are expected — these recover the same gap geometry as the Hill sphere up to a constant factor of 3<sup>1/3</sup> ≈ 1.44, which the analysis confirms empirically (measured ratio: 1.45). That's a consistency check, not a new prediction.</p>
+      <p>The novel result is D3 and D4. The standard model has no planet at 42 AU or 50 AU. These gaps are attributed to mean-motion resonances with P1–P3, but this attribution is not settled. The GCS planet–planet parity surfaces between P1–P3 and P2–P3 predict exactly these radii from first principles, using only the masses inferred independently from the major gaps. The P1–P2 parity surface at 24.2 AU finds no corresponding observed gap — the model does not fit everything, which is important.</p>
+    </div>
+  </div>
+
+  <div class="stg-report-section">
+    <div class="stg-report-label">Interpretation</div>
+    <div class="stg-report-body">
+      <p>If the match is physical rather than coincidental, D3 and D4 mark mesoscale domain-competition boundaries in the disk — locations where the tidal attribution transitions from one planet's domain to another's. The mechanism would not be direct gap-opening by a planet at that radius. It would be structural: dust behaviour (migration, trapping, filtration) changes character at the parity surface because the dominant tidal source changes there.</p>
+      <p>This is consistent with the GCS program's core claim: mesoscale structure can emerge from field-attribution competition without being imposed. The disk provides a test case where the predicted structure (planet–planet parity surfaces) coincides with observed but poorly-explained features.</p>
+    </div>
+  </div>
+
+  <div class="stg-limits">
+    <strong>Limits and next steps.</strong> (1) The D3 and D4 radii should be verified against the precise ALMA Partnership 2015 Table 1 values — ±1 AU matters here. (2) Planet mass uncertainties are large (factor ~2); the parity surface locations need to be recomputed across the full uncertainty range to test whether the match survives. (3) The calculation uses the radial-line approximation; the full 2D Apollonius surface in the disk plane has not been computed. (4) The P1–P2 parity surface at 24.2 AU has no corresponding gap — this non-match must be understood before the result is claimed. (5) The same test should be run on DSHARP survey disks (AS 205, TW Hya, Elias 2-27) to test whether the pattern holds across systems.
+  </div>
+
+</div>
+</div>
+
 <div class="stg-footer-note">
-  Staging experiments use the four-source benchmark masses M₁=1.00, M₂=0.72, M₃=0.33, M₄=0.11 established in the Atlas proof-of-concept paper (Paper IV). Results are interpreted within standard weak-field general relativity. No modification of gravity is proposed.<br><br>
+  Analyses are interpreted within standard weak-field general relativity using the R0 scalar tidal branch Q&nbsp;=&nbsp;M/r³. No modification of gravity is proposed. Planet mass estimates for HL Tau follow Dong &amp; Fung (2017) and Tamayo et al. (2015). Gap locations from ALMA Partnership et al. (2015). Stellar mass 0.55 M☉ from Pinte et al. (2016).<br><br>
   <a href="/experiments/">← Back to Experiments</a>
 </div>
