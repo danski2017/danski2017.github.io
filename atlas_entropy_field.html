@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Atlas · Attribution Entropy Field</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Space Mono',monospace}
+canvas{display:block;touch-action:none}
+
+/* ─── top-right button cluster ─── */
+#ui{position:fixed;z-index:200;display:flex;gap:8px;align-items:center}
+@media(min-width:601px){#ui{top:18px;right:18px}}
+@media(max-width:600px){#ui{bottom:20px;right:14px}}
+.ub{
+  height:40px;padding:0 11px;border-radius:9px;
+  background:rgba(8,8,12,.88);border:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.50);font-size:9px;font-family:'Space Mono',monospace;
+  display:flex;align-items:center;justify-content:center;letter-spacing:.08em;
+  cursor:pointer;transition:all .18s;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  user-select:none;white-space:nowrap;
+}
+.ub.icon{width:40px;padding:0;font-size:15px}
+.ub:hover,.ub.on{border-color:rgba(255,215,0,.45);color:#FFD700}
+
+/* ─── source selector (top-left, below title) ─── */
+#srcsel{position:fixed;top:56px;left:18px;z-index:200;display:flex;gap:6px}
+@media(max-width:600px){#srcsel{top:auto;bottom:72px;left:14px}}
+.sb{
+  height:30px;padding:0 9px;border-radius:7px;
+  background:rgba(8,8,12,.88);border:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.40);font-size:8px;font-family:'Space Mono',monospace;
+  display:flex;align-items:center;justify-content:center;letter-spacing:.06em;
+  cursor:pointer;transition:all .18s;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  user-select:none;
+}
+.sb.on{border-color:var(--c,rgba(255,215,0,.5));color:var(--c,#FFD700)}
+
+/* ─── parameter panel ─── */
+#panel{
+  position:fixed;z-index:250;
+  background:rgba(3,3,8,.92);border:1px solid rgba(255,255,255,.07);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-radius:12px;padding:14px 16px 12px;
+  transition:opacity .22s,transform .22s;
+  opacity:0;pointer-events:none;transform:translateY(6px);
+}
+#panel.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+@media(min-width:601px){#panel{top:68px;right:18px;width:228px}}
+@media(max-width:600px){#panel{bottom:72px;right:14px;width:210px}}
+
+.sl{margin-bottom:10px}
+.sl:last-child{margin-bottom:0}
+.sl-top{display:flex;justify-content:space-between;margin-bottom:5px}
+.sl-name{font-size:8px;color:rgba(255,255,255,.48);letter-spacing:.05em}
+.sl-val{font-size:8px;color:rgba(255,255,255,.28)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:3px;border-radius:2px;
+  background:rgba(255,255,255,.10);outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:rgba(140,140,150,1);transition:background .12s;
+}
+input[type=range]::-webkit-slider-thumb:active{background:#FFD700}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#888;border:none}
+.sep{height:1px;background:rgba(255,255,255,.05);margin:10px 0}
+.sl.hidden{display:none}
+
+/* ─── title label ─── */
+#lbl{position:fixed;top:18px;left:18px;z-index:100;pointer-events:none}
+.lt{font-size:10px;font-weight:700;color:rgba(255,215,0,.55);letter-spacing:.15em;text-transform:uppercase}
+.ls{font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.05em;margin-top:2px}
+
+/* ─── math info (bottom-left) ─── */
+#math{
+  position:fixed;bottom:16px;left:18px;z-index:100;pointer-events:none;
+  font-size:7.5px;color:rgba(255,255,255,.22);line-height:1.8;letter-spacing:.02em;
+  max-width:340px;
+}
+#math b{color:rgba(255,215,0,.45);font-weight:700}
+
+/* ─── source drag cursor ─── */
+.dragging{cursor:grabbing}
+</style>
+</head>
+<body>
+
+<div id="lbl">
+  <div class="lt">Attribution Entropy Field</div>
+  <div class="ls" id="sublabel">scalar tidal branch · GCS parity readability</div>
+</div>
+
+<div id="ui">
+  <button class="ub on" id="bAttr">ATTR</button>
+  <button class="ub" id="bScene">SCENE</button>
+  <button class="ub" id="bOrbit">ORBIT</button>
+  <button class="ub icon" id="bMenu">&#9776;</button>
+</div>
+
+<div id="srcsel">
+  <div class="sb on" id="sb0" style="--c:#ff6040">S1</div>
+  <div class="sb"    id="sb1" style="--c:#40aaff">S2</div>
+  <div class="sb"    id="sb2" style="--c:#40ee88">S3</div>
+  <div class="sb"    id="sb3" style="--c:#ffcc00">S4</div>
+</div>
+
+<div id="panel">
+  <!-- mass sliders (all modes) -->
+  <div class="sl" id="slM0">
+    <div class="sl-top"><span class="sl-name">S1 MASS</span><span class="sl-val" id="vM0">1.00</span></div>
+    <input type="range" min="5" max="200" value="100" id="sM0">
+  </div>
+  <div class="sl" id="slM1">
+    <div class="sl-top"><span class="sl-name">S2 MASS</span><span class="sl-val" id="vM1">0.72</span></div>
+    <input type="range" min="5" max="200" value="72" id="sM1">
+  </div>
+  <div class="sl" id="slM2">
+    <div class="sl-top"><span class="sl-name">S3 MASS</span><span class="sl-val" id="vM2">0.33</span></div>
+    <input type="range" min="5" max="200" value="33" id="sM2">
+  </div>
+  <div class="sl" id="slM3">
+    <div class="sl-top"><span class="sl-name">S4 MASS</span><span class="sl-val" id="vM3">0.11</span></div>
+    <input type="range" min="1" max="200" value="11" id="sM3">
+  </div>
+  <div class="sep"></div>
+  <!-- arrangement slider (SCENE mode only) -->
+  <div class="sl hidden" id="slArrange">
+    <div class="sl-top"><span class="sl-name">ARRANGEMENT</span><span class="sl-val" id="vArrange">lopsided</span></div>
+    <input type="range" min="0" max="100" value="100" id="sArrange">
+  </div>
+  <!-- orbit speed (ORBIT mode only) -->
+  <div class="sl hidden" id="slOSpeed">
+    <div class="sl-top"><span class="sl-name">ORBIT SPEED</span><span class="sl-val" id="vOSpeed">1.0×</span></div>
+    <input type="range" min="0" max="400" value="100" id="sOSpeed">
+  </div>
+  <!-- field scale (all modes) -->
+  <div class="sl">
+    <div class="sl-top"><span class="sl-name">FIELD SCALE</span><span class="sl-val" id="vScale">9.0</span></div>
+    <input type="range" min="40" max="220" value="90" id="sScale">
+  </div>
+</div>
+
+<div id="math"><span id="mathTxt"></span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════
+   SOURCE DATA — four-source benchmark (Papers IV, V, VI)
+   M1=1.00  M2=0.72  M3=0.33  M4=0.11
+══════════════════════════════════════════════════════════ */
+const SRC = [
+  { mass:1.00, x: 2.40, z: 1.80, col:0xff6040 },
+  { mass:0.72, x:-1.90, z:-0.70, col:0x40aaff },
+  { mass:0.33, x: 0.70, z:-1.50, col:0x40ee88 },
+  { mass:0.11, x:-0.90, z: 2.60, col:0xffcc00 }
+];
+
+/* symmetric square arrangement (matched budget, equal spacing) for sweep */
+const SRC_SYM = [
+  { x: 2.2, z: 2.2 },
+  { x:-2.2, z: 2.2 },
+  { x:-2.2, z:-2.2 },
+  { x: 2.2, z:-2.2 }
+];
+/* original (lopsided) arrangement */
+const SRC_LOP = SRC.map(s => ({ x: s.x, z: s.z }));
+
+/* saved originals for orbit restore */
+const SRC_ORIG = SRC.map(s => ({ mass: s.mass, x: s.x, z: s.z }));
+
+let focusIdx    = 0;
+let currentMode = 'attr';
+let orbitT      = 0;
+let orbitSpeed  = 1.0;
+let worldScale  = 9.0;
+let prevMode    = null;
+let panelOpen   = false;
+
+/* ══════════════════════════════════════════════════════════
+   RENDERER / SCENE / CAMERA
+══════════════════════════════════════════════════════════ */
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x000000, 1);
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight, 0.01, 200);
+camera.position.set(0, 13, 0);
+camera.lookAt(0, 0, 0);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping  = true;
+controls.dampingFactor  = 0.08;
+controls.rotateSpeed    = 0.65;
+controls.zoomSpeed      = 0.85;
+controls.minDistance    = 2;
+controls.maxDistance    = 60;
+
+window.addEventListener('resize', () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+});
+
+/* ══════════════════════════════════════════════════════════
+   GLSL ENTROPY SHADER
+   Computes attribution or scene entropy per pixel on the GPU.
+
+   Attribution entropy (ATTR / ORBIT):
+     Sattr = -w·ln w - (1-w)·ln(1-w)  normalized by ln 2 → [0,1]
+     w = Qi / (Qi + QΣ)   where Qi = Mi/ri³
+     Ridge (Sattr = 1) coincides exactly with the GCS parity surface.
+
+   Scene entropy (SCENE):
+     Sglobal = -Σ Wi·ln Wi  normalized by ln 4 → [0,1]
+     Wi = Qi / ΣQj
+     Ridges trace the full N-source parity network.
+══════════════════════════════════════════════════════════ */
+const VERT = `
+varying vec2 vUv;
+void main(){
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+}`;
+
+const FRAG = `
+precision highp float;
+varying vec2 vUv;
+
+uniform vec3  srcPos[4];
+uniform float srcMass[4];
+uniform float worldScale;
+uniform int   mode;      /* 0=attribution  1=scene */
+uniform int   focusIdx;
+
+const float LN2  = 0.6931471805599453;
+const float LN4  = 1.3862943611198906;
+const float EPS  = 1e-7;
+const float SOFT = 0.03;  /* softening (world-space units) */
+
+float Q(vec2 pt, int i){
+  float dx = pt.x - srcPos[i].x;
+  float dz = pt.y - srcPos[i].z;
+  float r  = sqrt(dx*dx + dz*dz + SOFT*SOFT);
+  return srcMass[i] / (r*r*r);
+}
+
+float binaryH(float w){
+  if(w < EPS || w > 1.0-EPS) return 0.0;
+  return (-w*log(w) - (1.0-w)*log(1.0-w)) / LN2;
+}
+
+/* entropy-glow palette:  0=deep navy → ridge=bright yellow-white */
+vec3 glow(float t){
+  if(t < 0.20) return mix(vec3(0.000,0.000,0.060), vec3(0.040,0.000,0.240), t/0.20);
+  if(t < 0.45) return mix(vec3(0.040,0.000,0.240), vec3(0.310,0.000,0.420), (t-0.20)/0.25);
+  if(t < 0.65) return mix(vec3(0.310,0.000,0.420), vec3(0.700,0.060,0.200), (t-0.45)/0.20);
+  if(t < 0.82) return mix(vec3(0.700,0.060,0.200), vec3(1.000,0.500,0.000), (t-0.65)/0.17);
+  if(t < 0.93) return mix(vec3(1.000,0.500,0.000), vec3(1.000,0.900,0.120), (t-0.82)/0.11);
+               return mix(vec3(1.000,0.900,0.120), vec3(1.000,1.000,0.920), (t-0.93)/0.07);
+}
+
+void main(){
+  vec2 pt = vec2((vUv.x-0.5)*worldScale, (vUv.y-0.5)*worldScale);
+
+  float q0 = Q(pt,0);
+  float q1 = Q(pt,1);
+  float q2 = Q(pt,2);
+  float q3 = Q(pt,3);
+
+  float entropy = 0.0;
+
+  if(mode == 0){
+    /* attribution entropy: focal source vs. aggregate context */
+    float qf, qc;
+    if      (focusIdx == 0){ qf=q0; qc=q1+q2+q3; }
+    else if (focusIdx == 1){ qf=q1; qc=q0+q2+q3; }
+    else if (focusIdx == 2){ qf=q2; qc=q0+q1+q3; }
+    else                   { qf=q3; qc=q0+q1+q2; }
+    float tot = qf + qc;
+    if(tot > 1e-20) entropy = binaryH(qf / tot);
+
+  } else {
+    /* scene entropy: Shannon over all 4 sources */
+    float tot = q0+q1+q2+q3;
+    if(tot > 1e-20){
+      float w0=q0/tot, w1=q1/tot, w2=q2/tot, w3=q3/tot;
+      float h = 0.0;
+      if(w0 > EPS) h -= w0*log(w0);
+      if(w1 > EPS) h -= w1*log(w1);
+      if(w2 > EPS) h -= w2*log(w2);
+      if(w3 > EPS) h -= w3*log(w3);
+      entropy = h / LN4;
+    }
+  }
+
+  gl_FragColor = vec4(glow(entropy), 1.0);
+}`;
+
+/* ══════════════════════════════════════════════════════════
+   FIELD PLANE (the entropy heatmap lives here)
+══════════════════════════════════════════════════════════ */
+const srcPosArr  = SRC.map(s => new THREE.Vector3(s.x, 0, s.z));
+const srcMassArr = SRC.map(s => s.mass);
+
+const fieldUniforms = {
+  srcPos:     { value: srcPosArr },
+  srcMass:    { value: srcMassArr.slice() },
+  worldScale: { value: worldScale },
+  mode:       { value: 0 },
+  focusIdx:   { value: 0 }
+};
+
+const fieldMat = new THREE.ShaderMaterial({
+  uniforms:       fieldUniforms,
+  vertexShader:   VERT,
+  fragmentShader: FRAG,
+  side: THREE.DoubleSide
+});
+
+let fieldMesh = new THREE.Mesh(new THREE.PlaneGeometry(worldScale, worldScale), fieldMat);
+fieldMesh.rotation.x = -Math.PI / 2;
+fieldMesh.position.y = -0.01;
+scene.add(fieldMesh);
+
+function rebuildField(){
+  scene.remove(fieldMesh);
+  fieldMesh.geometry.dispose();
+  fieldMesh = new THREE.Mesh(new THREE.PlaneGeometry(worldScale, worldScale), fieldMat);
+  fieldMesh.rotation.x = -Math.PI / 2;
+  fieldMesh.position.y = -0.01;
+  scene.add(fieldMesh);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SOURCE MARKERS (spheres + halos + labels)
+══════════════════════════════════════════════════════════ */
+function srcRadius(mass){ return 0.09 + 0.12 * mass; }
+
+const srcSpheres = SRC.map((s, i) => {
+  const m = new THREE.Mesh(
+    new THREE.SphereGeometry(srcRadius(s.mass), 24, 24),
+    new THREE.MeshBasicMaterial({ color: s.col })
+  );
+  m.position.set(s.x, 0.18, s.z);
+  scene.add(m);
+  return m;
+});
+
+const srcHalos = SRC.map((s, i) => {
+  const m = new THREE.Mesh(
+    new THREE.RingGeometry(srcRadius(s.mass) * 1.5, srcRadius(s.mass) * 1.8, 56),
+    new THREE.MeshBasicMaterial({ color: s.col, side: THREE.DoubleSide, transparent: true, opacity: 0.35 })
+  );
+  m.rotation.x = -Math.PI / 2;
+  m.position.set(s.x, 0.02, s.z);
+  scene.add(m);
+  return m;
+});
+
+function makeLabelSprite(text, hexCss){
+  const cv = document.createElement('canvas');
+  cv.width = 128; cv.height = 64;
+  const ctx = cv.getContext('2d');
+  ctx.font = 'bold 30px monospace';
+  ctx.fillStyle = hexCss;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, 64, 32);
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), transparent: true }));
+  sp.scale.set(0.55, 0.28, 1);
+  return sp;
+}
+
+const labelCols = ['#ff6040','#40aaff','#40ee88','#ffcc00'];
+const srcLabels = SRC.map((s, i) => {
+  const sp = makeLabelSprite('S' + (i + 1), labelCols[i]);
+  sp.position.set(s.x, 0.65, s.z);
+  scene.add(sp);
+  return sp;
+});
+
+/* ══════════════════════════════════════════════════════════
+   ORBIT PATH RINGS (shown in ORBIT mode)
+══════════════════════════════════════════════════════════ */
+const ORBIT_R = 2.8;
+const OM = [SRC[0].mass, SRC[1].mass];
+
+function makeOrbitRing(r, col){
+  const pts = [];
+  for(let i = 0; i <= 96; i++){
+    const a = (i / 96) * Math.PI * 2;
+    pts.push(new THREE.Vector3(r * Math.cos(a), 0.04, r * Math.sin(a)));
+  }
+  const g = new THREE.BufferGeometry().setFromPoints(pts);
+  const l = new THREE.Line(g, new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: 0.25 }));
+  l.visible = false;
+  scene.add(l);
+  return l;
+}
+
+const orbitRingA = makeOrbitRing(ORBIT_R * SRC[1].mass / (SRC[0].mass + SRC[1].mass), 0xff6040);
+const orbitRingB = makeOrbitRing(ORBIT_R * SRC[0].mass / (SRC[0].mass + SRC[1].mass), 0x40aaff);
+
+/* ══════════════════════════════════════════════════════════
+   POSITION SYNC
+══════════════════════════════════════════════════════════ */
+function syncPositions(){
+  SRC.forEach((s, i) => {
+    srcPosArr[i].set(s.x, 0, s.z);
+    srcSpheres[i].position.set(s.x, 0.18, s.z);
+    srcHalos[i].position.set(s.x, 0.02, s.z);
+    srcLabels[i].position.set(s.x, 0.65, s.z);
+  });
+  /* trigger Three.js to re-upload the uniform array */
+  fieldUniforms.srcPos.value = srcPosArr;
+}
+
+function syncMasses(){
+  SRC.forEach((s, i) => {
+    fieldUniforms.srcMass.value[i] = s.mass;
+    srcSpheres[i].geometry.dispose();
+    srcSpheres[i].geometry = new THREE.SphereGeometry(srcRadius(s.mass), 24, 24);
+    srcHalos[i].geometry.dispose();
+    srcHalos[i].geometry = new THREE.RingGeometry(
+      srcRadius(s.mass) * 1.5, srcRadius(s.mass) * 1.8, 56
+    );
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   DRAG INTERACTION
+══════════════════════════════════════════════════════════ */
+const dragPlane = new THREE.Mesh(
+  new THREE.PlaneGeometry(400, 400),
+  new THREE.MeshBasicMaterial({ visible: false, side: THREE.DoubleSide })
+);
+dragPlane.rotation.x = -Math.PI / 2;
+scene.add(dragPlane);
+
+const ray = new THREE.Raycaster();
+const mp  = new THREE.Vector2();
+let dragIdx = -1;
+
+function ptrNDC(e){
+  const cx = e.touches ? e.touches[0].clientX : e.clientX;
+  const cy = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x: (cx / window.innerWidth) * 2 - 1, y: -(cy / window.innerHeight) * 2 + 1 };
+}
+
+renderer.domElement.addEventListener('mousedown', e => {
+  if(currentMode === 'orbit') return;
+  const nd = ptrNDC(e); mp.set(nd.x, nd.y);
+  ray.setFromCamera(mp, camera);
+  const hits = ray.intersectObjects(srcSpheres);
+  if(hits.length){
+    dragIdx = srcSpheres.indexOf(hits[0].object);
+    controls.enabled = false;
+    document.body.classList.add('dragging');
+    if(currentMode === 'attr') setFocus(dragIdx);
+  }
+});
+
+renderer.domElement.addEventListener('mousemove', e => {
+  if(dragIdx < 0) return;
+  const nd = ptrNDC(e); mp.set(nd.x, nd.y);
+  ray.setFromCamera(mp, camera);
+  const hits = ray.intersectObject(dragPlane);
+  if(hits.length){
+    SRC[dragIdx].x = hits[0].point.x;
+    SRC[dragIdx].z = hits[0].point.z;
+    syncPositions();
+  }
+});
+
+renderer.domElement.addEventListener('mouseup', () => {
+  dragIdx = -1; controls.enabled = true;
+  document.body.classList.remove('dragging');
+});
+
+renderer.domElement.addEventListener('touchstart', e => {
+  if(currentMode === 'orbit') return;
+  const nd = ptrNDC(e); mp.set(nd.x, nd.y);
+  ray.setFromCamera(mp, camera);
+  const hits = ray.intersectObjects(srcSpheres);
+  if(hits.length){
+    dragIdx = srcSpheres.indexOf(hits[0].object);
+    controls.enabled = false;
+    if(currentMode === 'attr') setFocus(dragIdx);
+  }
+}, { passive: true });
+
+renderer.domElement.addEventListener('touchmove', e => {
+  if(dragIdx < 0) return;
+  const nd = ptrNDC(e); mp.set(nd.x, nd.y);
+  ray.setFromCamera(mp, camera);
+  const hits = ray.intersectObject(dragPlane);
+  if(hits.length){
+    SRC[dragIdx].x = hits[0].point.x;
+    SRC[dragIdx].z = hits[0].point.z;
+    syncPositions();
+  }
+}, { passive: true });
+
+renderer.domElement.addEventListener('touchend', () => {
+  dragIdx = -1; controls.enabled = true;
+});
+
+/* ══════════════════════════════════════════════════════════
+   MODE MANAGEMENT
+══════════════════════════════════════════════════════════ */
+function setMode(mode){
+  /* restore from orbit before switching */
+  if(prevMode === 'orbit' && mode !== 'orbit') restoreOrbit();
+  prevMode    = mode;
+  currentMode = mode;
+
+  /* button states */
+  ['attr','scene','orbit'].forEach(m => {
+    const id = 'b' + m[0].toUpperCase() + m.slice(1);
+    document.getElementById(id).classList.toggle('on', m === mode);
+  });
+
+  /* source selector visibility */
+  const showSel = (mode === 'attr');
+  document.getElementById('srcsel').style.display = showSel ? 'flex' : 'none';
+
+  /* mode-specific panel rows */
+  document.getElementById('slArrange').classList.toggle('hidden', mode !== 'scene');
+  document.getElementById('slOSpeed').classList.toggle('hidden', mode !== 'orbit');
+
+  /* mass sliders: hide S3/S4 in orbit mode */
+  ['slM2','slM3'].forEach(id => {
+    document.getElementById(id).classList.toggle('hidden', mode === 'orbit');
+  });
+
+  /* orbit rings */
+  orbitRingA.visible = (mode === 'orbit');
+  orbitRingB.visible = (mode === 'orbit');
+
+  /* shader uniforms */
+  if(mode === 'scene'){
+    fieldUniforms.mode.value = 1;
+    document.getElementById('sublabel').textContent = '4-source scene · competition landscape';
+  } else {
+    fieldUniforms.mode.value = 0;
+    fieldUniforms.focusIdx.value = focusIdx;
+    if(mode === 'orbit'){
+      document.getElementById('sublabel').textContent = '2-source orbit · GCS worldsheet sweep';
+      /* S3/S4 effectively removed — tiny mass far away */
+      fieldUniforms.srcMass.value[2] = 0.0005;
+      fieldUniforms.srcMass.value[3] = 0.0005;
+      srcSpheres[2].visible = false; srcHalos[2].visible = false; srcLabels[2].visible = false;
+      srcSpheres[3].visible = false; srcHalos[3].visible = false; srcLabels[3].visible = false;
+      SRC[2].x = 9999; SRC[2].z = 9999;
+      SRC[3].x = 9999; SRC[3].z = 9999;
+      syncPositions();
+    } else {
+      document.getElementById('sublabel').textContent = '4-source scene · scalar tidal branch';
+    }
+  }
+
+  updateMathTxt();
+}
+
+function setFocus(idx){
+  focusIdx = idx;
+  fieldUniforms.focusIdx.value = idx;
+  document.querySelectorAll('.sb').forEach((el, i) => el.classList.toggle('on', i === idx));
+}
+
+/* ══════════════════════════════════════════════════════════
+   ORBIT ANIMATION
+══════════════════════════════════════════════════════════ */
+function stepOrbit(dt){
+  orbitT += dt * orbitSpeed;
+  const m1 = SRC[0].mass, m2 = SRC[1].mass;
+  const r1 = ORBIT_R * m2 / (m1 + m2);
+  const r2 = ORBIT_R * m1 / (m1 + m2);
+  SRC[0].x = r1 * Math.cos(orbitT);
+  SRC[0].z = r1 * Math.sin(orbitT);
+  SRC[1].x = -r2 * Math.cos(orbitT);
+  SRC[1].z = -r2 * Math.sin(orbitT);
+  syncPositions();
+}
+
+function restoreOrbit(){
+  SRC.forEach((s, i) => {
+    s.x    = SRC_ORIG[i].x;
+    s.z    = SRC_ORIG[i].z;
+    s.mass = SRC_ORIG[i].mass;
+    fieldUniforms.srcMass.value[i] = s.mass;
+  });
+  srcSpheres.forEach(m => m.visible = true);
+  srcHalos.forEach(m => m.visible = true);
+  srcLabels.forEach(m => m.visible = true);
+  syncPositions();
+  syncMasses();
+}
+
+/* ══════════════════════════════════════════════════════════
+   ARRANGEMENT SWEEP  (matched-budget morphology, idea 7)
+   Interpolates source positions: symmetric square ↔ lopsided
+   benchmark, with fixed mass budget.
+══════════════════════════════════════════════════════════ */
+function applyArrangement(t){
+  /* t=0: symmetric, t=1: lopsided */
+  SRC.forEach((s, i) => {
+    s.x = SRC_SYM[i].x + t * (SRC_LOP[i].x - SRC_SYM[i].x);
+    s.z = SRC_SYM[i].z + t * (SRC_LOP[i].z - SRC_SYM[i].z);
+  });
+  syncPositions();
+}
+
+/* ══════════════════════════════════════════════════════════
+   MATH LABEL
+══════════════════════════════════════════════════════════ */
+function updateMathTxt(){
+  const el = document.getElementById('mathTxt');
+  if(currentMode === 'attr'){
+    el.innerHTML =
+      '<b>Attribution Entropy</b><br>' +
+      'S<sub>attr</sub> = −w ln w − (1−w) ln(1−w)  ·  normalized by ln 2<br>' +
+      'w = Q<sub>i</sub> / (Q<sub>i</sub> + Q<sub>Σ</sub>)  ·  Q<sub>i</sub> = M<sub>i</sub> / r<sub>i</sub><sup>3</sup><br>' +
+      'ridge (S=1) = GCS parity surface  ·  drag sources to reshape';
+  } else if(currentMode === 'scene'){
+    el.innerHTML =
+      '<b>Scene Entropy</b><br>' +
+      'S<sub>global</sub> = −Σ W<sub>i</sub> ln W<sub>i</sub>  ·  W<sub>i</sub> = Q<sub>i</sub>/ΣQ<sub>j</sub><br>' +
+      'normalized by ln N  ·  ridges = full GCS parity network<br>' +
+      'sweep ARRANGEMENT slider: matched-budget morphology sensitivity';
+  } else {
+    el.innerHTML =
+      '<b>GCS Worldsheet</b><br>' +
+      'S<sub>attr</sub>(t) · ridge sweeps out worldsheet Σ<sub>t</sub><br>' +
+      'Σ<sub>t</sub> = { x : Q<sub>1</sub>(x,t) = Q<sub>2</sub>(x,t) }<br>' +
+      'Apollonius sphere in 3D  ·  circle in this slice';
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   UI EVENTS
+══════════════════════════════════════════════════════════ */
+document.getElementById('bAttr').addEventListener('click',  () => setMode('attr'));
+document.getElementById('bScene').addEventListener('click', () => setMode('scene'));
+document.getElementById('bOrbit').addEventListener('click', () => setMode('orbit'));
+
+document.querySelectorAll('.sb').forEach((el, i) => {
+  el.addEventListener('click', () => setFocus(i));
+});
+
+document.getElementById('bMenu').addEventListener('click', () => {
+  panelOpen = !panelOpen;
+  document.getElementById('panel').classList.toggle('open', panelOpen);
+  document.getElementById('bMenu').classList.toggle('on', panelOpen);
+});
+
+[0,1,2,3].forEach(i => {
+  const sl = document.getElementById('sM' + i);
+  const vl = document.getElementById('vM' + i);
+  sl.addEventListener('input', () => {
+    const v = sl.value / 100;
+    vl.textContent = v.toFixed(2);
+    SRC[i].mass = v;
+    fieldUniforms.srcMass.value[i] = v;
+    srcSpheres[i].geometry.dispose();
+    srcSpheres[i].geometry = new THREE.SphereGeometry(srcRadius(v), 24, 24);
+    srcHalos[i].geometry.dispose();
+    srcHalos[i].geometry = new THREE.RingGeometry(srcRadius(v)*1.5, srcRadius(v)*1.8, 56);
+  });
+});
+
+document.getElementById('sArrange').addEventListener('input', function(){
+  const t = this.value / 100;
+  const labels = ['symmetric', '', '', '', '', 'mixed', '', '', '', '', 'lopsided'];
+  document.getElementById('vArrange').textContent =
+    t === 0 ? 'symmetric' : t === 1 ? 'lopsided' : t.toFixed(2);
+  applyArrangement(t);
+});
+
+document.getElementById('sOSpeed').addEventListener('input', function(){
+  orbitSpeed = this.value / 100;
+  document.getElementById('vOSpeed').textContent = orbitSpeed.toFixed(1) + '×';
+});
+
+document.getElementById('sScale').addEventListener('input', function(){
+  worldScale = this.value / 10;
+  document.getElementById('vScale').textContent = worldScale.toFixed(1);
+  fieldUniforms.worldScale.value = worldScale;
+  rebuildField();
+});
+
+/* ══════════════════════════════════════════════════════════
+   ANIMATE
+══════════════════════════════════════════════════════════ */
+let lastT = 0;
+function animate(ts){
+  requestAnimationFrame(animate);
+  const dt = Math.min((ts - lastT) / 1000, 0.05);
+  lastT = ts;
+
+  if(currentMode === 'orbit') stepOrbit(dt);
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+/* init */
+setMode('attr');
+animate(0);
+</script>
+</body>
+</html>
