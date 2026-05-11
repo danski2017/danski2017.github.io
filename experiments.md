@@ -134,6 +134,39 @@ description: Interactive simulations and numerical visualizations of GCS parity 
   border-style: dashed;
   opacity: 0.55;
 }
+.exp-staging-notice {
+  border: 1px solid #e6c84a;
+  border-radius: 8px;
+  padding: 11px 13px 13px;
+  margin-bottom: 20px;
+  background: #fffef5;
+}
+.exp-staging-notice-label {
+  font-size: 0.67rem;
+  font-weight: bold;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #8a6d00;
+  margin-bottom: 4px;
+}
+.exp-staging-notice-note {
+  font-size: 0.76rem;
+  color: #7a6200;
+  line-height: 1.45;
+  margin-bottom: 9px;
+}
+.exp-staging-notice-link {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: bold;
+  color: #8a6d00;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(138,109,0,0.35);
+}
+.exp-staging-notice-link:hover {
+  color: #3a3000;
+  border-bottom-color: #3a3000;
+}
 @media (max-width: 820px) {
   .exp-layout {
     flex-direction: column;
@@ -151,6 +184,9 @@ description: Interactive simulations and numerical visualizations of GCS parity 
     gap: 14px;
   }
   .exp-sidebar-heading {
+    grid-column: 1 / -1;
+  }
+  .exp-staging-notice {
     grid-column: 1 / -1;
   }
   .exp-card { margin-bottom: 0; }
@@ -197,6 +233,12 @@ description: Interactive simulations and numerical visualizations of GCS parity 
 </div>
 
 <div class="exp-sidebar">
+
+<div class="exp-staging-notice">
+  <div class="exp-staging-notice-label">⚗ Staging Lab</div>
+  <div class="exp-staging-notice-note">Pre-publication results under active development. Not peer reviewed — follow the link to inspect the latest work directly.</div>
+  <a class="exp-staging-notice-link" href="/staging/">View staging results &rarr;</a>
+</div>
 
 <div class="exp-sidebar-heading">All Experiments</div>
 
