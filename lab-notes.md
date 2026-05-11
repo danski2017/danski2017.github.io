@@ -163,40 +163,7 @@ description: Working notes, ideas, links, and to-dos for the Relational Labs res
       <span class="nb-tag nb-concept">Concept</span>
     </div>
     <div class="nb-body">
-      Apollonius sphere as exact two-body GCS boundary — r₁/r₂ = m₁/m₂. Worth a dedicated diagram in Paper VII to make this explicit for readers coming from classical geometry.
-    </div>
-  </div>
-
-  <div class="nb-entry">
-    <div class="nb-left">
-      <span class="nb-date">2026-05-11</span>
-      <span class="nb-tag nb-link">Link</span>
-    </div>
-    <div class="nb-body">
-      <a href="https://mathworld.wolfram.com/ApolloniusCircle.html" target="_blank" rel="noopener">Apollonius Circles &amp; Spheres — Wolfram MathWorld</a><br>
-      Already in Resources. Cross-reference explicitly in Paper VII introduction alongside the Hill sphere comparison table.
-    </div>
-  </div>
-
-  <div class="nb-entry">
-    <div class="nb-left">
-      <span class="nb-date">2026-05-10</span>
-      <span class="nb-tag nb-todo">To-Do</span>
-    </div>
-    <div class="nb-body">
-      Run Facebook Sharing Debugger on home page URL to force OG cache refresh after recent meta tag updates.
-    </div>
-  </div>
-
-  <!-- ─── Private entry example ─── -->
-  <div class="nb-entry nb-private">
-    <div class="nb-left">
-      <span class="nb-date">2026-05-11</span>
-      <span class="nb-tag nb-idea">Idea</span>
-      <span class="nb-priv-dot" title="Private"></span>
-    </div>
-    <div class="nb-body">
-      Private entry — visible only after unlocking. Use this format for pre-publication ideas, speculative connections, and anything not ready to surface publicly.
+      The two-body GCS parity surface is exactly the Apollonius sphere defined by r₁/r₂ = m₁/m₂ — the classical locus of points whose distances to two fixed points are in a constant ratio. This gives the GCS a precise geometric identity in the classical literature. Worth a dedicated diagram in Paper VII for readers approaching from classical geometry.
     </div>
   </div>
 
