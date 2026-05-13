@@ -475,6 +475,16 @@ function StageScreen({ passport, onBack }) {
     },320);
   },[panelOpen]);
 
+  // ── Auto-fetch geometry on stage mount ───────────────────────────────
+  useEffect(()=>{
+    const url = `https://danski2017.github.io/atlas-solver/geometry/${passport.scene_id}_geometry.json`;
+    setGeoStatus("loading");
+    fetch(url)
+      .then(r => r.json())
+      .then(geo => { setGeometry(geo); setGeoStatus("loaded"); })
+      .catch(() => setGeoStatus("awaiting"));
+  },[]);
+
   // ── Geometry loader ───────────────────────────────────────────────────
   const loadGeometryFile = (e) => {
     const file = e.target.files[0];
