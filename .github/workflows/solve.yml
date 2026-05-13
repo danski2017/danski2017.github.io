@@ -1,0 +1,44 @@
+name: Atlas GFRO Solve
+
+# Triggers when a passport JSON is committed to the passports/ directory
+on:
+  push:
+    paths:
+      - 'passports/**.json'
+
+jobs:
+  solve:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install numpy
+
+      - name: Run solver on changed passports
+        run: |
+          mkdir -p ledgers geometry
+          for passport in passports/*.json; do
+            scene=$(basename "$passport" .json)
+            echo "Solving: $scene"
+            python atlas-solver/atlas_emitter.py "$passport" "ledgers/${scene}_ledger.json"
+            python atlas-solver/atlas_geometry_serializer.py "ledgers/${scene}_ledger.json" "geometry/${scene}_geometry.json"
+            echo "Done: geometry/${scene}_geometry.json"
+          done
+
+      - name: Commit geometry output
+        run: |
+          git config user.name  "atlas-solver[bot]"
+          git config user.email "atlas-solver@relational.labs"
+          git add geometry/
+          git diff --staged --quiet || git commit -m "solve: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push

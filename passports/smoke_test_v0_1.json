@@ -1,0 +1,7 @@
+{
+  "scene_id": "smoke_test_v0_1",
+  "label": "Pipeline smoke test — 3 sources, minimal scene",
+  "regime": "weak_field_gr_approximation",
+  "epoch": "J2000",
+  "active_sources": ["SOL", "EARTH", "JUPITER"]
+}
