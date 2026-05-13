@@ -55,6 +55,7 @@ description: Relational Labs is an independent research platform for multi-body 
     <a href="Three_Measures_of_Gravitational_Identity.pdf">Read Paper</a></p>
 
     <h1>GCS Construction Series</h1>
+    <p><em>Six papers building the mathematical and computational machinery for weak-field curvature attribution.</em></p>
 
     <h3><strong>Paper I — The Gravitational Coherence Surface</strong></h3>
     <p><em>Parity Horizons of Gravitational Identity</em><br>
