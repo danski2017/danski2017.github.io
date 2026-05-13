@@ -47,7 +47,13 @@ description: Relational Labs is an independent research platform for multi-body 
 <div class="index-grid">
 
   <div class="index-papers">
-    <h1>Science Facing Papers</h1>
+    <h1>Foundational Results</h1>
+
+    <h3><strong>Three Measures of Gravitational Identity</strong></h3>
+    <p><em>Budget, Jurisdiction, and Compression in Weak-Field Curvature Attribution</em><br>
+    <a href="Three_Measures_of_Gravitational_Identity.pdf">Read Paper</a></p>
+
+    <h1>GCS Construction Series</h1>
 
     <h3><strong>Paper I — The Gravitational Coherence Surface</strong></h3>
     <p><em>Parity Horizons of Gravitational Identity</em><br>
@@ -72,15 +78,11 @@ description: Relational Labs is an independent research platform for multi-body 
     <h3><strong>Paper VI — The Gravitational Field-Relation Operator</strong></h3>
     <p><em>Direct Construction of Gravitational Parity Networks from Source-Context Residuals</em><br>
     <a href="Gravitational_Field_Relation_Operator_public_GCS%20VI.pdf">Read Paper</a></p>
-
-    <h3><strong>Paper VII — Three Measures of Gravitational Identity</strong></h3>
-    <p><em>Budget, Jurisdiction, and Compression in Weak-Field Curvature Attribution</em><br>
-    <a href="Three_Measures_of_Gravitational_Identity_GCS_VII.pdf">Read Paper</a></p>
   </div>
 
   <div class="index-updates">
     <h1>Lab Updates</h1>
-    <p><strong>May 2026 —</strong> Paper VII released: <em>Three Measures of Gravitational Identity</em>. Budget, jurisdiction, and compression separated as independent diagnostics across the full astrophysical scale hierarchy.</p>
+    <p><strong>May 2026 —</strong> <em>Three Measures of Gravitational Identity</em> released. A foundational result separating budget, jurisdiction, and compression as independent measures of gravitational identity across the full astrophysical scale hierarchy.</p>
     <p><strong>Current Focus:</strong></p>
     <ul>
       <li><strong>Three Measures:</strong> Dynamical handoff problem identified — static separation complete.</li>

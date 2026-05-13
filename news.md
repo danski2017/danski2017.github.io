@@ -102,9 +102,9 @@ description: Research headlines, lab notes, and results from Relational Labs.
   <div class="news-date">May 13</div>
   <div class="news-body">
     <span class="news-badge news-badge-paper">Paper</span>
-    <div class="news-title"><a href="/Three_Measures_of_Gravitational_Identity_GCS_VII.pdf">Paper VII — Three Measures of Gravitational Identity</a></div>
+    <div class="news-title"><a href="/Three_Measures_of_Gravitational_Identity.pdf">Three Measures of Gravitational Identity</a></div>
     <div class="news-desc">Budget, jurisdiction, and compression separated as three independent diagnostics of gravitational identity in the weak-field limit. The budget peaks at the neutron star boundary and inverts for black holes. Pre-circulation draft.</div>
-    <a class="news-link" href="/Three_Measures_of_Gravitational_Identity_GCS_VII.pdf">Read paper &rarr;</a>
+    <a class="news-link" href="/Three_Measures_of_Gravitational_Identity.pdf">Read paper &rarr;</a>
   </div>
 </div>
 
