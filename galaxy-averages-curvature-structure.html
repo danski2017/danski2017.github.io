@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>When Galaxy Averages Hide Curvature Structure | Relational Labs</title>
+  <meta name="description" content="Atlas Solver lab note on scalar rotation, electric-Weyl structure, eigenframe orientation, and relational witnesses in toy-galaxy coarse-graining tests." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #222222;
+      --muted: #555555;
+      --light: #f6f6f6;
+      --line: #dddddd;
+      --link: #0645ad;
+      --max: 920px;
+    }
+
+    html {
+      font-size: 17px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.62;
+    }
+
+    .site {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      padding: 0 0 48px;
+    }
+
+    header {
+      padding: 22px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 36px;
+    }
+
+    .brand {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: .95rem;
+    }
+
+    nav a,
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    a:hover {
+      text-decoration: underline;
+    }
+
+    h1, h2, h3 {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.22;
+      margin: 0 0 .75rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: .5rem;
+    }
+
+    h2 {
+      font-size: 1.65rem;
+      margin-top: 2.4rem;
+      padding-top: .2rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    ul, ol {
+      margin-top: .2rem;
+      margin-bottom: 1.2rem;
+      padding-left: 1.35rem;
+    }
+
+    li {
+      margin-bottom: .45rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.12rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: .95rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .box {
+      border: 1px solid var(--line);
+      background: var(--light);
+      padding: 1rem 1.1rem;
+      margin: 1.25rem 0;
+    }
+
+    .claim {
+      font-size: 1.18rem;
+      font-weight: 600;
+    }
+
+    .note-title {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 700;
+      margin-bottom: .35rem;
+    }
+
+    .paper-card {
+      border-top: 1px solid var(--line);
+      padding: 1rem 0 0;
+      margin-top: 1rem;
+    }
+
+    .run-code {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 700;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: .95em;
+      background: #f1f1f1;
+      padding: .08rem .25rem;
+      border: 1px solid #e4e4e4;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.4rem;
+      font-size: .96rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: .55rem .65rem;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--light);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: .9rem;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 2.25rem 0;
+    }
+
+    blockquote {
+      border-left: 4px solid var(--line);
+      margin: 1.2rem 0;
+      padding: .25rem 0 .25rem 1rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 3rem;
+      padding-top: 1.3rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 620px) {
+      html { font-size: 16px; }
+      table { font-size: .9rem; }
+      th, td { padding: .45rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand"><a href="index.html">Relational Labs</a></div>
+      <nav aria-label="Main navigation">
+        <a href="research-program.html">Research Program</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="figures.html">Figures &amp; Visualizations</a>
+        <a href="atlas-solver.html">Atlas Solver</a>
+        <a href="resources.html">Resources</a>
+        <a href="lab-notebook.html">Lab Notebook</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>When Galaxy Averages Hide Curvature Structure</h1>
+      <p class="subtitle">
+        A preliminary Atlas Solver lab note on scalar rotation, electric-Weyl structure,
+        eigenframe orientation, and relational witnesses in controlled toy-galaxy coarse-graining tests.
+      </p>
+      <p class="meta">
+        Date: 2026-05-13<br />
+        Status: internal public-facing draft spine, not a publication claim.
+      </p>
+
+      <h2>Overview</h2>
+      <p>
+        Atlas ran a controlled sequence of toy-galaxy simulations to test a simple question:
+        when a many-source rotating galaxy is compressed into common coarse-grained summaries,
+        what survives, and what changes?
+      </p>
+      <p>
+        The early result is cautious but sharp. Several coarse-graining methods preserve useful
+        scalar rotation behavior while materially altering the local electric-Weyl structure and
+        eigenframe orientation seen by relational witnesses.
+      </p>
+      <p>
+        In plain language: a model can keep a rotation-level summary comparatively well behaved
+        while changing the local tidal-curvature organization that a witness would read.
+      </p>
+
+      <div class="box">
+        <div class="note-title">Core claim shape</div>
+        <p class="claim">
+          Standard coarse-graining choices can preserve useful scalar rotation information while
+          materially altering the local electric-Weyl structure and eigenframe orientation seen by
+          relational witnesses.
+        </p>
+      </div>
+
+      <div class="box">
+        <div class="note-title">Claim status</div>
+        <p>
+          This is a preliminary computational-methods result inside a standard weak-field,
+          GR-compatible language of curvature, witnesses, and averaging. It is not a dark-matter
+          claim. It is not a challenge to GR or SR. It is not an observational detection.
+        </p>
+      </div>
+
+      <h2>Why It Matters</h2>
+      <p>
+        Galaxy-scale astronomy often depends on averages: rings, sectors, grids, kernel maps,
+        tilted-ring reductions, and low-order mass proxies. Those tools are useful and often
+        necessary, but they do not preserve every kind of geometric information.
+      </p>
+      <p>
+        Atlas is testing which geometric information passes through common coarse-graining
+        methods and which information is changed by the averaging step itself.
+      </p>
+      <p>
+        The lab's interest is mesoscale curvature: the structure between individual sources and
+        global summary observables.
+      </p>
+
+      <h2>What Was Compared</h2>
+      <p>
+        The scalar side tracks rotation-level behavior, such as circular-speed-like or
+        rotation-curve-style summaries. The tensor side tracks local tidal-curvature organization
+        through electric-Weyl structure and eigenframe orientation. Relational witnesses are the
+        declared sampling sites from which those local structures are read.
+      </p>
+      <p>
+        The result does not say that scalar summaries are wrong. It says scalar agreement alone
+        does not certify preservation of local curvature-orientation structure.
+      </p>
+
+      <h2>Simulation Sequence</h2>
+
+      <div class="paper-card">
+        <h3><span class="run-code">B006</span>: 500-source control</h3>
+        <p>
+          A Milky-Way-like rotating disc with retained and coarse branches. The run reproduced
+          the initial pattern: electric-Weyl and eigenframe deltas were several times larger than
+          scalar rotation deltas.
+        </p>
+      </div>
+
+      <div class="paper-card">
+        <h3><span class="run-code">B007</span>: 1000-source coarse-method matrix</h3>
+        <p>
+          Added tilted rings, annular models, sector annular models, particle mesh,
+          Gaussian/kernel smoothing, and low-order multipole proxies. The result showed that
+          the delta is method-dependent, not a single artifact of one averaging recipe.
+        </p>
+      </div>
+
+      <div class="paper-card">
+        <h3><span class="run-code">B008</span>: 2000-source observational benchmark</h3>
+        <p>
+          Added inclined line-of-sight projection, beam smoothing, surface-density maps, and
+          tilted-ring reconstruction. The observational branch complicated the story in a useful
+          way: some reductions damage scalar rotation too, while surface-density, grid, and kernel
+          branches preserve the tensor/scalar distinction more clearly.
+        </p>
+      </div>
+
+      <div class="paper-card">
+        <h3><span class="run-code">B009</span>: source-count scale ladder</h3>
+        <p>
+          Ran 2000, 5000, and 10000 source-proxy scenes with fixed witnesses. The right scaling
+          read appears convergence-like rather than a simple multiplication by source count:
+        </p>
+        <p><code>Delta(N) = Delta_inf + A / sqrt(N)</code></p>
+        <p>
+          Increasing source count suppresses finite-source noise and exposes a method-dependent
+          residual floor.
+        </p>
+      </div>
+
+      <div class="paper-card">
+        <h3><span class="run-code">B010</span>: coarse-method resolution ladder</h3>
+        <p>
+          Held source count fixed at 10000 while refining rings, sectors, grids, and kernels.
+          Scalar rotation disagreement generally decreased with resolution, but electric-Weyl and
+          eigenframe disagreement did not collapse in lockstep. This is one of the clearest signs
+          that the tensor-side story is not simply the same observable under a different label.
+        </p>
+      </div>
+
+      <div class="paper-card">
+        <h3><span class="run-code">B011</span>: morphology variants</h3>
+        <p>
+          Repeated the protocol across barred, bulge-heavy, thick-disk, flocculent, and disturbed
+          outer-disk variants. The tensor/scalar split persisted across morphology, supporting a
+          method-level story rather than a one-scene accident.
+        </p>
+      </div>
+
+      <div class="paper-card">
+        <h3><span class="run-code">B012</span>: witness-field robustness</h3>
+        <p>
+          Repeated the protocol across midplane, off-plane, halo, radial-spoke, and survey-wedge
+          witness panels. The strongest signal lives in the disc-adjacent, off-plane, spoke, and
+          survey-wedge panels. The halo-style panel is quieter for some methods, which helps locate
+          the effect rather than overstate it.
+        </p>
+      </div>
+
+      <h2>Key Numbers</h2>
+      <p>
+        Ratios above 1 mean the eigenframe or tensor-side disagreement is larger than the scalar
+        rotation disagreement under the same comparison. Ratios around 3 to 5 indicate that the
+        local curvature-orientation witness is changing several times more strongly than the scalar
+        rotation summary.
+      </p>
+
+      <h3>B009 source ladder: median p90 eigenframe-over-vc2 ratios</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>2000 sources</th>
+            <th>5000 sources</th>
+            <th>10000 sources</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Annular</td>
+            <td>3.02</td>
+            <td>3.59</td>
+            <td>3.86</td>
+          </tr>
+          <tr>
+            <td>Sector-annular</td>
+            <td>3.06</td>
+            <td>3.87</td>
+            <td>4.38</td>
+          </tr>
+          <tr>
+            <td>Adaptive</td>
+            <td>2.66</td>
+            <td>3.00</td>
+            <td>3.17</td>
+          </tr>
+          <tr>
+            <td>Low-order</td>
+            <td>2.33</td>
+            <td>2.67</td>
+            <td>2.76</td>
+          </tr>
+          <tr>
+            <td>CIC mesh</td>
+            <td>3.21</td>
+            <td>5.63</td>
+            <td>5.46</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>B010 fine-resolution examples at 10000 sources</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>p90_vc2</th>
+            <th>p90_E</th>
+            <th>eigen/vc2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Annular fine</td>
+            <td>0.2406</td>
+            <td>0.8628</td>
+            <td>4.05</td>
+          </tr>
+          <tr>
+            <td>Sector-annular fine</td>
+            <td>0.1928</td>
+            <td>0.8177</td>
+            <td>4.91</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Interpretation</h2>
+      <p>
+        The cleanest reading is not that coarse-graining fails. The cleanest reading is that
+        different diagnostic layers survive coarse-graining differently.
+      </p>
+      <p>
+        Scalar rotation summaries can remain useful while the local electric-Weyl/eigenframe
+        structure read by relational witnesses changes more strongly. That separates scalar
+        preservation from curvature-orientation preservation.
+      </p>
+      <p>
+        For Atlas, this supports the need for explicit witness panels, tensor-side diagnostics,
+        and source-context comparison before treating a coarse-grained scene as structurally
+        equivalent to the resolved one.
+      </p>
+
+      <h2>What This Does Not Claim</h2>
+      <ul>
+        <li>It does not claim modified gravity.</li>
+        <li>It does not claim dark matter has been explained.</li>
+        <li>It does not claim observational detection.</li>
+        <li>It does not claim toy galaxies reproduce real galaxies.</li>
+        <li>It does not claim coarse-graining is invalid.</li>
+        <li>It does not claim scalar rotation summaries are useless.</li>
+      </ul>
+
+      <h2>Next Tests</h2>
+      <p>
+        The next step is hardening, not escalation. The result needs explicit scene passports,
+        realistic mass models, SPARC-style comparisons, tensor validation, trajectory/congruence
+        checks, and witness-panel certification.
+      </p>
+      <p>
+        If the tensor/scalar split survives those tests, it becomes a serious methods result:
+        a sign that galaxy-scale summaries may preserve useful scalar behavior while altering
+        the mesoscale curvature structure that relational witnesses read.
+      </p>
+
+      <p><a href="#top">↑</a></p>
+    </main>
+
+    <footer>
+      <h2>Relational Labs</h2>
+      <p>
+        Weak-field multi-source general relativity research hub for multi-body gravitational
+        simulation, geodesic diagnostics, papers, figures, and experiments. Est. March 2026.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

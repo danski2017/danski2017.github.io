@@ -235,6 +235,12 @@ description: Interactive simulations and numerical visualizations of GCS parity 
 <div class="exp-sidebar">
 
 <div class="exp-staging-notice">
+  <div class="exp-staging-notice-label">📰 Headlines</div>
+  <div class="exp-staging-notice-note">Latest lab notes, papers, and results from Relational Labs.</div>
+  <a class="exp-staging-notice-link" href="/news/">View headlines &rarr;</a>
+</div>
+
+<div class="exp-staging-notice">
   <div class="exp-staging-notice-label">⚗ Staging Lab</div>
   <div class="exp-staging-notice-note">Pre-publication results under active development. Not peer reviewed — follow the link to inspect the latest work directly.</div>
   <a class="exp-staging-notice-link" href="/staging/">View staging results &rarr;</a>
