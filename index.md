@@ -48,6 +48,7 @@ description: Relational Labs is an independent research platform for multi-body 
 
   <div class="index-papers">
     <h1>Foundational Results</h1>
+    <p><em>Core findings of the Atlas program — results that stand independent of the construction methods used to reach them.</em></p>
 
     <h3><strong>Three Measures of Gravitational Identity</strong></h3>
     <p><em>Budget, Jurisdiction, and Compression in Weak-Field Curvature Attribution</em><br>
