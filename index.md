@@ -72,14 +72,18 @@ description: Relational Labs is an independent research platform for multi-body 
     <h3><strong>Paper VI — The Gravitational Field-Relation Operator</strong></h3>
     <p><em>Direct Construction of Gravitational Parity Networks from Source-Context Residuals</em><br>
     <a href="Gravitational_Field_Relation_Operator_public_GCS%20VI.pdf">Read Paper</a></p>
+
+    <h3><strong>Paper VII — Three Measures of Gravitational Identity</strong></h3>
+    <p><em>Budget, Jurisdiction, and Compression in Weak-Field Curvature Attribution</em><br>
+    <a href="Three_Measures_of_Gravitational_Identity_GCS_VII.pdf">Read Paper</a></p>
   </div>
 
   <div class="index-updates">
     <h1>Lab Updates</h1>
-    <p><strong>May 2026 —</strong> Paper VI released: <em>The Gravitational Field-Relation Operator</em>. First full Riemann run completed with encouraging results. Analysis underway.</p>
+    <p><strong>May 2026 —</strong> Paper VII released: <em>Three Measures of Gravitational Identity</em>. Budget, jurisdiction, and compression separated as independent diagnostics across the full astrophysical scale hierarchy.</p>
     <p><strong>Current Focus:</strong></p>
     <ul>
-      <li><strong>Nesting Domain Handoff:</strong> Finalizing modular scene handoff protocols.</li>
+      <li><strong>Three Measures:</strong> Dynamical handoff problem identified — static separation complete.</li>
       <li><strong>Visualization:</strong> Refining lawful geometry renders for 3-body systems.</li>
     </ul>
   </div>
