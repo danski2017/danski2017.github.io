@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Research Program
 ---
 
@@ -129,12 +129,12 @@ For a source of mass *M* at distance *D* from a dominant neighbor of mass *M′*
 
 | Boundary | Formula | Primary question |
 |---|---|---|
-| Hill radius | r_H = D (M / 3M′)^(1/3) | Where can satellite orbits remain stable? |
-| GCS monopole radius | r_0 = D (M / M′)^(1/2) | Where does the declared contribution reach parity with derived context? |
+| Hill radius | $$r_H = D \left(\frac{M}{3M'}\right)^{1/3}$$ | Where can satellite orbits remain stable? |
+| GCS monopole radius | $$r_0 = D \left(\frac{M}{M'}\right)^{1/2}$$ | Where does the declared contribution reach parity with derived context? |
 
 </div>
 
-The ratio between them is r_0 / r_H = 3^(1/3) (M / M′)^(1/6). The 1/6 exponent is the structural fact worth pausing on. Across four orders of magnitude in planetary mass ratio — from Mercury to Jupiter — this ratio varies by less than a factor of five, sitting at roughly 10–70% of the Hill radius. For Earth in the solar context, the simplified monopole GCS lies at approximately 17% of Earth's Hill radius.
+The ratio between them is $r_0 / r_H = 3^{1/3} (M / M')^{1/6}$. The 1/6 exponent is the structural fact worth pausing on. Across four orders of magnitude in planetary mass ratio — from Mercury to Jupiter — this ratio varies by less than a factor of five, sitting at roughly 10–70% of the Hill radius. For Earth in the solar context, the simplified monopole GCS lies at approximately 17% of Earth's Hill radius.
 
 The two surfaces are not competing. They coexist at different radii and answer different questions. Neither is a force cutoff.
 
