@@ -84,12 +84,8 @@ description: Relational Labs is an independent research platform for multi-body 
 
   <div class="index-updates">
     <h1>Lab Updates</h1>
-    <p><strong>May 2026 —</strong> <em>Three Measures of Gravitational Identity</em> released. A foundational result separating budget, jurisdiction, and compression as independent measures of gravitational identity across the full astrophysical scale hierarchy.</p>
-    <p><strong>Current Focus:</strong></p>
-    <ul>
-      <li><strong>Three Measures:</strong> Dynamical handoff problem identified — static separation complete.</li>
-      <li><strong>Visualization:</strong> Refining lawful geometry renders for 3-body systems.</li>
-    </ul>
+    <p><strong>May 2026 —</strong> <em>Three Measures of Gravitational Identity</em> released. Budget, jurisdiction, and compression identified as three independent measures of gravitational identity for finite sources in weak-field general relativity.</p>
+    <p><strong>Current focus:</strong> Dynamical handoff problem — the causal mechanism by which curvature attribution propagates when sources change.</p>
   </div>
 
 </div>
