@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Staging Lab
+permalink: /staging/
 description: Pre-publication experiment results from Atlas GCS Research — preliminary, not peer reviewed.
 ---
 
