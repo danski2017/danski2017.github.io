@@ -1,0 +1,19 @@
+{
+  "scene_id": "local_stellar_neighborhood_v0_1",
+  "purpose": "Gravitational geometry and tidal structure of the local stellar neighborhood",
+  "regime": "weak_field_gr_approximation",
+  "epoch": "J2000",
+  "active_sources": [
+    "SOL","PROXIMA_CEN","ALPHA_CEN_A","ALPHA_CEN_B","BARNARDS",
+    "LUHMAN16A","LUHMAN16B","WISE0855","WOLF359","LALANDE21185",
+    "SIRIUS_A","SIRIUS_B","BL_CETI","UV_CETI","ROSS154","ROSS248",
+    "EPS_ERI","LACAILLE9352","ROSS128","EZ_AQR_A","61CYGNI_A",
+    "61CYGNI_B","GROOMBRIDGE34A","GROOMBRIDGE34B","DX_CANCRI",
+    "EPS_INDI_A","EPS_INDI_BA","EPS_INDI_BB","TAU_CETI","GJ1061",
+    "YZ_CETI","LUYTEN_STAR","TEEGARDEN","SCR1845","KAPTEYN",
+    "LACAILLE8760","KRUGER60A","KRUGER60B","ROSS614A","VAN_MAANEN",
+    "GLIESE1","WOLF424A","TZ_ARIETIS","GJ687","GJ674","GJ440",
+    "GJ1002","GJ412A"
+  ],
+  "claim_status": "diagnostic_candidate_not_observational"
+}
