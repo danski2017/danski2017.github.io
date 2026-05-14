@@ -82,6 +82,16 @@ const RUNGS = Object.keys(RUNG_INFO);
 // Utilities
 const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"");
 
+function useIsMobile() {
+  const [mob, setMob] = useState(window.innerWidth < 768);
+  useEffect(()=>{
+    const check=()=>setMob(window.innerWidth<768);
+    window.addEventListener("resize",check);
+    return ()=>window.removeEventListener("resize",check);
+  },[]);
+  return mob;
+}
+
 const fibSphere = (i, n) => {
   const phi = Math.acos(1 - 2*(i+0.5)/n);
   const theta = Math.PI * (1 + Math.sqrt(5)) * i;
@@ -143,7 +153,9 @@ function PassportScreen({ onGenerate }) {
   const [ready, setReady] = useState(false);
   const [mode, setMode] = useState("manual");
   const [selectedSources, setSelectedSources] = useState(new Set());
+  const [mobileTab, setMobileTab] = useState("manual");
   const bottomRef = useRef(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior:"smooth" }); }, [messages, loading]);
 
@@ -209,40 +221,174 @@ function PassportScreen({ onGenerate }) {
   const fI = {width:"100%",background:"#0b0d14",border:"1px solid #14202e",color:"#a0b8cc",
     fontFamily:"var(--font-sans)",fontSize:14,padding:"7px 10px",borderRadius:5,outline:"none",boxSizing:"border-box"};
 
-  return (
-    <div style={{display:"flex",flexDirection:"column",height:"100%",fontFamily:"var(--font-sans)",fontSize:"13px",background:"#07090d",color:"#a0b8cc"}}>
-      <style>{`
-        @keyframes blink{0%,80%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
-        .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#a07018;animation:blink 1.2s ease-in-out infinite;margin:0 2px}
-        .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
-        .tinp{width:100%;background:#0b0d14;border:1px solid #14202e;color:#a0b8cc;font-family:var(--font-sans);font-size:14px;padding:8px 12px;border-radius:5px;resize:none;outline:none;line-height:1.5;box-sizing:border-box}
-        .tinp:focus{border-color:#6a4410}.tinp::placeholder{color:#2a4060}.tinp:disabled{opacity:.3;cursor:not-allowed}
-        .ab{font-family:var(--font-sans);font-size:13px;letter-spacing:.07em;font-weight:500;padding:6px 14px;border-radius:5px;cursor:pointer;transition:all .15s;white-space:nowrap}
-        .pri{background:#7a4e10;border:1px solid #7a4e10;color:#ddb870}.pri:hover{background:#8e5c18}
-        .pri:disabled{background:#0d1520;border-color:#111e2c;color:#182840;cursor:not-allowed}
-        .gho{background:transparent;border:1px solid #14202e;color:#c0ccd4}.gho:hover{border-color:#2a4060;color:#7aaccc;background:#090d14}
-        .gho:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
-        .lck{background:transparent;border:1px solid #14202e;color:#c0ccd4}
-        .lck:hover{border-color:#2a6040;color:#3a9060;background:transparent}
-        .lck:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
-        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#14202e;border-radius:2px}
-      `}</style>
+  const generate = () => {
+    const full={...passport,regime:"weak_field_gr_approximation",epoch:"J2000",coordinate_frame:"solar_system_barycentric_cartesian",units:{mass:"kg",distance:"m"},node1:{mode:"explicit_parent",description:"Local Milky Way disk"},datum_architecture:"Single geometric registration datum.",extraction_rungs:RUNGS,claim_status:"diagnostic_candidate_not_observational"};
+    setLocked(true); onGenerate(full);
+  };
 
-      {/* Header */}
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"9px 16px",borderBottom:"1px solid #0c1620",background:"#080a10",flexShrink:0}}>
-        <div style={{display:"flex",alignItems:"baseline",gap:"10px"}}>
-          <span style={{fontSize:"19px",fontWeight:500,letterSpacing:".14em",color:"#a07018"}}>ATLAS</span>
+  const resetAll = () => { setMessages([{role:"assistant",content:WELCOME}]);setPassport({});setInput("");setLocked(false);setReady(false);setSelectedSources(new Set()); };
+
+  const presetButtons = (
+    <div style={{display:"flex",flexDirection:"column",gap:6}}>
+      {[[{key:"SS",label:"Solar System",sub:"All planets + Sun"},{key:"LSN",label:"LSN",sub:"Local Stellar Neighborhood"}],
+        [{key:"ATOMS",label:"Atoms & Molecules",sub:"Coming soon",disabled:true},{key:"MW",label:"Milky Way",sub:"Coming soon",disabled:true}]
+      ].map((row,ri)=>(
+        <div key={ri} style={{display:"flex",gap:6}}>
+          {row.map(({key,label,sub,disabled})=>{
+            const active=(key==="SS"&&passport.purpose&&passport.purpose.includes("solar system"))||(key==="LSN"&&passport.purpose&&passport.purpose.includes("stellar neighborhood"));
+            return (
+              <button key={key} disabled={disabled} onClick={()=>applyPreset(key)} style={{
+                flex:1,minHeight:"56px",height:"auto",padding:"8px 4px",borderRadius:5,cursor:disabled?"default":"pointer",
+                border:"1px solid "+(active?"#c8922a":disabled?"#0e1620":"#1a2838"),
+                background:active?"#1a1200":disabled?"#080a10":"transparent",
+                opacity:disabled?0.35:1,transition:"all .15s",textAlign:"center",
+                display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"
+              }}>
+                <div style={{color:disabled?"#2a4060":"#c8d8e8",fontSize:13,fontWeight:500}}>{label}</div>
+                <div style={{color:disabled?"#1e3040":"#4a7080",fontSize:12,marginTop:3}}>{sub}</div>
+              </button>
+            );
+          })}
         </div>
-        <div style={{display:"flex",gap:"8px",alignItems:"center"}}>
-          <span style={{fontSize:"13px",color:locked?"#3a8060":"#c0ccd4"}}>
-            {locked?"Passport locked.":ready?"Ready to lock.":"Building in progress..."}
-          </span>
-          <button className="ab gho" onClick={()=>{setMessages([{role:"assistant",content:WELCOME}]);setPassport({});setInput("");setLocked(false);setReady(false);setSelectedSources(new Set());}}>Reset</button>
+      ))}
+    </div>
+  );
+
+  const sourceList = (scrollStyle) => (
+    <div style={scrollStyle}>
+      {allSources.map(({group,items})=>(
+        <div key={group}>
+          <div style={{padding:"4px 10px",fontSize:11,color:"#4a7888",background:"#0a0d16",letterSpacing:".08em",textTransform:"uppercase",position:"sticky",top:0,zIndex:1}}>{group}</div>
+          {items.map(s=>(
+            <label key={s.id} style={{display:"flex",alignItems:"center",gap:8,padding:"5px 10px",cursor:"pointer",borderBottom:"1px solid #090d16",background:selectedSources.has(s.id)?"#0e1828":"transparent"}}>
+              <input type="checkbox" style={{accentColor:"#c8922a",flexShrink:0}} checked={selectedSources.has(s.id)} onChange={()=>toggleSource(s.id)}/>
+              <span style={{flex:1,color:"#b0c4d4",fontSize:13}}>{s.name}</span>
+            </label>
+          ))}
         </div>
+      ))}
+    </div>
+  );
+
+  const aiMessages = (
+    <>
+      {messages.map((m,i)=>(
+        <div key={i} style={m.role==="user"
+          ?{background:"#0a0e18",borderLeft:"2px solid #c8922a",padding:"8px 12px",borderRadius:"0 5px 5px 0",margin:"5px 0",lineHeight:1.6,whiteSpace:"pre-wrap",color:"#a8bcc8"}
+          :{borderLeft:"2px solid #0e1a26",padding:"8px 12px",borderRadius:"0 5px 5px 0",margin:"5px 0",lineHeight:1.6,whiteSpace:"pre-wrap",color:"#506070"}
+        }>{m.content}</div>
+      ))}
+      {loading&&<div style={{borderLeft:"2px solid #0e1a26",padding:"10px 14px",margin:"5px 0"}}><span className="dot"/><span className="dot"/><span className="dot"/></div>}
+      <div ref={bottomRef}/>
+    </>
+  );
+
+  const aiInput = (
+    <div style={{padding:"9px 14px",borderTop:"1px solid #0a1218",display:"flex",gap:"8px",flexShrink:0}}>
+      <textarea className="tinp" rows={2} value={input} onChange={e=>setInput(e.target.value)} onKeyDown={onKey}
+        placeholder={locked?"Passport is locked.":"Declare your scene..."} disabled={loading||locked} style={{flex:1}}/>
+      <button className="ab pri" onClick={sendAI} disabled={!input.trim()||loading||locked} style={{alignSelf:"flex-end"}}>Send</button>
+    </div>
+  );
+
+  const commonStyle = {display:"flex",flexDirection:"column",height:"100%",fontFamily:"var(--font-sans)",fontSize:"13px",background:"#07090d",color:"#a0b8cc"};
+  const sharedStyles = `
+    @keyframes blink{0%,80%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
+    .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#a07018;animation:blink 1.2s ease-in-out infinite;margin:0 2px}
+    .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+    .tinp{width:100%;background:#0b0d14;border:1px solid #14202e;color:#a0b8cc;font-family:var(--font-sans);font-size:14px;padding:8px 12px;border-radius:5px;resize:none;outline:none;line-height:1.5;box-sizing:border-box}
+    .tinp:focus{border-color:#6a4410}.tinp::placeholder{color:#2a4060}.tinp:disabled{opacity:.3;cursor:not-allowed}
+    .ab{font-family:var(--font-sans);font-size:13px;letter-spacing:.07em;font-weight:500;padding:6px 14px;border-radius:5px;cursor:pointer;transition:all .15s;white-space:nowrap}
+    .pri{background:#7a4e10;border:1px solid #7a4e10;color:#ddb870}.pri:hover{background:#8e5c18}
+    .pri:disabled{background:#0d1520;border-color:#111e2c;color:#182840;cursor:not-allowed}
+    .gho{background:transparent;border:1px solid #14202e;color:#c0ccd4}.gho:hover{border-color:#2a4060;color:#7aaccc;background:#090d14}
+    .gho:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
+    .lck{background:transparent;border:1px solid #14202e;color:#c0ccd4}
+    .lck:hover{border-color:#2a6040;color:#3a9060;background:transparent}
+    .lck:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#14202e;border-radius:2px}
+  `;
+
+  const header = (
+    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"9px 16px",borderBottom:"1px solid #0c1620",background:"#080a10",flexShrink:0}}>
+      <span style={{fontSize:"19px",fontWeight:500,letterSpacing:".14em",color:"#a07018"}}>ATLAS</span>
+      <div style={{display:"flex",gap:"8px",alignItems:"center"}}>
+        <span style={{fontSize:"13px",color:locked?"#3a8060":"#c0ccd4"}}>
+          {locked?"Passport locked.":ready?"Ready to lock.":"Building in progress..."}
+        </span>
+        <button className="ab gho" onClick={resetAll}>Reset</button>
       </div>
+    </div>
+  );
 
-      {/* Body */}
+  if (isMobile) {
+    return (
+      <div style={commonStyle}>
+        <style>{sharedStyles}</style>
+        {header}
+
+        {/* 3-tab bar: Form | AI | Passport */}
+        <div style={{display:"flex",borderBottom:"1px solid #111d2b",flexShrink:0}}>
+          {[["manual","Form"],["ai","AI"],["passport","Passport"]].map(([k,label])=>(
+            <button key={k} onClick={()=>setMobileTab(k)} style={{
+              flex:1,padding:"9px 0",fontSize:12,letterSpacing:".07em",fontWeight:500,
+              fontFamily:"var(--font-sans)",cursor:"pointer",border:"none",
+              borderBottom:mobileTab===k?"2px solid #c8922a":"2px solid transparent",
+              background:"transparent",color:mobileTab===k?"#c8922a":"#c0ccd4",transition:"all .15s"
+            }}>{label}</button>
+          ))}
+        </div>
+
+        {/* Scrollable content */}
+        <div style={{flex:1,overflowY:"auto"}}>
+          {mobileTab==="manual" && (
+            <div style={{padding:"14px"}}>
+              <div style={{marginBottom:14}}>
+                <label style={fL}>Scene name</label>
+                <input style={fI} defaultValue="my scene" onChange={e=>updateManual("scene_id",slugify(e.target.value)+"_v0_1")}/>
+              </div>
+              <div style={{marginBottom:14}}>
+                <label style={fL}>Scene type presets</label>
+                {presetButtons}
+              </div>
+              <div>
+                <label style={fL}>Sources ({selectedSources.size} selected)</label>
+                {sourceList({border:"1px solid #111d2b",borderRadius:4,maxHeight:"45vh",overflowY:"auto"})}
+              </div>
+            </div>
+          )}
+          {mobileTab==="ai" && (
+            <div style={{padding:"10px 14px"}}>{aiMessages}</div>
+          )}
+          {mobileTab==="passport" && (
+            <div style={{padding:"14px 16px",fontFamily:"var(--font-mono)",fontSize:"12px",lineHeight:1.8}}
+              dangerouslySetInnerHTML={{__html:hl(fc>0?JSON.stringify(passport,null,2):"{}")}}/>
+          )}
+        </div>
+
+        {/* Always-visible footer: AI input on AI tab, Generate otherwise */}
+        {mobileTab==="ai" ? aiInput : (
+          <div style={{padding:"10px 14px",borderTop:"1px solid #0a1218",flexShrink:0}}>
+            <div style={{fontSize:11,color:fc>0?"#7a5010":"#4a6878",marginBottom:8,letterSpacing:".06em",textTransform:"uppercase",fontWeight:500}}>
+              {fc} field{fc!==1?"s":""} declared
+            </div>
+            <button className="ab pri" style={{width:"100%",padding:"10px 0",fontSize:14,textAlign:"center"}} onClick={generate}>
+              Generate Gravity Map
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div style={commonStyle}>
+      <style>{sharedStyles}</style>
+      {header}
+
+      {/* Desktop: two-column body */}
       <div style={{display:"flex",flex:1,overflow:"hidden"}}>
+
         {/* Left panel */}
         <div style={{width:"46%",borderRight:"1px solid #0c1620",display:"flex",flexDirection:"column",overflow:"hidden"}}>
           <div style={{display:"flex",borderBottom:"1px solid #111d2b",flexShrink:0}}>
@@ -257,82 +403,27 @@ function PassportScreen({ onGenerate }) {
           </div>
 
           {mode==="ai" ? (<>
-            <div style={{flex:1,overflow:"auto",padding:"10px 14px"}}>
-              {messages.map((m,i)=>(
-                <div key={i} style={m.role==="user"
-                  ?{background:"#0a0e18",borderLeft:"2px solid #c8922a",padding:"8px 12px",borderRadius:"0 5px 5px 0",margin:"5px 0",lineHeight:1.6,whiteSpace:"pre-wrap",color:"#a8bcc8"}
-                  :{borderLeft:"2px solid #0e1a26",padding:"8px 12px",borderRadius:"0 5px 5px 0",margin:"5px 0",lineHeight:1.6,whiteSpace:"pre-wrap",color:"#506070"}
-                }>{m.content}</div>
-              ))}
-              {loading&&<div style={{borderLeft:"2px solid #0e1a26",padding:"10px 14px",margin:"5px 0"}}><span className="dot"/><span className="dot"/><span className="dot"/></div>}
-              <div ref={bottomRef}/>
-            </div>
-            <div style={{padding:"9px 14px",borderTop:"1px solid #0a1218",display:"flex",gap:"8px",flexShrink:0}}>
-              <textarea className="tinp" rows={2} value={input} onChange={e=>setInput(e.target.value)} onKeyDown={onKey}
-                placeholder={locked?"Passport is locked.":"Declare your scene..."} disabled={loading||locked} style={{flex:1}}/>
-              <button className="ab pri" onClick={sendAI} disabled={!input.trim()||loading||locked} style={{alignSelf:"flex-end"}}>Send</button>
-            </div>
+            <div style={{flex:1,overflow:"auto",padding:"10px 14px"}}>{aiMessages}</div>
+            {aiInput}
           </>) : (
             <div style={{flex:1,overflow:"hidden",padding:"14px",display:"flex",flexDirection:"column"}}>
-              {(()=>{
-                const fG={marginBottom:14};
-                return (<>
-                  <div style={fG}>
-                    <label style={fL}>Scene name</label>
-                    <input style={fI} defaultValue="my scene" onChange={e=>updateManual("scene_id",slugify(e.target.value)+"_v0_1")}/>
-                  </div>
-                  <div style={fG}>
-                    <label style={fL}>Scene type presets</label>
-                    <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                      {[[{key:"SS",label:"Solar System",sub:"All planets + Sun"},{key:"LSN",label:"LSN",sub:"Local Stellar Neighborhood"}],
-                        [{key:"ATOMS",label:"Atoms & Molecules",sub:"Coming soon",disabled:true},{key:"MW",label:"Milky Way",sub:"Coming soon",disabled:true}]
-                      ].map((row,ri)=>(
-                        <div key={ri} style={{display:"flex",gap:6}}>
-                          {row.map(({key,label,sub,disabled})=>{
-                            const active=(key==="SS"&&passport.purpose&&passport.purpose.includes("solar system"))||(key==="LSN"&&passport.purpose&&passport.purpose.includes("stellar neighborhood"));
-                            return (
-                              <button key={key} disabled={disabled} onClick={()=>applyPreset(key)} style={{
-                                flex:1,minHeight:"56px",height:"auto",padding:"8px 4px",borderRadius:5,cursor:disabled?"default":"pointer",
-                                border:"1px solid "+(active?"#c8922a":disabled?"#0e1620":"#1a2838"),
-                                background:active?"#1a1200":disabled?"#080a10":"transparent",
-                                opacity:disabled?0.35:1,transition:"all .15s",textAlign:"center",
-                                display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"
-                              }}>
-                                <div style={{color:disabled?"#2a4060":"#c8d8e8",fontSize:13,fontWeight:500}}>{label}</div>
-                                <div style={{color:disabled?"#1e3040":"#4a7080",fontSize:12,marginTop:3}}>{sub}</div>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div style={{flex:1,minHeight:0,display:"flex",flexDirection:"column"}}>
-                    <label style={fL}>Sources ({selectedSources.size} selected)</label>
-                    <div style={{flex:1,minHeight:0,overflowY:"auto",border:"1px solid #111d2b",borderRadius:4}}>
-                      {allSources.map(({group,items})=>(
-                        <div key={group}>
-                          <div style={{padding:"4px 10px",fontSize:11,color:"#4a7888",background:"#0a0d16",letterSpacing:".08em",textTransform:"uppercase",position:"sticky",top:0,zIndex:1}}>{group}</div>
-                          {items.map(s=>(
-                            <label key={s.id} style={{display:"flex",alignItems:"center",gap:8,padding:"5px 10px",cursor:"pointer",borderBottom:"1px solid #090d16",background:selectedSources.has(s.id)?"#0e1828":"transparent"}}>
-                              <input type="checkbox" style={{accentColor:"#c8922a",flexShrink:0}} checked={selectedSources.has(s.id)} onChange={()=>toggleSource(s.id)}/>
-                              <span style={{flex:1,color:"#b0c4d4",fontSize:13}}>{s.name}</span>
-                              <span style={{color:"#4a7080",fontSize:12,fontFamily:"var(--font-mono)"}}>
-                                
-                              </span>
-                            </label>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </>);
-              })()}
+              <div style={{marginBottom:14}}>
+                <label style={fL}>Scene name</label>
+                <input style={fI} defaultValue="my scene" onChange={e=>updateManual("scene_id",slugify(e.target.value)+"_v0_1")}/>
+              </div>
+              <div style={{marginBottom:14}}>
+                <label style={fL}>Scene type presets</label>
+                {presetButtons}
+              </div>
+              <div style={{flex:1,minHeight:0,display:"flex",flexDirection:"column"}}>
+                <label style={fL}>Sources ({selectedSources.size} selected)</label>
+                {sourceList({flex:1,minHeight:0,overflowY:"auto",border:"1px solid #111d2b",borderRadius:4})}
+              </div>
             </div>
           )}
         </div>
 
-        {/* Right panel: JSON */}
+        {/* Right panel: JSON + Generate */}
         <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
           <div style={{padding:"5px 14px",borderBottom:"1px solid #0a1218",display:"flex",justifyContent:"space-between",alignItems:"center",fontSize:"10px",letterSpacing:".1em",textTransform:"uppercase",color:"#c0ccd4",fontWeight:500,flexShrink:0}}>
             <span>Scene passport</span>
@@ -341,12 +432,10 @@ function PassportScreen({ onGenerate }) {
           <div style={{flex:1,overflow:"auto",padding:"14px 16px",fontFamily:"var(--font-mono)",fontSize:"13px",lineHeight:1.8}}
             dangerouslySetInnerHTML={{__html:hl(fc>0?JSON.stringify(passport,null,2):"{}")}}/>
           <div style={{padding:"8px 14px",borderTop:"1px solid #0a1218",display:"flex",justifyContent:"flex-end",gap:8,flexShrink:0}}>
-            <button className="ab pri" disabled={false}
-              onClick={()=>{ const full={...passport,regime:"weak_field_gr_approximation",epoch:"J2000",coordinate_frame:"solar_system_barycentric_cartesian",units:{mass:"kg",distance:"m"},node1:{mode:"explicit_parent",description:"Local Milky Way disk"},datum_architecture:"Single geometric registration datum.",extraction_rungs:RUNGS,claim_status:"diagnostic_candidate_not_observational"}; setLocked(true); onGenerate(full); }}>
-              Generate Gravity Map
-            </button>
+            <button className="ab pri" onClick={generate}>Generate Gravity Map</button>
           </div>
         </div>
+
       </div>
     </div>
   );
@@ -365,6 +454,7 @@ function StageScreen({ passport, onBack }) {
   const [geometry,  setGeometry]    = useState(null);
   const [geoStatus, setGeoStatus]   = useState("awaiting");  // awaiting | loading | loaded | error
   const [layers, setLayers] = useState(Object.fromEntries(RUNGS.map(r=>[r,{on:false,opacity:1}])));
+  const isMobile = useIsMobile();
 
   const activeSources = (passport.active_sources||[])
     .map(id=>ALL_SOURCES.find(s=>s.id===id)).filter(Boolean);
@@ -591,7 +681,7 @@ function StageScreen({ passport, onBack }) {
 
       {/* Slide-in panel */}
       <div style={{
-        width:panelOpen?"25%":"0",minWidth:panelOpen?"220px":"0",height:"100%",
+        width:panelOpen?(isMobile?"88%":"25%"):"0",minWidth:panelOpen?(isMobile?"280px":"220px"):"0",height:"100%",
         background:"rgba(7,9,13,0.97)",borderLeft:panelOpen?"1px solid #111d2b":"none",
         overflow:"hidden",transition:"width .3s ease, min-width .3s ease",
         display:"flex",flexDirection:"column",flexShrink:0,
