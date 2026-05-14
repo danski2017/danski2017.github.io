@@ -440,17 +440,21 @@ function StageScreen({ passport, onBack }) {
     const md=e=>{o.isDown=true;o.lastX=e.clientX;o.lastY=e.clientY;};
     const mm=e=>{if(!o.isDown)return;o.theta-=(e.clientX-o.lastX)*0.007;o.phi=Math.max(0.05,Math.min(Math.PI-0.05,o.phi-(e.clientY-o.lastY)*0.007));o.lastX=e.clientX;o.lastY=e.clientY;updateCam();};
     const mu=()=>{o.isDown=false;};
-    const mw=e=>{o.radius=Math.max(maxD*0.3,Math.min(maxD*8,o.radius*(1+e.deltaY*0.001)));updateCam();};
+    const mw=e=>{e.preventDefault();o.radius=Math.max(maxD*0.3,Math.min(maxD*8,o.radius*(1+e.deltaY*0.001)));updateCam();};
     const ts=e=>{if(e.touches.length===1){o.isDown=true;o.lastX=e.touches[0].clientX;o.lastY=e.touches[0].clientY;}if(e.touches.length===2)o.lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);};
     const tm=e=>{e.preventDefault();if(e.touches.length===1&&o.isDown){o.theta-=(e.touches[0].clientX-o.lastX)*0.007;o.phi=Math.max(0.05,Math.min(Math.PI-0.05,o.phi-(e.touches[0].clientY-o.lastY)*0.007));o.lastX=e.touches[0].clientX;o.lastY=e.touches[0].clientY;updateCam();}if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);o.radius=Math.max(maxD*0.3,Math.min(maxD*8,o.radius*(o.lastDist/d)));o.lastDist=d;updateCam();}};
     const te=()=>{o.isDown=false;o.lastDist=0;};
+    const me=()=>{document.body.style.overflow='hidden';};
+    const ml=()=>{document.body.style.overflow='';};
     ren.domElement.addEventListener("mousedown",md);
     window.addEventListener("mousemove",mm);
     window.addEventListener("mouseup",mu);
-    ren.domElement.addEventListener("wheel",mw,{passive:true});
+    ren.domElement.addEventListener("wheel",mw,{passive:false});
     ren.domElement.addEventListener("touchstart",ts,{passive:true});
     ren.domElement.addEventListener("touchmove",tm,{passive:false});
     ren.domElement.addEventListener("touchend",te);
+    el.addEventListener("mouseenter",me);
+    el.addEventListener("mouseleave",ml);
     const onResize=()=>{const w=el.clientWidth,h=el.clientHeight;ren.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();};
     window.addEventListener("resize",onResize);
     const animate=()=>{animRef.current=requestAnimationFrame(animate);ren.render(scene,cam);};
@@ -460,6 +464,9 @@ function StageScreen({ passport, onBack }) {
       window.removeEventListener("mousemove",mm);
       window.removeEventListener("mouseup",mu);
       window.removeEventListener("resize",onResize);
+      el.removeEventListener("mouseenter",me);
+      el.removeEventListener("mouseleave",ml);
+      document.body.style.overflow='';
       ren.dispose();
       if(el.contains(ren.domElement))el.removeChild(ren.domElement);
     };
@@ -484,24 +491,6 @@ function StageScreen({ passport, onBack }) {
       .then(geo => { setGeometry(geo); setGeoStatus("loaded"); })
       .catch(() => setGeoStatus("awaiting"));
   },[]);
-
-  // ── Geometry loader ───────────────────────────────────────────────────
-  const loadGeometryFile = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    setGeoStatus("loading");
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      try {
-        const geo = JSON.parse(ev.target.result);
-        setGeometry(geo);
-        setGeoStatus("loaded");
-      } catch {
-        setGeoStatus("error");
-      }
-    };
-    reader.readAsText(file);
-  };
 
   // ── Build Three.js layer objects from geometry ────────────────────────
   useEffect(()=>{
@@ -592,14 +581,11 @@ function StageScreen({ passport, onBack }) {
 
   // ── Render ────────────────────────────────────────────────────────────
   return (
-    <div style={{position:"relative",width:"100vw",height:"100vh",background:"#07090d",overflow:"hidden",display:"flex"}}>
+    <div style={{position:"relative",width:"100%",height:"100%",background:"#07090d",overflow:"hidden",display:"flex"}}>
       <style>{`
         input[type=range]{accent-color:#c8922a;width:100%;margin:4px 0;}
-        input[type=file]{display:none;}
         .tog{width:34px;height:19px;border-radius:10px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;border:none;}
         .tog-knob{position:absolute;top:2px;width:15px;height:15px;border-radius:50%;background:#c0ccd4;transition:left .2s;}
-        .geo-btn{background:transparent;border:1px solid #1a2838;color:#c0ccd4;font-family:var(--font-sans);font-size:12px;padding:6px 12px;border-radius:4px;cursor:pointer;width:100%;text-align:left;}
-        .geo-btn:hover{border-color:#c8922a;color:#c8922a;}
       `}</style>
 
       <div ref={containerRef} style={{flex:1,height:"100%",transition:"flex .3s ease",overflow:"hidden"}}/>
@@ -623,22 +609,16 @@ function StageScreen({ passport, onBack }) {
           {/* Geometry loader */}
           <div style={{marginBottom:18,paddingBottom:14,borderBottom:"1px solid #111d2b"}}>
             <div style={{color:"#c8922a",fontSize:11,fontWeight:500,letterSpacing:".1em",textTransform:"uppercase",marginBottom:8}}>Geometry</div>
-            <div style={{fontSize:12,marginBottom:8,color:
+            <div style={{fontSize:12,color:
               geoStatus==="loaded"  ? "#3a9060" :
               geoStatus==="loading" ? "#c8922a" :
               geoStatus==="error"   ? "#904040" : "#4a6878"
             }}>
               {geoStatus==="loaded"  ? `Loaded — ${geometry?.n_sources||"?"} sources` :
                geoStatus==="loading" ? "Loading..." :
-               geoStatus==="error"   ? "Error loading file" :
-               "No geometry loaded"}
+               geoStatus==="error"   ? "Error loading" :
+               "Awaiting geometry"}
             </div>
-            <label>
-              <input type="file" accept=".json" onChange={loadGeometryFile}/>
-              <div className="geo-btn">
-                {geoStatus==="loaded" ? "↺ Load new geometry" : "Load geometry file"}
-              </div>
-            </label>
           </div>
 
           {/* Layer toggles */}
