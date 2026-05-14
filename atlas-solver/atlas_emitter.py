@@ -487,6 +487,10 @@ def load_scene(passport: dict) -> List[Source]:
                 entry["dist_pc"] = r["dist_pc"]
             elif "dist_au" in r:
                 entry["dist_au"] = r["dist_au"]
+            if "x_pc" in r:
+                entry["x_pc"] = r["x_pc"]
+                entry["y_pc"] = r["y_pc"]
+                entry["z_pc"] = r["z_pc"]
             sources_data.append(entry)
 
     positions = fibonacci_positions(sources_data)
