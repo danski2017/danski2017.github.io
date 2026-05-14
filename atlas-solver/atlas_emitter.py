@@ -358,12 +358,13 @@ PC_TO_M = 3.085677581e16    # parsecs to meters
 AU_TO_M = 1.496e11          # AU to meters
 MSUN_KG = 1.989e30          # solar masses to kg
 
-# Fibonacci sphere positions for sources without RA/Dec
+# Fibonacci sphere positions for sources without real ICRS coordinates
 def fibonacci_positions(sources_data: list) -> dict:
     """
-    Assign 3D positions using Fibonacci sphere at correct distances.
+    Assign 3D positions to sources.
+    Uses real Gaia ICRS Cartesian coordinates when available (x_pc/y_pc/z_pc).
+    Falls back to Fibonacci sphere at declared distance for sources without coordinates.
     SOL always at origin.
-    Flagged as schematic — real Gaia coordinates are Phase 2 v0.2.
     """
     n = len(sources_data)
     phi = np.pi * (1 + np.sqrt(5))
@@ -375,7 +376,16 @@ def fibonacci_positions(sources_data: list) -> dict:
             positions[s['id']] = np.zeros(3)
             continue
 
-        # Distance in meters
+        # Use real Gaia ICRS coordinates if available
+        if 'x_pc' in s and 'y_pc' in s and 'z_pc' in s:
+            positions[s['id']] = np.array([
+                s['x_pc'] * PC_TO_M,
+                s['y_pc'] * PC_TO_M,
+                s['z_pc'] * PC_TO_M,
+            ])
+            continue
+
+        # Fall back to Fibonacci sphere at declared distance
         if 'dist_pc' in s:
             dist_m = s['dist_pc'] * PC_TO_M
         elif 'dist_au' in s:
@@ -383,7 +393,6 @@ def fibonacci_positions(sources_data: list) -> dict:
         else:
             dist_m = 1e15
 
-        # Fibonacci direction
         lat = np.arccos(1 - 2*(fib_idx+0.5)/max(n-1, 1))
         lon = phi * fib_idx
         d = np.array([
@@ -410,55 +419,55 @@ ROSTER = {
     "NEPTUNE":      {"name":"Neptune",              "mass_msun":5.15e-5,  "dist_au":30.1},
     "PLUTO":        {"name":"Pluto",                "mass_msun":6.6e-9,   "dist_au":39.5},
     # Gaia stellar neighbors to 4.9 pc
-    "PROXIMA_CEN":    {"name":"Proxima Centauri",   "mass_msun":0.1221,   "dist_pc":1.295},
-    "ALPHA_CEN_A":    {"name":"Alpha Centauri A",   "mass_msun":1.100,    "dist_pc":1.338},
-    "ALPHA_CEN_B":    {"name":"Alpha Centauri B",   "mass_msun":0.907,    "dist_pc":1.338},
-    "BARNARDS":       {"name":"Barnard's Star",      "mass_msun":0.144,    "dist_pc":1.828},
-    "LUHMAN16A":      {"name":"Luhman 16 A",         "mass_msun":0.032,    "dist_pc":1.998},
-    "LUHMAN16B":      {"name":"Luhman 16 B",         "mass_msun":0.027,    "dist_pc":1.998},
-    "WISE0855":       {"name":"WISE 0855-0714",       "mass_msun":0.008,    "dist_pc":2.231},
-    "WOLF359":        {"name":"Wolf 359",             "mass_msun":0.090,    "dist_pc":2.394},
-    "LALANDE21185":   {"name":"Lalande 21185",        "mass_msun":0.386,    "dist_pc":2.547},
-    "SIRIUS_A":       {"name":"Sirius A",             "mass_msun":2.063,    "dist_pc":2.637},
-    "SIRIUS_B":       {"name":"Sirius B",             "mass_msun":1.018,    "dist_pc":2.637},
-    "BL_CETI":        {"name":"BL Ceti",              "mass_msun":0.102,    "dist_pc":2.680},
-    "UV_CETI":        {"name":"UV Ceti",              "mass_msun":0.100,    "dist_pc":2.680},
-    "ROSS154":        {"name":"Ross 154",             "mass_msun":0.170,    "dist_pc":2.976},
-    "ROSS248":        {"name":"Ross 248",             "mass_msun":0.136,    "dist_pc":3.162},
-    "EPS_ERI":        {"name":"Epsilon Eridani",      "mass_msun":0.832,    "dist_pc":3.218},
-    "LACAILLE9352":   {"name":"Lacaille 9352",        "mass_msun":0.503,    "dist_pc":3.289},
-    "ROSS128":        {"name":"Ross 128",             "mass_msun":0.168,    "dist_pc":3.374},
-    "EZ_AQR_A":       {"name":"EZ Aquarii A",         "mass_msun":0.110,    "dist_pc":3.452},
-    "61CYGNI_A":      {"name":"61 Cygni A",           "mass_msun":0.708,    "dist_pc":3.497},
-    "61CYGNI_B":      {"name":"61 Cygni B",           "mass_msun":0.630,    "dist_pc":3.497},
+    "PROXIMA_CEN":    {"name":"Proxima Centauri",   "mass_msun":0.1221,   "dist_pc":1.295,  "x_pc":-0.47482, "y_pc":-0.36292, "z_pc":-1.15670},
+    "ALPHA_CEN_A":    {"name":"Alpha Centauri A",   "mass_msun":1.100,    "dist_pc":1.338,  "x_pc":-0.50318, "y_pc":-0.42075, "z_pc":-1.17525},
+    "ALPHA_CEN_B":    {"name":"Alpha Centauri B",   "mass_msun":0.907,    "dist_pc":1.338,  "x_pc":-0.50316, "y_pc":-0.42065, "z_pc":-1.17529},
+    "BARNARDS":       {"name":"Barnard's Star",      "mass_msun":0.144,    "dist_pc":1.828,  "x_pc":-0.01754, "y_pc":-1.82190, "z_pc": 0.15106},
+    "LUHMAN16A":      {"name":"Luhman 16 A",         "mass_msun":0.032,    "dist_pc":1.998,  "x_pc":-1.13471, "y_pc": 0.36194, "z_pc":-1.59895},
+    "LUHMAN16B":      {"name":"Luhman 16 B",         "mass_msun":0.027,    "dist_pc":1.998,  "x_pc":-1.13470, "y_pc": 0.36195, "z_pc":-1.59895},
+    "WISE0855":       {"name":"WISE 0855-0714",       "mass_msun":0.008,    "dist_pc":2.231,  "x_pc":-1.56351, "y_pc": 1.63150, "z_pc":-0.28723},
+    "WOLF359":        {"name":"Wolf 359",             "mass_msun":0.090,    "dist_pc":2.394,  "x_pc":-2.29920, "y_pc": 0.65481, "z_pc": 0.29365},
+    "LALANDE21185":   {"name":"Lalande 21185",        "mass_msun":0.386,    "dist_pc":2.547,  "x_pc":-1.99850, "y_pc": 0.50455, "z_pc": 1.49473},
+    "SIRIUS_A":       {"name":"Sirius A",             "mass_msun":2.063,    "dist_pc":2.637,  "x_pc":-0.49433, "y_pc": 2.47677, "z_pc":-0.75850},
+    "SIRIUS_B":       {"name":"Sirius B",             "mass_msun":1.018,    "dist_pc":2.637,  "x_pc":-0.50053, "y_pc": 2.50794, "z_pc":-0.76827},
+    "BL_CETI":        {"name":"BL Ceti",              "mass_msun":0.102,    "dist_pc":2.680,  "x_pc": 2.34912, "y_pc": 1.08403, "z_pc":-0.83804},
+    "UV_CETI":        {"name":"UV Ceti",              "mass_msun":0.100,    "dist_pc":2.680,  "x_pc": 2.31059, "y_pc": 1.06626, "z_pc":-0.82427},
+    "ROSS154":        {"name":"Ross 154",             "mass_msun":0.170,    "dist_pc":2.976,  "x_pc": 0.58726, "y_pc":-2.65800, "z_pc":-1.20270},
+    "ROSS248":        {"name":"Ross 248",             "mass_msun":0.136,    "dist_pc":3.162,  "x_pc": 2.25935, "y_pc":-0.17861, "z_pc": 2.20169},
+    "EPS_ERI":        {"name":"Epsilon Eridani",      "mass_msun":0.832,    "dist_pc":3.218,  "x_pc": 1.90127, "y_pc": 2.54409, "z_pc":-0.52910},
+    "LACAILLE9352":   {"name":"Lacaille 9352",        "mass_msun":0.503,    "dist_pc":3.289,  "x_pc": 2.59160, "y_pc":-0.62200, "z_pc":-1.92554},
+    "ROSS128":        {"name":"Ross 128",             "mass_msun":0.168,    "dist_pc":3.374,  "x_pc":-3.36975, "y_pc": 0.18028, "z_pc": 0.04707},
+    "EZ_AQR_A":       {"name":"EZ Aquarii A",         "mass_msun":0.110,    "dist_pc":3.452,  "x_pc": 3.08040, "y_pc":-1.14249, "z_pc":-0.89816},
+    "61CYGNI_A":      {"name":"61 Cygni A",           "mass_msun":0.708,    "dist_pc":3.497,  "x_pc": 1.98577, "y_pc":-1.86813, "z_pc": 2.18924},
+    "61CYGNI_B":      {"name":"61 Cygni B",           "mass_msun":0.630,    "dist_pc":3.497,  "x_pc": 1.98609, "y_pc":-1.86808, "z_pc": 2.18879},
     "STRUVE2398A":    {"name":"Struve 2398 A",        "mass_msun":0.342,    "dist_pc":3.517},
     "STRUVE2398B":    {"name":"Struve 2398 B",        "mass_msun":0.248,    "dist_pc":3.517},
-    "GROOMBRIDGE34A": {"name":"Groombridge 34 A",     "mass_msun":0.380,    "dist_pc":3.561},
-    "GROOMBRIDGE34B": {"name":"Groombridge 34 B",     "mass_msun":0.158,    "dist_pc":3.561},
-    "DX_CANCRI":      {"name":"DX Cancri",            "mass_msun":0.090,    "dist_pc":3.582},
-    "EPS_INDI_A":     {"name":"Epsilon Indi A",       "mass_msun":0.762,    "dist_pc":3.622},
-    "EPS_INDI_BA":    {"name":"Epsilon Indi Ba",      "mass_msun":0.065,    "dist_pc":3.622},
-    "EPS_INDI_BB":    {"name":"Epsilon Indi Bb",      "mass_msun":0.053,    "dist_pc":3.622},
-    "TAU_CETI":       {"name":"Tau Ceti",             "mass_msun":0.783,    "dist_pc":3.650},
-    "GJ1061":         {"name":"GJ 1061",              "mass_msun":0.113,    "dist_pc":3.674},
-    "YZ_CETI":        {"name":"YZ Ceti",              "mass_msun":0.130,    "dist_pc":3.722},
-    "LUYTEN_STAR":    {"name":"Luyten's Star",        "mass_msun":0.260,    "dist_pc":3.785},
-    "TEEGARDEN":      {"name":"Teegarden's Star",     "mass_msun":0.089,    "dist_pc":3.831},
-    "SCR1845":        {"name":"SCR 1845-6357 A",      "mass_msun":0.092,    "dist_pc":3.876},
-    "KAPTEYN":        {"name":"Kapteyn's Star",       "mass_msun":0.274,    "dist_pc":3.934},
-    "LACAILLE8760":   {"name":"Lacaille 8760",        "mass_msun":0.601,    "dist_pc":3.969},
-    "KRUGER60A":      {"name":"Kruger 60 A",          "mass_msun":0.271,    "dist_pc":4.010},
-    "KRUGER60B":      {"name":"Kruger 60 B",          "mass_msun":0.176,    "dist_pc":4.010},
-    "ROSS614A":       {"name":"Ross 614 A",           "mass_msun":0.222,    "dist_pc":4.130},
-    "VAN_MAANEN":     {"name":"Van Maanen's Star",    "mass_msun":0.670,    "dist_pc":4.334},
-    "GLIESE1":        {"name":"Gliese 1",             "mass_msun":0.380,    "dist_pc":4.345},
-    "WOLF424A":       {"name":"Wolf 424 A",           "mass_msun":0.140,    "dist_pc":4.392},
-    "TZ_ARIETIS":     {"name":"TZ Arietis",           "mass_msun":0.150,    "dist_pc":4.461},
-    "GJ687":          {"name":"GJ 687",               "mass_msun":0.413,    "dist_pc":4.530},
-    "GJ674":          {"name":"GJ 674",               "mass_msun":0.350,    "dist_pc":4.547},
-    "GJ440":          {"name":"GJ 440",               "mass_msun":0.550,    "dist_pc":4.626},
-    "GJ1002":         {"name":"GJ 1002",              "mass_msun":0.117,    "dist_pc":4.844},
-    "GJ412A":         {"name":"GJ 412 A",             "mass_msun":0.396,    "dist_pc":4.854},
+    "GROOMBRIDGE34A": {"name":"Groombridge 34 A",     "mass_msun":0.380,    "dist_pc":3.561,  "x_pc": 2.55323, "y_pc": 0.20602, "z_pc": 2.47578},
+    "GROOMBRIDGE34B": {"name":"Groombridge 34 B",     "mass_msun":0.158,    "dist_pc":3.561,  "x_pc": 2.55313, "y_pc": 0.20655, "z_pc": 2.47607},
+    "DX_CANCRI":      {"name":"DX Cancri",            "mass_msun":0.090,    "dist_pc":3.582,  "x_pc":-1.94408, "y_pc": 2.53814, "z_pc": 1.61311},
+    "EPS_INDI_A":     {"name":"Epsilon Indi A",       "mass_msun":0.762,    "dist_pc":3.622,  "x_pc": 1.74046, "y_pc":-0.96982, "z_pc":-3.04442},
+    "EPS_INDI_BA":    {"name":"Epsilon Indi Ba",      "mass_msun":0.065,    "dist_pc":3.622,  "x_pc": 1.77103, "y_pc":-0.97861, "z_pc":-3.09137},
+    "EPS_INDI_BB":    {"name":"Epsilon Indi Bb",      "mass_msun":0.053,    "dist_pc":3.622,  "x_pc": 1.77103, "y_pc":-0.97861, "z_pc":-3.09137},
+    "TAU_CETI":       {"name":"Tau Ceti",             "mass_msun":0.783,    "dist_pc":3.650,  "x_pc": 3.15619, "y_pc": 1.53999, "z_pc":-1.00261},
+    "GJ1061":         {"name":"GJ 1061",              "mass_msun":0.113,    "dist_pc":3.674,  "x_pc": 1.53990, "y_pc": 2.11975, "z_pc":-2.57600},
+    "YZ_CETI":        {"name":"YZ Ceti",              "mass_msun":0.130,    "dist_pc":3.722,  "x_pc": 3.37783, "y_pc": 1.10621, "z_pc":-1.08641},
+    "LUYTEN_STAR":    {"name":"Luyten's Star",        "mass_msun":0.260,    "dist_pc":3.785,  "x_pc":-1.40355, "y_pc": 3.49945, "z_pc": 0.34376},
+    "TEEGARDEN":      {"name":"Teegarden's Star",     "mass_msun":0.089,    "dist_pc":3.831,  "x_pc": 2.66993, "y_pc": 2.51335, "z_pc": 1.11157},
+    "SCR1845":        {"name":"SCR 1845-6357 A",      "mass_msun":0.092,    "dist_pc":3.876,  "x_pc": 0.34448, "y_pc":-1.72424, "z_pc":-3.59879},
+    "KAPTEYN":        {"name":"Kapteyn's Star",       "mass_msun":0.274,    "dist_pc":3.934,  "x_pc": 0.57981, "y_pc": 2.71844, "z_pc":-2.78384},
+    "LACAILLE8760":   {"name":"Lacaille 8760",        "mass_msun":0.601,    "dist_pc":3.969,  "x_pc": 2.34287, "y_pc":-2.01554, "z_pc":-2.49130},
+    "KRUGER60A":      {"name":"Kruger 60 A",          "mass_msun":0.271,    "dist_pc":4.010,  "x_pc": 1.97250, "y_pc":-0.83760, "z_pc": 3.38906},
+    "KRUGER60B":      {"name":"Kruger 60 B",          "mass_msun":0.176,    "dist_pc":4.010,  "x_pc": 1.96795, "y_pc":-0.83570, "z_pc": 3.38128},
+    "ROSS614A":       {"name":"Ross 614 A",           "mass_msun":0.222,    "dist_pc":4.130,  "x_pc":-0.52596, "y_pc": 4.07704, "z_pc":-0.20229},
+    "VAN_MAANEN":     {"name":"Van Maanen's Star",    "mass_msun":0.670,    "dist_pc":4.334,  "x_pc": 4.19691, "y_pc": 0.91482, "z_pc": 0.40427},
+    "GLIESE1":        {"name":"Gliese 1",             "mass_msun":0.380,    "dist_pc":4.345,  "x_pc": 3.45300, "y_pc": 0.08338, "z_pc":-2.63771},
+    "WOLF424A":       {"name":"Wolf 424 A",           "mass_msun":0.140,    "dist_pc":4.392,  "x_pc":-4.22834, "y_pc":-0.61794, "z_pc": 0.67851},
+    "TZ_ARIETIS":     {"name":"TZ Arietis",           "mass_msun":0.150,    "dist_pc":4.461,  "x_pc": 3.76869, "y_pc": 2.18103, "z_pc": 1.00880},
+    "GJ687":          {"name":"GJ 687",               "mass_msun":0.413,    "dist_pc":4.530,  "x_pc":-0.17255, "y_pc":-1.67092, "z_pc": 4.22835},
+    "GJ674":          {"name":"GJ 674",               "mass_msun":0.350,    "dist_pc":4.547,  "x_pc":-0.42379, "y_pc":-3.08184, "z_pc":-3.32422},
+    "GJ440":          {"name":"GJ 440",               "mass_msun":0.550,    "dist_pc":4.626,  "x_pc":-1.96725, "y_pc": 0.12182, "z_pc":-4.19680},
+    "GJ1002":         {"name":"GJ 1002",              "mass_msun":0.117,    "dist_pc":4.844,  "x_pc":-2.20178, "y_pc": 0.75447, "z_pc":-4.23409},
+    "GJ412A":         {"name":"GJ 412 A",             "mass_msun":0.396,    "dist_pc":4.854,  "x_pc":-3.45534, "y_pc": 0.83963, "z_pc": 3.37807},
 }
 
 
@@ -542,8 +551,8 @@ def run(passport: dict, n_rays: int = 192, n_radial: int = 96) -> dict:
         "scene_id": passport.get("scene_id", "unnamed"),
         "regime": passport.get("regime", "weak_field_gr_approximation"),
         "epoch": passport.get("epoch", "J2000"),
-        "position_convention": "schematic_fibonacci_sphere_real_distances",
-        "position_note": "Angular positions are schematic. Distances are declared values from passport. Real Gaia RA/Dec coordinates are Phase 2 v0.2.",
+        "position_convention": "real_gaia_icrs_coordinates_pc",
+        "position_note": "Real Gaia ICRS Cartesian coordinates from EMS_Node1_LocalStellarContext_10pc_STRICT_v0_2.csv. Source: GPT wing Atlas repo. Epoch J2000. 47/48 stellar sources have real coordinates. SOL at origin.",
         "n_sources": len(sources),
         "source_roster": [
             {"id": s.id, "name": s.name, "mass_kg": s.mass, "pos_m": s.pos.tolist()}
