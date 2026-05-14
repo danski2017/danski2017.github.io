@@ -15,5 +15,6 @@
     "GLIESE1","WOLF424A","TZ_ARIETIS","GJ687","GJ674","GJ440",
     "GJ1002","GJ412A"
   ],
-  "claim_status": "diagnostic_candidate_not_observational"
+  "claim_status": "diagnostic_candidate_not_observational",
+  "solver_version": "0.1.1"
 }
