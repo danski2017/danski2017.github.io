@@ -23,14 +23,14 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
   line-height: 1.6;
 }
 .instrument-panel-wrap {
-  /* Break out of .wrapper max-width constraint */
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   overflow: hidden;
-  /* Cancel .page-content bottom padding so no gap below panel */
-  margin-bottom: -3rem;
+}
+.site-footer {
+  display: none;
+}
+.page-content {
+  padding-bottom: 0;
 }
 #atlas-root {
   width: 100%;
