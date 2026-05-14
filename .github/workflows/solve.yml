@@ -1,10 +1,12 @@
 name: Atlas GFRO Solve
 
-# Triggers when a passport JSON is committed to the passports/ directory
+# Triggers when a passport JSON or solver code changes
 on:
   push:
     paths:
       - 'passports/**.json'
+      - 'atlas-solver/atlas_emitter.py'
+      - 'atlas-solver/atlas_geometry_serializer.py'
 
 jobs:
   solve:
