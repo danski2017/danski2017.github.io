@@ -25,12 +25,8 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 .instrument-panel-wrap {
   width: 100%;
   overflow: hidden;
-}
-.site-footer {
-  display: none;
-}
-.page-content {
-  padding-bottom: 0;
+  /* margin below the panel before the footer */
+  margin-bottom: 2rem;
 }
 #atlas-root {
   width: 100%;
@@ -40,6 +36,7 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 }
 @media (max-width: 767px) {
   .instrument-intro { display: none; }
+  .instrument-panel-wrap { margin-bottom: 0; }
 }
 </style>
 
@@ -58,12 +55,21 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script>
 (function () {
-  // Size the instrument panel to fill exactly the remaining viewport
   function sizePanel() {
     var wrap = document.getElementById('instrument-wrap');
     if (!wrap) return;
     var top = Math.round(wrap.getBoundingClientRect().top);
-    wrap.style.height = (window.innerHeight - top) + 'px';
+    if (window.innerWidth < 768) {
+      // Mobile: fill remaining viewport completely (footer is below scroll)
+      wrap.style.height = (window.innerHeight - top) + 'px';
+    } else {
+      // Desktop: leave room for the site footer + its top margin + panel margin-bottom
+      var footer = document.querySelector('footer.site-footer');
+      var footerH = footer ? footer.offsetHeight : 0;
+      var below = footerH + 64; // footer + page-content bottom padding + panel margin
+      var h = window.innerHeight - top - below;
+      wrap.style.height = Math.max(400, h) + 'px';
+    }
   }
   sizePanel();
   window.addEventListener('resize', sizePanel);
