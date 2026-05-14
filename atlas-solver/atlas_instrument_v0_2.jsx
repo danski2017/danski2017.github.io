@@ -155,7 +155,6 @@ function PassportScreen({ onGenerate }) {
   const [ready, setReady] = useState(false);
   const [mode, setMode] = useState("manual");
   const [selectedSources, setSelectedSources] = useState(new Set());
-  const [sceneName, setSceneName] = useState("");
   const [mobileTab, setMobileTab] = useState("manual");
   const bottomRef = useRef(null);
   const isMobile = useIsMobile();
@@ -171,12 +170,21 @@ function PassportScreen({ onGenerate }) {
       return next;
     });
   };
-  const applyPreset = key => {
+  const applyPreset = (key) => {
     const p = SCENE_PRESETS[key];
     if (!p) return;
+    const sceneId = key === "SS"
+      ? "solar_system_v0_1"
+      : key === "LSN"
+      ? "local_stellar_neighborhood_v0_1"
+      : slugify(key.toLowerCase()) + "_v0_1";
     setSelectedSources(p.sources);
-    setSceneName(p.scene_id);
-    setPassport(prev => ({...prev, scene_id:p.scene_id, purpose:p.purpose, active_sources:[...p.sources]}));
+    setPassport(prev => ({
+      ...prev,
+      scene_id: sceneId,
+      purpose: p.purpose,
+      active_sources: [...p.sources],
+    }));
   };
   const allSources = [
     { group:"Solar System", items:SOLAR_SYSTEM },
@@ -226,7 +234,18 @@ function PassportScreen({ onGenerate }) {
     fontFamily:"var(--font-sans)",fontSize:14,padding:"7px 10px",borderRadius:5,outline:"none",boxSizing:"border-box"};
 
   const generate = () => {
-    const full={...passport,active_sources:[...selectedSources],regime:"weak_field_gr_approximation",epoch:"J2000",coordinate_frame:"solar_system_barycentric_cartesian",units:{mass:"kg",distance:"m"},node1:{mode:"explicit_parent",description:"Local Milky Way disk"},datum_architecture:"Single geometric registration datum.",extraction_rungs:RUNGS,claim_status:"diagnostic_candidate_not_observational"};
+    const full = {
+      regime: "weak_field_gr_approximation",
+      epoch: "J2000",
+      coordinate_frame: "solar_system_barycentric_cartesian",
+      units: {mass:"kg", distance:"m"},
+      node1: {mode:"explicit_parent", description:"Local Milky Way disk"},
+      datum_architecture: "Single geometric registration datum.",
+      extraction_rungs: RUNGS,
+      claim_status: "diagnostic_candidate_not_observational",
+      ...passport,
+      active_sources: [...selectedSources],
+    };
     setLocked(true); onGenerate(full);
   };
 
@@ -349,7 +368,10 @@ function PassportScreen({ onGenerate }) {
             <div style={{padding:"14px"}}>
               <div style={{marginBottom:14}}>
                 <label style={fL}>Scene name</label>
-                <input style={fI} value={sceneName} placeholder="my_scene" onChange={e=>{setSceneName(e.target.value);updateManual("scene_id",slugify(e.target.value));}}/>
+                <input style={fI}
+  value={passport.scene_id ? passport.scene_id.replace(/_v0_1$/, "").replace(/_/g, " ") : ""}
+  placeholder="my scene"
+  onChange={e => setPassport(p => ({...p, scene_id: slugify(e.target.value)}))}/>
               </div>
               <div style={{marginBottom:14}}>
                 <label style={fL}>Scene type presets</label>
@@ -413,7 +435,10 @@ function PassportScreen({ onGenerate }) {
             <div style={{flex:1,overflow:"hidden",padding:"14px",display:"flex",flexDirection:"column"}}>
               <div style={{marginBottom:14}}>
                 <label style={fL}>Scene name</label>
-                <input style={fI} value={sceneName} placeholder="my_scene" onChange={e=>{setSceneName(e.target.value);updateManual("scene_id",slugify(e.target.value));}}/>
+                <input style={fI}
+  value={passport.scene_id ? passport.scene_id.replace(/_v0_1$/, "").replace(/_/g, " ") : ""}
+  placeholder="my scene"
+  onChange={e => setPassport(p => ({...p, scene_id: slugify(e.target.value)}))}/>
               </div>
               <div style={{marginBottom:14}}>
                 <label style={fL}>Scene type presets</label>
