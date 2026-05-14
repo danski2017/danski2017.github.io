@@ -65,15 +65,11 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
     if (!wrap) return;
     var top = Math.round(wrap.getBoundingClientRect().top);
     if (window.innerWidth < 768) {
-      // Mobile: fill remaining viewport completely (footer is below scroll)
+      // Mobile: fill remaining viewport completely
       wrap.style.height = (window.innerHeight - top) + 'px';
     } else {
-      // Desktop: leave room for the site footer + its top margin + panel margin-bottom
-      var footer = document.querySelector('footer.site-footer');
-      var footerH = footer ? footer.offsetHeight : 0;
-      var below = footerH + 64; // footer + page-content bottom padding + panel margin
-      var h = window.innerHeight - top - below;
-      wrap.style.height = Math.max(400, h) + 'px';
+      // Desktop: fill remaining viewport; footer + margin sit below the fold
+      wrap.style.height = (window.innerHeight - top) + 'px';
     }
   }
   sizePanel();
