@@ -56,16 +56,16 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script>
 (function () {
-  // Size the instrument panel to fill exactly the viewport below the intro
+  // Size the instrument panel to fill exactly the remaining viewport
   function sizePanel() {
-    var intro = document.querySelector('.instrument-intro');
-    var wrap  = document.getElementById('instrument-wrap');
+    var wrap = document.getElementById('instrument-wrap');
     if (!wrap) return;
-    var usedPx = intro ? Math.round(intro.getBoundingClientRect().bottom) : 0;
-    wrap.style.height = 'calc(100vh - ' + usedPx + 'px)';
+    var top = Math.round(wrap.getBoundingClientRect().top);
+    wrap.style.height = (window.innerHeight - top) + 'px';
   }
   sizePanel();
   window.addEventListener('resize', sizePanel);
+  window.addEventListener('load', sizePanel);
 
   // Fetch, patch, transpile, and render the instrument JSX
   fetch('/atlas-solver/atlas_instrument_v0_2.jsx')
