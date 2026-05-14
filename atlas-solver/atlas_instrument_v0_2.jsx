@@ -210,7 +210,7 @@ function PassportScreen({ onGenerate }) {
     fontFamily:"var(--font-sans)",fontSize:14,padding:"7px 10px",borderRadius:5,outline:"none",boxSizing:"border-box"};
 
   return (
-    <div style={{display:"flex",flexDirection:"column",height:"100vh",fontFamily:"var(--font-sans)",fontSize:"13px",background:"#07090d",color:"#a0b8cc"}}>
+    <div style={{display:"flex",flexDirection:"column",height:"100%",fontFamily:"var(--font-sans)",fontSize:"13px",background:"#07090d",color:"#a0b8cc"}}>
       <style>{`
         @keyframes blink{0%,80%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
         .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#a07018;animation:blink 1.2s ease-in-out infinite;margin:0 2px}
@@ -276,7 +276,6 @@ function PassportScreen({ onGenerate }) {
             <div style={{flex:1,overflow:"hidden",padding:"14px",display:"flex",flexDirection:"column"}}>
               {(()=>{
                 const fG={marginBottom:14};
-                const fGf={marginBottom:0,display:"flex",flexDirection:"column",flex:"0 0 160px",minHeight:0};
                 return (<>
                   <div style={fG}>
                     <label style={fL}>Scene name</label>
@@ -308,9 +307,9 @@ function PassportScreen({ onGenerate }) {
                       ))}
                     </div>
                   </div>
-                  <div style={fGf}>
+                  <div style={{marginBottom:0}}>
                     <label style={fL}>Sources ({selectedSources.size} selected)</label>
-                    <div style={{overflow:"auto",height:"100%",border:"1px solid #111d2b",borderRadius:4}}>
+                    <div style={{overflowY:"auto",maxHeight:"35vh",border:"1px solid #111d2b",borderRadius:4}}>
                       {allSources.map(({group,items})=>(
                         <div key={group}>
                           <div style={{padding:"4px 10px",fontSize:11,color:"#4a7888",background:"#0a0d16",letterSpacing:".08em",textTransform:"uppercase",position:"sticky",top:0,zIndex:1}}>{group}</div>
@@ -680,7 +679,7 @@ export default function AtlasInstrument() {
   };
 
   return (
-    <div style={{width:"100vw",height:"100vh",overflow:"hidden",opacity,transition:"opacity 0.38s ease"}}>
+    <div style={{width:"100%",height:"100%",overflow:"hidden",opacity,transition:"opacity 0.38s ease"}}>
       {phase==="passport"
         ? <PassportScreen onGenerate={p=>fadeTo(()=>{ setPassport(p); setPhase("stage"); })}/>
         : <StageScreen passport={passport} onBack={()=>fadeTo(()=>setPhase("passport"))}/> }
