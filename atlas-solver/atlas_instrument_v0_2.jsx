@@ -307,9 +307,9 @@ function PassportScreen({ onGenerate }) {
                       ))}
                     </div>
                   </div>
-                  <div style={{marginBottom:0}}>
+                  <div style={{flex:1,minHeight:0,display:"flex",flexDirection:"column"}}>
                     <label style={fL}>Sources ({selectedSources.size} selected)</label>
-                    <div style={{overflowY:"auto",maxHeight:"35vh",border:"1px solid #111d2b",borderRadius:4}}>
+                    <div style={{flex:1,minHeight:0,overflowY:"auto",border:"1px solid #111d2b",borderRadius:4}}>
                       {allSources.map(({group,items})=>(
                         <div key={group}>
                           <div style={{padding:"4px 10px",fontSize:11,color:"#4a7888",background:"#0a0d16",letterSpacing:".08em",textTransform:"uppercase",position:"sticky",top:0,zIndex:1}}>{group}</div>
