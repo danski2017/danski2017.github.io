@@ -7,7 +7,7 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 
 <style>
 .instrument-intro {
-  max-width: 960px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 1.1rem;
@@ -27,7 +27,7 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 }
 .instrument-panel-wrap {
   width: 100%;
-  max-width: 960px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
