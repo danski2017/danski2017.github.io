@@ -577,12 +577,14 @@ function StageScreen({ passport, onBack }) {
 
   // ── Auto-fetch geometry on stage mount ───────────────────────────────
   useEffect(()=>{
-    const url = `https://danski2017.github.io/atlas-solver/geometry/${passport.scene_id}_geometry.json`;
+    if (!passport.scene_id) { setGeoStatus("awaiting"); return; }
+    const url = `/geometry/${passport.scene_id}_geometry.json`;
+    console.log("Fetching geometry:", url);
     setGeoStatus("loading");
     fetch(url)
       .then(r => r.json())
       .then(geo => { setGeometry(geo); setGeoStatus("loaded"); })
-      .catch(() => setGeoStatus("awaiting"));
+      .catch(err => { console.log("Fetch failed:", err); setGeoStatus("awaiting"); });
   },[]);
 
   // ── Build Three.js layer objects from geometry ────────────────────────
