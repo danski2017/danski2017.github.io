@@ -35,8 +35,6 @@ description: Relational Labs is an independent research platform for multi-body 
 }
 </style>
 
-<meta property="og:see_also" content="https://www.facebook.com/share/18hPZTrv7i/?mibextid=wwXIfr">
-
 # **General Relativity • Multi-Body Curvature**
 
 *Relational Labs is an independent research platform focused on multi-body (n-body) general relativity, weak-field gravitational simulation, and geometric methods for modeling curvature in complex gravitational systems. The project explores how spacetime curvature behaves beyond simple two-body approximations through numerical simulation, geodesic analysis, and visualization.*

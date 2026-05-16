@@ -11,7 +11,7 @@ plugins:
 
 markdown: kramdown
 kramdown:
-math_engine: mathjax
+  math_engine: mathjax
 
 # Header Navigation
 header_pages:
