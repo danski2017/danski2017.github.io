@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -37,10 +38,21 @@ jobs:
             echo "Done: geometry/${scene}_geometry.json"
           done
 
-      - name: Commit geometry output
+      - name: Commit and PR geometry output
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name  "atlas-solver[bot]"
           git config user.email "atlas-solver@relational.labs"
-          git add geometry/
-          git diff --staged --quiet || git commit -m "solve: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push
+          git add geometry/ ledgers/
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          BRANCH="solve/$(date -u +%Y-%m-%dT%H%M%SZ)"
+          git checkout -b "$BRANCH"
+          git commit -m "solve: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --title "solve: $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --body "Automated Atlas GFRO+BCW solve output." \
+            --base main \
+            --head "$BRANCH"
+          gh pr merge "$BRANCH" --merge --auto
