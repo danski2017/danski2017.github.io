@@ -310,6 +310,293 @@ def evaluate_weyl_at(
     return results
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# BCW-L001: Barycentric Compression Witnessing
+# Datum Bible v0.3.1 — Relational Labs / Atlas Solver
+#
+# Doctrine:
+#   Sources contribute. Datums interrogate. Ledger remembers.
+#   Node B is a compression witness, not a source.
+#   Node G is a morphology witness, not a source.
+#   Delta_E_G is the failure of group-compressibility.
+#   The ledger is the authority. The render is the audit window.
+# ─────────────────────────────────────────────────────────────────────────────
+
+def compute_bcw_nodes(sources: List[Source]):
+    """
+    Compute Node B (mass barycenter) and Node G (geometric centroid).
+    BCW Datum Bible v0.3.1 §2.2, §2.3.
+
+    Node B = sum_i(M_i * p_i) / sum_i(M_i)  — compression witness
+    Node G = (1/N) * sum_i(p_i)              — morphology witness
+
+    Neither is a source. Neither contributes curvature.
+    Node B defines the collapsed monopole reference model.
+    Node G audits the scene's shape independent of mass.
+    """
+    masses    = np.array([s.mass for s in sources])          # kg
+    positions = np.array([s.pos  for s in sources])          # m
+
+    M_total = float(np.sum(masses))
+    node_B  = np.sum(masses[:, np.newaxis] * positions, axis=0) / M_total
+    node_G  = np.mean(positions, axis=0)
+
+    return node_B, node_G, M_total
+
+
+def eval_E_surrogate(x: np.ndarray, node_B: np.ndarray,
+                     M_total: float, epsilon_B: float) -> np.ndarray:
+    """
+    Monopole barycenter surrogate tidal tensor at point x.
+    E_bar,G(x) = E[M_total, Node_B](x)
+    BCW Datum Bible v0.3.1 §2.2, §3.
+
+    This is the field that would be produced if the entire group
+    were collapsed to a single pointlike mass M_total at Node B.
+    Node B does not contribute curvature — this is a comparison model.
+    Returns zeros inside epsilon_B (no-claim zone).
+    """
+    rv = x - node_B
+    r  = np.linalg.norm(rv)
+    if r < epsilon_B:
+        return np.zeros((3, 3))   # no-claim zone
+    n  = rv / r
+    prefactor = G * M_total / r**3
+    return prefactor * (3 * np.outer(n, n) - np.eye(3))
+
+
+def eval_bcw_at(x: np.ndarray,
+                sources: List[Source],
+                node_B: np.ndarray,
+                M_total: float,
+                epsilon_B: float,
+                source_softening: float = 1e10) -> dict:
+    """
+    BCW-L001 field evaluation at point x. BCW Datum Bible v0.3.1 §3, §6.
+
+    E_actual,G(x) = sum_i E_i(x)             true roster field
+    E_bar,G(x)    = E[M_total, Node_B](x)    monopole surrogate
+    Delta_E_G(x)  = E_actual - E_bar         compression delta
+    chi_G(x)      = ||Delta_E_G||_F / (||E_bar,G||_F + eps)
+    eta_G(x)      = ||Delta_E_G||_F / (||E_actual,G||_F + eps)
+
+    chi=1: where group's unresolved internal structure equals
+           its collapsed parent-readable identity.
+    """
+    EPS = 1e-100
+
+    # No-claim flags
+    dist_B      = float(np.linalg.norm(x - node_B))
+    no_claim_B  = dist_B < epsilon_B
+    no_claim_src = any(np.linalg.norm(x - s.pos) < source_softening
+                       for s in sources)
+
+    # True roster field
+    E_actual = sum(s.E(x) for s in sources)
+
+    # Monopole surrogate field
+    E_bar = eval_E_surrogate(x, node_B, M_total, epsilon_B)
+
+    # Compression delta
+    delta_E = E_actual - E_bar
+
+    # Scalar witnesses
+    norm_actual = float(np.sqrt(np.sum(E_actual**2)))
+    norm_bar    = float(np.sqrt(np.sum(E_bar**2)))
+    norm_delta  = float(np.sqrt(np.sum(delta_E**2)))
+    chi         = norm_delta / (norm_bar    + EPS)
+    eta         = norm_delta / (norm_actual + EPS)
+
+    # Crossing flag: near chi=1 surface (within 10%)
+    crossing = (not no_claim_B) and (not no_claim_src) and abs(chi - 1.0) < 0.10
+
+    return {
+        "pos":          x.tolist(),
+        "norm_actual":  norm_actual,
+        "norm_bar":     norm_bar,
+        "norm_delta":   norm_delta,
+        "chi":          float(chi),
+        "eta":          float(eta),
+        "crossing_flag":            crossing,
+        "bcw_no_claim":             no_claim_B,
+        "source_no_claim":          no_claim_src,
+        "branch":                   "BCW_L001_monopole",
+        "surrogate_rung":           0,
+        "claim_status":             "diagnostic_candidate_not_observational",
+    }
+
+
+def run_bcw_l001(sources: List[Source], r0_pairwise: list) -> dict:
+    """
+    BCW-L001 protocol. BCW Datum Bible v0.3.1 §18.
+
+    Step sequence:
+      5.  Compute derived witnesses: Node B, Node G
+      6.  Coarse scout pass over evaluation points
+      7.  Detect crossing bands (chi near 1)
+      10. Write compact ledger records
+
+    Evaluation strategy (lean, no sampling explosion):
+      - Coarse Fibonacci shells around Node B at 6 radii
+      - Sample points on emitted Apollonius spheres (4 pts each)
+      - Pairwise midpoints (subsampled)
+    """
+    print("  BCW-L001: computing derived witnesses...")
+
+    # Step 5: Node B, Node G
+    node_B, node_G, M_total = compute_bcw_nodes(sources)
+
+    # Group geometry
+    R_extent = float(max(np.linalg.norm(s.pos - node_B) for s in sources))
+
+    # Surrogate softening — BCW Bible §4, beta=0.04
+    beta      = 0.04
+    epsilon_B = max(1e10, beta * R_extent)
+
+    B_G_offset = float(np.linalg.norm(node_B - node_G))
+    N0_B_offset = float(np.linalg.norm(node_B))  # Node 0 is at origin
+
+    print(f"    Node B: {[round(v/PC_TO_M,4) for v in node_B.tolist()]} pc")
+    print(f"    Node G: {[round(v/PC_TO_M,4) for v in node_G.tolist()]} pc")
+    print(f"    ||B-G|| = {B_G_offset/PC_TO_M:.4f} pc  (mass-shape asymmetry)")
+    print(f"    ||Node0-B|| = {N0_B_offset/PC_TO_M:.4f} pc")
+    print(f"    M_total = {M_total/MSUN_KG:.2f} M_sun")
+    print(f"    R_extent = {R_extent/PC_TO_M:.3f} pc")
+    print(f"    epsilon_B = {epsilon_B/PC_TO_M:.4f} pc")
+
+    # Step 6: Build evaluation points
+    eval_pts = []
+
+    # Node B and Node G themselves
+    eval_pts.append(node_B.copy())
+    eval_pts.append(node_G.copy())
+
+    # Coarse Fibonacci shells around Node B (6 radii × 48 directions)
+    n_dirs  = 48
+    phi_fib = np.pi * (1 + np.sqrt(5))
+    radii   = np.logspace(
+        np.log10(max(epsilon_B * 1.5, R_extent * 0.05)),
+        np.log10(R_extent * 2.2),
+        6
+    )
+    for r in radii:
+        for i in range(n_dirs):
+            lat = np.arccos(1 - 2*(i+0.5)/n_dirs)
+            lon = phi_fib * i
+            d   = np.array([np.sin(lat)*np.cos(lon),
+                            np.sin(lat)*np.sin(lon),
+                            np.cos(lat)])
+            eval_pts.append(node_B + r * d)
+
+    # 4 cardinal points on each Apollonius sphere
+    axes = [np.array([1,0,0]), np.array([0,1,0]),
+            np.array([0,0,1]), np.array([-1,0,0])]
+    for obj in r0_pairwise:
+        if not obj.is_plane and obj.center is not None:
+            c = obj.center
+            r = obj.radius
+            for ax in axes:
+                eval_pts.append(c + r * ax)
+
+    # Subsampled pairwise midpoints
+    pairs = list(combinations(sources, 2))
+    step  = max(1, len(pairs) // 150)
+    for si, sj in pairs[::step]:
+        eval_pts.append(0.5 * (si.pos + sj.pos))
+
+    print(f"    BCW-L001: {len(eval_pts)} evaluation points")
+
+    # Step 6-9: Evaluate chi field
+    records = [
+        eval_bcw_at(x, sources, node_B, M_total, epsilon_B)
+        for x in eval_pts
+    ]
+
+    # Chi statistics (exclude no-claim zones)
+    valid     = [r for r in records if not r["bcw_no_claim"] and not r["source_no_claim"]]
+    chi_vals  = [r["chi"] for r in valid]
+    n_cross   = sum(1 for r in valid if r["crossing_flag"])
+
+    if chi_vals:
+        print(f"    chi: min={min(chi_vals):.3f}, mean={np.mean(chi_vals):.3f}, max={max(chi_vals):.3f}")
+        print(f"    Near chi=1: {n_cross} points")
+
+    return {
+        # Step 4 — Group declaration (BCW §5, §19)
+        "group_roster": [{
+            "group_id":         "G001",
+            "member_source_ids": [s.id for s in sources],
+            "n_members":        len(sources),
+            "group_purpose":    "full_active_scene",
+            "group_status":     "diagnostic",
+            "parent_context":   "declared_not_computed",
+            "surrogate_type":   "monopole_barycenter",
+            "surrogate_rung":   0,
+            "branch":           "BCW_L001",
+            "claim_status":     "diagnostic_candidate_not_observational",
+        }],
+
+        # Step 5 — Derived nodes (BCW §2, §19)
+        "derived_nodes": {
+            "node_B": {
+                "node_id":         "B_G001",
+                "node_type":       "mass_barycenter",
+                "group_id":        "G001",
+                "pos_m":           node_B.tolist(),
+                "pos_pc":          (node_B / PC_TO_M).tolist(),
+                "M_total_kg":      float(M_total),
+                "M_total_msun":    float(M_total / MSUN_KG),
+                "role":            "compression_witness",
+                "contributes_field": False,
+                "note": "Node B is not a source. Defines the monopole collapsed reference model. Delta_E_G is the failure of group-compressibility.",
+            },
+            "node_G": {
+                "node_id":         "G_G001",
+                "node_type":       "geometric_centroid",
+                "group_id":        "G001",
+                "pos_m":           node_G.tolist(),
+                "pos_pc":          (node_G / PC_TO_M).tolist(),
+                "role":            "morphology_witness",
+                "contributes_field": False,
+                "B_G_offset_m":    B_G_offset,
+                "B_G_offset_pc":   float(B_G_offset / PC_TO_M),
+                "N0_B_offset_pc":  float(N0_B_offset / PC_TO_M),
+                "note": "Node G audits scene shape. ||B-G|| = mass-shape asymmetry signal.",
+            },
+        },
+
+        # Softening registry (BCW §4)
+        "softening_registry": {
+            "barycenter_surrogate": {
+                "object_id":      "B_G001",
+                "object_type":    "barycenter_surrogate",
+                "epsilon_B_m":    float(epsilon_B),
+                "epsilon_B_pc":   float(epsilon_B / PC_TO_M),
+                "beta":           beta,
+                "R_extent_m":     float(R_extent),
+                "R_extent_pc":    float(R_extent / PC_TO_M),
+                "no_claim_radius_m": float(epsilon_B),
+                "rule": "no_bcw_interpretation_inside_epsilon_B",
+            }
+        },
+
+        # BCW field evaluations
+        "bcw_field": {
+            "method":         "BCW_L001_monopole_surrogate",
+            "surrogate_rung": 0,
+            "group_id":       "G001",
+            "n_points":       len(records),
+            "n_valid":        len(valid),
+            "n_crossings":    int(n_cross),
+            "chi_min":        float(min(chi_vals))        if chi_vals else None,
+            "chi_max":        float(max(chi_vals))        if chi_vals else None,
+            "chi_mean":       float(np.mean(chi_vals))    if chi_vals else None,
+            "records":        records,
+            "claim_status":   "diagnostic_candidate_not_observational",
+        },
+    }
+
+
 # ─────────────────────────────────────────────
 # Sampling utilities
 # ─────────────────────────────────────────────
@@ -474,33 +761,34 @@ ROSTER = {
 def load_scene(passport: dict) -> List[Source]:
     """
     Load declared sources from passport into Source objects.
-    Assigns schematic Fibonacci positions at declared distances.
-    SOL at origin.
+    Uses real Gaia ICRS XYZ coordinates when available in ROSTER.
+    Falls back to Fibonacci sphere at declared distance otherwise.
+    SOL at origin (Node 0).
     """
-    active_ids = passport.get("active_sources", [])
+    active_ids   = passport.get("active_sources", [])
     sources_data = []
     for sid in active_ids:
         if sid in ROSTER:
-            r = ROSTER[sid]
+            r     = ROSTER[sid]
             entry = {"id": sid, "name": r["name"], "mass_msun": r["mass_msun"]}
-            if "dist_pc" in r:
-                entry["dist_pc"] = r["dist_pc"]
-            elif "dist_au" in r:
-                entry["dist_au"] = r["dist_au"]
-            if "x_pc" in r:
+            # Real Gaia coordinates take priority
+            if "x_pc" in r and sid != "SOL":
                 entry["x_pc"] = r["x_pc"]
                 entry["y_pc"] = r["y_pc"]
                 entry["z_pc"] = r["z_pc"]
+                entry["dist_pc"] = r.get("dist_pc", np.sqrt(r["x_pc"]**2 + r["y_pc"]**2 + r["z_pc"]**2))
+            elif "dist_pc" in r:
+                entry["dist_pc"] = r["dist_pc"]
+            elif "dist_au" in r:
+                entry["dist_au"] = r["dist_au"]
             sources_data.append(entry)
 
     positions = fibonacci_positions(sources_data)
-
-    sources = []
+    sources   = []
     for sd in sources_data:
-        pos = positions[sd["id"]]
+        pos     = positions[sd["id"]]
         mass_kg = sd["mass_msun"] * MSUN_KG
         sources.append(Source(id=sd["id"], name=sd["name"], mass=mass_kg, pos=pos))
-
     return sources
 
 
@@ -508,32 +796,40 @@ def load_scene(passport: dict) -> List[Source]:
 # Main solver: passport → emitted ledger
 # ─────────────────────────────────────────────
 
-def run(passport: dict, n_rays: int = 192, n_radial: int = 96) -> dict:
+def run(passport: dict, n_rays: int = 96, n_radial: int = 48) -> dict:
     """
-    GFRO solver. Passport in. Emitted ledger out.
+    Atlas GFRO + BCW-L001 Solver.
+    Passport in. Certified ledger out.
 
-    Workflow:
-    1. Load scene from passport
-    2. Emit R0 pairwise Apollonius spheres (analytically exact)
-    3. Emit R0 source-context zero sets (targeted root-finding)
-    4. Evaluate full E_ij Weyl field at all emitted points
-    5. Return compact certified ledger bundle
+    Pipeline (Datum Bible v0.3.1):
+      1. Load scene (real Gaia XYZ when available)
+      2. Emit R0 pairwise Apollonius network (analytic, exact)
+      3. Emit R0 source-context (targeted bisection, 48-source context)
+      4. Evaluate full Weyl field at emitted points
+      5. Run BCW-L001: Node B, Node G, Delta_E, chi field
+      6. Assemble certified ledger
 
-    The ledger is NOT a field sample. It is a certified geometric record
-    of emitted zero sets with full tidal architecture at those locations.
+    GFRO certified for: pairwise Apollonius emission only.
+    BCW-L001 certified for: monopole surrogate compression witnessing.
+    Source-context bisection: diagnostic, 48-source relative context only.
     """
-    print(f"Atlas GFRO Emitter — scene: {passport.get('scene_id','unnamed')}")
+    print(f"Atlas GFRO+BCW Solver — scene: {passport.get('scene_id','unnamed')}")
 
     # 1. Load scene
     sources = load_scene(passport)
     print(f"  Sources loaded: {len(sources)}")
 
-    # 2. R0 pairwise Apollonius emission (exact)
+    # Check real vs schematic positions
+    n_real = sum(1 for s in passport.get("active_sources",[])
+                 if s in ROSTER and "x_pc" in ROSTER[s])
+    print(f"  Real Gaia coordinates: {n_real}/{len(sources)}")
+
+    # 2. R0 pairwise Apollonius (analytically exact)
     print(f"  Emitting R0 pairwise ({len(sources)*(len(sources)-1)//2} pairs)...")
     r0_pairwise = emit_R0_pairwise(sources)
-    print(f"    Emitted {len(r0_pairwise)} Apollonius objects")
+    print(f"    {len(r0_pairwise)} Apollonius objects emitted")
 
-    # 3. R0 source-context emission (targeted root-finding)
+    # 3. R0 source-context (48-source relative context)
     print(f"  Emitting R0 source-context ({len(sources)} sources)...")
     r0_ctx_all = []
     for i, src in enumerate(sources):
@@ -541,53 +837,116 @@ def run(passport: dict, n_rays: int = 192, n_radial: int = 96) -> dict:
         pts = emit_R0_source_context(src, ctx, n_rays, n_radial)
         r0_ctx_all.extend(pts)
         if (i+1) % 10 == 0:
-            print(f"    {i+1}/{len(sources)} done, {len(r0_ctx_all)} points emitted")
-    print(f"    Total source-context emitted points: {len(r0_ctx_all)}")
+            print(f"    {i+1}/{len(sources)} done, {len(r0_ctx_all)} points")
+    print(f"    Total: {len(r0_ctx_all)} source-context points")
 
-    # 4. Full E_ij evaluation at emitted source-context points
-    print(f"  Evaluating full Weyl field at {len(r0_ctx_all)} emitted points...")
-    emitted_pos = [np.array(p["pos"]) for p in r0_ctx_all]
+    # 4. Full Weyl evaluation at emitted points
+    print(f"  Evaluating Weyl field at {len(r0_ctx_all)} points...")
+    emitted_pos  = [np.array(p["pos"]) for p in r0_ctx_all]
     weyl_records = evaluate_weyl_at(emitted_pos, sources)
     print(f"  Weyl evaluation complete.")
 
-    # 5. Assemble compact ledger
+    # 5. BCW-L001
+    print("  Running BCW-L001 (Barycentric Compression Witnessing)...")
+    bcw = run_bcw_l001(sources, r0_pairwise)
+    print(f"  BCW-L001 complete.")
+
+    # 6. Assemble ledger (schema: BCW Datum Bible v0.3.1 §19)
+    n_real_final = sum(1 for s in passport.get("active_sources",[])
+                       if s in ROSTER and "x_pc" in ROSTER.get(s,{}))
+    pos_note = (
+        f"Real Gaia ICRS coordinates: {n_real_final}/{len(sources)} sources. "
+        f"Remaining: Fibonacci sphere at declared distance. "
+        f"Source: EMS_Node1_LocalStellarContext_10pc_STRICT_v0_2.csv."
+    )
+
     ledger = {
-        "scene_id": passport.get("scene_id", "unnamed"),
-        "regime": passport.get("regime", "weak_field_gr_approximation"),
-        "epoch": passport.get("epoch", "J2000"),
-        "position_convention": "real_gaia_icrs_coordinates_pc",
-        "position_note": "Real Gaia ICRS Cartesian coordinates from EMS_Node1_LocalStellarContext_10pc_STRICT_v0_2.csv. Source: GPT wing Atlas repo. Epoch J2000. 47/48 stellar sources have real coordinates. SOL at origin.",
-        "n_sources": len(sources),
+        # Scene passport (BCW §19: scene_passport)
+        "scene_id":          passport.get("scene_id", "unnamed"),
+        "mode":              "GFRO_pairwise + BCW_L001",
+        "regime":            passport.get("regime", "weak_field_gr_approximation"),
+        "epoch":             passport.get("epoch", "J2000"),
+        "coordinate_frame":  "ICRS_SOL_origin",
+        "field_branch":      "weak_field_electric_weyl_tidal",
+        "residual_branch":   "R0_scalar_tidal + BCW_L001_monopole",
+        "surrogate_rung":    0,
+        "position_convention": "real_gaia_icrs_with_fibonacci_fallback",
+        "position_note":     pos_note,
+        "claim_status":      "diagnostic_candidate_not_observational",
+
+        # Node 0 (global registration datum)
+        "node0": {
+            "pos_m":  [0.0, 0.0, 0.0],
+            "snapped_to": "SOL",
+            "note": "Node 0 sits on SOL. It does not become SOL. SOL contributes curvature through its source record. Node 0 contributes nothing.",
+        },
+
+        # Node 1 (declared parent context)
+        "node1": passport.get("node1", {
+            "mode":         "declared_not_computed",
+            "description":  "Local Milky Way disk",
+            "claim_status": "declared_not_computed",
+        }),
+
+        # Source roster (BCW §19: source_roster)
         "source_roster": [
-            {"id": s.id, "name": s.name, "mass_kg": s.mass, "pos_m": s.pos.tolist()}
+            {
+                "source_id":  s.id,
+                "name":       s.name,
+                "mass_kg":    float(s.mass),
+                "mass_msun":  float(s.mass / MSUN_KG),
+                "pos_m":      s.pos.tolist(),
+                "pos_pc":     (s.pos / PC_TO_M).tolist(),
+                "has_real_gaia_coords": s.id in ROSTER and "x_pc" in ROSTER.get(s.id, {}),
+                "active_flag": True,
+            }
             for s in sources
         ],
+
+        # BCW group roster and derived nodes
+        "group_roster":     bcw["group_roster"],
+        "derived_nodes":    bcw["derived_nodes"],
+        "softening_registry": bcw["softening_registry"],
+
+        # GFRO R0 pairwise (analytically exact)
         "R0_pairwise": {
-            "method": "apollonius_analytic_exact",
-            "n_objects": len(r0_pairwise),
-            "objects": [obj.to_dict() for obj in r0_pairwise],
-            "claim_status": "diagnostic_candidate_not_observational",
+            "method":         "apollonius_analytic_exact",
+            "claim":          "Certified. Apollonius zero sets are analytic derivations, not numerical estimates.",
+            "n_objects":      len(r0_pairwise),
+            "objects":        [obj.to_dict() for obj in r0_pairwise],
+            "claim_status":   "certified_analytic",
         },
+
+        # R0 source-context (relative to 48-source child scene)
         "R0_source_context": {
-            "method": "gfro_targeted_bisection",
-            "n_rays": n_rays,
-            "n_radial": n_radial,
-            "n_emitted": len(r0_ctx_all),
-            "points": r0_ctx_all,
-            "claim_status": "diagnostic_candidate_not_observational",
+            "method":         "gfro_targeted_bisection",
+            "claim":          "Diagnostic. Context = 48 active sources only. Node 1 tidal background not yet evaluated.",
+            "n_rays":         n_rays,
+            "n_radial":       n_radial,
+            "n_emitted":      len(r0_ctx_all),
+            "points":         r0_ctx_all,
+            "claim_status":   "diagnostic_candidate_not_observational",
         },
+
+        # Full Weyl field at emitted points
         "weyl_field": {
-            "method": "full_E_ij_at_emitted_points",
-            "n_points": len(weyl_records),
-            "records": weyl_records,
-            "note": "Full tidal tensor eigenstructure at GFRO-emitted locations. This is the primary lumen lattice substrate.",
-            "claim_status": "diagnostic_candidate_not_observational",
+            "method":         "full_E_ij_at_emitted_points",
+            "n_points":       len(weyl_records),
+            "records":        weyl_records,
+            "claim_status":   "diagnostic_candidate_not_observational",
         },
+
+        # BCW-L001 compression witnessing
+        "bcw": bcw["bcw_field"],
+
+        # Certification
         "certification": {
-            "r0_pairwise_exact": True,
-            "r0_ctx_bisection_depth": 52,
-            "weyl_evaluated_at_emitted_only": True,
-            "claim_status": "diagnostic_candidate_not_observational",
+            "R0_pairwise_analytic":      True,
+            "R0_ctx_bisection_depth":    52,
+            "bcw_surrogate_rung":        0,
+            "bcw_epsilon_B_declared":    True,
+            "node1_tidal_background":    "not_computed",
+            "claim_status":              "diagnostic_candidate_not_observational",
         }
     }
 
