@@ -891,6 +891,7 @@ def run(passport: dict, n_rays: int = 96, n_radial: int = 48) -> dict:
         # Source roster (BCW §19: source_roster)
         "source_roster": [
             {
+                "id":         s.id,
                 "source_id":  s.id,
                 "name":       s.name,
                 "mass_kg":    float(s.mass),
