@@ -88,6 +88,13 @@ The program investigates how curvature behaves in relativistic n-body systems, w
 
 <br>
 
+## Boundary-Supported Weyl-Electric Attribution in a Uniform-Density Oblate Spheroid
+*Single-Body Residual Geometry and Multipole Compression Scales in the Newtonian Limit*
+
+[Read Paper](weyl_spheroid_final_v0_11.pdf)
+
+<br>
+
 </div>
 
 </div>
