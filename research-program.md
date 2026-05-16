@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Research Program
+description: Overview of the Relational Labs research program — weak-field multi-source GR, GCS theory, and the Atlas Solver platform.
 ---
 
 <style>
@@ -166,15 +167,3 @@ The result is a lawful, renderable weak-field wireframe of the gravitational sce
 
 </div>
 
-<button id="back-to-top" aria-label="Back to top">↑</button>
-<script>
-  (function() {
-    var btn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', function() {
-      btn.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-    btn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  })();
-</script>

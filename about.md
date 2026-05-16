@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+description: About Relational Labs, lead researcher Daniel Scieszinski, and the AI research team behind the Atlas Solver project.
 ---
 
 # About

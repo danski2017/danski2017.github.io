@@ -1,6 +1,7 @@
 ---
 title: Figures & Visualizations
 layout: default
+description: Visualizations, renders, and simulation figures from the Atlas Solver program and Relational Labs research.
 ---
 
 <div class="figures-page">
@@ -11,7 +12,7 @@ layout: default
   <div class="figures-primary-card">
     <figure>
       <video controls autoplay loop muted playsinline>
-        <source src="images/mutual network rotate.mov" type="video/mp4">
+        <source src="images/mutual network rotate.mov" type="video/quicktime">
       </video>
       <figcaption>
         <span class="figures-caption-title">12-Star Cluster Parity Network — Rotation</span>
@@ -162,7 +163,7 @@ layout: default
   </div>
   <div class="figures-gallery-card">
     <figure>
-      <img src="images/IMG_4480.PNG" alt="Fig 04">
+      <img src="images/IMG_4480.PNG" alt="Supplementary parity geometry diagram">
       <figcaption>
         <span class="figures-caption-title">Fig 04</span>
       </figcaption>
@@ -170,7 +171,7 @@ layout: default
   </div>
   <div class="figures-gallery-card">
     <figure>
-      <img src="images/IMG_4434.jpeg" alt="Fig 05">
+      <img src="images/IMG_4434.jpeg" alt="Supplementary curvature structure sketch">
       <figcaption>
         <span class="figures-caption-title">Fig 05</span>
       </figcaption>
@@ -178,7 +179,7 @@ layout: default
   </div>
   <div class="figures-gallery-card">
     <figure>
-      <img src="images/IMG_4424.GIF" alt="Fig 06">
+      <img src="images/IMG_4424.GIF" alt="Supplementary simulation animation">
       <figcaption>
         <span class="figures-caption-title">Fig 06</span>
       </figcaption>
@@ -186,7 +187,7 @@ layout: default
   </div>
   <div class="figures-gallery-card">
     <figure>
-      <img src="images/jVuRYjiWQTEl8hNRy9ca4g8abaLRuvr8kIktdVah1ZKSPkzjKg5fb5vgVU1w1iZrzuQayvWd-D1Se74DT7AbpS3aSuvLj37zaE17M_vFQglDo0F_JHeRRNrgxWjl0rcgeJ_Eh_Xy_F-Q_XWyOTZjivFk6HO4CVeXAaWg82P2x902L9LW5AGMsXb9GdGfDjU0.jpeg" alt="Fig 07">
+      <img src="images/jVuRYjiWQTEl8hNRy9ca4g8abaLRuvr8kIktdVah1ZKSPkzjKg5fb5vgVU1w1iZrzuQayvWd-D1Se74DT7AbpS3aSuvLj37zaE17M_vFQglDo0F_JHeRRNrgxWjl0rcgeJ_Eh_Xy_F-Q_XWyOTZjivFk6HO4CVeXAaWg82P2x902L9LW5AGMsXb9GdGfDjU0.jpeg" alt="Supplementary gravitational field render">
       <figcaption>
         <span class="figures-caption-title">Fig 07</span>
       </figcaption>
@@ -203,6 +204,6 @@ layout: default
   });
 </script>
 
-<div style="margin-top: 3rem; text-align: center;">
-  [Back to Hub](/)
+<div style="margin-top: 3rem; text-align: center;" markdown="1">
+[Back to Hub](/)
 </div>
