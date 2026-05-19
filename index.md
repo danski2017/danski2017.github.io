@@ -5,6 +5,27 @@ description: Relational Labs is an independent research platform for multi-body 
 ---
 
 <style>
+.index-hero {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+.index-hero-text {
+  flex: 1;
+  min-width: 0;
+}
+.index-hero-toy {
+  flex: 1;
+  min-width: 0;
+}
+.index-hero-toy iframe {
+  width: 100%;
+  height: 420px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  display: block;
+}
 .index-grid {
   display: flex;
   gap: 40px;
@@ -19,6 +40,15 @@ description: Relational Labs is an independent research platform for multi-body 
   min-width: 0;
   border-left: 1px solid #eee;
   padding-left: 25px;
+}
+@media (max-width: 900px) {
+  .index-hero {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .index-hero-toy iframe {
+    height: 360px;
+  }
 }
 @media (max-width: 780px) {
   .index-grid {
@@ -35,11 +65,19 @@ description: Relational Labs is an independent research platform for multi-body 
 }
 </style>
 
+<div class="index-hero">
+  <div class="index-hero-text">
+
 # **General Relativity • Multi-Body Curvature**
 
 *Relational Labs is an independent research platform focused on multi-body (n-body) general relativity, weak-field gravitational simulation, and geometric methods for modeling curvature in complex gravitational systems. The project explores how spacetime curvature behaves beyond simple two-body approximations through numerical simulation, geodesic analysis, and visualization.*
 
-<br>
+  </div>
+  <div class="index-hero-toy">
+    <iframe src="images/lattice_toy_v0_1.html" title="Electric Weyl Lattice — interactive toy" loading="lazy" scrolling="no"></iframe>
+  </div>
+</div>
+
 ---
 
 <div class="index-grid">
