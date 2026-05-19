@@ -66,7 +66,7 @@ description: Relational Labs is an independent research platform for multi-body 
 </style>
 
 <div class="index-hero">
-  <div class="index-hero-text">
+  <div class="index-hero-text" markdown="1">
 
 # **General Relativity • Multi-Body Curvature**
 
