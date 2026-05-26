@@ -289,6 +289,7 @@ function PassportScreen({ onGenerate }) {
   const [locked, setLocked] = useState(false);
   const [ready, setReady] = useState(false);
   const [mode, setMode] = useState("manual");
+  const [renderMode, setRenderMode] = useState("static");
   const [selectedSources, setSelectedSources] = useState(new Set());
   const bottomRef = useRef(null);
 
@@ -354,7 +355,7 @@ function PassportScreen({ onGenerate }) {
   const fI={width:"100%",background:"#0b0d14",border:"1px solid #14202e",color:"#a0b8cc",fontFamily:"var(--font-sans)",fontSize:12,padding:"4px 8px",borderRadius:4,outline:"none",boxSizing:"border-box"};
 
   const doGenerate=()=>{
-    const full={...passport,regime:"weak_field_gr_approximation",epoch:"J2000",
+    const full={...passport,render_mode:renderMode,regime:"weak_field_gr_approximation",epoch:"J2000",
       coordinate_frame:"solar_system_barycentric_cartesian",
       units:{mass:"kg",distance:"m"},node1:{mode:"explicit_parent",description:"Local Milky Way disk"},
       datum_architecture:"Single geometric registration datum.",
@@ -428,6 +429,25 @@ function PassportScreen({ onGenerate }) {
               <div style={{marginBottom:8}}>
                 <label style={fL}>Scene name</label>
                 <input style={fI} defaultValue="my scene" onChange={e=>updateManual("scene_id",slugify(e.target.value)+"_v0_1")}/>
+              </div>
+              <div style={{marginBottom:8}}>
+                <label style={fL}>Render mode</label>
+                <div style={{display:"flex",gap:5}}>
+                  {[{key:"static",label:"Static Frame",sub:"Frozen geometry"},{key:"animation",label:"Animation",sub:"N-body orbits"}].map(({key,label,sub})=>{
+                    const active=renderMode===key;
+                    return(
+                      <button key={key} onClick={()=>setRenderMode(key)} style={{
+                        flex:1,padding:"5px 3px",borderRadius:4,cursor:"pointer",
+                        border:"1px solid "+(active?"#c8922a":"#1a2838"),
+                        background:active?"#1a1200":"transparent",
+                        transition:"all .15s",textAlign:"center"
+                      }}>
+                        <div style={{color:"#c8d8e8",fontSize:11,fontWeight:500}}>{label}</div>
+                        <div style={{color:"#4a7080",fontSize:10}}>{sub}</div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
               <div style={{marginBottom:8}}>
                 <label style={fL}>Scene type</label>
@@ -521,6 +541,7 @@ function StageScreen({ passport, onBack }) {
 
   const geoStore = useRef({gcsPts:[],gcsPts1pn:[],eigenPts:[],eigenPts1pn:[],srcs:[]});
 
+  const isAnimated = passport.render_mode === 'animation';
   const activeSources = (passport.active_sources||[])
     .map(id=>ALL_SOURCES.find(s=>s.id===id)).filter(Boolean);
 
@@ -599,7 +620,7 @@ function StageScreen({ passport, onBack }) {
     const loop=()=>{
       animRef.current=requestAnimationFrame(loop);
       const as=animState.current;
-      if(as.playing&&as.srcs){
+      if(isAnimated&&as.playing&&as.srcs){
         const steps=Math.max(1,Math.round(as.speed));
         for(let i=0;i<steps;i++) as.srcs=leapfrogStep(as.srcs,as.dt);
         as.step+=steps; as.frame++;
@@ -819,8 +840,8 @@ function StageScreen({ passport, onBack }) {
           </div>
         )}
 
-        {/* Animation bar */}
-        {computed&&(
+        {/* Animation bar (only in animation mode) */}
+        {computed&&isAnimated&&(
           <div style={{position:'absolute',bottom:16,left:'50%',transform:'translateX(-50%)',zIndex:20,display:'flex',alignItems:'center',gap:10,background:'rgba(7,9,13,0.92)',border:'1px solid #1a2838',borderRadius:8,padding:'7px 16px',backdropFilter:'blur(8px)',fontFamily:'var(--font-sans)'}}>
             <button className={`ctrl${playing?' on':''}`} onClick={togglePlay} style={{minWidth:64}}>
               {playing?'⏸ Pause':'▶ Play'}
