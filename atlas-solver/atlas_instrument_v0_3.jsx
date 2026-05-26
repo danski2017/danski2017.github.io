@@ -728,7 +728,7 @@ function StageScreen({ passport, onBack }) {
     const attr=new THREE.BufferAttribute(buf,3); attr.setUsage(THREE.DynamicDrawUsage);
     geo.setAttribute('position',attr);
     geo.setDrawRange(0,pts.length);
-    const mat=new THREE.PointsMaterial({color,size:0.1,sizeAttenuation:true,transparent:true,opacity});
+    const mat=new THREE.PointsMaterial({color,size:2.5,sizeAttenuation:false,transparent:true,opacity});
     const obj=new THREE.Points(geo,mat); obj.visible=visible;
     return obj;
   };
