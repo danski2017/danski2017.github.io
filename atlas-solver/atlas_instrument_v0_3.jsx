@@ -350,44 +350,56 @@ function PassportScreen({ onGenerate }) {
     });
   };
 
-  const fL={display:"block",fontSize:13,color:"#c0ccd4",marginBottom:6,fontWeight:500};
-  const fI={width:"100%",background:"#0b0d14",border:"1px solid #14202e",color:"#a0b8cc",fontFamily:"var(--font-sans)",fontSize:14,padding:"7px 10px",borderRadius:5,outline:"none",boxSizing:"border-box"};
+  const fL={display:"block",fontSize:11,color:"#c0ccd4",marginBottom:4,fontWeight:500};
+  const fI={width:"100%",background:"#0b0d14",border:"1px solid #14202e",color:"#a0b8cc",fontFamily:"var(--font-sans)",fontSize:12,padding:"4px 8px",borderRadius:4,outline:"none",boxSizing:"border-box"};
+
+  const doGenerate=()=>{
+    const full={...passport,regime:"weak_field_gr_approximation",epoch:"J2000",
+      coordinate_frame:"solar_system_barycentric_cartesian",
+      units:{mass:"kg",distance:"m"},node1:{mode:"explicit_parent",description:"Local Milky Way disk"},
+      datum_architecture:"Single geometric registration datum.",
+      extraction_rungs:RUNGS_LIST,claim_status:"diagnostic_candidate_not_observational"};
+    setLocked(true);onGenerate(full);
+  };
 
   return (
-    <div style={{display:"flex",flexDirection:"column",height:"100vh",fontFamily:"var(--font-sans)",fontSize:"13px",background:"#07090d",color:"#a0b8cc"}}>
+    <div style={{display:"flex",flexDirection:"column",height:"100%",fontFamily:"var(--font-sans)",fontSize:"11px",background:"#07090d",color:"#a0b8cc"}}>
       <style>{`
         @keyframes blink{0%,80%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
-        .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#a07018;animation:blink 1.2s ease-in-out infinite;margin:0 2px}
+        .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:#a07018;animation:blink 1.2s ease-in-out infinite;margin:0 2px}
         .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
-        .tinp{width:100%;background:#0b0d14;border:1px solid #14202e;color:#a0b8cc;font-family:var(--font-sans);font-size:14px;padding:8px 12px;border-radius:5px;resize:none;outline:none;line-height:1.5;box-sizing:border-box}
+        .tinp{width:100%;background:#0b0d14;border:1px solid #14202e;color:#a0b8cc;font-family:var(--font-sans);font-size:11px;padding:5px 8px;border-radius:4px;resize:none;outline:none;line-height:1.5;box-sizing:border-box}
         .tinp:focus{border-color:#6a4410}.tinp::placeholder{color:#2a4060}.tinp:disabled{opacity:.3;cursor:not-allowed}
-        .ab{font-family:var(--font-sans);font-size:13px;letter-spacing:.07em;font-weight:500;padding:6px 14px;border-radius:5px;cursor:pointer;transition:all .15s;white-space:nowrap}
+        .ab{font-family:var(--font-sans);font-size:11px;letter-spacing:.06em;font-weight:500;padding:4px 10px;border-radius:4px;cursor:pointer;transition:all .15s;white-space:nowrap}
         .pri{background:#7a4e10;border:1px solid #7a4e10;color:#ddb870}.pri:hover{background:#8e5c18}
         .pri:disabled{background:#0d1520;border-color:#111e2c;color:#182840;cursor:not-allowed}
         .gho{background:transparent;border:1px solid #14202e;color:#c0ccd4}.gho:hover{border-color:#2a4060;color:#7aaccc;background:#090d14}
         .gho:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
-        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#14202e;border-radius:2px}
+        ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#14202e;border-radius:2px}
       `}</style>
 
       {/* Header */}
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"9px 16px",borderBottom:"1px solid #0c1620",background:"#080a10",flexShrink:0}}>
-        <span style={{fontSize:"19px",fontWeight:500,letterSpacing:".14em",color:"#a07018"}}>ATLAS</span>
-        <div style={{display:"flex",gap:"8px",alignItems:"center"}}>
-          <span style={{fontSize:"13px",color:locked?"#3a8060":"#c0ccd4"}}>
-            {locked?"Passport locked.":ready?"Ready to lock.":"Building..."}
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"5px 12px",borderBottom:"1px solid #0c1620",background:"#080a10",flexShrink:0}}>
+        <span style={{fontSize:"15px",fontWeight:500,letterSpacing:".14em",color:"#a07018"}}>ATLAS</span>
+        <div style={{display:"flex",gap:"6px",alignItems:"center"}}>
+          <span style={{fontSize:"11px",color:locked?"#3a8060":"#4a6878"}}>
+            {locked?"Passport locked.":selectedSources.size>0?`${selectedSources.size} sources`:"Select sources"}
           </span>
+          {!locked&&selectedSources.size>0&&(
+            <button className="ab pri" onClick={doGenerate}>Generate Gravity Map</button>
+          )}
           <button className="ab gho" onClick={()=>{setMessages([{role:"assistant",content:WELCOME}]);setPassport({});setInput("");setLocked(false);setReady(false);setSelectedSources(new Set());}}>Reset</button>
         </div>
       </div>
 
       {/* Body */}
-      <div style={{display:"flex",flex:1,overflow:"hidden"}}>
+      <div style={{display:"flex",flex:1,overflow:"hidden",minHeight:0}}>
         {/* Left */}
         <div style={{width:"46%",borderRight:"1px solid #0c1620",display:"flex",flexDirection:"column",overflow:"hidden"}}>
           <div style={{display:"flex",borderBottom:"1px solid #111d2b",flexShrink:0}}>
             {["ai","manual"].map(m=>(
               <button key={m} onClick={()=>setMode(m)} style={{
-                flex:1,padding:"8px 0",fontSize:13,letterSpacing:".07em",fontWeight:500,
+                flex:1,padding:"5px 0",fontSize:11,letterSpacing:".06em",fontWeight:500,
                 fontFamily:"var(--font-sans)",cursor:"pointer",border:"none",
                 borderBottom:mode===m?"2px solid #c8922a":"2px solid transparent",
                 background:"transparent",color:mode===m?"#c8922a":"#c0ccd4",transition:"all .15s"
@@ -396,63 +408,59 @@ function PassportScreen({ onGenerate }) {
           </div>
 
           {mode==="ai"?(<>
-            <div style={{flex:1,overflow:"auto",padding:"10px 14px"}}>
+            <div style={{flex:1,overflow:"auto",padding:"8px 10px"}}>
               {messages.map((m,i)=>(
                 <div key={i} style={m.role==="user"
-                  ?{background:"#0a0e18",borderLeft:"2px solid #c8922a",padding:"8px 12px",borderRadius:"0 5px 5px 0",margin:"5px 0",lineHeight:1.6,whiteSpace:"pre-wrap",color:"#a8bcc8"}
-                  :{borderLeft:"2px solid #0e1a26",padding:"8px 12px",borderRadius:"0 5px 5px 0",margin:"5px 0",lineHeight:1.6,whiteSpace:"pre-wrap",color:"#506070"}
+                  ?{background:"#0a0e18",borderLeft:"2px solid #c8922a",padding:"5px 10px",borderRadius:"0 4px 4px 0",margin:"3px 0",lineHeight:1.5,whiteSpace:"pre-wrap",color:"#a8bcc8"}
+                  :{borderLeft:"2px solid #0e1a26",padding:"5px 10px",borderRadius:"0 4px 4px 0",margin:"3px 0",lineHeight:1.5,whiteSpace:"pre-wrap",color:"#506070"}
                 }>{m.content}</div>
               ))}
-              {loading&&<div style={{borderLeft:"2px solid #0e1a26",padding:"10px 14px",margin:"5px 0"}}><span className="dot"/><span className="dot"/><span className="dot"/></div>}
+              {loading&&<div style={{borderLeft:"2px solid #0e1a26",padding:"6px 10px",margin:"3px 0"}}><span className="dot"/><span className="dot"/><span className="dot"/></div>}
               <div ref={bottomRef}/>
             </div>
-            <div style={{padding:"9px 14px",borderTop:"1px solid #0a1218",display:"flex",gap:"8px",flexShrink:0}}>
+            <div style={{padding:"6px 10px",borderTop:"1px solid #0a1218",display:"flex",gap:"6px",flexShrink:0}}>
               <textarea className="tinp" rows={2} value={input} onChange={e=>setInput(e.target.value)} onKeyDown={onKey}
                 placeholder={locked?"Passport locked.":"Declare your scene..."} disabled={loading||locked} style={{flex:1}}/>
               <button className="ab pri" onClick={sendAI} disabled={!input.trim()||loading||locked} style={{alignSelf:"flex-end"}}>Send</button>
             </div>
           </>):(
-            <div style={{flex:1,overflow:"hidden",padding:"14px",display:"flex",flexDirection:"column"}}>
-              <div style={{marginBottom:14}}>
+            <div style={{flex:1,overflow:"hidden",padding:"8px 10px",display:"flex",flexDirection:"column"}}>
+              <div style={{marginBottom:8}}>
                 <label style={fL}>Scene name</label>
                 <input style={fI} defaultValue="my scene" onChange={e=>updateManual("scene_id",slugify(e.target.value)+"_v0_1")}/>
               </div>
-              <div style={{marginBottom:14}}>
+              <div style={{marginBottom:8}}>
                 <label style={fL}>Scene type</label>
-                <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                  {[[{key:"SS",label:"Solar System",sub:"All planets + Sun"},{key:"LSN",label:"LSN",sub:"Local Stellar Neighborhood"}],
-                    [{key:"ATOMS",label:"Atoms",sub:"Coming soon",disabled:true},{key:"MW",label:"Milky Way",sub:"Coming soon",disabled:true}]
-                  ].map((row,ri)=>(
-                    <div key={ri} style={{display:"flex",gap:6}}>
-                      {row.map(({key,label,sub,disabled})=>{
-                        const active=(key==="SS"&&passport.purpose?.includes("solar"))||(key==="LSN"&&passport.purpose?.includes("stellar"));
-                        return(
-                          <button key={key} disabled={disabled} onClick={()=>applyPreset(key)} style={{
-                            flex:1,minHeight:"52px",padding:"8px 4px",borderRadius:5,cursor:disabled?"default":"pointer",
-                            border:"1px solid "+(active?"#c8922a":disabled?"#0e1620":"#1a2838"),
-                            background:active?"#1a1200":disabled?"#080a10":"transparent",
-                            opacity:disabled?0.35:1,transition:"all .15s",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"
-                          }}>
-                            <div style={{color:disabled?"#2a4060":"#c8d8e8",fontSize:13,fontWeight:500}}>{label}</div>
-                            <div style={{color:disabled?"#1e3040":"#4a7080",fontSize:12,marginTop:2}}>{sub}</div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ))}
+                <div style={{display:"flex",gap:5}}>
+                  {[{key:"SS",label:"Solar System",sub:"All planets + Sun"},{key:"LSN",label:"LSN",sub:"Local Stellar Neighborhood"},
+                    {key:"ATOMS",label:"Atoms",sub:"Coming soon",disabled:true},{key:"MW",label:"Milky Way",sub:"Coming soon",disabled:true}
+                  ].map(({key,label,sub,disabled})=>{
+                    const active=(key==="SS"&&passport.purpose?.includes("solar"))||(key==="LSN"&&passport.purpose?.includes("stellar"));
+                    return(
+                      <button key={key} disabled={disabled} onClick={()=>applyPreset(key)} style={{
+                        flex:1,padding:"5px 3px",borderRadius:4,cursor:disabled?"default":"pointer",
+                        border:"1px solid "+(active?"#c8922a":disabled?"#0e1620":"#1a2838"),
+                        background:active?"#1a1200":disabled?"#080a10":"transparent",
+                        opacity:disabled?0.35:1,transition:"all .15s",textAlign:"center"
+                      }}>
+                        <div style={{color:disabled?"#2a4060":"#c8d8e8",fontSize:11,fontWeight:500}}>{label}</div>
+                        <div style={{color:disabled?"#1e3040":"#4a7080",fontSize:10}}>{sub}</div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
-              <div style={{marginBottom:0,display:"flex",flexDirection:"column",flex:"1 1 0",minHeight:0}}>
+              <div style={{display:"flex",flexDirection:"column",flex:"1 1 0",minHeight:0}}>
                 <label style={fL}>Sources ({selectedSources.size} selected)</label>
                 <div style={{overflow:"auto",flex:1,border:"1px solid #111d2b",borderRadius:4}}>
                   {allSources.map(({group,items})=>(
                     <div key={group}>
-                      <div style={{padding:"4px 10px",fontSize:11,color:"#4a7888",background:"#0a0d16",letterSpacing:".08em",textTransform:"uppercase",position:"sticky",top:0,zIndex:1}}>{group}</div>
+                      <div style={{padding:"2px 8px",fontSize:10,color:"#4a7888",background:"#0a0d16",letterSpacing:".08em",textTransform:"uppercase",position:"sticky",top:0,zIndex:1}}>{group}</div>
                       {items.map(s=>(
-                        <label key={s.id} style={{display:"flex",alignItems:"center",gap:8,padding:"5px 10px",cursor:"pointer",borderBottom:"1px solid #090d16",background:selectedSources.has(s.id)?"#0e1828":"transparent"}}>
+                        <label key={s.id} style={{display:"flex",alignItems:"center",gap:6,padding:"3px 8px",cursor:"pointer",borderBottom:"1px solid #090d16",background:selectedSources.has(s.id)?"#0e1828":"transparent"}}>
                           <input type="checkbox" style={{accentColor:"#c8922a",flexShrink:0}} checked={selectedSources.has(s.id)} onChange={()=>toggleSource(s.id)}/>
-                          <span style={{flex:1,color:"#b0c4d4",fontSize:13}}>{s.name}</span>
-                          <span style={{color:"#4a7080",fontSize:11,fontFamily:"var(--font-mono)",textAlign:"right"}}>
+                          <span style={{flex:1,color:"#b0c4d4"}}>{s.name}</span>
+                          <span style={{color:"#4a7080",fontSize:10,fontFamily:"var(--font-mono)",textAlign:"right"}}>
                             {s.dist_pc!==undefined?`${s.dist_pc} pc`:s.dist_au?`${s.dist_au} AU`:""}
                           </span>
                         </label>
@@ -467,22 +475,12 @@ function PassportScreen({ onGenerate }) {
 
         {/* Right: passport JSON */}
         <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
-          <div style={{padding:"5px 14px",borderBottom:"1px solid #0a1218",display:"flex",justifyContent:"space-between",alignItems:"center",fontSize:"10px",letterSpacing:".1em",textTransform:"uppercase",color:"#c0ccd4",fontWeight:500,flexShrink:0}}>
+          <div style={{padding:"4px 10px",borderBottom:"1px solid #0a1218",display:"flex",justifyContent:"space-between",alignItems:"center",fontSize:"10px",letterSpacing:".1em",textTransform:"uppercase",color:"#c0ccd4",fontWeight:500,flexShrink:0}}>
             <span>Scene passport</span>
             <span style={{color:fc>0?"#7a5010":"#c0ccd4"}}>{fc} field{fc!==1?"s":""} declared</span>
           </div>
-          <div style={{flex:1,overflow:"auto",padding:"14px 16px",fontFamily:"var(--font-mono)",fontSize:"13px",lineHeight:1.8}}
+          <div style={{flex:1,overflow:"auto",padding:"8px 10px",fontFamily:"var(--font-mono)",fontSize:"11px",lineHeight:1.6}}
             dangerouslySetInnerHTML={{__html:hl(fc>0?JSON.stringify(passport,null,2):"{}") }}/>
-          <div style={{padding:"8px 14px",borderTop:"1px solid #0a1218",display:"flex",justifyContent:"flex-end",flexShrink:0}}>
-            <button className="ab pri" onClick={()=>{
-              const full={...passport,regime:"weak_field_gr_approximation",epoch:"J2000",
-                coordinate_frame:"solar_system_barycentric_cartesian",
-                units:{mass:"kg",distance:"m"},node1:{mode:"explicit_parent",description:"Local Milky Way disk"},
-                datum_architecture:"Single geometric registration datum.",
-                extraction_rungs:RUNGS_LIST,claim_status:"diagnostic_candidate_not_observational"};
-              setLocked(true);onGenerate(full);
-            }}>Generate Gravity Map</button>
-          </div>
         </div>
       </div>
     </div>
