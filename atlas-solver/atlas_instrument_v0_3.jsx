@@ -791,7 +791,7 @@ function StageScreen({ passport, onBack }) {
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
-    <div style={{position:'relative',width:'100vw',height:'100vh',background:'#07090d',overflow:'hidden',display:'flex'}}>
+    <div style={{position:'relative',width:'100%',height:'100%',background:'#07090d',overflow:'hidden',display:'flex'}}>
       <style>{`
         input[type=range]{accent-color:#c8922a;width:100%;margin:3px 0;}
         .tog{width:34px;height:19px;border-radius:10px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;border:none;}
@@ -922,7 +922,7 @@ export default function AtlasInstrument() {
   const fadeTo=fn=>{setOpacity(0);setTimeout(()=>{fn();setOpacity(1);},380);};
 
   return (
-    <div style={{width:'100vw',height:'100vh',overflow:'hidden',opacity,transition:'opacity 0.38s ease'}}>
+    <div style={{width:'100%',height:'100%',overflow:'hidden',opacity,transition:'opacity 0.38s ease'}}>
       {phase==='passport'
         ?<PassportScreen onGenerate={p=>fadeTo(()=>{setPassport(p);setPhase('stage');})}/>
         :<StageScreen passport={passport} onBack={()=>fadeTo(()=>setPhase('passport'))}/>}
