@@ -89,17 +89,26 @@ const starColor = cls => ({
 
 const starColorHex = cls => parseInt(starColor(cls).replace('#',''),16);
 
-const starSize = s => {
-  if(s.id==='SOL') return 2.2;
-  if(s.cls==='planet') return Math.max(0.15,Math.pow(s.mass_msun,0.2)*1.5);
-  if(s.cls==='moon') return 0.12;
-  return Math.max(0.22,Math.min(1.4,Math.pow(s.mass_msun,0.35)*1.1));
+// Scene-aware sizing: stellar scenes (pc) use larger spheres; planetary scenes (AU) use smaller ones
+const starSize = (s, scaleAU) => {
+  if(scaleAU){
+    // AU-scale scene: Sun should be visible but not engulf planets
+    if(s.id==='SOL') return 0.035;
+    if(s.cls==='planet') return Math.max(0.008, Math.pow(s.mass_msun, 0.18)*0.03);
+    if(s.cls==='moon'||s.cls==='dwarf_planet') return 0.006;
+    return 0.02;
+  }
+  // pc-scale scene (stellar neighborhood)
+  if(s.id==='SOL') return 1.0;
+  return Math.max(0.22, Math.min(1.4, Math.pow(s.mass_msun, 0.35)*1.1));
 };
 
 const sourcePos = (s,i,n) => {
   const [fx,fy,fz] = fibSphere(i,n);
-  const dist = s.dist_pc!==undefined ? s.dist_pc*20 : (s.dist_au||0)*0.1;
-  return [fx*dist, fy*dist, fz*dist];
+  if(s.dist_pc!==undefined) return [fx*s.dist_pc*20, fy*s.dist_pc*20, fz*s.dist_pc*20];
+  // AU-scale: use real orbital distances (not compressed by 0.1)
+  const d = (s.dist_au||0);
+  return [fx*d, fy*d, fz*d];
 };
 
 const SCENE_PRESETS = {
@@ -577,8 +586,12 @@ function StageScreen({ passport, onBack }) {
     const solIdx=activeSources.findIndex(s=>s.id==='SOL');
     if(solIdx>=0) positions[solIdx]=[0,0,0];
 
+    // Detect AU-scale scene: majority of non-Sol sources use dist_au (not dist_pc)
+    const nonSol=activeSources.filter(s=>s.id!=='SOL');
+    const scaleAU=nonSol.length>0&&nonSol.filter(s=>s.dist_au!==undefined&&s.dist_pc===undefined).length>nonSol.length/2;
+
     activeSources.forEach((s,i)=>{
-      const geo=new THREE.SphereGeometry(starSize(s),24,16);
+      const geo=new THREE.SphereGeometry(starSize(s,scaleAU),24,16);
       const col=starColorHex(s.cls);
       const mat=new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:s.id==='SOL'?2.0:0.5,roughness:0.5,metalness:0.0});
       const mesh=new THREE.Mesh(geo,mat);
