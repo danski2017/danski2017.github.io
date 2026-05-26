@@ -757,11 +757,11 @@ function StageScreen({ passport, onBack }) {
     [gcsNewtonRef,gcs1pnRef,eigenNewtonRef,eigen1pnRef,networkRef].forEach(disposeObj);
 
     // GCS Newton (orange-amber)
-    const gn=makePointCloud(gcsPts,0xcc6610,opacity.gcs,layersOn.gcs&&physMode==='newton');
+    const gn=makePointCloud(gcsPts,0xd4a017,opacity.gcs,layersOn.gcs&&physMode==='newton');
     scene.add(gn); gcsNewtonRef.current=gn;
 
     // GCS 1PN (cyan)
-    const gp=makePointCloud(gcsPts1pn,0x10b8cc,opacity.gcs,layersOn.gcs&&physMode==='1pn');
+    const gp=makePointCloud(gcsPts1pn,0xc8922a,opacity.gcs,layersOn.gcs&&physMode==='1pn');
     scene.add(gp); gcs1pnRef.current=gp;
 
     // Eigenframe Newton
@@ -826,7 +826,7 @@ function StageScreen({ passport, onBack }) {
   const handleSpeed=v=>{animState.current.speed=parseFloat(v);setSpeed(parseFloat(v));};
 
   // ── Colors / labels ───────────────────────────────────────────────────────
-  const modeColor={newton:'#cc6610','1pn':'#10b8cc'};
+  const modeColor={newton:'#d4a017','1pn':'#c8922a'};
   const modeLabel={newton:'NEWTONIAN  R2','1pn':'1PN CORRECTED  R5'};
   const modeDesc={
     newton:'Linearized tidal operator. Sources superposed independently. Standard Newtonian gravity boundaries.',
@@ -914,7 +914,7 @@ function StageScreen({ passport, onBack }) {
           {/* Layers */}
           <div style={{color:'#c8922a',fontSize:10,fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',marginBottom:10}}>Layers</div>
           {[
-            {key:'gcs',    label:'Gravity Boundaries', desc:physMode==='newton'?'R2 linearized GCS shells':'R5 1PN-corrected GCS shells', color:modeColor[physMode]},
+            {key:'gcs',    label:'Diagnostic Parity Geometry', desc:physMode==='newton'?'R2 linearized GCS shells':'R5 1PN-corrected GCS shells', color:modeColor[physMode]},
             {key:'eigen',  label:'Tidal Eigenframe',   desc:'Principal compression axis — eigenvector of E_ij', color:'#4466bb'},
             {key:'network',label:'Source Network',     desc:'Nearest-neighbour relational links',              color:'#304050'},
           ].map(({key,label,desc,color})=>(
