@@ -71,6 +71,12 @@ const GAIA_NEIGHBORS = [
 
 const ALL_SOURCES = [...SOLAR_SYSTEM, ...GAIA_NEIGHBORS];
 
+// Approximate J2000 mean longitudes (radians) for ecliptic placement
+const ORBITAL_ANGLES = {
+  SOL:0, MERCURY:4.40, VENUS:3.18, EARTH:1.75, MOON:1.78,
+  MARS:5.87, JUPITER:0.60, SATURN:1.98, URANUS:5.53, NEPTUNE:5.31, PLUTO:3.91
+};
+
 // ── VISUAL UTILITIES ─────────────────────────────────────────────────────────
 
 const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"");
@@ -107,11 +113,17 @@ const starSize = (s, scaleAU) => {
 };
 
 const sourcePos = (s,i,n) => {
-  const [fx,fy,fz] = fibSphere(i,n);
-  if(s.dist_pc!==undefined) return [fx*s.dist_pc*20, fy*s.dist_pc*20, fz*s.dist_pc*20];
-  // AU-scale: use real orbital distances (not compressed by 0.1)
-  const d = (s.dist_au||0);
-  return [fx*d, fy*d, fz*d];
+  if(s.dist_pc!==undefined){
+    // Stellar/pc-scale: Fibonacci sphere
+    const [fx,fy,fz] = fibSphere(i,n);
+    return [fx*s.dist_pc*20, fy*s.dist_pc*20, fz*s.dist_pc*20];
+  }
+  // AU-scale: ecliptic plane placement
+  const d = s.dist_au||0;
+  if(d===0) return [0,0,0];
+  const angle = ORBITAL_ANGLES[s.id]||0;
+  const yOff = s.id==='PLUTO' ? d*0.15 : 0; // Pluto ~17° inclination
+  return [d*Math.cos(angle), yOff, d*Math.sin(angle)];
 };
 
 const SCENE_PRESETS = {
@@ -240,6 +252,13 @@ const passportToComputeSources=actives=>{
   const positions=actives.map((s,i)=>sourcePos(s,i,n));
   const solIdx=actives.findIndex(s=>s.id==='SOL');
   if(solIdx>=0)positions[solIdx]=[0,0,0];
+  // Moon relative to Earth (0.00257 AU = ~384,400 km)
+  const earthIdx=actives.findIndex(s=>s.id==='EARTH');
+  const moonIdx=actives.findIndex(s=>s.id==='MOON');
+  if(earthIdx>=0&&moonIdx>=0){
+    const ma=ORBITAL_ANGLES['MOON']||0;
+    positions[moonIdx]=[positions[earthIdx][0]+0.00257*Math.cos(ma),positions[earthIdx][1],positions[earthIdx][2]+0.00257*Math.sin(ma)];
+  }
   return actives.map((s,i)=>({id:s.id,name:s.name,cls:s.cls,mass:s.mass_msun,pos:positions[i],vel:[0,0,0]}));
 };
 
@@ -527,7 +546,9 @@ function StageScreen({ passport, onBack }) {
   const camRef       = useRef(null);
   const animRef      = useRef(null);
   const sceneRef     = useRef(null);
-  const orbitRef     = useRef({theta:0.4,phi:1.1,radius:120,isDown:false,lastX:0,lastY:0,lastDist:0});
+  const orbitRef     = useRef({theta:0.4,phi:1.1,radius:120,isDown:false,lastX:0,lastY:0,lastDist:0,lookAt:[0,0,0]});
+  const maxDRef      = useRef(1);
+  const camTarget    = useRef(null); // {targetRadius,targetPhi,targetTheta,lookAt,progress}
 
   // Three.js layer object refs
   const gcsNewtonRef  = useRef(null);
@@ -588,6 +609,9 @@ function StageScreen({ passport, onBack }) {
     const positions=activeSources.map((s,i)=>sourcePos(s,i,n));
     const solIdx=activeSources.findIndex(s=>s.id==='SOL');
     if(solIdx>=0) positions[solIdx]=[0,0,0];
+    // Moon relative to Earth
+    const _ei=activeSources.findIndex(s=>s.id==='EARTH'), _mi=activeSources.findIndex(s=>s.id==='MOON');
+    if(_ei>=0&&_mi>=0){const ma=ORBITAL_ANGLES['MOON']||0;positions[_mi]=[positions[_ei][0]+0.00257*Math.cos(ma),positions[_ei][1],positions[_ei][2]+0.00257*Math.sin(ma)];}
 
     // Detect AU-scale scene: majority of non-Sol sources use dist_au (not dist_pc)
     const nonSol=activeSources.filter(s=>s.id!=='SOL');
@@ -608,20 +632,22 @@ function StageScreen({ passport, onBack }) {
     const sl=new THREE.PointLight(0xFFE080,3.0,800); sl.position.set(0,0,0); scene.add(sl);
 
     const maxD=Math.max(...positions.map(([x,y,z])=>Math.sqrt(x*x+y*y+z*z)),1);
-    const o=orbitRef.current; o.radius=maxD*2.8;
+    maxDRef.current=maxD;
+    const o=orbitRef.current; o.radius=maxD*2.8; o.lookAt=[0,0,0];
     const updateCam=()=>{
-      cam.position.set(o.radius*Math.sin(o.phi)*Math.cos(o.theta),o.radius*Math.cos(o.phi),o.radius*Math.sin(o.phi)*Math.sin(o.theta));
-      cam.lookAt(0,0,0);
+      const la=o.lookAt;
+      cam.position.set(la[0]+o.radius*Math.sin(o.phi)*Math.cos(o.theta),la[1]+o.radius*Math.cos(o.phi),la[2]+o.radius*Math.sin(o.phi)*Math.sin(o.theta));
+      cam.lookAt(la[0],la[1],la[2]);
     };
     updateCam();
 
     // Orbit controls
     const md=e=>{o.isDown=true;o.lastX=e.clientX;o.lastY=e.clientY;};
-    const mm=e=>{if(!o.isDown)return;o.theta-=(e.clientX-o.lastX)*0.007;o.phi=Math.max(0.05,Math.min(Math.PI-0.05,o.phi-(e.clientY-o.lastY)*0.007));o.lastX=e.clientX;o.lastY=e.clientY;updateCam();};
+    const mm=e=>{if(!o.isDown||camTarget.current)return;o.theta-=(e.clientX-o.lastX)*0.007;o.phi=Math.max(0.05,Math.min(Math.PI-0.05,o.phi-(e.clientY-o.lastY)*0.007));o.lastX=e.clientX;o.lastY=e.clientY;updateCam();};
     const mu=()=>{o.isDown=false;};
-    const mw=e=>{o.radius=Math.max(maxD*0.3,Math.min(maxD*8,o.radius*(1+e.deltaY*0.001)));updateCam();};
+    const mw=e=>{o.radius=Math.max(0.001,Math.min(maxD*8,o.radius*(1+e.deltaY*0.001)));updateCam();};
     const ts=e=>{if(e.touches.length===1){o.isDown=true;o.lastX=e.touches[0].clientX;o.lastY=e.touches[0].clientY;}if(e.touches.length===2)o.lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);};
-    const tm=e=>{e.preventDefault();if(e.touches.length===1&&o.isDown){o.theta-=(e.touches[0].clientX-o.lastX)*0.007;o.phi=Math.max(0.05,Math.min(Math.PI-0.05,o.phi-(e.touches[0].clientY-o.lastY)*0.007));o.lastX=e.touches[0].clientX;o.lastY=e.touches[0].clientY;updateCam();}if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);o.radius=Math.max(maxD*0.3,Math.min(maxD*8,o.radius*(o.lastDist/d)));o.lastDist=d;updateCam();}};
+    const tm=e=>{e.preventDefault();if(camTarget.current)return;if(e.touches.length===1&&o.isDown){o.theta-=(e.touches[0].clientX-o.lastX)*0.007;o.phi=Math.max(0.05,Math.min(Math.PI-0.05,o.phi-(e.touches[0].clientY-o.lastY)*0.007));o.lastX=e.touches[0].clientX;o.lastY=e.touches[0].clientY;updateCam();}if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);o.radius=Math.max(0.001,Math.min(maxD*8,o.radius*(o.lastDist/d)));o.lastDist=d;updateCam();}};
     const te=()=>{o.isDown=false;o.lastDist=0;};
     ren.domElement.addEventListener('mousedown',md);
     window.addEventListener('mousemove',mm);
@@ -665,6 +691,22 @@ function StageScreen({ passport, onBack }) {
           setStepDisp(as.step);
         }
       }
+      // Smooth camera fly-to animation
+      const ct=camTarget.current;
+      if(ct){
+        ct.progress=Math.min(1,ct.progress+0.025);
+        const t=ct.progress,ease=t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+        o.radius=ct._r0+(ct.targetRadius-ct._r0)*ease;
+        o.theta=ct._t0+(ct.targetTheta-ct._t0)*ease;
+        o.phi=ct._p0+(ct.targetPhi-ct._p0)*ease;
+        o.lookAt=[
+          ct._la0[0]+(ct.lookAt[0]-ct._la0[0])*ease,
+          ct._la0[1]+(ct.lookAt[1]-ct._la0[1])*ease,
+          ct._la0[2]+(ct.lookAt[2]-ct._la0[2])*ease,
+        ];
+        updateCam();
+        if(ct.progress>=1) camTarget.current=null;
+      }
       ren.render(scene,cam);
     };
     loop();
@@ -675,6 +717,33 @@ function StageScreen({ passport, onBack }) {
       ren.dispose(); if(el.contains(ren.domElement))el.removeChild(ren.domElement);
     };
   },[]);
+
+  // ── Zoom-to-source ──────────────────────────────────────────────────────
+  const zoomToSource=sourceId=>{
+    const mesh=sourceMeshes.current[sourceId];
+    if(!mesh)return;
+    const pos=[mesh.position.x,mesh.position.y,mesh.position.z];
+    const srcs=geoStore.current.srcs;
+    let viewDist=1;
+    if(srcs.length){
+      const rm=gcsRmax(srcs,sourceId);
+      viewDist=Math.max(rm*4,0.05);
+    }
+    const o=orbitRef.current;
+    camTarget.current={
+      targetRadius:viewDist,targetTheta:o.theta,targetPhi:1.1,
+      lookAt:pos,progress:0,
+      _r0:o.radius,_t0:o.theta,_p0:o.phi,_la0:[...o.lookAt],
+    };
+  };
+  const zoomToFullScene=()=>{
+    const o=orbitRef.current;
+    camTarget.current={
+      targetRadius:maxDRef.current*2.8,targetTheta:o.theta,targetPhi:1.1,
+      lookAt:[0,0,0],progress:0,
+      _r0:o.radius,_t0:o.theta,_p0:o.phi,_la0:[...o.lookAt],
+    };
+  };
 
   // Panel resize
   useEffect(()=>{
@@ -728,7 +797,7 @@ function StageScreen({ passport, onBack }) {
     const attr=new THREE.BufferAttribute(buf,3); attr.setUsage(THREE.DynamicDrawUsage);
     geo.setAttribute('position',attr);
     geo.setDrawRange(0,pts.length);
-    const mat=new THREE.PointsMaterial({color,size:2.5,sizeAttenuation:false,transparent:true,opacity});
+    const mat=new THREE.PointsMaterial({color,size:0.08,sizeAttenuation:true,transparent:true,opacity});
     const obj=new THREE.Points(geo,mat); obj.visible=visible;
     return obj;
   };
@@ -935,6 +1004,21 @@ function StageScreen({ passport, onBack }) {
               )}
             </div>
           ))}
+
+          {/* Navigate — zoom to source */}
+          {computed&&(
+            <div style={{marginTop:4,marginBottom:16,paddingBottom:14,borderBottom:'1px solid #111d2b'}}>
+              <div style={{color:'#c8922a',fontSize:10,fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',marginBottom:8}}>Navigate</div>
+              <button className="ctrl" onClick={zoomToFullScene} style={{width:'100%',marginBottom:6,fontSize:11}}>Full Scene</button>
+              <div style={{display:'flex',flexWrap:'wrap',gap:4}}>
+                {activeSources.map(s=>(
+                  <button key={s.id} className="ctrl" onClick={()=>zoomToSource(s.id)} style={{fontSize:10,padding:'3px 8px'}}>
+                    <span style={{color:starColor(s.cls),marginRight:3}}>●</span>{s.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Claim note */}
           <div style={{marginTop:12,paddingTop:10,borderTop:'1px solid #0e1820',fontSize:10,color:'#1a2e3a',lineHeight:1.6}}>
