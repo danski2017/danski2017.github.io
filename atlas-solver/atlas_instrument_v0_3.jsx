@@ -354,7 +354,7 @@ function PassportScreen({ onGenerate }) {
   const fI={width:"100%",background:"#0b0d14",border:"1px solid #14202e",color:"#a0b8cc",fontFamily:"var(--font-sans)",fontSize:14,padding:"7px 10px",borderRadius:5,outline:"none",boxSizing:"border-box"};
 
   return (
-    <div style={{display:"flex",flexDirection:"column",height:"100vh",fontFamily:"var(--font-sans)",fontSize:"13px",background:"#07090d",color:"#a0b8cc"}}>
+    <div style={{display:"flex",flexDirection:"column",height:"100%",fontFamily:"var(--font-sans)",fontSize:"13px",background:"#07090d",color:"#a0b8cc"}}>
       <style>{`
         @keyframes blink{0%,80%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
         .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#a07018;animation:blink 1.2s ease-in-out infinite;margin:0 2px}
@@ -793,7 +793,7 @@ function StageScreen({ passport, onBack }) {
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
-    <div style={{position:'relative',width:'100vw',height:'100vh',background:'#07090d',overflow:'hidden',display:'flex'}}>
+    <div style={{position:'relative',width:'100%',height:'100%',background:'#07090d',overflow:'hidden',display:'flex'}}>
       <style>{`
         input[type=range]{accent-color:#c8922a;width:100%;margin:3px 0;}
         .tog{width:34px;height:19px;border-radius:10px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;border:none;}
@@ -924,7 +924,7 @@ export default function AtlasInstrument() {
   const fadeTo=fn=>{setOpacity(0);setTimeout(()=>{fn();setOpacity(1);},380);};
 
   return (
-    <div style={{width:'100vw',height:'100vh',overflow:'hidden',opacity,transition:'opacity 0.38s ease'}}>
+    <div style={{width:'100%',height:'100%',overflow:'hidden',opacity,transition:'opacity 0.38s ease'}}>
       {phase==='passport'
         ?<PassportScreen onGenerate={p=>fadeTo(()=>{setPassport(p);setPhase('stage');})}/>
         :<StageScreen passport={passport} onBack={()=>fadeTo(()=>setPhase('passport'))}/>}
