@@ -32,10 +32,11 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
   margin-right: auto;
   overflow: hidden;
   margin-bottom: 2rem;
+  position: relative;
 }
 #atlas-root {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
 }
