@@ -608,11 +608,12 @@ function StageScreen({ passport, onBack }) {
           const m=sourceMeshes.current[s.id];
           if(m) m.position.set(...s.pos);
         }
-        // Re-extract GCS every 8 frames during animation
-        if(as.frame%8===0){
-          const rays=fibRays(80);
+        // Re-extract GCS every 8 frames during animation (scale for large scenes)
+        const animInterval=as.srcs.length>20?16:8;
+        if(as.frame%animInterval===0){
+          const aN=as.srcs.length,aRays=fibRays(aN<=10?80:aN<=20?50:30),aRad=aN<=10?12:aN<=20?8:6;
           const allPts=[];
-          for(const s of as.srcs) allPts.push(...extractGCS(as.srcs,s.id,rays,12,false));
+          for(const s of as.srcs) allPts.push(...extractGCS(as.srcs,s.id,aRays,aRad,false));
           const obj=gcsNewtonRef.current;
           if(obj){
             const attr=obj.geometry.attributes.position;
@@ -649,15 +650,20 @@ function StageScreen({ passport, onBack }) {
     setComputing(true); setComputed(false);
     setTimeout(()=>{
       const srcs=passportToComputeSources(activeSources);
-      const rays=fibRays(200);
+      const N=srcs.length;
+      // Adaptive sampling: scale down rays/radial for large source counts
+      const nRays=N<=10?200:N<=20?120:N<=35?80:50;
+      const nRad=N<=10?30:N<=20?20:N<=35?14:10;
+      const nEig=N<=10?30:N<=20?20:12;
+      const rays=fibRays(nRays);
 
       const gcsPts=[],gcsPts1pn=[],eigenPts=[],eigenPts1pn=[];
       for(const s of srcs){
-        gcsPts.push(...extractGCS(srcs,s.id,rays,30,false));
-        gcsPts1pn.push(...extractGCS(srcs,s.id,rays,30,true));
+        gcsPts.push(...extractGCS(srcs,s.id,rays,nRad,false));
+        gcsPts1pn.push(...extractGCS(srcs,s.id,rays,nRad,true));
         const r=gcsRmax(srcs,s.id)*0.55;
-        eigenPts.push(...extractEigenframe(srcs,s.id,30,r,false));
-        eigenPts1pn.push(...extractEigenframe(srcs,s.id,30,r,true));
+        eigenPts.push(...extractEigenframe(srcs,s.id,nEig,r,false));
+        eigenPts1pn.push(...extractEigenframe(srcs,s.id,nEig,r,true));
       }
       geoStore.current={gcsPts,gcsPts1pn,eigenPts,eigenPts1pn,srcs};
       animState.current.srcs=circularOrbits(srcs);
