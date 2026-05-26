@@ -26,6 +26,8 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
   position: relative;
   overflow: hidden;
   min-height: 0;
+  margin: 0 1rem 1rem;
+  border-radius: 6px;
 }
 #atlas-root {
   position: absolute;
