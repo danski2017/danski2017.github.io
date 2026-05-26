@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: instrument
 title: Atlas Instrument
 permalink: /instrument/
 description: Declare a gravitational scene, run the GFRO solver pipeline, and explore curvature structure — parity boundaries, source jurisdictions, and tidal orientation shifts — in an interactive 3D stage.
@@ -7,32 +7,25 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 
 <style>
 .instrument-intro {
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 1.1rem;
+  padding: 0.8rem 1.2rem 0.8rem;
   border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 0;
+  flex-shrink: 0;
 }
 .instrument-intro h1 {
-  margin-top: 0;
-  margin-bottom: 0.3rem;
-  font-size: 1.65rem;
+  margin: 0 0 0.2rem;
+  font-size: 1.4rem;
 }
 .instrument-intro p {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   color: #555;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
 }
-.instrument-panel-wrap {
-  width: 100%;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-  margin-bottom: 2rem;
+#instrument-wrap {
+  flex: 1;
   position: relative;
+  overflow: hidden;
+  min-height: 0;
 }
 #atlas-root {
   position: absolute;
@@ -42,7 +35,6 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 }
 @media (max-width: 767px) {
   .instrument-intro { display: none; }
-  .instrument-panel-wrap { margin-bottom: 0; }
 }
 </style>
 
@@ -51,7 +43,7 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
   <p>Declare a gravitational scene, run the GFRO solver pipeline, and explore curvature structure — parity boundaries, source jurisdictions, and tidal orientation shifts — in an interactive 3D stage.</p>
 </div>
 
-<div class="instrument-panel-wrap" id="instrument-wrap">
+<div id="instrument-wrap">
   <div id="atlas-root"></div>
 </div>
 
@@ -61,22 +53,6 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script>
 (function () {
-  function sizePanel() {
-    var wrap = document.getElementById('instrument-wrap');
-    if (!wrap) return;
-    var top = Math.round(wrap.getBoundingClientRect().top);
-    if (window.innerWidth < 768) {
-      // Mobile: fill remaining viewport completely
-      wrap.style.height = (window.innerHeight - top) + 'px';
-    } else {
-      // Desktop: fill remaining viewport; footer + margin sit below the fold
-      wrap.style.height = (window.innerHeight - top) + 'px';
-    }
-  }
-  sizePanel();
-  window.addEventListener('resize', sizePanel);
-  window.addEventListener('load', sizePanel);
-
   // Fetch, patch, transpile, and render the instrument JSX
   fetch('/atlas-solver/atlas_instrument_v0_3.jsx')
     .then(function (r) { return r.text(); })
