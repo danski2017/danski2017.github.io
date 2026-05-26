@@ -92,11 +92,14 @@ const starColorHex = cls => parseInt(starColor(cls).replace('#',''),16);
 // Scene-aware sizing: stellar scenes (pc) use larger spheres; planetary scenes (AU) use smaller ones
 const starSize = (s, scaleAU) => {
   if(scaleAU){
-    // AU-scale scene: Sun should be visible but not engulf planets
-    if(s.id==='SOL') return 0.035;
-    if(s.cls==='planet') return Math.max(0.008, Math.pow(s.mass_msun, 0.18)*0.03);
-    if(s.cls==='moon'||s.cls==='dwarf_planet') return 0.006;
-    return 0.02;
+    // AU-scale: all bodies tiny relative to orbital distances
+    if(s.id==='SOL') return 0.4;
+    if(s.cls==='planet'){
+      // Jupiter~0.25, Earth~0.12, Mercury~0.08
+      return Math.max(0.06, Math.min(0.25, Math.pow(s.mass_msun/3.0e-6, 0.12)*0.12));
+    }
+    if(s.cls==='moon'||s.cls==='dwarf_planet') return 0.05;
+    return 0.1;
   }
   // pc-scale scene (stellar neighborhood)
   if(s.id==='SOL') return 1.0;
@@ -593,7 +596,8 @@ function StageScreen({ passport, onBack }) {
     activeSources.forEach((s,i)=>{
       const geo=new THREE.SphereGeometry(starSize(s,scaleAU),24,16);
       const col=starColorHex(s.cls);
-      const mat=new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:s.id==='SOL'?2.0:0.5,roughness:0.5,metalness:0.0});
+      const emI=s.id==='SOL'?(scaleAU?0.8:2.0):0.5;
+      const mat=new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:emI,roughness:0.5,metalness:0.0});
       const mesh=new THREE.Mesh(geo,mat);
       mesh.position.set(...positions[i]);
       scene.add(mesh);
