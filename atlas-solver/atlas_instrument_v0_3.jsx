@@ -95,18 +95,13 @@ const starColor = cls => ({
 
 const starColorHex = cls => parseInt(starColor(cls).replace('#',''),16);
 
-// Scene-aware sizing: stellar scenes (pc) use larger spheres; planetary scenes (AU) use smaller ones
+// Real radii in AU (exaggerated ~15× so they're visible dots, not hiding GCS)
+const AU_RADII = {
+  SOL:0.07, MERCURY:0.004, VENUS:0.006, EARTH:0.006, MOON:0.002,
+  MARS:0.005, JUPITER:0.02, SATURN:0.018, URANUS:0.012, NEPTUNE:0.012, PLUTO:0.002
+};
 const starSize = (s, scaleAU) => {
-  if(scaleAU){
-    // AU-scale: all bodies tiny relative to orbital distances
-    if(s.id==='SOL') return 0.4;
-    if(s.cls==='planet'){
-      // Jupiter~0.25, Earth~0.12, Mercury~0.08
-      return Math.max(0.06, Math.min(0.25, Math.pow(s.mass_msun/3.0e-6, 0.12)*0.12));
-    }
-    if(s.cls==='moon'||s.cls==='dwarf_planet') return 0.05;
-    return 0.1;
-  }
+  if(scaleAU) return AU_RADII[s.id]||0.005;
   // pc-scale scene (stellar neighborhood)
   if(s.id==='SOL') return 1.0;
   return Math.max(0.22, Math.min(1.4, Math.pow(s.mass_msun, 0.35)*1.1));
