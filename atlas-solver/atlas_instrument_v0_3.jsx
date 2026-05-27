@@ -766,12 +766,15 @@ function StageScreen({ passport, onBack }) {
 
       const gcsPts=[],gcsPts1pn=[],eigenPts=[],eigenPts1pn=[];
       for(const s of srcs){
+        const before=gcsPts.length;
         gcsPts.push(...extractGCS(srcs,s.id,rays,nRad,false));
         gcsPts1pn.push(...extractGCS(srcs,s.id,rays,nRad,true));
         const r=gcsRmax(srcs,s.id)*0.55;
         eigenPts.push(...extractEigenframe(srcs,s.id,nEig,r,false));
         eigenPts1pn.push(...extractEigenframe(srcs,s.id,nEig,r,true));
+        console.log('[Atlas] GCS',s.id,':',(gcsPts.length-before),'pts   rmax=',gcsRmax(srcs,s.id).toFixed(4));
       }
+      console.log('[Atlas] Total GCS:',gcsPts.length,'Newton |',gcsPts1pn.length,'1PN | eigenPts:',eigenPts.length);
       geoStore.current={gcsPts,gcsPts1pn,eigenPts,eigenPts1pn,srcs};
       animState.current.srcs=circularOrbits(srcs);
 
@@ -797,8 +800,12 @@ function StageScreen({ passport, onBack }) {
     const attr=new THREE.BufferAttribute(buf,3); attr.setUsage(THREE.DynamicDrawUsage);
     geo.setAttribute('position',attr);
     geo.setDrawRange(0,pts.length);
-    const mat=new THREE.PointsMaterial({color,size:2.0,sizeAttenuation:false,transparent:true,opacity,depthWrite:false});
+    // depthTest:false ensures GCS diagnostic overlay always renders on top of source spheres.
+    // Near/far ratio (0.0001–5000) causes z-buffer precision loss at solar-system scales,
+    // making the depth test unreliable for sub-AU GCS shells around inner planets.
+    const mat=new THREE.PointsMaterial({color,size:3.0,sizeAttenuation:false,transparent:true,opacity,depthWrite:false,depthTest:false});
     const obj=new THREE.Points(geo,mat); obj.visible=visible;
+    obj.renderOrder=999;
     return obj;
   };
 
