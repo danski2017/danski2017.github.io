@@ -797,7 +797,29 @@ function StageScreen({ passport, onBack }) {
     const attr=new THREE.BufferAttribute(buf,3); attr.setUsage(THREE.DynamicDrawUsage);
     geo.setAttribute('position',attr);
     geo.setDrawRange(0,pts.length);
-    const mat=new THREE.PointsMaterial({color,size:0.012,sizeAttenuation:true,transparent:true,opacity,depthWrite:false});
+    // Clamped-size shader: world-size attenuation but min 1.5px, max 6px
+    const c=new THREE.Color(color);
+    const mat=new THREE.ShaderMaterial({
+      transparent:true, depthWrite:false,
+      uniforms:{uColor:{value:c},uOpacity:{value:opacity},uWorldSize:{value:0.15}},
+      vertexShader:`
+        uniform float uWorldSize;
+        void main(){
+          vec4 mv=modelViewMatrix*vec4(position,1.0);
+          gl_Position=projectionMatrix*mv;
+          float s=uWorldSize*projectionMatrix[1][1]/(-mv.z);
+          gl_PointSize=clamp(s*500.0,1.5,6.0);
+        }`,
+      fragmentShader:`
+        uniform vec3 uColor;
+        uniform float uOpacity;
+        void main(){
+          float d=length(gl_PointCoord-0.5);
+          if(d>0.5)discard;
+          float a=smoothstep(0.5,0.3,d)*uOpacity;
+          gl_FragColor=vec4(uColor,a);
+        }`,
+    });
     const obj=new THREE.Points(geo,mat); obj.visible=visible;
     return obj;
   };
@@ -862,7 +884,7 @@ function StageScreen({ passport, onBack }) {
   useEffect(()=>{
     if(!computed)return;
     const pm=physMode;
-    const setVis=(ref,vis,op)=>{if(!ref.current)return;ref.current.visible=vis;if(ref.current.material)ref.current.material.opacity=op;};
+    const setVis=(ref,vis,op)=>{if(!ref.current)return;ref.current.visible=vis;const m=ref.current.material;if(!m)return;if(m.uniforms&&m.uniforms.uOpacity)m.uniforms.uOpacity.value=op;else m.opacity=op;};
     setVis(gcsNewtonRef,  layersOn.gcs  && pm==='newton', opacity.gcs);
     setVis(gcs1pnRef,     layersOn.gcs  && pm==='1pn',    opacity.gcs);
     setVis(eigenNewtonRef,layersOn.eigen && pm==='newton', opacity.eigen);
