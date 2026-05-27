@@ -580,10 +580,10 @@ function StageScreen({ passport, onBack }) {
 
     const scene=new THREE.Scene();
     scene.background=new THREE.Color(0x07090d);
-    scene.fog=new THREE.FogExp2(0x07090d,0.0008);
+    scene.fog=new THREE.FogExp2(0x07090d,0.0003);
     sceneRef.current=scene;
 
-    const cam=new THREE.PerspectiveCamera(55,W/H,0.01,5000);
+    const cam=new THREE.PerspectiveCamera(55,W/H,0.0001,5000);
     camRef.current=cam;
 
     const ren=new THREE.WebGLRenderer({antialias:true});
@@ -716,17 +716,19 @@ function StageScreen({ passport, onBack }) {
   // ── Zoom-to-source ──────────────────────────────────────────────────────
   const zoomToSource=sourceId=>{
     const mesh=sourceMeshes.current[sourceId];
-    if(!mesh)return;
+    if(!mesh){console.warn('zoomToSource: no mesh for',sourceId);return;}
     const pos=[mesh.position.x,mesh.position.y,mesh.position.z];
-    const srcs=geoStore.current.srcs;
-    let viewDist=1;
-    if(srcs.length){
+    const srcs=geoStore.current.srcs||[];
+    // Compute GCS shell radius for this source to set appropriate view distance
+    let viewDist=0.5;
+    const csrc=srcs.find(s=>s.id===sourceId);
+    if(csrc&&srcs.length>1){
       const rm=gcsRmax(srcs,sourceId);
-      viewDist=Math.max(rm*4,0.05);
+      viewDist=Math.max(rm*5,0.02); // 5× shell radius gives good framing
     }
     const o=orbitRef.current;
     camTarget.current={
-      targetRadius:viewDist,targetTheta:o.theta,targetPhi:1.1,
+      targetRadius:viewDist,targetTheta:0.4,targetPhi:1.1,
       lookAt:pos,progress:0,
       _r0:o.radius,_t0:o.theta,_p0:o.phi,_la0:[...o.lookAt],
     };
@@ -734,7 +736,7 @@ function StageScreen({ passport, onBack }) {
   const zoomToFullScene=()=>{
     const o=orbitRef.current;
     camTarget.current={
-      targetRadius:maxDRef.current*2.8,targetTheta:o.theta,targetPhi:1.1,
+      targetRadius:maxDRef.current*2.8,targetTheta:0.4,targetPhi:1.1,
       lookAt:[0,0,0],progress:0,
       _r0:o.radius,_t0:o.theta,_p0:o.phi,_la0:[...o.lookAt],
     };
@@ -792,7 +794,7 @@ function StageScreen({ passport, onBack }) {
     const attr=new THREE.BufferAttribute(buf,3); attr.setUsage(THREE.DynamicDrawUsage);
     geo.setAttribute('position',attr);
     geo.setDrawRange(0,pts.length);
-    const mat=new THREE.PointsMaterial({color,size:0.08,sizeAttenuation:true,transparent:true,opacity});
+    const mat=new THREE.PointsMaterial({color,size:0.012,sizeAttenuation:true,transparent:true,opacity,depthWrite:false});
     const obj=new THREE.Points(geo,mat); obj.visible=visible;
     return obj;
   };
