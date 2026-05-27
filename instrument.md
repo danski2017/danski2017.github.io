@@ -56,7 +56,7 @@ description: Declare a gravitational scene, run the GFRO solver pipeline, and ex
 <script>
 (function () {
   // Fetch, patch, transpile, and render the instrument JSX
-  fetch('/atlas-solver/atlas_instrument_v0_3.jsx?v=54')
+  fetch('/atlas-solver/atlas_instrument_v0_3.jsx?v=55')
     .then(function (r) { return r.text(); })
     .then(function (code) {
       // Replace ES module imports with global references from CDN builds
