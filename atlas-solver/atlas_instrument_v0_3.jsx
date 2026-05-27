@@ -679,7 +679,7 @@ function StageScreen({ passport, onBack }) {
             for(let i=0;i<allPts.length&&i*3+2<attr.array.length;i++){
               attr.array[i*3]=allPts[i][0];attr.array[i*3+1]=allPts[i][1];attr.array[i*3+2]=allPts[i][2];
             }
-            for(let i=allPts.length*3;i<attr.array.length;i++) attr.array[i]=1e7;
+            for(let i=allPts.length*3;i<attr.array.length;i++) attr.array[i]=0;
             attr.needsUpdate=true;
             obj.geometry.setDrawRange(0,allPts.length);
           }
@@ -794,18 +794,20 @@ function StageScreen({ passport, onBack }) {
 
   const makePointCloud=(pts,color,opacity,visible)=>{
     const MAX=Math.max(pts.length*2,500);
-    const buf=new Float32Array(MAX*3).fill(1e7);
+    const buf=new Float32Array(MAX*3).fill(0);
     pts.forEach((p,i)=>{buf[i*3]=p[0];buf[i*3+1]=p[1];buf[i*3+2]=p[2];});
     const geo=new THREE.BufferGeometry();
     const attr=new THREE.BufferAttribute(buf,3); attr.setUsage(THREE.DynamicDrawUsage);
     geo.setAttribute('position',attr);
     geo.setDrawRange(0,pts.length);
     // depthTest:false ensures GCS diagnostic overlay always renders on top of source spheres.
-    // Near/far ratio (0.0001–5000) causes z-buffer precision loss at solar-system scales,
-    // making the depth test unreliable for sub-AU GCS shells around inner planets.
     const mat=new THREE.PointsMaterial({color,size:3.0,sizeAttenuation:false,transparent:true,opacity,depthWrite:false,depthTest:false});
     const obj=new THREE.Points(geo,mat); obj.visible=visible;
     obj.renderOrder=999;
+    // frustumCulled:false prevents THREE.js from culling the entire cloud.
+    // computeBoundingSphere() uses the FULL buffer (including unused padding),
+    // which would place the bounding sphere far beyond the camera far plane.
+    obj.frustumCulled=false;
     return obj;
   };
 
