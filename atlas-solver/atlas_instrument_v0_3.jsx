@@ -133,7 +133,11 @@ const SCENE_PRESETS = {
 // Physical GR uses c=3e8 m/s; here we use a small value so the cross-term
 // correction produces a visible GCS boundary shift at solar-system scales.
 
-const G=1.0, SOFT=0.001, C_VIS=5.0;
+// SOFT=0.0002 AU: small enough to resolve the Moon's closure shell (~0.0006 AU,
+// nested inside Earth's jurisdiction) and to keep the Earth–Moon n-body force
+// accurate (separation 0.00257 AU). All other separations are ≥0.39 AU where
+// softening is negligible either way.
+const G=1.0, SOFT=0.0002, C_VIS=5.0;
 
 const vadd=(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]];
 const vsub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]];
@@ -196,17 +200,26 @@ const fibRays=n=>{
 // Log-spaced radial grid (catches inner crossings for mass-asymmetric pairs)
 const logGrid=(rmax,n)=>{const rm=0.001*rmax;return Array.from({length:n},(_,i)=>rm*Math.pow(rmax/rm,i/(n-1)));};
 
-// Apollonius-based estimate of max expected GCS radius for a source
+// Apollonius-based estimate of the GCS search ceiling for a source.
+// The closure shell forms against the dominant FLOOR-setting body — the most
+// massive competitor (Q_N1). Sizing the radial search from the most massive
+// neighbour (not the max over all pairs) keeps the search band tight around the
+// real shell. The previous max-over-all-pairs form was dominated by the lightest
+// distant body (e.g. Earth↔Pluto → ~39 AU), pushing the log grid's lower bound
+// above the true shell so inner-planet crossings were never sampled.
 const gcsRmax=(srcs,sid)=>{
   const src=srcs.find(s=>s.id===sid);
-  let rmax=0;
+  let bestMass=0, shellR=0;
   for(const o of srcs){
     if(o.id===sid)continue;
     const d=vnorm(vsub(o.pos,src.pos));if(d<1e-8)continue;
-    const ratio=Math.pow(Math.max(src.mass,1e-30)/Math.max(o.mass,1e-30),1/3);
-    rmax=Math.max(rmax,d*ratio/(1+ratio)*1.1);
+    if(o.mass>bestMass){
+      bestMass=o.mass;
+      const k=Math.pow(Math.max(o.mass,1e-30)/Math.max(src.mass,1e-30),1/3);
+      shellR=d/(1+k);  // Apollonius shell radius vs dominant competitor
+    }
   }
-  return rmax||0.5;
+  return (shellR>0?shellR:0.5)*3;  // 3× margin for the radial search ceiling
 };
 
 // Extract GCS crossing points for one source (R2 or R5 operator)
