@@ -716,16 +716,19 @@ function StageScreen({ passport, onBack }) {
   // ── Zoom-to-source ──────────────────────────────────────────────────────
   const zoomToSource=sourceId=>{
     const mesh=sourceMeshes.current[sourceId];
-    if(!mesh){console.warn('zoomToSource: no mesh for',sourceId);return;}
+    if(!mesh)return;
     const pos=[mesh.position.x,mesh.position.y,mesh.position.z];
     const srcs=geoStore.current.srcs||[];
-    // Compute GCS shell radius for this source to set appropriate view distance
-    let viewDist=0.5;
+    // View distance: use GCS shell radius but cap so we're always zooming IN
     const csrc=srcs.find(s=>s.id===sourceId);
+    let viewDist=0.5;
     if(csrc&&srcs.length>1){
       const rm=gcsRmax(srcs,sourceId);
-      viewDist=Math.max(rm*5,0.02); // 5× shell radius gives good framing
+      // Use 1.5× shell radius, but never more than 30% of the source's distance from origin
+      const orbitalDist=Math.sqrt(pos[0]**2+pos[1]**2+pos[2]**2);
+      viewDist=Math.min(rm*1.5, Math.max(orbitalDist*0.3, 0.05));
     }
+    viewDist=Math.max(viewDist,0.005);
     const o=orbitRef.current;
     camTarget.current={
       targetRadius:viewDist,targetTheta:0.4,targetPhi:1.1,
