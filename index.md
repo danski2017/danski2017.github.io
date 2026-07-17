@@ -95,27 +95,33 @@ description: Relational Labs is an independent research platform for multi-body 
 
     <h3><strong>Paper I — The Gravitational Coherence Surface</strong></h3>
     <p><em>Parity Horizons of Gravitational Identity</em><br>
-    <a href="The%20Gravitational%20Coherence%20Surface.pdf">Read Paper</a></p>
+    <a href="The_Gravitational_Coherence_Surface_Revised_v0_5.pdf">Read Paper</a>
+    &nbsp;<small>(<a href="archive/The%20Gravitational%20Coherence%20Surface.pdf">older version</a>)</small></p>
 
     <h3><strong>Paper II — Many Source Parity Networks (GCS II)</strong></h3>
     <p><em>Interaction Dynamics of High-Density Source Distributions</em><br>
-    <a href="Many%20Source%20Parity%20Networks_GCS_II_.pdf">Read Paper</a></p>
+    <a href="Many_Source_Parity_Networks_GCS_II_Revised_v0_3.pdf">Read Paper</a>
+    &nbsp;<small>(<a href="archive/Many%20Source%20Parity%20Networks_GCS_II_.pdf">older version</a>)</small></p>
 
     <h3><strong>Paper III — Mesoscale Gravitational Readability (GCS III)</strong></h3>
     <p><em>Geometric Methods for Curvature Analysis in Complex Systems</em><br>
-    <a href="Mesoscale_Gravitational_Readability_GCS_III_final.pdf">Read Paper</a></p>
+    <a href="Mesoscale_Gravitational_Readability_GCS_III_Revised_v0_2.pdf">Read Paper</a>
+    &nbsp;<small>(<a href="archive/Mesoscale_Gravitational_Readability_GCS_III_final.pdf">older version</a>)</small></p>
 
     <h3><strong>Paper IV — Proof of Concept Extraction (GCS IV)</strong></h3>
     <p><em>Algorithmic Implementation and Empirical Validation Metrics</em><br>
-    <a href="Proof_of_Concept_Extraction_GCS_IV_final.pdf">Read Paper</a></p>
+    <a href="Proof_of_Concept_Extraction_GCS_IV_Revised_v0_3.pdf">Read Paper</a>
+    &nbsp;<small>(<a href="archive/Proof_of_Concept_Extraction_GCS_IV_final.pdf">older version</a>)</small></p>
 
     <h3><strong>Paper V — The Nesting Domain Handoff Problem</strong></h3>
     <p><em>Parity Networks and the Modular Structure of Gravitational Scenes</em><br>
-    <a href="Nesting_Domain_Handoff_GCS_V_.pdf">Read Paper</a></p>
+    <a href="Nesting_Domain_Handoff_GCS_V_Revised_v0_3.pdf">Read Paper</a>
+    &nbsp;<small>(<a href="archive/Nesting_Domain_Handoff_GCS_V_.pdf">older version</a>)</small></p>
 
     <h3><strong>Paper VI — The Gravitational Field-Relation Operator</strong></h3>
     <p><em>Direct Construction of Gravitational Parity Networks from Source-Context Residuals</em><br>
-    <a href="Gravitational_Field_Relation_Operator_public_GCS%20VI.pdf">Read Paper</a></p>
+    <a href="Gravitational_Field_Relation_Operator_Revised_v0_3.pdf">Read Paper</a>
+    &nbsp;<small>(<a href="archive/Gravitational_Field_Relation_Operator_public_GCS%20VI.pdf">older version</a>)</small></p>
   </div>
 
   <div class="index-updates">
