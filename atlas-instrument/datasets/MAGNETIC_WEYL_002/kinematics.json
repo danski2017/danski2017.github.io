@@ -1,0 +1,1152 @@
+{
+ "schema": "atlas-declared-kinematics/1-real",
+ "provenance": "SIMBAD TAP harvest 2026-07-18 (raw CSV receipt simbad_harvest_20260718.csv); distances from GAIA_LSN_PARENT_001 scene plan (declared roster geometry); registration rotation recovered by Horn quaternion fit of SIMBAD equatorial unit vectors to roster unit positions",
+ "frame": "registration_cartesian_node0_sun_j2000 (recovered empirically)",
+ "rotation_fit": {
+  "n_systems": 49,
+  "residual_mean_deg": 0.7795,
+  "residual_max_deg": 6.7447,
+  "R": [
+   [
+    0.99999491,
+    -0.00235735,
+    0.00214938
+   ],
+   [
+    0.00236583,
+    0.99998939,
+    -0.00395277
+   ],
+   [
+    -0.00214003,
+    0.00395783,
+    0.99998988
+   ]
+  ]
+ },
+ "uncertainty_passport": "catalog-epoch approximate astrometry, ~km/s accuracy; members of a collapsed system share the system velocity; white-dwarf radial velocities may include gravitational redshift (flagged); two brown-dwarf systems carry v=0 (flagged); NOT a precision ephemeris",
+ "v_over_c": [
+  {
+   "id": "sirius_a",
+   "system": "sirius_system",
+   "simbad_id": "* alf CMa",
+   "flag": "ok",
+   "v_kms": [
+    8.577,
+    -8.07,
+    -13.112
+   ],
+   "speed_kms": 17.62,
+   "v": [
+    0.0000286083,
+    -0.00002692,
+    -0.0000437372
+   ]
+  },
+  {
+   "id": "procyon_a",
+   "system": "procyon_system",
+   "simbad_id": "GJ 280",
+   "flag": "ok",
+   "v_kms": [
+    11.984,
+    2.452,
+    -17.626
+   ],
+   "speed_kms": 21.45,
+   "v": [
+    0.0000399737,
+    0.00000817751,
+    -0.0000587949
+   ]
+  },
+  {
+   "id": "alpha_cen_a",
+   "system": "alpha_system",
+   "simbad_id": "GJ 559 A",
+   "flag": "ok",
+   "v_kms": [
+    -11.303,
+    20.907,
+    14.89
+   ],
+   "speed_kms": 28.05,
+   "v": [
+    -0.0000377029,
+    0.0000697387,
+    0.0000496674
+   ]
+  },
+  {
+   "id": "sirius_b",
+   "system": "sirius_system",
+   "simbad_id": "* alf CMa",
+   "flag": "ok",
+   "v_kms": [
+    8.577,
+    -8.07,
+    -13.112
+   ],
+   "speed_kms": 17.62,
+   "v": [
+    0.0000286083,
+    -0.00002692,
+    -0.0000437372
+   ]
+  },
+  {
+   "id": "alpha_cen_b",
+   "system": "alpha_system",
+   "simbad_id": "GJ 559 A",
+   "flag": "ok",
+   "v_kms": [
+    -11.303,
+    20.907,
+    14.89
+   ],
+   "speed_kms": 28.05,
+   "v": [
+    -0.0000377029,
+    0.0000697387,
+    0.0000496674
+   ]
+  },
+  {
+   "id": "40_eri_a",
+   "system": "40_system",
+   "simbad_id": "GJ 166 A",
+   "flag": "ok",
+   "v_kms": [
+    24.789,
+    -70.654,
+    -75.81
+   ],
+   "speed_kms": 106.55,
+   "v": [
+    0.0000826871,
+    -0.000235677,
+    -0.000252876
+   ]
+  },
+  {
+   "id": "epsilon_eri",
+   "system": "epsilon_eri",
+   "simbad_id": "GJ 144",
+   "flag": "ok",
+   "v_kms": [
+    21.541,
+    4.184,
+    -2.408
+   ],
+   "speed_kms": 22.07,
+   "v": [
+    0.0000718518,
+    0.000013955,
+    -0.00000803287
+   ]
+  },
+  {
+   "id": "tau_ceti",
+   "system": "tau_ceti",
+   "simbad_id": "GJ 71",
+   "flag": "ok",
+   "v_kms": [
+    2.502,
+    -32.074,
+    18.659
+   ],
+   "speed_kms": 37.19,
+   "v": [
+    0.00000834652,
+    -0.000106988,
+    0.0000622394
+   ]
+  },
+  {
+   "id": "epsilon_ind_a",
+   "system": "epsilon_ind_a",
+   "simbad_id": "GJ 845",
+   "flag": "ok",
+   "v_kms": [
+    -17.962,
+    88.179,
+    9.921
+   ],
+   "speed_kms": 90.54,
+   "v": [
+    -0.0000599138,
+    0.000294135,
+    0.0000330932
+   ]
+  },
+  {
+   "id": "61_cyg_a",
+   "system": "61_system",
+   "simbad_id": "GJ 820 A",
+   "flag": "ok",
+   "v_kms": [
+    -14.855,
+    108.524,
+    1.276
+   ],
+   "speed_kms": 109.54,
+   "v": [
+    -0.0000495516,
+    0.000361996,
+    0.00000425644
+   ]
+  },
+  {
+   "id": "van_maanen_star",
+   "system": "van_maanen_star",
+   "simbad_id": "GJ 35",
+   "flag": "large_rv_possible_wd_grav_redshift",
+   "v_kms": [
+    255.305,
+    82.167,
+    -30.714
+   ],
+   "speed_kms": 269.95,
+   "v": [
+    0.000851606,
+    0.000274079,
+    -0.000102452
+   ]
+  },
+  {
+   "id": "stein_2051_b",
+   "system": "stein_system",
+   "simbad_id": "GJ 169.1 A",
+   "flag": "ok",
+   "v_kms": [
+    -8.717,
+    69.341,
+    -2.482
+   ],
+   "speed_kms": 69.93,
+   "v": [
+    -0.0000290763,
+    0.000231297,
+    -0.00000827777
+   ]
+  },
+  {
+   "id": "40_eri_bc",
+   "system": "40_system",
+   "simbad_id": "GJ 166 A",
+   "flag": "ok",
+   "v_kms": [
+    24.789,
+    -70.654,
+    -75.81
+   ],
+   "speed_kms": 106.55,
+   "v": [
+    0.0000826871,
+    -0.000235677,
+    -0.000252876
+   ]
+  },
+  {
+   "id": "61_cyg_b",
+   "system": "61_system",
+   "simbad_id": "GJ 820 A",
+   "flag": "ok",
+   "v_kms": [
+    -14.855,
+    108.524,
+    1.276
+   ],
+   "speed_kms": 109.54,
+   "v": [
+    -0.0000495516,
+    0.000361996,
+    0.00000425644
+   ]
+  },
+  {
+   "id": "procyon_b",
+   "system": "procyon_system",
+   "simbad_id": "GJ 280",
+   "flag": "ok",
+   "v_kms": [
+    11.984,
+    2.452,
+    -17.626
+   ],
+   "speed_kms": 21.45,
+   "v": [
+    0.0000399737,
+    0.00000817751,
+    -0.0000587949
+   ]
+  },
+  {
+   "id": "lacaille_8760",
+   "system": "lacaille_8760",
+   "simbad_id": "GJ 825",
+   "flag": "ok",
+   "v_kms": [
+    -38.072,
+    -48.106,
+    -29.806
+   ],
+   "speed_kms": 68.21,
+   "v": [
+    -0.000126994,
+    -0.000160463,
+    -0.0000994215
+   ]
+  },
+  {
+   "id": "lacaille_9352",
+   "system": "lacaille_9352",
+   "simbad_id": "GJ 887",
+   "flag": "ok",
+   "v_kms": [
+    43.251,
+    98.13,
+    11.945
+   ],
+   "speed_kms": 107.9,
+   "v": [
+    0.000144269,
+    0.000327325,
+    0.0000398433
+   ]
+  },
+  {
+   "id": "gj_412_a",
+   "system": "gj_system_2",
+   "simbad_id": "GJ 412 A",
+   "flag": "ok",
+   "v_kms": [
+    -10.321,
+    106.404,
+    63.492
+   ],
+   "speed_kms": 124.34,
+   "v": [
+    -0.0000344271,
+    0.000354925,
+    0.000211786
+   ]
+  },
+  {
+   "id": "gj_1",
+   "system": "gj_1",
+   "simbad_id": "GJ 1",
+   "flag": "ok",
+   "v_kms": [
+    -11.998,
+    115.944,
+    -53.224
+   ],
+   "speed_kms": 128.14,
+   "v": [
+    -0.0000400207,
+    0.000386747,
+    -0.000177536
+   ]
+  },
+  {
+   "id": "gj_832",
+   "system": "gj_832",
+   "simbad_id": "GJ 832",
+   "flag": "ok",
+   "v_kms": [
+    -5.417,
+    2.714,
+    -22.526
+   ],
+   "speed_kms": 23.33,
+   "v": [
+    -0.0000180697,
+    0.0000090525,
+    -0.0000751371
+   ]
+  },
+  {
+   "id": "ad_leo",
+   "system": "ad_leo",
+   "simbad_id": "GJ 388",
+   "flag": "ok",
+   "v_kms": [
+    -5.953,
+    15.707,
+    3.338
+   ],
+   "speed_kms": 17.13,
+   "v": [
+    -0.0000198563,
+    0.0000523915,
+    0.0000111358
+   ]
+  },
+  {
+   "id": "gj_687",
+   "system": "gj_687",
+   "simbad_id": "GJ 687",
+   "flag": "ok",
+   "v_kms": [
+    -8.447,
+    -13.951,
+    -36.768
+   ],
+   "speed_kms": 40.22,
+   "v": [
+    -0.000028177,
+    -0.0000465353,
+    -0.000122644
+   ]
+  },
+  {
+   "id": "groombridge_34_a",
+   "system": "groombridge_system",
+   "simbad_id": "GJ 15 A",
+   "flag": "ok",
+   "v_kms": [
+    -0.41,
+    48.909,
+    13.347
+   ],
+   "speed_kms": 50.7,
+   "v": [
+    -0.00000136608,
+    0.000163142,
+    0.0000445208
+   ]
+  },
+  {
+   "id": "lalande_21185",
+   "system": "lalande_21185",
+   "simbad_id": "GJ 411",
+   "flag": "ok",
+   "v_kms": [
+    35.089,
+    -1.221,
+    -96.464
+   ],
+   "speed_kms": 102.65,
+   "v": [
+    0.000117046,
+    -0.00000407439,
+    -0.000321769
+   ]
+  },
+  {
+   "id": "gj_674",
+   "system": "gj_674",
+   "simbad_id": "GJ 674",
+   "flag": "ok",
+   "v_kms": [
+    14.348,
+    14.105,
+    -10.842
+   ],
+   "speed_kms": 22.86,
+   "v": [
+    0.0000478593,
+    0.0000470501,
+    -0.0000361663
+   ]
+  },
+  {
+   "id": "ev_lac",
+   "system": "ev_lac",
+   "simbad_id": "GJ 873",
+   "flag": "ok",
+   "v_kms": [
+    2.207,
+    -18.505,
+    -7.742
+   ],
+   "speed_kms": 20.18,
+   "v": [
+    0.00000736142,
+    -0.0000617268,
+    -0.0000258241
+   ]
+  },
+  {
+   "id": "struve_2398_a",
+   "system": "struve_system",
+   "simbad_id": "GJ 725 A",
+   "flag": "ok",
+   "v_kms": [
+    -26.697,
+    21.725,
+    14.952
+   ],
+   "speed_kms": 37.53,
+   "v": [
+    -0.0000890508,
+    0.0000724668,
+    0.0000498735
+   ]
+  },
+  {
+   "id": "gj_581",
+   "system": "gj_581",
+   "simbad_id": "GJ 581",
+   "flag": "ok",
+   "v_kms": [
+    -21.801,
+    30.761,
+    -1.467
+   ],
+   "speed_kms": 37.73,
+   "v": [
+    -0.0000727214,
+    0.000102608,
+    -0.00000489312
+   ]
+  },
+  {
+   "id": "luyten_star",
+   "system": "luyten_star",
+   "simbad_id": "GJ 273",
+   "flag": "ok",
+   "v_kms": [
+    -18.779,
+    18.97,
+    -64.358
+   ],
+   "speed_kms": 69.67,
+   "v": [
+    -0.0000626416,
+    0.0000632769,
+    -0.000214674
+   ]
+  },
+  {
+   "id": "wolf_1061",
+   "system": "wolf_1061",
+   "simbad_id": "GJ 628",
+   "flag": "ok",
+   "v_kms": [
+    8.023,
+    24.816,
+    -18.852
+   ],
+   "speed_kms": 32.18,
+   "v": [
+    0.0000267633,
+    0.000082778,
+    -0.0000628838
+   ]
+  },
+  {
+   "id": "wolf_424_ab",
+   "system": "wolf_424_ab",
+   "simbad_id": "GJ 473",
+   "flag": "ok",
+   "v_kms": [
+    -5.605,
+    35.529,
+    4.48
+   ],
+   "speed_kms": 36.25,
+   "v": [
+    -0.0000186972,
+    0.000118513,
+    0.0000149428
+   ]
+  },
+  {
+   "id": "kapteyn_star",
+   "system": "kapteyn_star",
+   "simbad_id": "GJ 191",
+   "flag": "large_rv_possible_wd_grav_redshift",
+   "v_kms": [
+    -98.502,
+    122.024,
+    -247.93
+   ],
+   "speed_kms": 293.36,
+   "v": [
+    -0.000328569,
+    0.000407029,
+    -0.000827004
+   ]
+  },
+  {
+   "id": "kruger_60_a",
+   "system": "kruger_system",
+   "simbad_id": "GJ 860 A",
+   "flag": "ok",
+   "v_kms": [
+    -13.916,
+    -9.024,
+    -22.561
+   ],
+   "speed_kms": 28,
+   "v": [
+    -0.0000464173,
+    -0.0000301014,
+    -0.0000752562
+   ]
+  },
+  {
+   "id": "gj_682",
+   "system": "gj_682",
+   "simbad_id": "GJ 682",
+   "flag": "ok",
+   "v_kms": [
+    -12.709,
+    41.915,
+    8.621
+   ],
+   "speed_kms": 44.64,
+   "v": [
+    -0.0000423917,
+    0.000139813,
+    0.0000287567
+   ]
+  },
+  {
+   "id": "stein_2051_a",
+   "system": "stein_system",
+   "simbad_id": "GJ 169.1 A",
+   "flag": "ok",
+   "v_kms": [
+    -8.717,
+    69.341,
+    -2.482
+   ],
+   "speed_kms": 69.93,
+   "v": [
+    -0.0000290763,
+    0.000231297,
+    -0.00000827777
+   ]
+  },
+  {
+   "id": "struve_2398_b",
+   "system": "struve_system",
+   "simbad_id": "GJ 725 A",
+   "flag": "ok",
+   "v_kms": [
+    -26.697,
+    21.725,
+    14.952
+   ],
+   "speed_kms": 37.53,
+   "v": [
+    -0.0000890508,
+    0.0000724668,
+    0.0000498735
+   ]
+  },
+  {
+   "id": "ross_614_a",
+   "system": "ross_system",
+   "simbad_id": "GJ 234 A",
+   "flag": "ok",
+   "v_kms": [
+    -16.64,
+    13.93,
+    -16.4
+   ],
+   "speed_kms": 27.2,
+   "v": [
+    -0.0000555061,
+    0.0000464667,
+    -0.0000547042
+   ]
+  },
+  {
+   "id": "ez_aqr_bc",
+   "system": "ez_system",
+   "simbad_id": "GJ 866",
+   "flag": "rv_omitted_tangential_only",
+   "v_kms": [
+    22.469,
+    31.968,
+    36.3
+   ],
+   "speed_kms": 53.33,
+   "v": [
+    0.0000749473,
+    0.000106634,
+    0.000121085
+   ]
+  },
+  {
+   "id": "gj_1116_ab",
+   "system": "gj_1116_ab",
+   "simbad_id": "GJ 1116",
+   "flag": "ok",
+   "v_kms": [
+    6.132,
+    23.891,
+    3.229
+   ],
+   "speed_kms": 24.88,
+   "v": [
+    0.0000204549,
+    0.0000796909,
+    0.0000107711
+   ]
+  },
+  {
+   "id": "kruger_60_b",
+   "system": "kruger_system",
+   "simbad_id": "GJ 860 A",
+   "flag": "ok",
+   "v_kms": [
+    -13.916,
+    -9.024,
+    -22.561
+   ],
+   "speed_kms": 28,
+   "v": [
+    -0.0000464173,
+    -0.0000301014,
+    -0.0000752562
+   ]
+  },
+  {
+   "id": "ross_154",
+   "system": "ross_154",
+   "simbad_id": "GJ 729",
+   "flag": "ok",
+   "v_kms": [
+    6.47,
+    12.405,
+    1.774
+   ],
+   "speed_kms": 14.1,
+   "v": [
+    0.0000215802,
+    0.0000413795,
+    0.00000591816
+   ]
+  },
+  {
+   "id": "ross_128",
+   "system": "ross_128",
+   "simbad_id": "GJ 447",
+   "flag": "ok",
+   "v_kms": [
+    29.803,
+    -11.176,
+    -20.101
+   ],
+   "speed_kms": 37.65,
+   "v": [
+    0.0000994119,
+    -0.0000372781,
+    -0.0000670512
+   ]
+  },
+  {
+   "id": "groombridge_34_b",
+   "system": "groombridge_system",
+   "simbad_id": "GJ 15 A",
+   "flag": "ok",
+   "v_kms": [
+    -0.41,
+    48.909,
+    13.347
+   ],
+   "speed_kms": 50.7,
+   "v": [
+    -0.00000136608,
+    0.000163142,
+    0.0000445208
+   ]
+  },
+  {
+   "id": "tz_ari",
+   "system": "tz_ari",
+   "simbad_id": "GJ 83.1",
+   "flag": "ok",
+   "v_kms": [
+    -28.31,
+    10.627,
+    -42.858
+   ],
+   "speed_kms": 52.45,
+   "v": [
+    -0.000094433,
+    0.0000354475,
+    -0.00014296
+   ]
+  },
+  {
+   "id": "barnards_star",
+   "system": "barnards_star",
+   "simbad_id": "GJ 699",
+   "flag": "ok",
+   "v_kms": [
+    -5.927,
+    116.814,
+    80.936
+   ],
+   "speed_kms": 142.24,
+   "v": [
+    -0.000019771,
+    0.00038965,
+    0.000269975
+   ]
+  },
+  {
+   "id": "ross_248",
+   "system": "ross_248",
+   "simbad_id": "GJ 905",
+   "flag": "ok",
+   "v_kms": [
+    -38.879,
+    4.942,
+    -71.016
+   ],
+   "speed_kms": 81.11,
+   "v": [
+    -0.000129688,
+    0.0000164841,
+    -0.000236885
+   ]
+  },
+  {
+   "id": "yz_ceti",
+   "system": "yz_ceti",
+   "simbad_id": "GJ 54.1",
+   "flag": "ok",
+   "v_kms": [
+    22.141,
+    29.67,
+    2.555
+   ],
+   "speed_kms": 37.11,
+   "v": [
+    0.0000738535,
+    0.0000989681,
+    0.00000852273
+   ]
+  },
+  {
+   "id": "proxima_cen",
+   "system": "proxima_cen",
+   "simbad_id": "GJ 551",
+   "flag": "ok",
+   "v_kms": [
+    -10.028,
+    21.592,
+    20.568
+   ],
+   "speed_kms": 31.46,
+   "v": [
+    -0.0000334491,
+    0.0000720223,
+    0.0000686061
+   ]
+  },
+  {
+   "id": "gj_1002",
+   "system": "gj_1002",
+   "simbad_id": "GJ 1002",
+   "flag": "ok",
+   "v_kms": [
+    -38.735,
+    -20.251,
+    -39.921
+   ],
+   "speed_kms": 59.2,
+   "v": [
+    -0.000129208,
+    -0.0000675509,
+    -0.000133161
+   ]
+  },
+  {
+   "id": "gj_1245_a",
+   "system": "gj_system",
+   "simbad_id": "GJ 1245 A",
+   "flag": "ok",
+   "v_kms": [
+    13.788,
+    -4.845,
+    -2.869
+   ],
+   "speed_kms": 14.89,
+   "v": [
+    0.0000459914,
+    -0.0000161627,
+    -0.00000957106
+   ]
+  },
+  {
+   "id": "gj_1061",
+   "system": "gj_1061",
+   "simbad_id": "GJ 1061",
+   "flag": "ok",
+   "v_kms": [
+    -12.777,
+    4.535,
+    -5.318
+   ],
+   "speed_kms": 14.56,
+   "v": [
+    -0.0000426179,
+    0.0000151262,
+    -0.0000177379
+   ]
+  },
+  {
+   "id": "ross_614_b",
+   "system": "ross_system",
+   "simbad_id": "GJ 234 A",
+   "flag": "ok",
+   "v_kms": [
+    -16.64,
+    13.93,
+    -16.4
+   ],
+   "speed_kms": 27.2,
+   "v": [
+    -0.0000555061,
+    0.0000464667,
+    -0.0000547042
+   ]
+  },
+  {
+   "id": "ez_aqr_a",
+   "system": "ez_system",
+   "simbad_id": "GJ 866",
+   "flag": "rv_omitted_tangential_only",
+   "v_kms": [
+    22.469,
+    31.968,
+    36.3
+   ],
+   "speed_kms": 53.33,
+   "v": [
+    0.0000749473,
+    0.000106634,
+    0.000121085
+   ]
+  },
+  {
+   "id": "gj_412_b",
+   "system": "gj_system_2",
+   "simbad_id": "GJ 412 A",
+   "flag": "ok",
+   "v_kms": [
+    -10.321,
+    106.404,
+    63.492
+   ],
+   "speed_kms": 124.34,
+   "v": [
+    -0.0000344271,
+    0.000354925,
+    0.000211786
+   ]
+  },
+  {
+   "id": "gj_1245_b",
+   "system": "gj_system",
+   "simbad_id": "GJ 1245 A",
+   "flag": "ok",
+   "v_kms": [
+    13.788,
+    -4.845,
+    -2.869
+   ],
+   "speed_kms": 14.89,
+   "v": [
+    0.0000459914,
+    -0.0000161627,
+    -0.00000957106
+   ]
+  },
+  {
+   "id": "luyten_726-8_a",
+   "system": "luyten_system",
+   "simbad_id": "GJ 65 A",
+   "flag": "ok",
+   "v_kms": [
+    0.947,
+    47.819,
+    0.654
+   ],
+   "speed_kms": 47.83,
+   "v": [
+    0.00000315776,
+    0.000159508,
+    0.00000218078
+   ]
+  },
+  {
+   "id": "luyten_726-8_b",
+   "system": "luyten_system",
+   "simbad_id": "GJ 65 A",
+   "flag": "ok",
+   "v_kms": [
+    0.947,
+    47.819,
+    0.654
+   ],
+   "speed_kms": 47.83,
+   "v": [
+    0.00000315776,
+    0.000159508,
+    0.00000218078
+   ]
+  },
+  {
+   "id": "teegarden_star",
+   "system": "teegarden_star",
+   "simbad_id": "NAME Teegarden's Star",
+   "flag": "ok",
+   "v_kms": [
+    15.512,
+    100.643,
+    -47.475
+   ],
+   "speed_kms": 112.35,
+   "v": [
+    0.0000517431,
+    0.000335709,
+    -0.000158359
+   ]
+  },
+  {
+   "id": "wolf_359",
+   "system": "wolf_359",
+   "simbad_id": "GJ 406",
+   "flag": "ok",
+   "v_kms": [
+    -10.399,
+    48.892,
+    -27.983
+   ],
+   "speed_kms": 57.29,
+   "v": [
+    -0.0000346881,
+    0.000163086,
+    -0.0000933425
+   ]
+  },
+  {
+   "id": "dx_cnc",
+   "system": "dx_cnc",
+   "simbad_id": "GJ 1111",
+   "flag": "ok",
+   "v_kms": [
+    6.351,
+    22.797,
+    -4.432
+   ],
+   "speed_kms": 24.08,
+   "v": [
+    0.0000211831,
+    0.0000760438,
+    -0.0000147836
+   ]
+  },
+  {
+   "id": "scr_1845_a",
+   "system": "scr_1845_a",
+   "simbad_id": "SCR J1845-6357",
+   "flag": "ok",
+   "v_kms": [
+    46.555,
+    7.527,
+    20.813
+   ],
+   "speed_kms": 51.55,
+   "v": [
+    0.00015529,
+    0.0000251079,
+    0.0000694241
+   ]
+  },
+  {
+   "id": "lhs_292",
+   "system": "lhs_292",
+   "simbad_id": "LHS   292",
+   "flag": "ok",
+   "v_kms": [
+    0.252,
+    -13.103,
+    -32.868
+   ],
+   "speed_kms": 35.38,
+   "v": [
+    8.41301e-7,
+    -0.0000437075,
+    -0.000109637
+   ]
+  },
+  {
+   "id": "denis_1048",
+   "system": "denis_1048",
+   "simbad_id": "DENIS J104814.7-395606",
+   "flag": "ok",
+   "v_kms": [
+    26.505,
+    15.258,
+    -7.46
+   ],
+   "speed_kms": 31.48,
+   "v": [
+    0.0000884096,
+    0.0000508945,
+    -0.000024885
+   ]
+  },
+  {
+   "id": "luhman_16_a",
+   "system": "luhman_system",
+   "simbad_id": null,
+   "flag": "no_astrometry_v0",
+   "v_kms": [
+    0,
+    0,
+    0
+   ],
+   "speed_kms": 0,
+   "v": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "luhman_16_b",
+   "system": "luhman_system",
+   "simbad_id": null,
+   "flag": "no_astrometry_v0",
+   "v_kms": [
+    0,
+    0,
+    0
+   ],
+   "speed_kms": 0,
+   "v": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "wise_0855",
+   "system": "wise_0855",
+   "simbad_id": null,
+   "flag": "no_astrometry_v0",
+   "v_kms": [
+    0,
+    0,
+    0
+   ],
+   "speed_kms": 0,
+   "v": [
+    0,
+    0,
+    0
+   ]
+  }
+ ]
+}

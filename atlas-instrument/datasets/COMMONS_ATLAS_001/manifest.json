@@ -1,0 +1,67 @@
+{
+ "schema": "atlas-commons-atlas/1",
+ "provenance": "LSN-66 BL fused cross-term-aware scene (BL_FOAM_BAKED_001/gaia66_roster.json); TF witness; DEN-A single-ablation re-solves; delta-chart Frobenius norm; declared 64^3 volume-filling lattice (commons-native primitive, dual-primitive doctrine 2026-07-16)",
+ "declared": {
+  "lattice": {
+   "n": 64,
+   "box_lo": [
+    -10.78,
+    -11.66,
+    -9.59
+   ],
+   "box_hi": [
+    12,
+    11.08,
+    11.6
+   ],
+   "dx": [
+    0.362,
+    0.361,
+    0.336
+   ]
+  },
+  "eps_loose": 0.3,
+  "eps_strict": 0.2,
+  "kmin": 3,
+  "guard_radius": 1,
+  "band_deciles_E": [
+   4.499e-16,
+   1.531e-15,
+   1.915e-15,
+   2.339e-15,
+   2.855e-15,
+   3.514e-15,
+   4.487e-15,
+   6.108e-15,
+   9.158e-15,
+   1.793e-14,
+   7.206e-13
+  ]
+ },
+ "files": {
+  "webbing": {
+   "file": "webbing.f32",
+   "per_point": [
+    "x",
+    "y",
+    "z",
+    "band",
+    "nearC_eps02",
+    "nearC_eps03",
+    "entropy_norm",
+    "min_abs_psi"
+   ],
+   "n_points": 3325
+  },
+  "islands": {
+   "file": "islands.json"
+  }
+ },
+ "upstream_evidence": [
+  "COMMONS_SURVEY_001",
+  "COMMONS_CONTEXT_SWEEP_001",
+  "COMMONS_DENSITY_PROBE_001",
+  "COMMONS_SURVEY_002"
+ ],
+ "claim": "Observed. Two-phase commons vocabulary (islands + webbing) is a CANDIDATE, not a decision. Islands carry a Lambda_Pi ceiling (Context Sweep 001); webbing connectivity is proximity-inferred (walked-path check owed); thin sheets undersampled at this lattice. Render is a witness, not evidence — the survey packets came first."
+}

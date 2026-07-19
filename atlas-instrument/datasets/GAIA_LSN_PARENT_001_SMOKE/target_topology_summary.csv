@@ -1,0 +1,3 @@
+target_id,M,profile,role,removed_sources,default_footprint_points,default_component_count,default_largest_component_points,default_heuristic_label,collapse_bands,all_primary_fields_finite,removed_trace_free_residual_max
+single_sun,1,A,single,sun,178,51,112,patchwork,r2_24_42,1,3.80336023e-18
+single_alpha_system,1.988,C,single,alpha_system,170,60,74,patchwork,r3_42_66,1,5.00230043e-18

@@ -1,0 +1,67 @@
+[
+  {
+    "radial_band": "r0_0_16",
+    "r_lo": 0.0,
+    "r_hi": 16.0,
+    "n_points": 5041,
+    "stable_fraction": 0.9861138662963698,
+    "eigenvector_delta_angle_p50": 0.6842193007469177,
+    "eigenvector_delta_angle_p95": 0.9916930198669434,
+    "delta_abs_weyl_p95": 0.002973155351355672,
+    "pinch_active": 1,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r1_16_26",
+    "r_lo": 16.0,
+    "r_hi": 26.0,
+    "n_points": 16838,
+    "stable_fraction": 0.976541156906996,
+    "eigenvector_delta_angle_p50": 0.07159531116485596,
+    "eigenvector_delta_angle_p95": 0.9883188009262085,
+    "delta_abs_weyl_p95": 0.00026111057377420366,
+    "pinch_active": 1,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r2_26_36",
+    "r_lo": 26.0,
+    "r_hi": 36.0,
+    "n_points": 33493,
+    "stable_fraction": 0.9825635207356761,
+    "eigenvector_delta_angle_p50": 0.0029694437980651855,
+    "eigenvector_delta_angle_p95": 0.9020925760269165,
+    "delta_abs_weyl_p95": 0.00011255386925768107,
+    "pinch_active": 1,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r3_36_48",
+    "r_lo": 36.0,
+    "r_hi": 48.0,
+    "n_points": 49932,
+    "stable_fraction": 0.9789914283425458,
+    "eigenvector_delta_angle_p50": 0.00023818016052246094,
+    "eigenvector_delta_angle_p95": 0.8600077033042908,
+    "delta_abs_weyl_p95": 9.907603816827759e-05,
+    "pinch_active": 1,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r4_48_1e+06",
+    "r_lo": 48.0,
+    "r_hi": 48.0,
+    "n_points": 169321,
+    "stable_fraction": 0.9761399944484146,
+    "eigenvector_delta_angle_p50": 0.00013637542724609375,
+    "eigenvector_delta_angle_p95": 0.0043253302574157715,
+    "delta_abs_weyl_p95": 4.9593858420848846e-05,
+    "pinch_active": 0,
+    "weyl_tail_active": 1,
+    "collapse_transition": 1
+  }
+]

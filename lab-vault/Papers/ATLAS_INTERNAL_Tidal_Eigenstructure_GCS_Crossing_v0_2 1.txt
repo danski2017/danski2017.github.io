@@ -1,0 +1,780 @@
+ATLAS INTERNAL HYPOTHESIS NOTE
+Tidal Eigenstructure Reorganization at GCS Crossings
+Extended-body rotational response as a live internal hypothesis in weak-field GR
+
+Version: v0.2 synchronized internal draft
+Date: 2026-04-25
+Prepared for: Atlas Solver Project / Daniel Scieszinski
+
+Synchronized successor to:
+Tidal Organization Changes at Gravitational Coherence Surface Boundaries
+Atlas Solver Project Internal Lab Note, April 2026
+
+Status: Internal live-branch physical-response hypothesis
+Lane: Private Atlas method / interpretation-supporting and validation-design branch
+Public status: Not approved for public science release in this form
+Canonical status: Not Phase I milestone evidence
+Primary alignment:
+GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV,
+ATLAS_ARCHITECTURE_CANON v0.2, ATLAS_LANE_GOVERNANCE,
+Child/Parent Scene Derivation v0.2,
+Teardrop / Lunar-Phase Result Memo v0.2.
+
+================================================================================
+ABSTRACT
+================================================================================
+
+This synchronized internal note preserves the viable core of the earlier tidal-organization
+lab paper while repairing its terminology, claim boundary, and architecture alignment.
+
+The working hypothesis is narrow but important: a GCS crossing does not create a force
+discontinuity, physical barrier, causal horizon, orbital-stability boundary, or modified
+dynamics. A point-particle center-of-mass trajectory remains smooth. However, for an
+extended body whose internal orientation and rotational response depend on the tidal
+tensor, a crossing of a retained GCS/parity-context boundary may correlate with a sharp
+change in the organization of the local tidal eigenstructure. In favorable geometries, that
+eigenstructure transition may generate a nonzero reorientation torque on an elongated
+body.
+
+The motivating source paper used an idealized Earth-Moon-Sun thought experiment and a
+simplified rubble-pile asteroid model. It reported a large transient excursion in a
+tidal-alignment diagnostic near the adopted shell crossing, a peak order-of-magnitude
+reorientation torque near 1.77 x 10^4 N m, and a benchmark transit-scale reorientation of
+about 17 degrees under the chosen geometry and body model. These values are not universal
+constants, not observational claims, and not canonical evidence. They are internal
+result-seeds that motivate a stricter validation program.
+
+The synchronized claim is therefore:
+
+A derived GCS/parity-context crossing may mark a tidal eigenstructure reorganization
+event for extended bodies, and that event may be testable through rotational diagnostics
+or population statistics once ordinary confounders are controlled.
+
+This is a live internal hypothesis, not a public result.
+
+================================================================================
+1. PURPOSE AND DISPOSITION
+================================================================================
+
+The source note was the first Atlas document to press beyond diagnostic geometry toward
+possible physical-response consequences. That makes it powerful and dangerous.
+
+Earlier Atlas documents asked:
+
+- Can GCS/parity structures be defined?
+- Can many-source parity networks be extracted?
+- Can closure, handoff, and parent-support diagnostics be measured?
+- Can extracted structures vary with scene geometry and phase?
+
+This note asks a sharper question:
+
+Can a derived GCS/parity-context boundary identify a transition in tidal eigenstructure
+that an extended body could physically respond to, even while its center-of-mass motion
+remains smooth?
+
+Forward decision:
+
+- Preserve as its own internal synchronized hypothesis note.
+- Do not publish in current form.
+- Do not fold entirely into child/parent or teardrop/lunar memos.
+- Treat as a bridge branch: GCS geometry -> tidal eigenstructure -> extended-body response.
+- Require tensor diagnostics, body-model discipline, trajectory checks, and confounder analysis
+  before any public descendant.
+- Keep all claims inside standard weak-field GR.
+
+This note is private because it connects internal GCS/parity-context extraction, parent-context
+language, tidal eigenstructure diagnostics, and potential empirical-test design.
+
+================================================================================
+2. FOUNDATION ALIGNMENT
+================================================================================
+
+Paper I inheritance:
+A Gravitational Coherence Surface is a parity boundary where a declared gravitational
+contribution reaches equality with its derived gravitational context under a declared
+readability rule. It is not a force boundary, material membrane, causal horizon, event
+horizon, trapping horizon, or orbital-stability boundary.
+
+Paper II inheritance:
+Many-source parity begins with declared source-readable contributions Q_i and pairwise
+residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x),
+
+with parity surfaces
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+Retained GCS/parity-context structures may define diagnostic transition supports. They
+do not modify motion by themselves.
+
+Paper III inheritance:
+Retained faces, seams, low-margin regions, and transition loci are derived interface
+geometry in the mesoscale comparison layer. This note asks whether a subset of such
+transition structures may correlate with tidal-eigenstructure reorganization for extended
+bodies.
+
+Paper IV inheritance:
+Proof-of-concept extraction establishes operational recoverability under the scalar
+tidal-readable branch only. It does not establish dynamics, observability, or a final
+extraction standard.
+
+Architecture canon inheritance:
+Atlas is ledger-first. Physical sources generate the modeled field. Node 0 registers the
+scene. Node 1 declares the lawful parent scene relation. Node 2+ are physical source nodes.
+Node Psi extracts GCS/parity-context structures. Validation determines interpretation.
+Rendering communicates but never decides.
+
+Child/parent branch inheritance:
+An Earth-Moon child scene may be studied inside an Earth-Moon-Sun parent relation, but
+parent supports are derived diagnostics. They are not new sources and do not replace
+ordinary GR dynamics.
+
+================================================================================
+3. TERMINOLOGY REPAIR
+================================================================================
+
+Older / risky wording -> synchronized replacement
+
+- calibrated competing threshold as GCS root -> derived gravitational context under a declared readability rule
+- source-readable distinguishability boundary -> retained GCS/parity-context boundary under a declared branch
+- GCS carries physically meaningful consequences -> GCS crossing may correlate with extended-body tidal response under tested conditions
+- dominant tidal organization changes at the shell -> principal tidal eigenstructure reorganizes across the retained boundary
+- force versus organization -> smooth center-of-mass dynamics versus changing tidal-eigenstructure diagnostics
+- parent-identity boundary -> parent-context support or lawful parent scene relation
+- tidal organization threshold -> tidal-eigenstructure transition diagnostic
+- physically meaningful signature -> candidate rotational or internal-orientation response
+- observational program -> future empirical hypothesis requiring confounder control
+- 90-degree crossing result -> geometry-dependent diagnostic excursion in one idealized test
+- 17-degree reorientation -> toy-model benchmark estimate, not a prediction
+- shell crossing event -> derived-boundary crossing under declared GCS/parity-context rule
+
+================================================================================
+4. CORE HYPOTHESIS
+================================================================================
+
+Internal working claim:
+In standard weak-field GR, a retained GCS/parity-context boundary may coincide with a rapid
+change in the principal tidal eigenstructure experienced by an extended body. Because extended
+bodies respond to tidal gradients through orientation, stress, deformation, and torque, such a
+crossing may produce a nonzero rotational response even though the center-of-mass trajectory
+remains smooth.
+
+Compact statement:
+The GCS does not push the body. The tidal tensor reorganizes across the retained boundary, and
+an extended body may respond to that reorganization.
+
+This is not a new force. It is a possible response to ordinary tidal-tensor structure.
+
+================================================================================
+5. CLAIM BOUNDARY
+================================================================================
+
+This note does not claim:
+
+- modified gravity;
+- new field equations;
+- a new force;
+- a physical shell;
+- a causal horizon;
+- an event horizon;
+- a trapping horizon;
+- a Hill-sphere replacement;
+- an orbital-stability criterion;
+- a center-of-mass force discontinuity;
+- a universal 90-degree eigenframe jump;
+- a universal 17-degree asteroid reorientation;
+- observational detection;
+- direct observability of GCS boundaries;
+- that GCS boundaries cause dynamics independently of the underlying field;
+- that point particles notice the boundary;
+- that every GCS crossing produces a measurable torque;
+- that the EMS thought experiment is astrophysically complete.
+
+This note claims only:
+
+Under a declared weak-field readability branch, a retained GCS/parity-context crossing may
+coincide with a transition in the local tidal eigenstructure. In an idealized extended-body
+model, that transition can generate a nonzero order-of-magnitude reorientation torque. The
+hypothesis is testable but not yet validated.
+
+================================================================================
+6. DECLARED WEAK-FIELD SETUP
+================================================================================
+
+Let a declared weak-field scene contain physical sources S_i with masses M_i and positions x_i.
+
+Let
+
+    r_i(x) = ||x - x_i||,
+
+or with softening,
+
+    r_{i,eps}(x) = sqrt(||x - x_i||^2 + eps^2).
+
+The Phase I scalar readable branch is
+
+    Q_i(x) = M_i / (||x - x_i||^2 + eps^2)^(3/2),
+
+or away from source locations,
+
+    Q_i(x) proportional to M_i / r_i(x)^3.
+
+Pairwise residuals are
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+A retained GCS/parity-context boundary is a diagnostic support extracted from equality,
+near-equality, closure, or contribution-context parity under declared rules.
+
+The weak-field potential may be written
+
+    Phi(x) = -G sum_i M_i / r_{i,eps}(x).
+
+The weak-field tidal tensor is
+
+    E_ab(x) = partial_a partial_b Phi(x),
+
+and for a point source contribution away from the source,
+
+    E_i(x) = G M_i (3 n_i n_i^T - I) / r_i^3,
+
+where
+
+    n_i = (x - x_i) / r_i.
+
+The total tidal tensor is
+
+    E_total(x) = sum_i E_i(x).
+
+The eigenstructure is defined by
+
+    E_total(x) v_k(x) = lambda_k(x) v_k(x).
+
+The leading principal eigenvector v_1 and eigenvalue spread or shear provide the local tidal
+orientation and strain diagnostics used in this branch.
+
+================================================================================
+7. TIDAL EIGENSTRUCTURE DIAGNOSTIC
+================================================================================
+
+A point particle responds to the local connection and follows the ordinary smooth trajectory
+determined by the total field. An extended body also samples spatial derivatives across its
+finite extent. Its orientation, stress, and torque response can depend on the tidal tensor.
+
+Define a leading tidal direction
+
+    v_1(x),
+
+as the principal eigenvector of E_total(x), with sign convention fixed by continuity or by an
+explicit source-facing orientation convention.
+
+Define a declared reference direction associated with the dominant readable contribution, for
+example
+
+    e_dom(x) = unit vector from dominant source to x,
+
+in a clean radial benchmark, or a richer reference in a tensor/projection branch.
+
+Define an alignment diagnostic
+
+    alpha(x) = arccos(|v_1(x) dot e_dom(x)|).
+
+The absolute value removes eigenvector sign ambiguity. If the branch cares about signed
+orientation, the sign convention must be declared separately.
+
+Interpretation:
+
+- small alpha: principal tidal eigenstructure aligns with the declared dominant readable reference;
+- large alpha: the local tidal eigenstructure is contested, rotated, or not well described by the
+  declared dominant radial source alone;
+- rapid change in alpha along a trajectory: candidate tidal-eigenstructure reorganization.
+
+This alpha is a diagnostic. It is not an invariant by itself and not an observable by default.
+
+================================================================================
+8. EMS THOUGHT EXPERIMENT, SYNCHRONIZED
+================================================================================
+
+The source note used an idealized Earth-Moon-Sun test to isolate the transition.
+
+Synchronized scene framing:
+
+Child scene:
+    Earth-Moon local system, when studying Earth/Moon-level structure.
+
+Parent relation:
+    Earth-Moon-Sun parent scene relation under a declared weak-field readability branch.
+
+Outer context:
+    none, simplified solar, or local stellar context only if explicitly included.
+
+Boundary:
+    a retained Earth-centered GCS/parity-context support under the declared threshold or
+    contribution-context rule.
+
+Trajectory:
+    idealized elongated body trajectory crossing the adopted boundary.
+
+Body:
+    simplified 1 km elongated rubble-pile asteroid with declared density, axis ratio,
+    inertia model, and internal-response assumptions.
+
+The source note selected a controlled benchmark threshold from the Earth-Moon-Sun geometry,
+reported as
+
+    q0 = 3.99 x 10^-14 s^-2,
+
+with an Earth-centered GCS radius
+
+    r_GCS = 2.71 x 10^9 m,
+
+or approximately
+
+    7.06 Earth-Moon distances.
+
+In synchronized doctrine, this threshold is a branch-specific controlled benchmark, not the root
+definition of a GCS and not a universal calibration rule.
+
+================================================================================
+9. SOURCE RESULT SEEDS
+================================================================================
+
+The source note reported the following internal result seeds.
+
+R1. Smooth force, sharp organization.
+The total gravitational field remains smooth across the crossing. No force discontinuity is
+introduced. Nevertheless, the tidal eigenstructure diagnostic can change sharply.
+
+R2. Alignment excursion.
+In the deliberately clean EMS geometry, the tidal-alignment diagnostic reached a large
+transient excursion, reported as 90 degrees at the crossing under the adopted convention.
+Synchronized interpretation: this is a geometry-dependent diagnostic maximum in a controlled
+test, not a universal GCS-crossing constant.
+
+R3. Torque estimate.
+For the simplified elongated rubble-pile asteroid, the source note used the quadrupolar
+tidal-torque estimate
+
+    tau = 0.5 * Delta I * Delta lambda * sin(2 theta),
+
+where Delta I is the relevant moment-of-inertia difference, Delta lambda is the eigenvalue
+shear of the total tidal tensor, and theta is the body-axis misalignment with the principal
+stretching direction.
+
+The source benchmark reported
+
+    Delta I = 1.48 x 10^17 kg m^2,
+    Delta lambda = 1.19 x 10^-13 s^-2,
+    peak tau approximately 1.77 x 10^4 N m.
+
+R4. Transit-scale estimate.
+The source note reported a reorientation timescale near 1038 hours and a shell-transit time
+near 454 hours for an adopted 10 percent shell width, yielding a toy estimate of order
+10 degrees per transit, with a benchmark value about 17 degrees.
+
+Synchronized interpretation:
+This number is a model-dependent internal estimate. It should motivate better rotational
+dynamics, not be treated as a prediction.
+
+R5. Nested hierarchy lesson.
+The source note argued that Earth-Moon-Sun does not behave as one connected three-way foam
+regime. It behaves as a decoupled nested hierarchy: Earth-Moon local parity at one scale,
+Earth/Sun or Earth-parent support at another scale, solar/local-stellar context at a larger
+scale. This aligns with child/parent doctrine when phrased carefully.
+
+================================================================================
+10. FORCE CONTINUITY VERSUS TIDAL ORGANIZATION
+================================================================================
+
+This branch depends on a strict separation:
+
+Force continuity:
+The total gravitational field and center-of-mass trajectory remain smooth. A point particle
+does not encounter a wall, impulse, or discontinuity at the retained GCS/parity-context
+boundary.
+
+Tidal organization:
+The eigenvectors and eigenvalues of E_total may change rapidly as the relative contribution
+structure changes. An extended body with finite size and anisotropic moment of inertia may
+experience torque because its internal alignment responds to E_total.
+
+This distinction keeps the branch inside standard GR.
+
+The boundary does not cause the torque as an independent object. The ordinary tidal tensor
+causes the torque. The boundary may locate or correlate with the transition zone where the
+organizing eigenstructure changes.
+
+Preferred phrasing:
+The retained GCS/parity-context boundary may act as a cartographic marker of tidal
+eigenstructure reorganization.
+
+Avoid:
+The GCS exerts torque.
+
+================================================================================
+11. RELATION TO CHILD / PARENT SCENE DERIVATION
+================================================================================
+
+The EMS reading should be synchronized with current child/parent doctrine.
+
+Safe statement:
+The Earth-Moon child scene can be studied relative to an Earth-Moon-Sun parent relation.
+A retained parent-context support may mark where the child scene’s local readable organization
+hands off to the larger parent context under a declared branch.
+
+Unsafe statement:
+The shell is the parent identity boundary as a physical object.
+
+Current branch relation:
+
+- child/parent derivation asks what lawful parent relation contextualizes the child scene;
+- this tidal-eigenstructure branch asks whether crossing a retained parent-context support
+  correlates with a sharp change in E_total eigenstructure;
+- if such correlation is stable, the parent-support branch may gain a physical-response
+  testing program;
+- if it is not stable, the branch remains an illustrative thought experiment only.
+
+================================================================================
+12. RELATION TO TEARDROP / LUNAR-PHASE MEMO
+================================================================================
+
+The teardrop/lunar memo measured extracted support geometry:
+
+- closure-cloud bias fraction;
+- closure-cloud aspect ratio;
+- Moon-associated handoff-support modulation across phase.
+
+This tidal-eigenstructure note asks a different question:
+
+Can an extended body’s rotational or internal-orientation state respond to the tidal
+eigenstructure transition associated with a retained boundary?
+
+Possible future bridge:
+Compare handoff/closure support modulation with tidal eigenvector rotation, eigenvalue spread,
+and torque estimates along matched trajectories.
+
+Do not conflate these layers. Shape diagnostics are not torque diagnostics. Handoff support is not
+a force. Tidal response must be computed from E_total and body model assumptions.
+
+================================================================================
+13. RELATION TO HILL SPHERE AND STABILITY BOUNDARIES
+================================================================================
+
+The Hill sphere and GCS answer different questions.
+
+Hill sphere:
+A dynamical stability scale in a rotating-frame restricted three-body approximation.
+
+GCS / parity-context boundary:
+A contribution-context or source-readable parity boundary under a declared readability rule.
+
+Tidal-eigenstructure transition:
+A possible change in the principal tidal organization experienced by an extended body.
+
+These can occur at neighboring scales because the same mass hierarchy shapes them, but they are
+not identical.
+
+Safe hypothesis:
+Readability boundaries and dynamical stability boundaries are distinct objects that may show
+systematic correlations in nested weak-field systems because both are shaped by parent-child mass
+hierarchy.
+
+Unsafe claim:
+GCS replaces Hill sphere.
+
+================================================================================
+14. OBSERVATIONAL / EMPIRICAL HYPOTHESIS
+================================================================================
+
+The source note proposed a future population test for small bodies.
+
+Synchronized version:
+
+A future empirical program could test whether objects that repeatedly cross a declared
+GCS/parity-context transition zone show statistically different spin-axis, pole-dispersion,
+or rotational-state distributions from otherwise similar objects that remain mostly inside or
+outside the zone.
+
+Candidate populations:
+
+Population A:
+Objects whose trajectories remain inside the adopted Earth-context support.
+
+Population B:
+Objects whose trajectories cross the adopted support repeatedly.
+
+Population C:
+Objects whose trajectories remain outside the adopted support.
+
+Candidate observables:
+- spin-axis orientation distribution;
+- pole dispersion;
+- tumbling fraction;
+- rotational period distribution;
+- binary fraction interaction;
+- shape-dependent subset behavior;
+- crossing-frequency dependence.
+
+Major confounders:
+- YORP and thermal torques;
+- collisions;
+- close encounters;
+- binarity;
+- internal structure;
+- tidal disruption history;
+- observational selection bias;
+- orbit-class bias;
+- nonuniform pole-solution quality;
+- resonance and secular orbital effects.
+
+Required caution:
+The population test should be run over a family of declared boundary prescriptions, not one
+benchmark shell radius. Any claimed effect must survive confounder modeling and null tests.
+
+Status:
+Future empirical hypothesis only.
+
+================================================================================
+15. VALIDATION REQUIREMENTS
+================================================================================
+
+A. Tensor and trajectory validation
+
+1. Recompute E_total directly from source roster.
+2. Verify eigenvalue and eigenvector continuity away from degeneracies.
+3. Handle eigenvector sign ambiguity consistently.
+4. Identify true rapid rotation versus eigenvalue-degeneracy artifacts.
+5. Compare alpha(x) across multiple reference conventions.
+6. Track eigenvalue gaps and condition number near crossing.
+7. Confirm no center-of-mass force discontinuity is introduced.
+8. Compare against direct geodesic or Newtonian weak-field trajectory integration where relevant.
+
+B. Boundary/extraction validation
+
+1. Declare GCS/parity-context rule.
+2. Record Q_i, Psi_ij, or contribution-context residuals along the trajectory.
+3. Confirm crossing location is ledger-derived.
+4. Vary threshold/readability rule where applicable.
+5. Compare scalar-Q boundary with tensor-derived candidate boundary.
+6. Confirm boundary is not an artifact of projection, slice, or chosen orbit plane.
+
+C. Body-model validation
+
+1. Declare body shape, mass, density, and inertia tensor.
+2. Derive Delta I from the declared body model.
+3. Declare spin state and initial body-axis orientation.
+4. Include internal-response assumptions.
+5. Compare impulse estimate with rotational equation integration.
+6. Test body-size and axis-ratio scaling.
+7. Test dissipative versus nondissipative response.
+8. Compare single-crossing versus repeated-crossing accumulation.
+
+D. EMS/roster validation
+
+1. Include Moon and Sun explicitly.
+2. Add/remove Jupiter as a sensitivity test.
+3. Add fuller Solar System roster where appropriate.
+4. Compare idealized circular/Keplerian geometry against ephemeris-grade geometry.
+5. Test orbital-plane dependence.
+6. Test Earth-Sun-axis-aligned and perpendicular crossings.
+7. Test phase dependence where Moon position matters.
+
+E. Population-test validation
+
+1. Define boundary family.
+2. Define crossing frequency metric.
+3. Build matched populations.
+4. Control YORP, collisions, binarity, and selection bias.
+5. Use null randomized boundary tests.
+6. Test robustness across asteroid classes.
+7. Require independent replication before publication.
+
+================================================================================
+16. MACHINE-READABLE OUTPUT REQUIREMENTS
+================================================================================
+
+Future runs should produce:
+
+config.json
+summary.json
+manifest.json
+scene_passport.json
+source_roster.csv
+trajectory_samples.csv
+readable_contributions.csv
+boundary_crossings.csv
+tidal_tensor_samples.csv
+eigenstructure_samples.csv
+alignment_diagnostics.csv
+torque_estimates.csv
+body_model.json
+validation_summary.json
+plots/trajectory_with_boundary.png
+plots/eigenvector_angle_vs_time.png
+plots/eigenvalue_shear_vs_time.png
+plots/torque_vs_time.png
+plots/readable_contributions_vs_time.png
+plots/thumbnail.png
+
+Minimum trajectory_samples.csv fields:
+
+run_id
+sample_id
+time
+position_x
+position_y
+position_z
+velocity_x
+velocity_y
+velocity_z
+radius_from_anchor
+inside_boundary_flag
+boundary_distance_signed
+crossing_id
+
+Minimum tidal_tensor_samples.csv fields:
+
+run_id
+sample_id
+E_xx
+E_xy
+E_xz
+E_yx
+E_yy
+E_yz
+E_zx
+E_zy
+E_zz
+source_E_components_if_enabled
+units
+validation_status
+
+Minimum eigenstructure_samples.csv fields:
+
+run_id
+sample_id
+lambda_1
+lambda_2
+lambda_3
+v1_x
+v1_y
+v1_z
+v2_x
+v2_y
+v2_z
+v3_x
+v3_y
+v3_z
+eigenvalue_gap_12
+eigenvalue_gap_23
+eigenvalue_gap_min
+eigenvector_continuity_flag
+degeneracy_warning_flag
+
+Minimum alignment_diagnostics.csv fields:
+
+run_id
+sample_id
+dominant_readable_source
+reference_vector_x
+reference_vector_y
+reference_vector_z
+angle_to_v1_deg
+angle_to_v2_deg
+angle_to_v3_deg
+angle_rate_deg_per_time
+crossing_flag
+crossing_phase
+diagnostic_status
+
+Minimum torque_estimates.csv fields:
+
+run_id
+sample_id
+body_model_id
+Delta_I
+Delta_lambda
+theta_deg
+torque_Nm
+angular_acceleration
+transit_window_id
+estimated_delta_angle_deg
+model_status
+
+================================================================================
+17. FAILURE MODES
+================================================================================
+
+F1. Eigenframe rotation does not correlate with retained boundary crossing after better
+trajectory and tensor evaluation.
+
+F2. The large alignment excursion is only an artifact of reference-vector convention.
+
+F3. Eigenvector rotation is caused by eigenvalue degeneracy and is numerically unstable.
+
+F4. Torque estimates collapse under more realistic body orientation or spin-state modeling.
+
+F5. Transit-scale reorientation becomes negligible compared with known effects under realistic
+conditions.
+
+F6. Population-test signal is erased by YORP, collisions, selection bias, or orbital-class
+confounding.
+
+F7. Boundary location changes too much across reasonable readability prescriptions.
+
+F8. The branch encourages claim-rung skipping from diagnostic boundary to physical force.
+
+If these failure modes dominate, preserve the note as an instructive thought experiment but do not
+promote it.
+
+================================================================================
+18. PUBLICATION RULE
+================================================================================
+
+Do not publish this memo in current form.
+
+A future public descendant is possible only after stronger modeling and null tests. A safe future
+title might be:
+
+    Tidal Eigenframe Reorganization Across Weak-Field Contribution-Context Boundaries
+
+or
+
+    Extended-Body Rotational Diagnostics Near Derived Weak-Field Readability Boundaries
+
+A public descendant must:
+
+- remove internal Atlas node machinery;
+- define GCS using declared contribution, derived context, and readability rule;
+- avoid implementation-sensitive extraction details;
+- avoid “GCS causes torque” language;
+- report null tests and confounders;
+- distinguish toy model, simulation result, and observational hypothesis;
+- cite standard tidal-torque and small-body spin literature.
+
+================================================================================
+19. NEXT ACTIONS
+================================================================================
+
+1. Preserve the original PDF as the historical graphics-bearing source artifact.
+2. Use this synchronized v0.2 text as the active internal orientation note.
+3. Recompute the EMS thought experiment under current GCS definition.
+4. Replace branch-specific threshold wording with declared contribution-context language.
+5. Generate ledgered tidal tensor and eigenstructure outputs.
+6. Test multiple crossing geometries.
+7. Test multiple reference-vector conventions.
+8. Integrate rotational equations rather than relying only on impulse estimates.
+9. Compare against known small-body torque scales.
+10. Only then evaluate whether an empirical asteroid population test is worth designing.
+
+================================================================================
+SHORT INTERNAL FORM
+================================================================================
+
+This branch asks whether retained GCS/parity-context crossings can mark tidal-eigenstructure
+reorganization events for extended bodies. The GCS does not exert force and does not interrupt
+center-of-mass motion. But the ordinary weak-field tidal tensor may reorganize sharply near a
+derived boundary, and an elongated body may experience a nonzero rotational response to that
+eigenstructure transition. The EMS rubble-pile calculation is a high-risk, high-value internal
+result seed, not a public claim. The next move is tensor-led validation, not rhetoric.

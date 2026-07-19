@@ -34,3 +34,13 @@ email: ""
 
 minima:
   social_links: []
+
+# Lab vault + instrument clone (2026-07-19): serve vault markdown as pages
+# without Liquid processing (Obsidian {{placeholders}} present); instrument
+# files pass through verbatim (no front matter).
+defaults:
+  - scope:
+      path: "lab-vault"
+    values:
+      render_with_liquid: false
+      layout: "page"

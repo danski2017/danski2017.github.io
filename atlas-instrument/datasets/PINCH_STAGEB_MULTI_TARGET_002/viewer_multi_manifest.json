@@ -1,0 +1,343 @@
+{
+  "claim_boundary": [
+    "Master manifest for multiple source-removal eigen-orientation footprint layers.",
+    "Targets share one fused baseline and use Stage B physical ablation solve caches for removed-scene geometry.",
+    "Candidate surfaces are interpretations over raw footprint points, not physical boundaries.",
+    "No foam, parity, jurisdiction, or network overlays are included."
+  ],
+  "created_utc": "2026-07-03T20:54:26.215867+00:00",
+  "footprint_definition": {
+    "defaults": {
+      "amplitude_floor": 0.0,
+      "amplitude_floor_enabled": false,
+      "angle_threshold": 0.05,
+      "eigen_gap_floor": 0.02
+    },
+    "expression": "eigen_gap_full >= eigen_gap_floor AND eigenvector_delta_angle >= angle_threshold AND optional delta_absWeyl >= amplitude_floor"
+  },
+  "grid": {
+    "dx": 1.5,
+    "half_width": 48.0,
+    "sample_count": 35937,
+    "sample_dims_zyx": [
+      33,
+      33,
+      33
+    ],
+    "sample_stride": 2
+  },
+  "schema": "atlas-pinch-lab-viewer-multi/1",
+  "source_experiment": "ATLAS-PINCH-LAB-MULTITARGET-002",
+  "source_full_eigenfield": {
+    "bytes": 17179728,
+    "path": "analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_full_eigenfield.npz",
+    "sha256": "798ad3559f0e1ddd591d220ef12de2f55432b9baac28da52ddc6e781fe3de61b"
+  },
+  "source_stageb_manifest": "analysis/et_tov3_scout/IDENTITY_STAGEB_16SRC_001/manifest.json",
+  "targets": [
+    {
+      "M": 1.204,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 281,
+      "default_footprint_points": 3136,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2428,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B00/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_trace_free_residual_max": 1.368940573469088e-17,
+      "role": "isolated_heavy",
+      "target_id": "B00",
+      "x": -34.0,
+      "y": -22.0,
+      "z": -5.0
+    },
+    {
+      "M": 1.586,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r4_48_1e+06"
+      ],
+      "default_component_count": 328,
+      "default_footprint_points": 3473,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2573,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B01/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_trace_free_residual_max": 1.2259152324999485e-17,
+      "role": "cluster_light",
+      "target_id": "B01",
+      "x": -29.0,
+      "y": -5.0,
+      "z": 14.0
+    },
+    {
+      "M": 1.084,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 275,
+      "default_footprint_points": 2793,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2119,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B02/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_trace_free_residual_max": 1.090880442966557e-17,
+      "role": "cluster_heavy",
+      "target_id": "B02",
+      "x": -31.0,
+      "y": 19.0,
+      "z": -17.0
+    },
+    {
+      "M": 0.716,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 218,
+      "default_footprint_points": 2374,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2059,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B03/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_trace_free_residual_max": 1.006268792613642e-17,
+      "role": "midfield_mixed",
+      "target_id": "B03",
+      "x": -16.0,
+      "y": -30.0,
+      "z": 11.0
+    },
+    {
+      "M": 1.204,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 290,
+      "default_footprint_points": 2407,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 1892,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B04/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_trace_free_residual_max": 1.2086337494306011e-17,
+      "role": "isolated_heavy",
+      "target_id": "B04",
+      "x": -11.0,
+      "y": -11.0,
+      "z": -9.0
+    },
+    {
+      "M": 1.586,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r4_48_1e+06"
+      ],
+      "default_component_count": 303,
+      "default_footprint_points": 3629,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2837,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B05/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_trace_free_residual_max": 9.348674420170706e-18,
+      "role": "cluster_light",
+      "target_id": "B05",
+      "x": -9.0,
+      "y": 14.0,
+      "z": 20.0
+    },
+    {
+      "M": 1.776,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 278,
+      "default_footprint_points": 3296,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2222,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B06/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_trace_free_residual_max": 1.2738151034081345e-17,
+      "role": "cluster_heavy",
+      "target_id": "B06",
+      "x": -2.0,
+      "y": 33.0,
+      "z": -3.0
+    },
+    {
+      "M": 0.716,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 233,
+      "default_footprint_points": 2363,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2043,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B07/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_trace_free_residual_max": 1.1968767934047807e-17,
+      "role": "midfield_mixed",
+      "target_id": "B07",
+      "x": 7.0,
+      "y": -25.0,
+      "z": -20.0
+    },
+    {
+      "M": 1.204,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 339,
+      "default_footprint_points": 2054,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 1521,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B08/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_trace_free_residual_max": 9.727858724284786e-18,
+      "role": "isolated_heavy",
+      "target_id": "B08",
+      "x": 10.0,
+      "y": -3.0,
+      "z": 8.0
+    },
+    {
+      "M": 1.4,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r4_48_1e+06"
+      ],
+      "default_component_count": 315,
+      "default_footprint_points": 3479,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2651,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B09/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_trace_free_residual_max": 1.2118934027537502e-17,
+      "role": "cluster_light",
+      "target_id": "B09",
+      "x": 15.0,
+      "y": 21.0,
+      "z": -15.0
+    },
+    {
+      "M": 1.776,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 268,
+      "default_footprint_points": 4124,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 3038,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B10/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_trace_free_residual_max": 1.2799486880204591e-17,
+      "role": "cluster_heavy",
+      "target_id": "B10",
+      "x": 24.0,
+      "y": -34.0,
+      "z": 2.0
+    },
+    {
+      "M": 0.716,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 249,
+      "default_footprint_points": 2663,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2323,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B11/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_trace_free_residual_max": 1.251300481732803e-17,
+      "role": "midfield_mixed",
+      "target_id": "B11",
+      "x": 26.0,
+      "y": -12.0,
+      "z": 23.0
+    },
+    {
+      "M": 0.832,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_26_36"
+      ],
+      "default_component_count": 301,
+      "default_footprint_points": 1488,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 994,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B12/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_trace_free_residual_max": 1.0757967999230888e-17,
+      "role": "isolated_heavy",
+      "target_id": "B12",
+      "x": 31.0,
+      "y": 9.0,
+      "z": -8.0
+    },
+    {
+      "M": 1.4,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 222,
+      "default_footprint_points": 3646,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2695,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B13/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_trace_free_residual_max": 9.660980738857863e-18,
+      "role": "cluster_light",
+      "target_id": "B13",
+      "x": 36.0,
+      "y": 29.0,
+      "z": 15.0
+    },
+    {
+      "M": 1.776,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 260,
+      "default_footprint_points": 3225,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 1956,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B14/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_trace_free_residual_max": 1.6265160574710505e-17,
+      "role": "cluster_heavy",
+      "target_id": "B14",
+      "x": -38.0,
+      "y": 31.0,
+      "z": 7.0
+    },
+    {
+      "M": 1.174,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_36_48"
+      ],
+      "default_component_count": 316,
+      "default_footprint_points": 2954,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 2185,
+      "manifest_url": "datasets/PINCH_STAGEB_MULTI_TARGET_002/B15/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_trace_free_residual_max": 1.1290965677610293e-17,
+      "role": "midfield_mixed",
+      "target_id": "B15",
+      "x": 39.0,
+      "y": -1.0,
+      "z": -25.0
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+2026-04-05 — Shared Parity Network Breakthrough Session Notes
+House-style revision for solver-facing continuity
+Date revised: 2026-04-08
+
+======================================================================
+TITLE
+======================================================================
+
+Shared parity network breakthrough and extraction-pipeline lock-in
+
+======================================================================
+OBJECTIVE
+======================================================================
+
+Convert the many-body shared parity network concept into explicit numerical
+geometry using weak-field multi-source tidal fields, while reducing solver
+drift and preserving a clean milestone order.
+
+======================================================================
+A. CONCEPTUAL LOCK-IN
+======================================================================
+
+Key conceptual breakthrough:
+The soap-bubble network analogy correctly describes the many-body shared parity
+structure as a partition of space into source-dominant regions separated by
+balanced parity faces.
+
+Hierarchy:
+
+shell -> parity points -> parity cloud -> balanced sheet -> exposed face ->
+triple junction -> many-body shared parity network
+
+The network is geometric, not microphysical. The soap-bubble analogy is
+structural only.
+
+======================================================================
+B. NUMERICAL REGIMES AND STATUS
+======================================================================
+
+1. Canonical solver regime for Milestone 1:
+
+    Q_i ~ M_i / r_i^3
+
+Used to validate and stabilize the first parity-sheet extraction pipeline.
+This is the required readable-field language for first-pass three-body Atlas
+extraction.
+
+2. Secondary validation branch:
+
+    Q_i = | n^T E_i n |
+
+Used to test anisotropic deformation after the canonical pipeline is stable.
+
+3. Secondary validation branch:
+
+    Q_i = ||E_i||_F
+
+Used for symmetric tetrahedral tests and higher-order foam exploration after
+Milestone 1 stabilization.
+
+Operational rule:
+Do not let the coexistence of multiple readable-field regimes destabilize the
+first solver milestone. The canonical pipeline must succeed in the scalar tidal
+proxy before cross-regime expansion becomes a build priority.
+
+======================================================================
+C. GEOMETRIC RESULTS
+======================================================================
+
+Equal mass:
+Symmetric foam structure.
+
+Unequal mass:
+Faces deform and the triple junction shifts.
+
+Higher-order exploratory result:
+In tensor-norm tetrahedral tests, parity sheets, triple strands, and a central
+4-way balance node were observed.
+
+Interpretive discipline:
+The extracted geometry is a derived relational structure from standard weak-
+field tidal fields. It is not a new force law and not a new invariant.
+
+======================================================================
+D. EXTRACTION PIPELINE
+======================================================================
+
+Method pipeline:
+
+1. Evaluate Q_i on a sampling grid.
+2. Build residuals Psi_ij = Q_i - Q_j.
+3. Extract Psi_ij = 0 surfaces via marching cubes or equivalent zero-set
+   extraction.
+4. Apply relevance filtering to keep exposed faces.
+5. Detect triple-junction regions.
+6. Optionally solve for a multi-source parity node.
+
+Milestone rule:
+Stable extraction of exposed faces and junction structure defines the first
+solver milestone. The parity node remains secondary and exploratory until
+cross-regime robustness is demonstrated.
+
+Computational artifact rule:
+Zero surfaces, retained meshes, and rendered parity geometry are valid
+engineering artifacts of extraction. They are not the theoretical object
+itself, but they are required representations for testing, archiving, and
+comparison.
+
+======================================================================
+E. DIAGNOSTIC LAYER
+======================================================================
+
+Three candidate centers:
+
+Geometric centroid:
+    x_geo = (1/N) sum x_i
+
+Mass barycenter:
+    x_bar = (sum m_i x_i)/(sum m_i)
+
+Parity node:
+    x_parity = argmin_x [ max Q_i(x) - min Q_i(x) ]
+
+Diagnostic vectors:
+    d_geo_bar = x_bar - x_geo
+    d_bar_par = x_parity - x_bar
+    d_geo_par = x_parity - x_geo
+
+Status:
+The centroid and barycenter are stable reference quantities. The parity node
+and the derived offset vectors are provisional exploratory diagnostics. They
+should be archived when practical, but they should not be treated as
+milestone-defining until robustness across readable-field choices is shown.
+
+======================================================================
+F. IMPLEMENTATION CONSEQUENCES FOR ATLAS
+======================================================================
+
+Near-term implementation priorities:
+
+- canonical readable-field interface Q_i ~ M_i / r_i^3
+- residual fields Psi_ij
+- zero-surface extraction
+- relevance filtering
+- triple-junction detection
+- clean machine-readable parity geometry artifacts
+- centroid and barycenter archiving
+- optional parity-node archiving as exploratory output
+
+Near-term anti-drift rule:
+Do not widen the readable-field stack or make parity-node behavior a gating
+criterion before the static three-body canonical extraction pipeline is stable.
+
+======================================================================
+G. PHASED SUCCESS LOGIC
+======================================================================
+
+Phase A:
+Stable static three-body extraction in the canonical scalar tidal regime,
+including exposed faces, junction detection, and archived machine-readable
+outputs.
+
+Phase B:
+Static sweep over mass asymmetry and geometric perturbation.
+
+Phase C:
+Time-dependent slice-history extraction and exploratory cross-regime
+comparisons.
+
+This phased structure separates core solver progress from broader diagnostic and
+paper-polish ambitions.
+
+======================================================================
+H. SESSION SUMMARY
+======================================================================
+
+Major milestone achieved:
+The shared parity network was numerically extracted and visualized.
+
+Major workflow clarification achieved:
+The canonical Milestone 1 extraction language is now fixed as the scalar tidal
+proxy Q_i ~ M_i / r_i^3, while richer readable-field modes and parity-node
+analysis are retained as secondary branches.
+
+This moves the concept from theory and analogy into explicit geometry while
+also giving Atlas a cleaner build order.

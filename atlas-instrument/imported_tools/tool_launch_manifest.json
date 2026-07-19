@@ -1,0 +1,86 @@
+{
+  "claim_boundary": "Static viewer launchpad only. Commands are copied for terminal execution; the browser does not execute shell commands.",
+  "repo_root": "/Users/danski2017/Desktop/Atlas_Solver_Project",
+  "workflows": [
+    {
+      "id": "kuibit_truth_gate",
+      "label": "kuibit ET truth gate",
+      "tool": "kuibit",
+      "base_model": "Real ET diagnostic HDF5 output",
+      "base_path": "/Users/danski2017/Desktop/EinsteinToolkit/Cactus/ATLAS_TOV3_DIAG",
+      "description": "Inventory ET HDF5 fields, iterations, refinement levels, shapes, finite stats, and Carpet array-order risk.",
+      "command": "MPLCONFIGDIR=/private/tmp/atlas_mpl .venv/bin/python scripts/et_tov3_scout/atlas_external_toolkit_probe.py --enable kuibit --diag-dir /Users/danski2017/Desktop/EinsteinToolkit/Cactus/ATLAS_TOV3_DIAG --full-hdf5-stats --out analysis/et_tov3_scout/EXTERNAL_TOOLKIT_PROBE_001/kuibit_only",
+      "primary_output": "imported_tools/kuibit_vs_h5py_comparator_summary.md",
+      "promotion": "Promote as cross-check reader first."
+    },
+    {
+      "id": "yt_volume_audit",
+      "label": "yt volume audit",
+      "tool": "yt",
+      "base_model": "Pinch 65^3 full eigenfield cache",
+      "base_path": "analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_full_eigenfield.npz",
+      "description": "Generate field slices, projections, source-centered radial profiles, and edge-band audits from Atlas 3D fields.",
+      "command": "MPLCONFIGDIR=/private/tmp/atlas_mpl .venv/bin/python scripts/et_tov3_scout/atlas_external_toolkit_probe.py --enable yt --npz analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_full_eigenfield.npz --field-config configs/et_tov3_scout/IDENTITY_STAGEB_16SRC_001.json --dx 1.5 --out analysis/et_tov3_scout/EXTERNAL_TOOLKIT_PROBE_001/yt_only",
+      "primary_output": "imported_tools/yt_midplane_field_audit.png",
+      "outputs": [
+        {"label": "yt midplane field audit PNG", "path": "imported_tools/yt_midplane_field_audit.png"},
+        {"label": "yt projection field audit PNG", "path": "imported_tools/yt_projection_field_audit.png"},
+        {"label": "yt source radial profiles CSV", "path": "imported_tools/yt_source_radial_profiles.csv"},
+        {"label": "yt edge-band audit CSV", "path": "imported_tools/yt_edge_band_audit.csv"}
+      ],
+      "promotion": "Promote as optional volume scouting lane."
+    },
+    {
+      "id": "three_d_showcase",
+      "label": "3D Atlas showcase",
+      "tool": "Atlas 3D renderer + imported audit lane",
+      "base_model": "Pinch full/removed/delta eigenfield caches",
+      "base_path": "analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches",
+      "description": "Regenerate 3D advisory views: full field, removed-target field, scalar delta, eigen-orientation delta, Ricci/Weyl overlay, and constraint-vs-identity gate.",
+      "command": "MPLCONFIGDIR=/private/tmp/atlas_mpl .venv/bin/python scripts/et_tov3_scout/render_imported_3d_showcase.py --full-npz analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_full_eigenfield.npz --removed-npz analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_target_removed_eigenfield.npz --delta-npz analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_delta_eigenfield.npz --field-config configs/et_tov3_scout/IDENTITY_STAGEB_16SRC_001.json --target B03 --dx 1.5 --out analysis/et_tov3_scout/pinch_lab_viewer/imported_tools",
+      "primary_output": "imported_tools/showcase_3d_delta_quad.png",
+      "outputs": [
+        {"label": "3D full / removed / scalar delta / orientation delta quad", "path": "imported_tools/showcase_3d_delta_quad.png"},
+        {"label": "3D absWeyl + eigen-gap stable ridges", "path": "imported_tools/showcase_3d_absweyl_eigengap.png"},
+        {"label": "3D Hamiltonian residual audit", "path": "imported_tools/showcase_3d_constraint_residual.png"},
+        {"label": "3D Ricci / Weyl overlay", "path": "imported_tools/showcase_3d_ricci_weyl_overlay.png"},
+        {"label": "3D constraint-vs-identity gate", "path": "imported_tools/showcase_3d_constraint_vs_identity.png"},
+        {"label": "3D identity delta summary JSON", "path": "imported_tools/showcase_3d_identity_delta_summary.json"}
+      ],
+      "promotion": "Use as the 3D-first imported visual lane; advisory until constraint weighting is promoted."
+    },
+    {
+      "id": "openpmd_schema",
+      "label": "openPMD schema plan",
+      "tool": "openPMD-api",
+      "base_model": "Pinch ledger manifest",
+      "base_path": "analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/manifest.json",
+      "description": "Prepare portable export schema without rewriting Atlas ledgers or viewer payloads.",
+      "command": "MPLCONFIGDIR=/private/tmp/atlas_mpl .venv/bin/python scripts/et_tov3_scout/atlas_external_toolkit_probe.py --enable openpmd --manifest analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/manifest.json --out analysis/et_tov3_scout/EXTERNAL_TOOLKIT_PROBE_001/openpmd_only",
+      "primary_output": "imported_tools/openpmd_schema_proposal.md",
+      "promotion": "Hold as schema/export lane."
+    },
+    {
+      "id": "symbolic_reference",
+      "label": "symbolic GR references",
+      "tool": "EinsteinPy + OGRePy",
+      "base_model": "Known metric reference checks",
+      "base_path": "scripts/et_tov3_scout/atlas_external_toolkit_probe.py",
+      "description": "Run reference/theory checks such as Minkowski Ricci scalar and convention-note hooks.",
+      "command": "MPLCONFIGDIR=/private/tmp/atlas_mpl .venv/bin/python scripts/et_tov3_scout/atlas_external_toolkit_probe.py --enable einsteinpy,ogrepy --out analysis/et_tov3_scout/EXTERNAL_TOOLKIT_PROBE_001/symbolic_only",
+      "primary_output": "imported_tools/openpmd_schema_proposal.md",
+      "promotion": "EinsteinPy for checks; OGRePy notebook-only."
+    },
+    {
+      "id": "all_imported_audit",
+      "label": "all imported audits",
+      "tool": "all adapters",
+      "base_model": "ET diagnostic HDF5 + Pinch 65^3 cache + Pinch manifest",
+      "base_path": "mixed",
+      "description": "Run every imported-tool adapter in the controlled proving-ground lane.",
+      "command": "MPLCONFIGDIR=/private/tmp/atlas_mpl .venv/bin/python scripts/et_tov3_scout/atlas_external_toolkit_probe.py --enable all --diag-dir /Users/danski2017/Desktop/EinsteinToolkit/Cactus/ATLAS_TOV3_DIAG --full-hdf5-stats --npz analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_full_eigenfield.npz --field-config configs/et_tov3_scout/IDENTITY_STAGEB_16SRC_001.json --manifest analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/manifest.json --dx 1.5 --out analysis/et_tov3_scout/EXTERNAL_TOOLKIT_PROBE_001",
+      "primary_output": "imported_tools/kuibit_vs_h5py_comparator_summary.md",
+      "promotion": "Use for complete audit refresh."
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "claim_boundary": [
+    "Master manifest for Gaia LSN source/group-removal eigen-orientation footprint layers.",
+    "Targets share one fused baseline and use Gaia physical removal solve caches.",
+    "Candidate surfaces are interpretations over raw footprint points, not physical boundaries.",
+    "No foam, parity, jurisdiction, or network overlays are included."
+  ],
+  "created_utc": "2026-07-05T08:03:20.661925+00:00",
+  "footprint_definition": {
+    "defaults": {
+      "amplitude_floor": 0.0,
+      "amplitude_floor_enabled": false,
+      "angle_threshold": 0.05,
+      "eigen_gap_floor": 0.02
+    },
+    "expression": "eigen_gap_full >= eigen_gap_floor AND eigenvector_delta_angle >= angle_threshold"
+  },
+  "grid": {
+    "dx": 3.0,
+    "half_width": 96.0,
+    "sample_count": 35937,
+    "sample_dims_zyx": [
+      33,
+      33,
+      33
+    ],
+    "sample_stride": 2
+  },
+  "schema": "atlas-pinch-lab-viewer-multi/1",
+  "source_experiment": "ATLAS-GAIA-LSN-PARENT-001-VIEWER",
+  "source_full_eigenfield": {
+    "path": "analysis/et_tov3_scout/GAIA_LSN_PARENT_001/geometry_caches/gaia_lsn_parent_001_full_viewer_geometry_cache.npz"
+  },
+  "source_stageb_manifest": "analysis/et_tov3_scout/GAIA_LSN_PARENT_001/manifest.json",
+  "targets": [
+    {
+      "M": 1.0,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 51,
+      "default_footprint_points": 178,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 112,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001_SMOKE/single_sun/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_sources": [
+        "sun"
+      ],
+      "removed_trace_free_residual_max": 3.803360227295465e-18,
+      "role": "single",
+      "target_id": "single_sun",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    {
+      "M": 1.988,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 60,
+      "default_footprint_points": 170,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 74,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001_SMOKE/single_alpha_system/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_sources": [
+        "alpha_system"
+      ],
+      "removed_trace_free_residual_max": 5.0023004305131784e-18,
+      "role": "single",
+      "target_id": "single_alpha_system",
+      "x": -6.71085163,
+      "y": -5.61155283,
+      "z": -15.67427978
+    }
+  ]
+}

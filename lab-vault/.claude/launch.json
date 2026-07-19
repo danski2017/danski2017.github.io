@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "foam3d", "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m","http.server","8775","--directory","/Users/danski2017/Desktop/Atlas_Solver_Project/analysis/et_tov3_scout/ui3d"], "port": 8775 }
+  ]
+}

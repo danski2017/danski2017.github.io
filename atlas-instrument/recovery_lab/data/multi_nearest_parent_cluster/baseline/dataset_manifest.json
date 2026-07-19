@@ -1,0 +1,962 @@
+{
+  "artifacts": {
+    "flags": {
+      "bytes": 31944,
+      "dtype": "uint8",
+      "path": "recovery_lab/data/multi_nearest_parent_cluster/baseline/flags.bin",
+      "sha256": "3b6a2634a66822afff14a584dff180e3e48fd30ba79a7a11a512815829ef1e13",
+      "shape": [
+        10648,
+        3
+      ]
+    },
+    "grid_index": {
+      "bytes": 63888,
+      "dtype": "uint16",
+      "path": "recovery_lab/data/multi_nearest_parent_cluster/baseline/grid_index.bin",
+      "sha256": "e84c4b6d51a0629965ae2c8e9219f4e7f3387f4779d5ed9553096264c7356f09",
+      "shape": [
+        10648,
+        3
+      ]
+    },
+    "positions": {
+      "bytes": 127776,
+      "dtype": "float32",
+      "path": "recovery_lab/data/multi_nearest_parent_cluster/baseline/positions.bin",
+      "sha256": "eb6e72499e306640d23351e235d5a9c62f4c366c193a9c7af15e384744632fcc",
+      "shape": [
+        10648,
+        3
+      ]
+    },
+    "scalars": {
+      "bytes": 638880,
+      "dtype": "float32",
+      "path": "recovery_lab/data/multi_nearest_parent_cluster/baseline/scalars.bin",
+      "sha256": "e19dfd14416ef78ac0936f848e16f2d72a9555587ef56bcb68e89f4195e187c2",
+      "shape": [
+        10648,
+        15
+      ]
+    }
+  },
+  "case_id": "multi_nearest_parent_cluster",
+  "convergence": null,
+  "defaults": {
+    "eigen_gap_floor": 0.02,
+    "orientation_threshold": 0.05,
+    "scale_cells": 0,
+    "tensor_amplitude_threshold": 2.6727564545581117e-05
+  },
+  "field_checks": {
+    "all_finite": true,
+    "sample_shape_consistent": true
+  },
+  "flag_fields": [
+    "stable_default",
+    "tensor_amplitude_active_default",
+    "orientation_conditioned_active_default"
+  ],
+  "grid": {
+    "display_registration_translation_xyz": [
+      -0.0,
+      -0.0,
+      -0.0
+    ],
+    "dx": 3.0,
+    "full_shape_zyx": [
+      65,
+      65,
+      65
+    ],
+    "half_width": 96.0,
+    "native_source_shift_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sample_count": 10648,
+    "sample_shape_zyx": [
+      22,
+      22,
+      22
+    ],
+    "sample_stride": 3
+  },
+  "realization": "baseline",
+  "removed_sources": [
+    "proxima_cen",
+    "alpha_system",
+    "barnards_star",
+    "luhman_system",
+    "wise_0855"
+  ],
+  "scalar_fields": [
+    "rho_full",
+    "rho_removed",
+    "hamiltonian_max",
+    "proper_weyl_norm_full",
+    "proper_weyl_norm_removed",
+    "tensor_delta_norm",
+    "signed_intensity_change",
+    "abs_signed_intensity_change",
+    "eigenshape_delta",
+    "orientation_delta",
+    "eigen_gap",
+    "abs_compression_fraction_delta",
+    "tensor_scale_1",
+    "tensor_scale_2",
+    "tensor_scale_4"
+  ],
+  "schema": "atlas-recovery-lab-viewer-dataset/1",
+  "sources": [
+    {
+      "M": 1.0,
+      "common_name": "Sun",
+      "distance_pc_source": 0.0,
+      "id": "sun",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "central_sun",
+      "source_ids": [
+        "sun"
+      ],
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    {
+      "M": 0.122,
+      "common_name": "Proxima Centauri (GJ 551)",
+      "distance_pc_source": 1.30079999,
+      "id": "proxima_cen",
+      "is_target": true,
+      "member_count": 1,
+      "profile": "B",
+      "role": "cluster_context",
+      "source_ids": [
+        "proxima_cen"
+      ],
+      "x": -6.35849608,
+      "y": -4.86652968,
+      "z": -15.49984068
+    },
+    {
+      "M": 1.988,
+      "common_name": "Alpha Centauri A (GJ 559 A) / Alpha Centauri B (GJ 559 B)",
+      "distance_pc_source": 1.33840001,
+      "id": "alpha_system",
+      "is_target": true,
+      "member_count": 2,
+      "profile": "C",
+      "role": "cluster_context",
+      "source_ids": [
+        "alpha_cen_a",
+        "alpha_cen_b"
+      ],
+      "x": -6.71085163,
+      "y": -5.61155283,
+      "z": -15.67427978
+    },
+    {
+      "M": 0.144,
+      "common_name": "Barnard's Star (GJ 699)",
+      "distance_pc_source": 1.8275,
+      "id": "barnards_star",
+      "is_target": true,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "barnards_star"
+      ],
+      "x": -0.23277902,
+      "y": -24.42737695,
+      "z": 1.99477657
+    },
+    {
+      "M": 0.062,
+      "common_name": "Luhman 16 A (WISE 1049-5319 A) / Luhman 16 B",
+      "distance_pc_source": 1.99999999,
+      "id": "luhman_system",
+      "is_target": true,
+      "member_count": 2,
+      "profile": "B",
+      "role": "brown_dwarf_low_mass",
+      "source_ids": [
+        "luhman_16_a",
+        "luhman_16_b"
+      ],
+      "x": -15.26678597,
+      "y": 4.86393662,
+      "z": -21.51178893
+    },
+    {
+      "M": 0.005,
+      "common_name": "WISE 0855-0714",
+      "distance_pc_source": 2.27999998,
+      "id": "wise_0855",
+      "is_target": true,
+      "member_count": 1,
+      "profile": "B",
+      "role": "brown_dwarf_low_mass",
+      "source_ids": [
+        "wise_0855"
+      ],
+      "x": -20.99039561,
+      "y": 21.89945182,
+      "z": -3.85565886
+    },
+    {
+      "M": 0.09,
+      "common_name": "Wolf 359 (GJ 406)",
+      "distance_pc_source": 2.40860002,
+      "id": "wolf_359",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "wolf_359"
+      ],
+      "x": -30.83616393,
+      "y": 8.78205645,
+      "z": 3.93828821
+    },
+    {
+      "M": 0.39,
+      "common_name": "Lalande 21185 (GJ 411)",
+      "distance_pc_source": 2.5466,
+      "id": "lalande_21185",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "lalande_21185"
+      ],
+      "x": -26.80125828,
+      "y": 6.76477138,
+      "z": 20.06075683
+    },
+    {
+      "M": 3.081,
+      "common_name": "Sirius A (Alpha CMa A) / Sirius B",
+      "distance_pc_source": 2.63710001,
+      "id": "sirius_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "C",
+      "role": "heavy_anchor",
+      "source_ids": [
+        "sirius_a",
+        "sirius_b"
+      ],
+      "x": -6.62989463,
+      "y": 33.21812158,
+      "z": -10.17285976
+    },
+    {
+      "M": 0.202,
+      "common_name": "Luyten 726-8 A (BL Cet) / Luyten 726-8 B (UV Cet)",
+      "distance_pc_source": 2.67830003,
+      "id": "luyten_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "cluster_context",
+      "source_ids": [
+        "luyten_726-8_a",
+        "luyten_726-8_b"
+      ],
+      "x": 31.03113293,
+      "y": 14.31381032,
+      "z": -11.06620482
+    },
+    {
+      "M": 0.17,
+      "common_name": "Ross 154 (GJ 729)",
+      "distance_pc_source": 2.97469999,
+      "id": "ross_154",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "ross_154"
+      ],
+      "x": 7.87161398,
+      "y": -35.63359328,
+      "z": -16.1228737
+    },
+    {
+      "M": 0.136,
+      "common_name": "Ross 248 (GJ 905)",
+      "distance_pc_source": 3.16070001,
+      "id": "ross_248",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "cluster_context",
+      "source_ids": [
+        "ross_248"
+      ],
+      "x": 30.30710522,
+      "y": -2.39624353,
+      "z": 29.54094357
+    },
+    {
+      "M": 0.82,
+      "common_name": "Epsilon Eridani (GJ 144)",
+      "distance_pc_source": 3.20280002,
+      "id": "epsilon_eri",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "epsilon_eri"
+      ],
+      "x": 25.36180456,
+      "y": 33.9421805,
+      "z": -7.05872851
+    },
+    {
+      "M": 0.494,
+      "common_name": "Lacaille 9352 (GJ 887)",
+      "distance_pc_source": 3.28989997,
+      "id": "lacaille_9352",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "lacaille_9352"
+      ],
+      "x": 34.76978359,
+      "y": -8.36888171,
+      "z": -25.84303994
+    },
+    {
+      "M": 0.168,
+      "common_name": "Ross 128 (GJ 447)",
+      "distance_pc_source": 3.37449999,
+      "id": "ross_128",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "ross_128"
+      ],
+      "x": -45.18842083,
+      "y": 2.41993413,
+      "z": 0.63471479
+    },
+    {
+      "M": 0.29,
+      "common_name": "EZ Aquarii A (GJ 866 A) / EZ Aquarii BC (combined)",
+      "distance_pc_source": 3.45129997,
+      "id": "ez_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "ez_aqr_a",
+        "ez_aqr_bc"
+      ],
+      "x": 41.87179108,
+      "y": -15.4959745,
+      "z": -12.21364686
+    },
+    {
+      "M": 1.33,
+      "common_name": "61 Cygni A (GJ 820 A) / 61 Cygni B (GJ 820 B)",
+      "distance_pc_source": 3.49699999,
+      "id": "61_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "C",
+      "role": "heavy_anchor",
+      "source_ids": [
+        "61_cyg_a",
+        "61_cyg_b"
+      ],
+      "x": 26.63090968,
+      "y": -25.07389249,
+      "z": 29.35568228
+    },
+    {
+      "M": 2.101,
+      "common_name": "Procyon A (Alpha CMi A) / Procyon B",
+      "distance_pc_source": 3.51409999,
+      "id": "procyon_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "C",
+      "role": "cluster_context",
+      "source_ids": [
+        "procyon_a",
+        "procyon_b"
+      ],
+      "x": -19.70552472,
+      "y": 42.5969222,
+      "z": 4.29195785
+    },
+    {
+      "M": 0.558,
+      "common_name": "Groombridge 34 A (GX And, GJ 15 A) / Groombridge 34 B (GQ And, GJ 15 B)",
+      "distance_pc_source": 3.56239999,
+      "id": "groombridge_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "cluster_context",
+      "source_ids": [
+        "groombridge_34_a",
+        "groombridge_34_b"
+      ],
+      "x": 34.24473411,
+      "y": 2.75230011,
+      "z": 33.20284477
+    },
+    {
+      "M": 0.582,
+      "common_name": "Struve 2398 A (GJ 725 A) / Struve 2398 B (GJ 725 B)",
+      "distance_pc_source": 3.56379999,
+      "id": "struve_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "struve_2398_a",
+        "struve_2398_b"
+      ],
+      "x": 4.48448334,
+      "y": -23.74442984,
+      "z": 41.23823302
+    },
+    {
+      "M": 0.087,
+      "common_name": "DX Cancri (GJ 1111)",
+      "distance_pc_source": 3.5867,
+      "id": "dx_cnc",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "dx_cnc"
+      ],
+      "x": -24.34609354,
+      "y": 35.37724461,
+      "z": 21.67192134
+    },
+    {
+      "M": 0.762,
+      "common_name": "Epsilon Indi A (GJ 845 A)",
+      "distance_pc_source": 3.63829999,
+      "id": "epsilon_ind_a",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "epsilon_ind_a"
+      ],
+      "x": 23.34109546,
+      "y": -13.02365968,
+      "z": -40.82388594
+    },
+    {
+      "M": 0.783,
+      "common_name": "Tau Ceti (GJ 71)",
+      "distance_pc_source": 3.65229998,
+      "id": "tau_ceti",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "cluster_context",
+      "source_ids": [
+        "tau_ceti"
+      ],
+      "x": 42.32754192,
+      "y": 20.66008885,
+      "z": -13.45032769
+    },
+    {
+      "M": 0.113,
+      "common_name": "GJ 1061",
+      "distance_pc_source": 3.6747,
+      "id": "gj_1061",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "gj_1061"
+      ],
+      "x": 20.66046598,
+      "y": 28.43234019,
+      "z": -34.54909728
+    },
+    {
+      "M": 0.13,
+      "common_name": "YZ Ceti (GJ 54.1)",
+      "distance_pc_source": 3.71949997,
+      "id": "yz_ceti",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "cluster_context",
+      "source_ids": [
+        "yz_ceti"
+      ],
+      "x": 45.33646509,
+      "y": 14.84940824,
+      "z": -14.58003706
+    },
+    {
+      "M": 0.299,
+      "common_name": "Luyten's Star (GJ 273)",
+      "distance_pc_source": 3.79559999,
+      "id": "luyten_star",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "cluster_context",
+      "source_ids": [
+        "luyten_star"
+      ],
+      "x": -18.86868792,
+      "y": 47.05133959,
+      "z": 4.63577803
+    },
+    {
+      "M": 0.097,
+      "common_name": "Teegarden's Star (SO J025300.5+165258)",
+      "distance_pc_source": 3.83100001,
+      "id": "teegarden_star",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "cluster_context",
+      "source_ids": [
+        "teegarden_star"
+      ],
+      "x": 35.80952592,
+      "y": 33.68879486,
+      "z": 14.92151516
+    },
+    {
+      "M": 0.085,
+      "common_name": "SCR 1845-6357 A",
+      "distance_pc_source": 3.84600001,
+      "id": "scr_1845_a",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "scr_1845_a"
+      ],
+      "x": 4.49857741,
+      "y": -22.19547338,
+      "z": -46.34377663
+    },
+    {
+      "M": 0.281,
+      "common_name": "Kapteyn's Star (GJ 191)",
+      "distance_pc_source": 3.92899999,
+      "id": "kapteyn_star",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "kapteyn_star"
+      ],
+      "x": 7.79570915,
+      "y": 36.42368351,
+      "z": -37.27251288
+    },
+    {
+      "M": 0.6,
+      "common_name": "Lacaille 8760 (GJ 825)",
+      "distance_pc_source": 3.9712,
+      "id": "lacaille_8760",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "lacaille_8760"
+      ],
+      "x": 31.4459072,
+      "y": -27.03393261,
+      "z": -33.42135286
+    },
+    {
+      "M": 0.447,
+      "common_name": "Kruger 60 A (GJ 860 A) / Kruger 60 B (DO Cep)",
+      "distance_pc_source": 4.00990001,
+      "id": "kruger_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "kruger_60_a",
+        "kruger_60_b"
+      ],
+      "x": 25.77852298,
+      "y": -12.69485168,
+      "z": 45.45911194
+    },
+    {
+      "M": 0.075,
+      "common_name": "DEN 1048-3956",
+      "distance_pc_source": 4.04399998,
+      "id": "denis_1048",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "brown_dwarf_low_mass",
+      "source_ids": [
+        "denis_1048"
+      ],
+      "x": -39.56558871,
+      "y": 12.80889358,
+      "z": -34.81549308
+    },
+    {
+      "M": 0.334,
+      "common_name": "Ross 614 A (GJ 234 A) / Ross 614 B",
+      "distance_pc_source": 4.12199997,
+      "id": "ross_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "ross_614_a",
+        "ross_614_b"
+      ],
+      "x": -9.04669862,
+      "y": 54.47013455,
+      "z": -2.71167466
+    },
+    {
+      "M": 0.294,
+      "common_name": "Wolf 1061 (GJ 628)",
+      "distance_pc_source": 4.305,
+      "id": "wolf_1061",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "wolf_1061"
+      ],
+      "x": -21.50403641,
+      "y": -52.06728093,
+      "z": -12.65523016
+    },
+    {
+      "M": 0.68,
+      "common_name": "van Maanen's Star (GJ 35)",
+      "distance_pc_source": 4.31199999,
+      "id": "van_maanen_star",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "van_maanen_star"
+      ],
+      "x": 56.24015121,
+      "y": 12.32640004,
+      "z": 5.43462471
+    },
+    {
+      "M": 0.45,
+      "common_name": "GJ 1",
+      "distance_pc_source": 4.3438,
+      "id": "gj_1",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "gj_1"
+      ],
+      "x": 46.29414505,
+      "y": 1.09010866,
+      "z": -35.34974375
+    },
+    {
+      "M": 0.29,
+      "common_name": "Wolf 424 AB (GJ 473)",
+      "distance_pc_source": 4.38800002,
+      "id": "wolf_424_ab",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "wolf_424_ab"
+      ],
+      "x": -56.86275574,
+      "y": -12.04291008,
+      "z": 9.21720717
+    },
+    {
+      "M": 0.145,
+      "common_name": "TZ Arietis (GJ 83.1)",
+      "distance_pc_source": 4.46899999,
+      "id": "tz_ari",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "cluster_context",
+      "source_ids": [
+        "tz_ari"
+      ],
+      "x": 48.82146483,
+      "y": 29.98678187,
+      "z": 17.59723162
+    },
+    {
+      "M": 0.413,
+      "common_name": "GJ 687",
+      "distance_pc_source": 4.54699999,
+      "id": "gj_687",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "gj_687"
+      ],
+      "x": -2.28897427,
+      "y": -22.39414275,
+      "z": 56.67594694
+    },
+    {
+      "M": 0.35,
+      "common_name": "GJ 674",
+      "distance_pc_source": 4.55299998,
+      "id": "gj_674",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "cluster_context",
+      "source_ids": [
+        "gj_674"
+      ],
+      "x": -6.08582115,
+      "y": -41.28249903,
+      "z": -44.58070298
+    },
+    {
+      "M": 0.085,
+      "common_name": "LHS 292",
+      "distance_pc_source": 4.55399999,
+      "id": "lhs_292",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "diffuse_low_mass",
+      "source_ids": [
+        "lhs_292"
+      ],
+      "x": -58.14495034,
+      "y": 18.09112279,
+      "z": -4.7154164
+    },
+    {
+      "M": 0.218,
+      "common_name": "GJ 1245 A / GJ 1245 B",
+      "distance_pc_source": 4.67399999,
+      "id": "gj_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "gj_1245_a",
+        "gj_1245_b"
+      ],
+      "x": 21.6657391,
+      "y": -39.18206183,
+      "z": 43.87373302
+    },
+    {
+      "M": 0.59,
+      "common_name": "GJ 412 A / GJ 412 B (WX UMa)",
+      "distance_pc_source": 4.84799999,
+      "id": "gj_system_2",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "gj_412_a",
+        "gj_412_b"
+      ],
+      "x": -45.7416864,
+      "y": 11.40962707,
+      "z": 44.77810703
+    },
+    {
+      "M": 0.45,
+      "common_name": "GJ 832",
+      "distance_pc_source": 4.96499999,
+      "id": "gj_832",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "ambient_midfield",
+      "source_ids": [
+        "gj_832"
+      ],
+      "x": 35.06495012,
+      "y": -26.04944037,
+      "z": -50.25884566
+    },
+    {
+      "M": 0.42,
+      "common_name": "AD Leonis (GJ 388)",
+      "distance_pc_source": 4.96499999,
+      "id": "ad_leo",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "edge_extreme",
+      "source_ids": [
+        "ad_leo"
+      ],
+      "x": -56.71157873,
+      "y": 26.56396742,
+      "z": 22.63245705
+    },
+    {
+      "M": 0.12,
+      "common_name": "GJ 1002",
+      "distance_pc_source": 4.984,
+      "id": "gj_1002",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "edge_extreme",
+      "source_ids": [
+        "gj_1002"
+      ],
+      "x": 66.25997045,
+      "y": 0.64570408,
+      "z": -8.79070627
+    },
+    {
+      "M": 0.27,
+      "common_name": "GJ 682",
+      "distance_pc_source": 5.00799998,
+      "id": "gj_682",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "edge_extreme",
+      "source_ids": [
+        "gj_682"
+      ],
+      "x": -5.52636748,
+      "y": -47.72958304,
+      "z": -46.93141909
+    },
+    {
+      "M": 1.513,
+      "common_name": "40 Eridani A (GJ 166 A) / 40 Eridani BC (combined)",
+      "distance_pc_source": 5.04499999,
+      "id": "40_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "C",
+      "role": "edge_extreme",
+      "source_ids": [
+        "40_eri_a",
+        "40_eri_bc"
+      ],
+      "x": 29.58812058,
+      "y": 60.1786904,
+      "z": -9.01031777
+    },
+    {
+      "M": 0.35,
+      "common_name": "EV Lacertae (GJ 873)",
+      "distance_pc_source": 5.05399999,
+      "id": "ev_lac",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "edge_extreme",
+      "source_ids": [
+        "ev_lac"
+      ],
+      "x": 45.46914867,
+      "y": -16.82785855,
+      "z": 47.36925129
+    },
+    {
+      "M": 0.18,
+      "common_name": "GJ 1116 AB",
+      "distance_pc_source": 5.17999999,
+      "id": "gj_1116_ab",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "B",
+      "role": "edge_extreme",
+      "source_ids": [
+        "gj_1116_ab"
+      ],
+      "x": -49.00387297,
+      "y": 43.21602727,
+      "z": 23.60941134
+    },
+    {
+      "M": 0.935,
+      "common_name": "Stein 2051 A (GJ 169.1 A) / Stein 2051 B",
+      "distance_pc_source": 5.53500001,
+      "id": "stein_system",
+      "is_target": false,
+      "member_count": 2,
+      "profile": "A",
+      "role": "edge_extreme",
+      "source_ids": [
+        "stein_2051_a",
+        "stein_2051_b"
+      ],
+      "x": 15.86087401,
+      "y": 34.8169242,
+      "z": 63.61467301
+    },
+    {
+      "M": 0.31,
+      "common_name": "GJ 581 (Wolf 562)",
+      "distance_pc_source": 6.299,
+      "id": "gj_581",
+      "is_target": false,
+      "member_count": 1,
+      "profile": "A",
+      "role": "edge_extreme",
+      "source_ids": [
+        "gj_581"
+      ],
+      "x": -53.9616259,
+      "y": -64.00114667,
+      "z": -11.35194062
+    }
+  ]
+}

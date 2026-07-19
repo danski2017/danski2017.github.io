@@ -1,0 +1,245 @@
+{
+  "artifacts": {
+    "showcase_3d_absweyl_eigengap.png": {
+      "bytes": 265397,
+      "color_max": -2.0894775910921535,
+      "color_min": -2.4083796166756573,
+      "path": "analysis/et_tov3_scout/pinch_lab_viewer/imported_tools/showcase_3d_absweyl_eigengap.png",
+      "points_rendered": 4028,
+      "sha256": "085252d38d45d9d305ff18d8bb31b49854a7f32622b06bc0ef78af5fe6408b39",
+      "threshold": 0.003904876557644465,
+      "threshold_quantile": 0.985,
+      "title": "absWeyl 3D ridges / color: log10(absWeyl)"
+    },
+    "showcase_3d_constraint_residual.png": {
+      "bytes": 295338,
+      "color_max": -1.9015956658272528,
+      "color_min": -3.357321008598755,
+      "path": "analysis/et_tov3_scout/pinch_lab_viewer/imported_tools/showcase_3d_constraint_residual.png",
+      "points_rendered": 4120,
+      "sha256": "3ff88930d09c8838539ba2c1f79ea8fb693b4cb461351e4576a575b666997d20",
+      "threshold": 0.0004392147948965431,
+      "threshold_quantile": 0.985,
+      "title": "Hamiltonian residual 3D audit / color: log10(abs residual)"
+    },
+    "showcase_3d_constraint_vs_identity.png": {
+      "bytes": 299892,
+      "color_max": -3.266775504629524,
+      "color_min": -9.231620550438603,
+      "path": "analysis/et_tov3_scout/pinch_lab_viewer/imported_tools/showcase_3d_constraint_vs_identity.png",
+      "points_rendered": 4028,
+      "sha256": "82b5b785b9917038a195e146c3b4534c73c787447cf49b5635cf5a341c1e4d2a",
+      "threshold": 0.6249158036213338,
+      "threshold_quantile": 0.985,
+      "title": "Identity-score footprint / color: log10(abs constraint)"
+    },
+    "showcase_3d_delta_quad.png": {
+      "bytes": 775150,
+      "panels": [
+        {
+          "color_max": -2.0894775910921535,
+          "color_min": -2.4083796166756573,
+          "points_rendered": 4028,
+          "threshold": 0.003904876557644465,
+          "threshold_quantile": 0.985,
+          "title": "Full field absWeyl"
+        },
+        {
+          "color_max": -2.0838795126587444,
+          "color_min": -2.401558937590827,
+          "points_rendered": 4028,
+          "threshold": 0.003966649868525576,
+          "threshold_quantile": 0.985,
+          "title": "Removed-target absWeyl"
+        },
+        {
+          "color_max": -2.9197230807364662,
+          "color_min": -3.689758704468169,
+          "points_rendered": 4028,
+          "threshold": 0.00020425578404683847,
+          "threshold_quantile": 0.985,
+          "title": "Scalar delta absWeyl"
+        },
+        {
+          "color_max": 1.0,
+          "color_min": 0.9664646983146667,
+          "points_rendered": 4028,
+          "threshold": 0.9664596682786946,
+          "threshold_quantile": 0.985,
+          "title": "Eigenvector orientation delta"
+        }
+      ],
+      "path": "analysis/et_tov3_scout/pinch_lab_viewer/imported_tools/showcase_3d_delta_quad.png",
+      "sha256": "e25979df602c1610007a30e3d6c04ead5b5aef9026d1196336db5100f32a011f"
+    },
+    "showcase_3d_ricci_weyl_overlay.png": {
+      "bytes": 345182,
+      "path": "analysis/et_tov3_scout/pinch_lab_viewer/imported_tools/showcase_3d_ricci_weyl_overlay.png",
+      "ricci_points": 4120,
+      "ricci_threshold": 0.004289088379591731,
+      "sha256": "4f50bd76c9ca233d064e713fe4259864bb8704543f8518bbbf26de592772994b",
+      "weyl_points": 4120,
+      "weyl_threshold": 0.0038344415277242745
+    }
+  },
+  "claim_boundary": "3D advisory visualization over existing Atlas NPZ caches; no ledgers or viewer datasets rewritten",
+  "constraint_identity_gate": {
+    "definition": "high identity score = high normalized scalar delta times high eigenvector orientation delta, stable eigen-gap only",
+    "high_identity_low_residual_fraction": 0.4416583912611718,
+    "high_identity_low_residual_points": 1779,
+    "high_identity_points": 4028,
+    "high_identity_threshold": 0.6249158036213338,
+    "interpretation": "fraction below 0.5 means more high identity-score points are constraint-loud than lower-residual in this toy slice; quarantine before physical claims"
+  },
+  "field_stats": {
+    "abs_delta_abs_weyl": {
+      "dtype": "float64",
+      "finite": 274625,
+      "max": 0.0012030312791466713,
+      "mean": 2.2625969395160794e-05,
+      "min": 1.0186340659856796e-10,
+      "nonfinite": 0,
+      "p50": 6.126181688159704e-06,
+      "p95": 7.260153070092197e-05,
+      "p99": 0.00035961820976808775,
+      "shape": [
+        65,
+        65,
+        65
+      ],
+      "size": 274625
+    },
+    "abs_weyl": {
+      "dtype": "float64",
+      "finite": 274625,
+      "max": 0.008138088509440422,
+      "mean": 0.0005213529099727308,
+      "min": 2.4585357095929794e-05,
+      "nonfinite": 0,
+      "p50": 0.00023162996512837708,
+      "p95": 0.002013401454314589,
+      "p99": 0.005084917917847651,
+      "shape": [
+        65,
+        65,
+        65
+      ],
+      "size": 274625
+    },
+    "eigen_gap": {
+      "dtype": "float64",
+      "finite": 274625,
+      "max": 0.5,
+      "mean": 0.3009057730770863,
+      "min": 2.7699854854290606e-06,
+      "nonfinite": 0,
+      "p50": 0.32650819420814514,
+      "p95": 0.47699382305145266,
+      "p99": 0.49100849509239197,
+      "shape": [
+        65,
+        65,
+        65
+      ],
+      "size": 274625
+    },
+    "eigenvector_delta_angle": {
+      "dtype": "float64",
+      "finite": 274625,
+      "max": 1.0,
+      "mean": 0.048276259554479686,
+      "min": 0.0,
+      "nonfinite": 0,
+      "p50": 7.236003875732422e-05,
+      "p95": 0.37026386260986205,
+      "p99": 0.9924109578132629,
+      "shape": [
+        65,
+        65,
+        65
+      ],
+      "size": 274625
+    },
+    "hamiltonian_residual": {
+      "dtype": "float64",
+      "finite": 274625,
+      "max": 0.012543084099888802,
+      "mean": 3.58893323255055e-05,
+      "min": 6.331787958530066e-12,
+      "nonfinite": 0,
+      "p50": 3.657871047835215e-06,
+      "p95": 0.00014445252018049345,
+      "p99": 0.0005988261825405067,
+      "shape": [
+        65,
+        65,
+        65
+      ],
+      "size": 274625
+    },
+    "identity_score": {
+      "dtype": "float64",
+      "finite": 274625,
+      "max": 1.0,
+      "mean": 0.030159290660384162,
+      "min": 0.0,
+      "nonfinite": 0,
+      "p50": 2.903996904728815e-05,
+      "p95": 0.24224750149762025,
+      "p99": 0.68096387993633,
+      "shape": [
+        65,
+        65,
+        65
+      ],
+      "size": 274625
+    },
+    "ricci_trace": {
+      "dtype": "float64",
+      "finite": 274625,
+      "max": 0.05272526666522026,
+      "mean": 0.00021399716638192842,
+      "min": -0.005996628664433956,
+      "nonfinite": 0,
+      "p50": 3.7467273727997963e-07,
+      "p95": 0.00027030634228140086,
+      "p99": 0.006292895674705521,
+      "shape": [
+        65,
+        65,
+        65
+      ],
+      "size": 274625
+    }
+  },
+  "grid": {
+    "axis_max": 48.0,
+    "axis_min": -48.0,
+    "dx": 1.5,
+    "shape_zyx": [
+      65,
+      65,
+      65
+    ]
+  },
+  "inputs": {
+    "delta_npz": "analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_delta_eigenfield.npz",
+    "field_config": "configs/et_tov3_scout/IDENTITY_STAGEB_16SRC_001.json",
+    "full_npz": "analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_full_eigenfield.npz",
+    "removed_npz": "analysis/et_tov3_scout/PINCH_EIGENFIELD_LEDGER_001/caches/pinch_eigenfield_ledger_001_target_removed_eigenfield.npz"
+  },
+  "lane": "ATLAS-PINCH-LAB-IMPORTED-TOOLS-3D-SHOWCASE",
+  "render_policy": {
+    "max_points_per_panel": 6500,
+    "quantile": 0.985
+  },
+  "target": {
+    "M": 0.716,
+    "id": "B03",
+    "profile": "B",
+    "role": "midfield_mixed",
+    "x": -16.0,
+    "y": -30.0,
+    "z": 11.0
+  }
+}

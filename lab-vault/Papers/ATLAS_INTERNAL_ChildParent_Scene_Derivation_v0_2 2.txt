@@ -1,0 +1,865 @@
+ATLAS INTERNAL METHOD NOTE
+Child / Parent Scene Derivation in Atlas Solver
+From Threshold Floors to Lawful Parent-Context Support in Weak-Field General Relativity
+
+Version: v0.2 synchronized internal draft
+Date: 2026-04-25
+Prepared for: Atlas Solver Project / Daniel Scieszinski
+
+Synchronized successor to:
+Child/Parent Scene Derivation in Atlas Solver
+From Threshold Floors to Derived Parent Identity Objects in Weak-Field General Relativity
+Revision A, 2026-04-22
+
+Status: Internal live-branch method note
+Lane: Private Atlas method / child-parent and parent-context branch
+Public status: Not approved for public science release in this form
+Canonical status: Not Phase I milestone evidence
+Primary alignment:
+GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV,
+ATLAS_ARCHITECTURE_CANON v0.2, ATLAS_LANE_GOVERNANCE,
+Closure-Overlap-Handoff-Embedding internal note,
+Global Parity Bundle internal note,
+Recursive Scaffold Calculus internal note.
+
+================================================================================
+ABSTRACT
+================================================================================
+
+This synchronized internal note preserves the viable core of the earlier child/parent
+scene-derivation white paper while repairing its terminology against current Atlas
+canon.
+
+The core insight is that the old scalar “floor” problem in local scene analysis is
+better understood as a missing parent-context problem. A child scene should not be
+judged against an arbitrary scalar threshold when the relevant question is instead:
+what lawful parent relation contextualizes this scene under the declared weak-field
+readability rule?
+
+In current Atlas doctrine, Node 1 is not a scalar floor and not a physical source.
+Node 1 is the mandatory lawful parent scene relation for a declared scene. A derived
+parent support may be extracted as a contextual diagnostic object under a declared
+branch, but it does not replace the underlying GR field, does not generate curvature,
+and does not become a new physical source.
+
+The motivating case remains the Earth-Moon-Sun scene. Earlier child-side analysis
+approached legibility but stalled because the final comparison datum remained
+under-derived. The child/parent branch proposes to replace arbitrary threshold
+selection with a lawful outward context search: define the child scene, declare a
+candidate parent scene, compare parent-readable contribution against outside
+context, and test whether the resulting parent support is stable, enclosing, and
+reproducible.
+
+The earlier strict EMS audit remains a high-value internal result seed. With child
+C = {Earth, Moon}, parent candidate G = {Earth, Moon, Sun}, and an outer local
+stellar context, an independent replication recovered a median fractional
+proxy-versus-strict shell separation of order 10^-6, specifically about
+9.29 x 10^-7, with uniformly positive sign over 326/326 closed directions. That
+sign is physically sensible: adding the child masses to the parent channel
+strengthens the parent-readable contribution and pushes the closure crossing
+outward. The result is Sun-dominated but not Sun-trivial.
+
+This memo does not certify Node 1 derivation as solved. It does not establish a
+canonical child/parent extraction standard. It records a promising internal branch
+and defines the vocabulary, equations, output requirements, and validation gates
+needed to harden it.
+
+================================================================================
+1. PURPOSE AND DISPOSITION
+================================================================================
+
+The source paper captured an important conceptual turn in Atlas: the realization
+that “floor” language was concealing a deeper missing structure. Local scenes were
+being compared against scalar thresholds whose architectural role had not been
+lawfully derived. The child/parent branch reframes that defect.
+
+Old question:
+What scalar floor should this local scene be measured against?
+
+Synchronized question:
+What lawful parent scene relation contextualizes this child scene, and can a
+derived parent support be extracted under the declared readability rule?
+
+Forward decision:
+
+- Preserve the paper as an internal method note.
+- Do not publish in its current form.
+- Do not treat the EMS audit as canonical evidence yet.
+- Use this branch to design strict parent-support benchmark tests.
+- Keep it downstream of canonical Phase I parity/GCS stabilization.
+- Require ledgered outputs, anchor discipline, and sensitivity checks before
+  promotion.
+
+This document is private Atlas method material because it concerns Node 1 handling,
+child-scene witnesses, parent-support derivation, anchor conventions, roster
+sensitivity, and implementation-facing extraction logic.
+
+================================================================================
+2. FOUNDATION ALIGNMENT
+================================================================================
+
+Paper I inheritance:
+A Gravitational Coherence Surface is a parity horizon where a declared
+gravitational contribution reaches equality with its derived gravitational context
+under a declared readability rule. It is not a force boundary, physical membrane,
+causal horizon, event horizon, trapping horizon, or orbital-stability limit.
+
+Paper II inheritance:
+Many-source parity begins with declared source-readable contributions Q_i and
+pairwise residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x),
+
+with parity surfaces
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+Child/parent derivation must remain compatible with this pairwise and
+contribution-context grammar.
+
+Paper III inheritance:
+Retained faces, seams, low-margin regions, and transition loci are derived
+interface geometry in the mesoscale comparison layer. Parent supports belong to
+this derived diagnostic layer unless and until a stronger status is earned.
+
+Paper IV inheritance:
+Proof-of-concept extraction establishes operational recoverability under the
+declared scalar tidal-readable branch only. It does not establish invariance,
+observability, or a final extraction standard.
+
+Architecture canon inheritance:
+Atlas is ledger-first. Physical source nodes generate the modeled field. Node 0
+registers the scene. Node 1 declares the lawful parent scene relation. Node 2+
+are physical source nodes. Node -1 certifies the relational ledger. Node Psi
+extracts GCS/parity-context structures. Validation determines interpretation.
+Rendering communicates but never decides.
+
+Lane governance inheritance:
+This note belongs in the private Atlas method lane. A public descendant would need
+to remove internal node architecture, proprietary extraction strategy, and
+implementation-facing method detail.
+
+================================================================================
+3. TERMINOLOGY REPAIR
+================================================================================
+
+Older / risky wording -> synchronized replacement
+
+- floor -> lawful parent scene relation, parent context, or declared readability
+  baseline only when explicitly scalar
+- derived parent identity object -> derived parent-context support or parent
+  support object
+- Node 2 as micro witness -> child witness datum, child barycentric witness, or
+  child scene witness
+- Node 1 as first lawful enclosing macro identity -> Node 1 as lawful parent
+  scene relation; derived parent support as branch artifact
+- parent object is real -> parent support is a promising derived diagnostic
+  candidate requiring validation
+- missing correction term -> candidate contextual correction diagnostic
+- true child/parent derivation -> strict child/parent branch under declared
+  assumptions
+- shell proof -> high-value internal result seed
+- closure-overlap-handoff as live path -> downstream live branch, not canonical
+  Phase I replacement
+- parity faces sculpt the parent object -> parent support may be constrained by
+  surrounding readable context under the declared branch
+- scalar floor sweeps failed -> scalar baseline sweeps did not resolve the parent
+  relation problem under tested assumptions
+
+================================================================================
+4. NODE AND DATUM DISCIPLINE
+================================================================================
+
+Current Atlas node taxonomy:
+
+Node -1:
+Certified relational ledger / stored relational census.
+
+Node 0:
+Canonical global geometric registration datum.
+
+Node 1:
+Mandatory lawful parent scene relation.
+
+Node 2+:
+Physical source nodes.
+
+Node G:
+Computed source geometric centroid.
+
+Node B:
+Computed source mass barycenter.
+
+Node Psi:
+Extracted GCS/parity-context diagnostic layer.
+
+Node P:
+Parity-junction candidate.
+
+Node A:
+Adjudication / critical-transition candidate.
+
+Therefore, this branch must not describe Node 2 as the micro witness of the child
+scene. In current doctrine, Earth and Moon, for example, are physical source nodes
+inside the scene, hence Node 2+ in the generic source-node sense.
+
+A child scene may have a child witness datum, commonly a barycentric witness,
+
+    x_B(C) = (sum_{i in C} M_i x_i) / (sum_{i in C} M_i),
+
+or another explicitly declared witness. But that witness is not Node 2.
+
+Recommended terms:
+
+- child scene C;
+- child source roster;
+- child witness datum x_C or x_B(C);
+- parent candidate G;
+- outside context K(G);
+- parent residual Psi_G;
+- derived parent support Sigma_G;
+- Node 1 parent relation declaration.
+
+================================================================================
+5. CORE HYPOTHESIS
+================================================================================
+
+Internal working claim:
+A local child scene can be more lawfully contextualized by deriving a stable
+parent-context support than by selecting an arbitrary scalar readability floor.
+The parent support is extracted by comparing a candidate parent contribution
+against the outside context under a declared readable branch.
+
+Compact statement:
+Do not pick the floor. Declare the child, propose the parent, derive the context,
+extract the support, and validate the relation.
+
+This is a method hypothesis, not a new physical claim.
+
+The parent support is:
+
+- derived from ordinary weak-field source contributions;
+- contextual, not physical;
+- a support object, not a source;
+- a diagnostic branch artifact, not canonical evidence by default;
+- useful only if stable under anchor, roster, tolerance, domain, and sampling
+  checks.
+
+================================================================================
+6. DECLARED READABLE BRANCH
+================================================================================
+
+Let a declared weak-field scene contain physical sources S_i with masses M_i and
+positions x_i on a static or quasi-static slice.
+
+Define softened distance
+
+    r_{i,eps}(x) = sqrt(||x - x_i||^2 + eps^2).
+
+The current Phase I scalar readable branch is
+
+    Q_i(x) = M_i / (||x - x_i||^2 + eps^2)^(3/2).
+
+Away from sources, analytic shorthand may be written
+
+    Q_i(x) proportional to M_i / r_i(x)^3.
+
+This Q_i is a diagnostic readable field inspired by tidal scaling. It is not the
+metric, not a force, and not an observable by itself.
+
+For pairwise comparison,
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+For a declared child/parent comparison, let C be the child scene and G be a
+candidate parent group with C subset G. The parent-readable channel may be
+defined as
+
+    Q_G(x) = sum_{i in G} Q_i(x).
+
+The outside competitor or outside context channel must be declared. A simple
+branch may use
+
+    Q_out(x; G) = max_{j not in G} Q_j(x),
+
+while richer branches may use a summed, tensor-aware, sector-resolved, or
+parent-ledger context. The branch must declare which is being used.
+
+Define the parent residual
+
+    Psi_G(x) = Q_G(x) - Q_out(x; G).
+
+A candidate parent support is the zero set
+
+    Sigma_G = { x : Psi_G(x) = 0 },
+
+retained only where closure, sampling, and validation rules support
+interpretation.
+
+================================================================================
+7. CHILD/PARENT DERIVATION PIPELINE
+================================================================================
+
+The synchronized branch pipeline is:
+
+1. Declare the child scene C.
+   Specify child sources, units, coordinates, approximation regime, and physical
+   source roster.
+
+2. Declare the child witness datum.
+   Default candidate: mass barycenter x_B(C). Alternatives must be named and
+   justified.
+
+3. Declare Node 0 registration.
+   The scene’s global coordinate registration datum must be explicit.
+
+4. Declare Node 1 parent relation.
+   The scene is not parentless. State whether the parent relation is explicit,
+   inherited, canonical external, or observational/asymptotic.
+
+5. Propose candidate parent group G.
+   Require C subset G. Example: C = {Earth, Moon}; G = {Earth, Moon, Sun}.
+
+6. Declare outside context K(G).
+   Specify whether outside context is max-source, summed-source, sector-resolved,
+   local stellar neighborhood, ephemeris roster, null exterior, or another branch.
+
+7. Compute Q_i and ledger the relational state.
+   Store Q_i, Q_G, Q_out, Psi_G, source roster, parent roster, outside roster,
+   sampling metadata, and anchor convention.
+
+8. Launch omni-radial interrogation.
+   Default serious branch: launch rays from the declared child witness datum or
+   explicitly declared anchor. Anchor must be fixed for proxy-versus-strict
+   comparisons.
+
+9. Extract first closure crossings.
+   Along each ray, solve for Psi_G = 0 where a crossing exists.
+
+10. Score parent support.
+    Record closed-ray fraction, median closure radius, radius dispersion,
+    anisotropy, sign consistency, component behavior, and persistence under
+    context growth.
+
+11. Compare proxy and strict branches if applicable.
+    Hold anchor convention fixed. Do not compare ppm-level shell separation
+    across different launch anchors.
+
+12. Validate.
+    Run sampling, radial, tolerance, domain, source-roster, and anchor checks.
+
+13. Interpret conservatively.
+    Treat the parent support as a derived contextual diagnostic unless stronger
+    evidence is earned.
+
+================================================================================
+8. EMS CASE STUDY
+================================================================================
+
+The Earth-Moon-Sun scene remains the decisive motivating case because it is where
+earlier Atlas shell analysis repeatedly approached legibility but stalled at the
+final comparison datum.
+
+Synchronized framing:
+
+Child scene:
+    C = {Earth, Moon}
+
+Candidate parent:
+    G = {Earth, Moon, Sun}
+
+Outer context:
+    local stellar neighborhood, declared source roster, or another explicit
+    exterior relation
+
+Child witness:
+    x_B(C), the Earth-Moon mass barycenter, unless another anchor is declared
+
+Branch question:
+    Does the Earth-Moon child scene sit inside a stable Sun-led but child-corrected
+    parent support when the parent contribution is compared against its outside
+    context?
+
+The source paper reports that broad scalar baseline sweeps did not materially
+solve the Earth-Moon-Sun scene. That remains useful as a negative result. It
+suggests that scalar threshold tuning was not the missing architecture.
+
+The strict audit replaced a Sun-led proxy comparison with a child/parent
+comparison:
+
+    child C = {Earth, Moon}
+    parent G = {Earth, Moon, Sun}
+    outside context = local stellar neighborhood
+
+The strict shell landed extremely close to the Sun-led proxy shell but not
+identically on it. This supports the internal interpretation:
+
+    Sun-dominated, but not Sun-trivial.
+
+================================================================================
+9. STRICT AUDIT RESULT SEED
+================================================================================
+
+The source paper records an independent Claude-wing replication of the EMS strict
+audit. The reported result:
+
+    median fractional proxy-versus-strict separation approximately 9.29 x 10^-7;
+    326/326 closed directions positive;
+    strict shell uniformly larger than proxy shell.
+
+Interpretation:
+Adding Earth and Moon into the parent channel strengthens the parent-readable
+contribution relative to the proxy and pushes the closure crossing outward. The
+positive sign is physically and methodologically expected.
+
+Current evidence status:
+High-value internal result seed. Not canonical evidence yet.
+
+Required caution:
+The fractional correction is at ppm scale. Launch-anchor choice can introduce
+changes of comparable order when parsec-scale shells are read from anchors
+separated by astronomical-unit scales. Therefore any proxy-versus-strict
+comparison must fix and hold the anchor convention.
+
+The audit supports three provisional lessons:
+
+1. Gross parent-shell existence and morphology are not very sensitive to anchor
+   choice at this scale.
+
+2. The ppm-level child correction is sensitive to anchor convention and must not
+   be compared across mixed anchors.
+
+3. The parent support is overwhelmingly Sun-led while retaining a lawful
+   Earth-Moon fingerprint under the declared branch.
+
+================================================================================
+10. ANCHOR CONVENTION LAW
+================================================================================
+
+Anchor discipline is mandatory for this branch.
+
+For gross morphology:
+Anchor choice may be negligible when the shell scale is parsecs and anchor shifts
+are AU-scale.
+
+For ppm correction:
+Anchor choice is not negligible. A shell separation of order 10^-6 can be
+contaminated or mimicked by changing launch anchors.
+
+Therefore future strict audits must declare:
+
+- launch anchor;
+- child witness datum;
+- whether proxy and strict runs use identical anchors;
+- coordinate frame;
+- radial parameterization;
+- ray set;
+- radial search bounds;
+- interpolation method;
+- closure criterion;
+- comparison statistic.
+
+Rule:
+Do not report proxy-versus-strict fractional separation unless the proxy and
+strict extractions share the same launch-anchor convention.
+
+================================================================================
+11. PARENT SUPPORT AS CONTEXTUAL DIAGNOSTIC
+================================================================================
+
+A derived parent support is not identical to the many-source parity network, but
+it is not unrelated to it. It is a contribution-context support object extracted
+from ordinary weak-field source-readable contributions.
+
+Recommended interpretation:
+A parent support is a derived contextual support that may enclose or
+contextualize a child scene under a declared parent relation and readability rule.
+
+It is not:
+
+- a physical shell;
+- a material boundary;
+- a force cutoff;
+- a new source;
+- a bulk averaged mass replacing the child;
+- an event horizon;
+- a causal horizon;
+- an observable by itself.
+
+It may be useful because it supplies lawful context for a child scene without
+collapsing the child into a scalar wash.
+
+================================================================================
+12. RELATION TO CANONICAL PHASE I
+================================================================================
+
+Canonical Phase I remains:
+
+    sources
+    -> Q_i
+    -> Psi_ij
+    -> zero-set extraction
+    -> relevance filtering
+    -> GCS / parity-context extraction
+    -> junction and closure diagnostics
+    -> sensitivity checks
+    -> machine-readable outputs
+    -> ledger
+    -> conservative interpretation
+
+The child/parent branch is downstream and adjacent:
+
+    child scene declaration
+    -> child witness datum
+    -> candidate parent group
+    -> outside context declaration
+    -> parent residual Psi_G
+    -> omni-radial closure extraction
+    -> parent-support diagnostics
+    -> anchor / roster / tolerance / sampling checks
+    -> ledgered outputs
+    -> conservative interpretation
+
+The branch does not replace canonical retained pairwise parity extraction.
+
+Promotion condition:
+Child/parent diagnostics may support canonical work only if they improve scene
+lawfulness, closure interpretation, source-roster discipline, or benchmark
+predictiveness without destabilizing the canonical parity/GCS path.
+
+================================================================================
+13. RELATION TO CLOSURE-OVERLAP-HANDOFF-EMBEDDING
+================================================================================
+
+The closure-overlap-handoff-embedding branch remains a private internal method
+branch. It is useful for hierarchy-aware local identity-transition structure, but
+it does not replace canonical Phase I.
+
+Relationship:
+
+- child/parent derivation asks what lawful parent relation contextualizes a
+  scene;
+- closure-overlap-handoff asks how retained local domains overlap and transition;
+- embedding tags may record contextual placement but do not automatically assign
+  Node 1;
+- parent supports can provide a lawful context in which handoff structures may be
+  interpreted.
+
+Do not write that handoff is the live many-source path without qualification.
+Say instead:
+
+    closure-overlap-handoff-embedding is an active downstream branch for
+    hierarchy-aware local transition extraction.
+
+================================================================================
+14. RELATION TO GEODESIC MAPPING
+================================================================================
+
+Parity surfaces are not geodesics. Parent supports are not trajectory laws.
+
+The conservative claim is cartographic:
+Derived parent supports may organize geodesic analysis by marking lawful
+contextual regions, source-readable dominance changes, low-margin zones, and
+transition structures inside ordinary weak-field GR.
+
+Possible trajectory labels inside this cartographic overlay:
+
+- child-interior trajectory;
+- parent-interior trajectory;
+- parent-support-skimming trajectory;
+- context-transitioning trajectory;
+- low-margin trajectory segment.
+
+These labels do not modify the geodesic equation. They are diagnostic annotations
+on ordinary GR/SR-compatible analysis.
+
+No dynamical consequence should be claimed until correlated with actual
+geodesic, residual, or trajectory calculations under declared conditions.
+
+================================================================================
+15. RELATION TO RECURSIVE SCAFFOLD CALCULUS
+================================================================================
+
+The child/parent branch supplies one possible primitive for the recursive
+scaffold grammar: a validated enclosing parent support.
+
+Current scaffold relation:
+
+- GCS/parity-context cells divide readable regimes;
+- parent supports contextualize child scenes;
+- nested in-cell foliation may probe interiors of retained cells;
+- closure-overlap-handoff may extract local transition supports;
+- Node A may study critical reclassification only after strong evidence.
+
+The parent support is therefore a candidate support object in the internal
+scaffold grammar, not a new physical layer and not a canonical primitive by
+default.
+
+================================================================================
+16. WHY THIS MATTERS FOR MANY-SOURCE SCENES
+================================================================================
+
+The branch suggests a scalable hierarchy strategy:
+
+    child scene
+    -> first lawful parent relation
+    -> larger parent relation
+    -> context ring
+    -> broader scene
+
+This avoids two bad extremes:
+
+1. flat all-pairs fog, where every comparison competes for equal interpretive
+   rank;
+
+2. immediate global averaging, where local scene structure is erased too early.
+
+Instead, the child/parent branch asks whether meaningful intermediate supports
+can be derived and validated.
+
+For the 12-source scene family, this means local sub-scenes may be tested for
+lawful parent supports before being interpreted inside the global cluster.
+
+For galaxy-scale work, this suggests a cautious future ladder:
+local subsystem, stellar neighborhood, association, arm/cluster context, galaxy
+context, group context.
+
+This is a research strategy, not a proven scaling law.
+
+================================================================================
+17. VALIDATION REQUIREMENTS
+================================================================================
+
+The branch remains live only if it passes hardening tests.
+
+Required tests:
+
+1. Analytic simple scenes.
+   Verify that child/parent extraction does not invent parent supports in
+   trivial or under-declared cases.
+
+2. Two-source child in explicit parent.
+   Use controlled artificial scenes where the expected parent relation is known.
+
+3. EMS rerun under current standards.
+   Reproduce the strict audit with current ledger-first output, declared anchor,
+   and full machine-readable diagnostics.
+
+4. Anchor sweep.
+   Quantify gross morphology sensitivity and ppm correction sensitivity under
+   controlled anchor changes.
+
+5. Roster sensitivity.
+   Add/remove Jupiter, major planets, and local stellar context sources where
+   appropriate. Record how parent support changes.
+
+6. Domain sweep.
+   Confirm parent-support closure is not a domain-edge artifact.
+
+7. Sampling sweep.
+   Test ray count, angular distribution, and radial resolution.
+
+8. Tolerance sweep.
+   Test closure crossing tolerance and sign-change interpolation.
+
+9. Proxy-versus-strict comparison.
+   Hold anchor fixed. Report median, mean, quantiles, sign count, and angular
+   distribution of separation.
+
+10. Outer-context growth.
+    Test whether candidate parent support persists as the exterior roster is
+    expanded.
+
+11. Branch comparison.
+    Compare max-outside context, summed-outside context, sector-resolved context,
+    and tensor-aware validation branches.
+
+12. Ledger/render agreement.
+    Ensure renders are downstream of recorded parent-support samples and metrics.
+
+================================================================================
+18. MACHINE-READABLE OUTPUT REQUIREMENTS
+================================================================================
+
+Future child/parent runs should produce:
+
+config.json
+summary.json
+manifest.json
+scene_passport.json
+relational_ledger_index.json
+child_scene.json
+parent_candidate.json
+outside_context.json
+anchor_convention.json
+parent_support_points.csv or compressed equivalent
+parent_support_summary.csv
+proxy_vs_strict_comparison.csv where applicable
+anchor_sensitivity_summary.csv
+roster_sensitivity_summary.csv
+sampling_sensitivity_summary.csv
+tolerance_sensitivity_summary.csv
+domain_sensitivity_summary.csv
+plots/parent_support_overview.png
+plots/proxy_vs_strict_delta.png where applicable
+plots/anchor_sensitivity.png where applicable
+plots/thumbnail.png
+
+Minimum child_scene.json fields:
+
+scene_id
+child_id
+child_source_ids
+child_witness_type
+child_witness_position
+units
+coordinate_frame
+Node_0_definition
+Node_1_parent_relation
+readable_branch
+softening
+domain
+sampling_mode
+validation_status
+
+Minimum parent_candidate.json fields:
+
+parent_id
+parent_source_ids
+parent_relation_mode
+parent_witness_if_any
+parent_channel_definition
+outside_context_definition
+outer_context_source_ids
+promotion_status
+validation_status
+
+Minimum proxy_vs_strict_comparison.csv fields:
+
+ray_id
+direction_x
+direction_y
+direction_z
+proxy_radius
+strict_radius
+delta_radius
+fractional_delta
+sign
+anchor_id
+closure_status
+interpolation_status
+
+Minimum parent_support_summary.csv fields:
+
+run_id
+child_id
+parent_id
+closed_ray_count
+open_ray_count
+closed_ray_fraction
+median_radius
+mean_radius
+radius_std
+radius_min
+radius_max
+anisotropy_metric
+component_count_if_available
+median_fractional_proxy_delta_if_applicable
+positive_delta_count_if_applicable
+negative_delta_count_if_applicable
+zero_delta_count_if_applicable
+anchor_convention
+sampling_mode
+tolerance
+validation_status
+
+================================================================================
+19. FAILURE MODES
+================================================================================
+
+F1. Parent support disappears or changes qualitatively under modest sampling,
+domain, or tolerance changes.
+
+F2. Proxy-versus-strict separation vanishes or changes sign under controlled
+rerun.
+
+F3. Claimed child correction is dominated by anchor convention.
+
+F4. Outer context roster changes swamp the parent support without predictable
+behavior.
+
+F5. The branch adds complexity but does not improve scene lawfulness or
+diagnostic interpretation.
+
+F6. Parent supports are interpreted as physical shells, force walls, or new
+sources.
+
+F7. Renders look coherent but ledgered diagnostics fail to support the claimed
+structure.
+
+F8. The branch distracts from canonical Phase I stabilization.
+
+If these failure modes dominate, the branch should remain historical or
+scratch-only.
+
+================================================================================
+20. CLAIM BOUNDARY
+================================================================================
+
+This note does not claim:
+
+- modified gravity;
+- new field equations;
+- new forces;
+- physical parent shells;
+- physical context membranes;
+- event horizons;
+- causal horizons;
+- orbital-stability boundaries;
+- direct observability;
+- that Node 1 derivation is solved;
+- that EMS parent support is canonical evidence;
+- that child/parent extraction replaces Phase I;
+- that parent supports generate curvature;
+- that composite groups are new canonical masses;
+- that geodesics change because a parent support is crossed;
+- that the strict audit is converged.
+
+This note claims only:
+
+Under a declared weak-field scalar readability branch, child scenes may be
+contextualized by testing candidate parent relations and extracting derived
+parent supports. The EMS audit provides a high-value internal result seed in
+which the Earth-Moon child leaves a ppm-scale, uniformly signed correction on a
+Sun-led parent support. This is promising, conservative, and not yet canonical.
+
+================================================================================
+21. NEXT ACTIONS
+================================================================================
+
+1. Preserve the original Revision A PDF and TXT as historical source artifacts.
+2. Use this synchronized v0.2 memo as the active internal orientation note.
+3. Reproduce the EMS strict audit under current output standards.
+4. Declare and freeze anchor convention for proxy-versus-strict comparison.
+5. Add Jupiter and fuller Solar System roster sensitivity.
+6. Add local stellar roster sensitivity and outer-context growth checks.
+7. Compare max-outside, summed-outside, sector-resolved, and tensor-aware
+   parent-context branches.
+8. Generate parent_support_summary.csv and proxy_vs_strict_comparison.csv.
+9. Keep all interpretation downstream of ledgered diagnostics.
+10. Do not promote the branch until stability is demonstrated.
+
+================================================================================
+SHORT INTERNAL FORM
+================================================================================
+
+The child/parent branch repairs the old floor problem by replacing arbitrary
+scalar threshold selection with lawful parent-context derivation. A child scene C
+is declared, a parent candidate G is proposed, the parent-readable contribution
+is compared against an outside context, and a derived parent support is extracted
+and validated. In the EMS audit, C = {Earth, Moon} and G = {Earth, Moon, Sun}
+produced a Sun-led but child-corrected parent support with a ppm-scale uniformly
+positive strict-versus-proxy separation. The result is a high-value internal
+method seed, not canonical evidence. Node 1 is the lawful parent scene relation;
+the parent support is a derived diagnostic, not a source, force, or physical
+shell.

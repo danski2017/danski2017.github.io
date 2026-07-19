@@ -1,0 +1,623 @@
+{
+  "claim_boundary": [
+    "Master manifest for Gaia LSN source/group-removal eigen-orientation footprint layers.",
+    "Targets share one fused baseline and use Gaia physical removal solve caches.",
+    "Candidate surfaces are interpretations over raw footprint points, not physical boundaries.",
+    "No foam, parity, jurisdiction, or network overlays are included."
+  ],
+  "created_utc": "2026-07-05T08:04:08.753332+00:00",
+  "footprint_definition": {
+    "defaults": {
+      "amplitude_floor": 0.0,
+      "amplitude_floor_enabled": false,
+      "angle_threshold": 0.05,
+      "eigen_gap_floor": 0.02
+    },
+    "expression": "eigen_gap_full >= eigen_gap_floor AND eigenvector_delta_angle >= angle_threshold"
+  },
+  "grid": {
+    "dx": 3.0,
+    "half_width": 96.0,
+    "sample_count": 35937,
+    "sample_dims_zyx": [
+      33,
+      33,
+      33
+    ],
+    "sample_stride": 2
+  },
+  "schema": "atlas-pinch-lab-viewer-multi/1",
+  "source_experiment": "ATLAS-GAIA-LSN-PARENT-001-VIEWER",
+  "source_full_eigenfield": {
+    "path": "analysis/et_tov3_scout/GAIA_LSN_PARENT_001/geometry_caches/gaia_lsn_parent_001_full_viewer_geometry_cache.npz"
+  },
+  "source_stageb_manifest": "analysis/et_tov3_scout/GAIA_LSN_PARENT_001/manifest.json",
+  "targets": [
+    {
+      "M": 1.0,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 51,
+      "default_footprint_points": 178,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 112,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_sun/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_sources": [
+        "sun"
+      ],
+      "removed_trace_free_residual_max": 3.803360227295465e-18,
+      "role": "single",
+      "target_id": "single_sun",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    {
+      "M": 0.122,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [],
+      "default_component_count": 24,
+      "default_footprint_points": 33,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 7,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_proxima_cen/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "proxima_cen"
+      ],
+      "removed_trace_free_residual_max": 4.3591967334315956e-18,
+      "role": "single",
+      "target_id": "single_proxima_cen",
+      "x": -6.35849608,
+      "y": -4.86652968,
+      "z": -15.49984068
+    },
+    {
+      "M": 1.988,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 60,
+      "default_footprint_points": 170,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 74,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_alpha_system/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_sources": [
+        "alpha_system"
+      ],
+      "removed_trace_free_residual_max": 5.0023004305131784e-18,
+      "role": "single",
+      "target_id": "single_alpha_system",
+      "x": -6.71085163,
+      "y": -5.61155283,
+      "z": -15.67427978
+    },
+    {
+      "M": 0.144,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 22,
+      "default_footprint_points": 200,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 174,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_barnards_star/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "barnards_star"
+      ],
+      "removed_trace_free_residual_max": 5.104030590312931e-18,
+      "role": "single",
+      "target_id": "single_barnards_star",
+      "x": -0.23277902,
+      "y": -24.42737695,
+      "z": 1.99477657
+    },
+    {
+      "M": 0.062,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 32,
+      "default_footprint_points": 129,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 94,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_luhman_system/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "luhman_system"
+      ],
+      "removed_trace_free_residual_max": 4.169144850197704e-18,
+      "role": "single",
+      "target_id": "single_luhman_system",
+      "x": -15.26678597,
+      "y": 4.86393662,
+      "z": -21.51178893
+    },
+    {
+      "M": 0.005,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 24,
+      "default_footprint_points": 95,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 66,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_wise_0855/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "wise_0855"
+      ],
+      "removed_trace_free_residual_max": 3.651951001845532e-18,
+      "role": "single",
+      "target_id": "single_wise_0855",
+      "x": -20.99039561,
+      "y": 21.89945182,
+      "z": -3.85565886
+    },
+    {
+      "M": 3.081,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 65,
+      "default_footprint_points": 236,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 159,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_sirius_system/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_sources": [
+        "sirius_system"
+      ],
+      "removed_trace_free_residual_max": 4.1890669845745694e-18,
+      "role": "single",
+      "target_id": "single_sirius_system",
+      "x": -6.62989463,
+      "y": 33.21812158,
+      "z": -10.17285976
+    },
+    {
+      "M": 2.101,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 49,
+      "default_footprint_points": 127,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 60,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_procyon_system/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_sources": [
+        "procyon_system"
+      ],
+      "removed_trace_free_residual_max": 6.2080632418395944e-18,
+      "role": "single",
+      "target_id": "single_procyon_system",
+      "x": -19.70552472,
+      "y": 42.5969222,
+      "z": 4.29195785
+    },
+    {
+      "M": 1.513,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 12,
+      "default_footprint_points": 521,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 510,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_40_system/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_sources": [
+        "40_system"
+      ],
+      "removed_trace_free_residual_max": 4.2225932422911765e-18,
+      "role": "single",
+      "target_id": "single_40_system",
+      "x": 29.58812058,
+      "y": 60.1786904,
+      "z": -9.01031777
+    },
+    {
+      "M": 1.33,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 52,
+      "default_footprint_points": 281,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 222,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_61_system/viewer_dataset_manifest.json",
+      "profile": "C",
+      "removed_sources": [
+        "61_system"
+      ],
+      "removed_trace_free_residual_max": 4.056368231661683e-18,
+      "role": "single",
+      "target_id": "single_61_system",
+      "x": 26.63090968,
+      "y": -25.07389249,
+      "z": 29.35568228
+    },
+    {
+      "M": 0.31,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 18,
+      "default_footprint_points": 997,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 968,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_gj_581/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_sources": [
+        "gj_581"
+      ],
+      "removed_trace_free_residual_max": 3.754164342510096e-18,
+      "role": "single",
+      "target_id": "single_gj_581",
+      "x": -53.9616259,
+      "y": -64.00114667,
+      "z": -11.35194062
+    },
+    {
+      "M": 0.935,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 14,
+      "default_footprint_points": 841,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 827,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_stein_system/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_sources": [
+        "stein_system"
+      ],
+      "removed_trace_free_residual_max": 5.12225172106596e-18,
+      "role": "single",
+      "target_id": "single_stein_system",
+      "x": 15.86087401,
+      "y": 34.8169242,
+      "z": 63.61467301
+    },
+    {
+      "M": 0.18,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 15,
+      "default_footprint_points": 161,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 144,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_gj_1116_ab/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "gj_1116_ab"
+      ],
+      "removed_trace_free_residual_max": 3.6441606360641135e-18,
+      "role": "single",
+      "target_id": "single_gj_1116_ab",
+      "x": -49.00387297,
+      "y": 43.21602727,
+      "z": 23.60941134
+    },
+    {
+      "M": 0.35,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 26,
+      "default_footprint_points": 295,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 261,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_ev_lac/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_sources": [
+        "ev_lac"
+      ],
+      "removed_trace_free_residual_max": 5.1121636712646374e-18,
+      "role": "single",
+      "target_id": "single_ev_lac",
+      "x": 45.46914867,
+      "y": -16.82785855,
+      "z": 47.36925129
+    },
+    {
+      "M": 0.27,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 42,
+      "default_footprint_points": 215,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 148,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_gj_682/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_sources": [
+        "gj_682"
+      ],
+      "removed_trace_free_residual_max": 4.2366395970468405e-18,
+      "role": "single",
+      "target_id": "single_gj_682",
+      "x": -5.52636748,
+      "y": -47.72958304,
+      "z": -46.93141909
+    },
+    {
+      "M": 0.12,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 13,
+      "default_footprint_points": 186,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 169,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_gj_1002/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "gj_1002"
+      ],
+      "removed_trace_free_residual_max": 3.819256680688724e-18,
+      "role": "single",
+      "target_id": "single_gj_1002",
+      "x": 66.25997045,
+      "y": 0.64570408,
+      "z": -8.79070627
+    },
+    {
+      "M": 0.085,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 20,
+      "default_footprint_points": 226,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 206,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_lhs_292/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "lhs_292"
+      ],
+      "removed_trace_free_residual_max": 5.000317498576146e-18,
+      "role": "single",
+      "target_id": "single_lhs_292",
+      "x": -58.14495034,
+      "y": 18.09112279,
+      "z": -4.7154164
+    },
+    {
+      "M": 0.45,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 19,
+      "default_footprint_points": 220,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 194,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_gj_832/viewer_dataset_manifest.json",
+      "profile": "A",
+      "removed_sources": [
+        "gj_832"
+      ],
+      "removed_trace_free_residual_max": 5.7750313070796904e-18,
+      "role": "single",
+      "target_id": "single_gj_832",
+      "x": 35.06495012,
+      "y": -26.04944037,
+      "z": -50.25884566
+    },
+    {
+      "M": 0.075,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 10,
+      "default_footprint_points": 343,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 332,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_denis_1048/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "denis_1048"
+      ],
+      "removed_trace_free_residual_max": 5.011363622976369e-18,
+      "role": "single",
+      "target_id": "single_denis_1048",
+      "x": -39.56558871,
+      "y": 12.80889358,
+      "z": -34.81549308
+    },
+    {
+      "M": 0.17,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 32,
+      "default_footprint_points": 200,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 161,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_ross_154/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "ross_154"
+      ],
+      "removed_trace_free_residual_max": 4.688355508843092e-18,
+      "role": "single",
+      "target_id": "single_ross_154",
+      "x": 7.87161398,
+      "y": -35.63359328,
+      "z": -16.1228737
+    },
+    {
+      "M": 0.085,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 28,
+      "default_footprint_points": 168,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 134,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/single_scr_1845_a/viewer_dataset_manifest.json",
+      "profile": "B",
+      "removed_sources": [
+        "scr_1845_a"
+      ],
+      "removed_trace_free_residual_max": 3.4043967555409203e-18,
+      "role": "single",
+      "target_id": "single_scr_1845_a",
+      "x": 4.49857741,
+      "y": -22.19547338,
+      "z": -46.34377663
+    },
+    {
+      "M": 2.321,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 117,
+      "default_footprint_points": 940,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 791,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/multi_nearest_parent_cluster/viewer_dataset_manifest.json",
+      "profile": "multi",
+      "removed_sources": [
+        "proxima_cen",
+        "alpha_system",
+        "barnards_star",
+        "luhman_system",
+        "wise_0855"
+      ],
+      "removed_trace_free_residual_max": 5.22719286439778e-18,
+      "role": "multi",
+      "target_id": "multi_nearest_parent_cluster",
+      "x": -6.35849608,
+      "y": -4.86652968,
+      "z": -15.49984068
+    },
+    {
+      "M": 8.683,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 184,
+      "default_footprint_points": 1189,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 837,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/multi_heavy_anchor_set/viewer_dataset_manifest.json",
+      "profile": "multi",
+      "removed_sources": [
+        "sirius_system",
+        "procyon_system",
+        "alpha_system",
+        "40_system"
+      ],
+      "removed_trace_free_residual_max": 4.521190645535499e-18,
+      "role": "multi",
+      "target_id": "multi_heavy_anchor_set",
+      "x": -6.62989463,
+      "y": 33.21812158,
+      "z": -10.17285976
+    },
+    {
+      "M": 3.558,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 64,
+      "default_footprint_points": 2925,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 1308,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/multi_outer_shell_extremes/viewer_dataset_manifest.json",
+      "profile": "multi",
+      "removed_sources": [
+        "gj_581",
+        "stein_system",
+        "gj_1116_ab",
+        "ev_lac",
+        "40_system",
+        "gj_682"
+      ],
+      "removed_trace_free_residual_max": 4.639338923915565e-18,
+      "role": "multi",
+      "target_id": "multi_outer_shell_extremes",
+      "x": -53.9616259,
+      "y": -64.00114667,
+      "z": -11.35194062
+    },
+    {
+      "M": 0.474,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r3_42_66"
+      ],
+      "default_component_count": 55,
+      "default_footprint_points": 902,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 835,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/multi_diffuse_low_mass_web/viewer_dataset_manifest.json",
+      "profile": "multi",
+      "removed_sources": [
+        "denis_1048",
+        "ross_154",
+        "barnards_star",
+        "scr_1845_a"
+      ],
+      "removed_trace_free_residual_max": 4.926243231191137e-18,
+      "role": "multi",
+      "target_id": "multi_diffuse_low_mass_web",
+      "x": -39.56558871,
+      "y": 12.80889358,
+      "z": -34.81549308
+    },
+    {
+      "M": 0.20500000000000002,
+      "all_primary_fields_finite": true,
+      "collapse_bands": [
+        "r2_24_42"
+      ],
+      "default_component_count": 33,
+      "default_footprint_points": 412,
+      "default_heuristic_label": "patchwork",
+      "default_largest_component_points": 206,
+      "manifest_url": "datasets/GAIA_LSN_PARENT_001/multi_opposed_edge_pair/viewer_dataset_manifest.json",
+      "profile": "multi",
+      "removed_sources": [
+        "gj_1002",
+        "lhs_292"
+      ],
+      "removed_trace_free_residual_max": 3.6501222698586895e-18,
+      "role": "multi",
+      "target_id": "multi_opposed_edge_pair",
+      "x": 66.25997045,
+      "y": 0.64570408,
+      "z": -8.79070627
+    }
+  ]
+}

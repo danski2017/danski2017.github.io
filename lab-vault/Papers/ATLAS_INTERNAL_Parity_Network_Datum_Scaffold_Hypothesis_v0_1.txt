@@ -1,0 +1,659 @@
+ATLAS INTERNAL SYNTHESIS NOTE
+Parity Network as Scene-Implied Diagnostic Scaffold
+Formal zero-set skeleton, retained parity network, and datum-candidate discipline
+
+Version: v0.1 synchronized internal draft
+Date: 2026-04-25
+Prepared for: Atlas Solver Project / Daniel Scieszinski
+
+Synchronized successor to:
+The Parity Network as an Immediate Scene-Implied Datum Scaffold
+
+Status: Internal synthesis hypothesis
+Lane: Private Atlas method / parity-network and scaffold-grammar bridge note
+Public status: Not approved for public science release
+Canonical status: Not Phase I milestone evidence
+Primary alignment:
+GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV,
+ATLAS_ARCHITECTURE_CANON v0.2,
+Global Parity Bundle v0.2,
+Node A Adjudication / Criticality v0.1,
+Recursive Scaffold Calculus v0.2,
+Closure-Overlap-Handoff-Embedding v0.2.
+
+================================================================================
+ABSTRACT
+================================================================================
+
+This synchronized note preserves the viable core of the earlier hypothesis block:
+once a weak-field scene and readable comparison rule are declared, a formal parity
+zero-set scaffold is immediately implied by the comparison fields. This structure is
+not created by rendering, calibration, or later recursive refinement. It follows
+from the declared source-readable contributions Q_i and their residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+The formal zero sets
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }
+
+exist mathematically as soon as Q_i and Q_j are declared.
+
+However, current Atlas doctrine requires a strict distinction between formal
+existence and evidentiary use. The raw zero-set scaffold exists as a mathematical
+object of the declared field. The retained parity network is an extracted diagnostic
+object. A datum scaffold is not automatically granted. Retention, ledger
+certification, relevance filtering, topology checks, and sensitivity validation are
+required before any portion of the formal scaffold may support Node Psi geometry,
+Node P junction candidates, Node A criticality candidates, or recursive
+datum-candidate logic.
+
+The useful internal triad is:
+
+    faces divide;
+    seams connect;
+    junctions nominate;
+    criticality resolves only if earned.
+
+This note therefore demotes “immediate datum scaffold” to “scene-implied diagnostic
+scaffold candidate.” The idea remains valuable, but it must not outrank Node 0,
+Node 1, Node -1, or canonical Phase I extraction.
+
+================================================================================
+1. PURPOSE AND DISPOSITION
+================================================================================
+
+The source hypothesis block proposed that the parity network may be the first
+immediate datum scaffold given by a declared scene. Its strongest insight is that
+parity geometry is not imposed by downstream visualization. Once source-readable
+comparison is declared, the equality structure is already latent in the field.
+
+The required correction is architectural:
+
+- the formal zero-set skeleton is immediate;
+- the retained parity network is extracted;
+- the datum-candidate scaffold is earned;
+- Node A resolution is never automatic.
+
+Forward decision:
+
+- Preserve as an internal synthesis note.
+- Do not publish.
+- Do not place above the architecture canon.
+- Do not treat as Phase I milestone evidence.
+- Use as a bridge note between Many-Source Parity, Global Parity Bundle, Node A,
+  and Recursive Scaffold Calculus.
+- Keep the original hypothesis block as source material.
+
+================================================================================
+2. FOUNDATION ALIGNMENT
+================================================================================
+
+Paper I inheritance:
+A Gravitational Coherence Surface is a parity boundary where a declared
+gravitational contribution reaches equality with its derived gravitational context
+under a declared readability rule. It is not a force boundary, physical membrane,
+causal horizon, event horizon, trapping horizon, or orbital-stability limit.
+
+Paper II inheritance:
+Many-source parity begins with declared source-readable contributions Q_i and
+pairwise residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x),
+
+with parity surfaces
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+Retained portions of those surfaces may assemble into many-source parity networks.
+
+Paper III inheritance:
+Retained faces, seams, low-margin regions, and transition loci are derived interface
+geometry in the mesoscale comparison layer. The scene-implied scaffold hypothesis
+belongs downstream of this layer because it concerns how retained diagnostic
+structures may support further interpretation.
+
+Paper IV inheritance:
+Proof-of-concept extraction establishes operational recoverability under the scalar
+tidal-readable branch. It does not establish canonical scaffold status, Node A
+status, observability, or datum authority.
+
+Architecture canon inheritance:
+Atlas is ledger-first. Physical sources generate the modeled field. Node 0 registers
+the scene. Node 1 declares the lawful parent scene relation. Node 2+ are physical
+source nodes. Node -1 certifies the relational ledger. Node Psi extracts retained
+GCS/parity-context structures. Node P is a parity-junction candidate. Node A is an
+earned critical-transition candidate. Validation determines interpretation.
+
+================================================================================
+3. TERMINOLOGY REPAIR
+================================================================================
+
+Older / risky wording -> synchronized replacement
+
+- immediate datum scaffold -> scene-implied diagnostic scaffold candidate
+- parity network exists immediately -> formal parity zero-set scaffold is implied
+  immediately; retained network requires extraction and validation
+- crisp zero-set object -> formal zero-set structure under declared Q_i / Psi_ij
+- adjudication nodes resolve -> junction regions may nominate Node A candidates;
+  critical resolution is earned
+- network-wide distributed datum -> candidate distributed support scaffold, not a
+  canonical datum
+- first datum the scene gives for free -> first formal equality scaffold implied by
+  the declared comparison rule
+- before calibration and certification -> before certification, formal structure
+  may exist, but evidentiary use is forbidden
+- native field object -> derived diagnostic structure of the declared readable
+  comparison field
+- adjudication-node structure generically contains resolution anchors -> generic
+  junction structure may contain candidates for later criticality testing
+
+================================================================================
+4. CORE HYPOTHESIS
+================================================================================
+
+Internal working claim:
+A declared weak-field scene plus a declared source-readable comparison rule
+immediately implies a formal parity zero-set scaffold. This scaffold consists of
+the equality loci of the pairwise comparison fields. Retained and validated portions
+of that scaffold may support a distributed diagnostic grammar of faces, seams,
+junctions, and possible critical-transition candidates.
+
+Compact statement:
+Declare Q_i and Psi_ij, and the formal parity skeleton is already implied. Atlas
+must still extract, retain, ledger, and validate before interpreting it.
+
+This is a method hypothesis about diagnostic geometry. It is not a new physical
+claim.
+
+================================================================================
+5. FORMAL SETUP
+================================================================================
+
+Let a declared weak-field scene contain physical sources S_i with masses M_i and
+positions x_i on a chosen static or quasi-static slice.
+
+Define the Phase I scalar readable branch
+
+    Q_i(x) = M_i / (||x - x_i||^2 + eps^2)^(3/2),
+
+or, away from sources,
+
+    Q_i(x) proportional to M_i / r_i(x)^3.
+
+For every pair i, j, define the comparison residual
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+The formal parity surface is
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+The formal all-pairs zero-set scaffold is
+
+    S_formal = union over i<j of Sigma_ij.
+
+This object is mathematically implied by the declared scene and readable rule.
+
+The retained parity network is narrower:
+
+    N_retained = union over (i,j) in R of I_ij,
+
+where
+
+    I_ij subset Sigma_ij
+
+is the retained portion of the formal parity surface and R is the declared
+retention relation.
+
+The key distinction:
+
+    S_formal is implied.
+    N_retained is extracted.
+    Scaffold interpretation is earned.
+
+================================================================================
+6. CODIMENSION GRAMMAR
+================================================================================
+
+The hypothesis block’s strongest internal grammar is codimensional:
+
+Codimension 1:
+Faces or retained parity supports.
+
+    One independent equality:
+        Q_i = Q_j.
+
+Role:
+Faces divide source-readable regimes.
+
+Codimension 2:
+Seams or shared intersections.
+
+    Two independent equality relations, for example:
+        Q_i = Q_j,
+        Q_i = Q_k.
+
+Role:
+Seams connect retained faces and organize junction geometry.
+
+Codimension 3:
+Junction regions, resolution candidates, or Node A candidate sites in sufficiently
+constrained scenes.
+
+    Three independent equality or criticality-related constraints, where stable.
+
+Role:
+Junction regions may nominate critical-transition candidates. Resolution is not
+automatic.
+
+Synchronized triad:
+
+    faces divide;
+    seams connect;
+    junctions nominate;
+    criticality resolves only if earned.
+
+This grammar is internal and diagnostic. It does not imply discrete spacetime,
+quantized gravity, physical nodes, or automatic observational status.
+
+================================================================================
+7. RELATION TO NODE PSI, NODE P, AND NODE A
+================================================================================
+
+Node Psi:
+The extracted GCS/parity-context diagnostic layer. Retained parity faces, seams,
+junction candidates, and cells belong here after extraction and filtering.
+
+Node P:
+A parity-junction candidate. A Node P candidate may occur where retained parity
+surfaces meet or nearly meet in a stable way.
+
+Node A:
+An adjudication / critical-transition candidate. Node A is not a generic parity
+junction. It is earned only when diagnostics suggest a real transition in closure,
+topology, contextual assignment, or GCS coherence under deformation.
+
+Rule:
+Every Node A candidate may pass through Node P-like junction evidence, but not
+every Node P candidate is Node A.
+
+The source hypothesis over-compressed this distinction by treating adjudication
+nodes as generic resolution anchors. Synchronized doctrine requires a ladder:
+
+    formal zero set
+    -> retained parity face
+    -> seam / junction candidate
+    -> Node P candidate
+    -> Node A candidate only if criticality diagnostics pass.
+
+================================================================================
+8. RELATION TO GLOBAL PARITY BUNDLE
+================================================================================
+
+The Global Parity Bundle note defines the pointwise relational state
+
+    B_Psi(x) = { Psi_ij(x) : 1 <= i < j <= N }.
+
+This note defines the implied zero-set scaffold associated with that bundle.
+
+Relationship:
+
+- B_Psi(x) is the pointwise residual census.
+- S_formal is the formal equality skeleton implied by the residual fields.
+- N_retained is the extracted, relevance-filtered parity network.
+- Node Psi is the diagnostic layer containing retained structures.
+- Recursive scaffold grammar may operate only after retention and validation.
+
+In short:
+
+    bundle stores;
+    zero set implies;
+    extraction retains;
+    validation interprets.
+
+================================================================================
+9. RELATION TO RECURSIVE SCAFFOLD CALCULUS
+================================================================================
+
+The Recursive Scaffold Calculus note asks how validated support objects may be
+refined, related, integrated, thickened, offset, or used as lineage-preserving
+candidate anchors.
+
+This note sits one rung earlier. It clarifies why the parity network is a natural
+candidate support structure: its formal skeleton is scene-implied by equality
+conditions, not imposed by arbitrary rendering.
+
+However, recursive inheritance is not free.
+
+A retained face, seam, or junction may support recursive scaffold logic only if it:
+
+- derives from the certified relational ledger;
+- has a declared extraction rule;
+- has a declared retention rule;
+- passes relevant sensitivity checks;
+- preserves Node 0 registration;
+- respects Node 1 parent relation;
+- keeps lineage to Node -1;
+- has explicit validation status.
+
+Without this, recursive refinement becomes decorative geometry.
+
+================================================================================
+10. RELATION TO CANONICAL PHASE I
+================================================================================
+
+Canonical Phase I remains:
+
+    sources
+    -> Q_i
+    -> Psi_ij
+    -> zero-set extraction
+    -> relevance filtering
+    -> GCS / parity-context extraction
+    -> junction and closure diagnostics
+    -> sensitivity checks
+    -> machine-readable outputs
+    -> ledger
+    -> conservative interpretation
+
+This note does not change that pipeline.
+
+It clarifies that the zero-set stage has a conceptual rank worth naming:
+
+    formal equality skeleton implied by declaration.
+
+But the canonical evidence path still begins only after extraction, retention,
+diagnostics, and validation.
+
+================================================================================
+11. INTERPRETIVE VALUE
+================================================================================
+
+This hypothesis is valuable because it resists two errors.
+
+Error 1:
+Treating parity structures as mere rendered artifacts.
+
+Correction:
+They are formal equality structures of declared comparison fields.
+
+Error 2:
+Treating formal equality structures as automatically meaningful evidence.
+
+Correction:
+Only retained, ledgered, validated structures earn interpretation.
+
+The useful middle claim:
+The parity network is neither a hallucinated render nor automatic canon. It is a
+scene-implied formal scaffold whose retained portions may become diagnostic
+support geometry.
+
+================================================================================
+12. TEST QUESTIONS
+================================================================================
+
+T1. Formal-to-retained stability.
+When the formal zero-set scaffold is sampled at increasing resolution, do retained
+faces converge or wander?
+
+T2. Mesh sensitivity.
+Do retained faces, seams, and junction candidates persist under mesh/ray-count
+changes?
+
+T3. Threshold/tolerance sensitivity.
+Do low-margin and retained structures deform continuously under tolerance changes,
+or do they teleport?
+
+T4. Seam lawfulness.
+Do seams behave as stable connectors between retained faces across perturbations?
+
+T5. Node P stability.
+Do parity-junction candidates remain stable under source perturbation, sampling,
+domain, and branch checks?
+
+T6. Node A discrimination.
+Can the system distinguish ordinary junctions from true critical-transition
+candidates?
+
+T7. Datum-candidate utility.
+Can the retained node-seam system support useful datum-candidate logic without
+arbitrary imposed centering?
+
+T8. Ledger support.
+Are all claimed scaffold structures backed by machine-readable residual, retention,
+and validation records?
+
+================================================================================
+13. VALIDATION REQUIREMENTS
+================================================================================
+
+A. Benchmark validation
+
+1. Equal-mass two-source benchmark.
+   Formal zero set should be midpoint plane. No false Node P or Node A.
+
+2. Unequal-mass two-source benchmark.
+   Formal zero set should obey the one-third-power law under scalar Q_i branch.
+   No false scaffold overclaim.
+
+3. Equal-mass equilateral three-source benchmark.
+   Retained seams and triple structure should respect symmetry.
+
+4. Perturbed three-source benchmark.
+   Faces and seams should deform continuously.
+
+5. Four-source junction benchmark.
+   Test whether higher-codimension candidates are stable or branch artifacts.
+
+B. Numerical validation
+
+1. Mesh/ray count sweep.
+2. Domain sweep.
+3. Tolerance sweep.
+4. Softening sweep.
+5. Readable-branch comparison.
+6. Retention-rule comparison.
+7. Ledger/render agreement.
+
+C. Scaffold validation
+
+1. Face persistence.
+2. Seam persistence.
+3. Junction candidate persistence.
+4. Component-count stability.
+5. Low-margin band stability.
+6. Node P candidate classification.
+7. Node A rejection in noncritical benchmarks.
+8. Node A promotion only in controlled critical-transition scenes.
+
+================================================================================
+14. MACHINE-READABLE OUTPUT REQUIREMENTS
+================================================================================
+
+Future tests should produce:
+
+config.json
+summary.json
+manifest.json
+scene_passport.json
+relational_ledger_index.json
+source_roster.csv
+sample_points.csv or compressed equivalent
+Q_values.csv or compressed equivalent
+pairwise_residuals.csv or compressed equivalent
+formal_zero_set_candidates.csv
+retained_faces.csv
+seams_junction_candidates.csv
+nodeP_candidates.csv
+nodeA_candidates.csv where enabled
+retention_rule.json
+validation_summary.json
+sensitivity_summary.csv
+plots/formal_zero_set_overview.png
+plots/retained_network.png
+plots/seam_junction_map.png
+plots/sensitivity_comparison.png
+plots/thumbnail.png
+
+Minimum formal_zero_set_candidates.csv fields:
+
+run_id
+candidate_id
+pair_i
+pair_j
+sample_or_patch_id
+position_x
+position_y
+position_z
+Psi_ij_value
+zero_crossing_method
+gradient_norm
+local_sign_structure
+candidate_status
+
+Minimum retained_faces.csv fields:
+
+run_id
+face_id
+pair_i
+pair_j
+retention_rule_id
+point_count
+area_estimate_if_available
+closure_status
+component_id
+stability_status
+validation_status
+
+Minimum seams_junction_candidates.csv fields:
+
+run_id
+candidate_id
+involved_sources
+involved_faces
+codimension_estimate
+position_or_region_center_x
+position_or_region_center_y
+position_or_region_center_z
+support_radius_or_extent
+persistence_score
+classification
+validation_status
+
+Minimum nodeP_candidates.csv fields:
+
+run_id
+nodeP_id
+involved_sources
+involved_faces
+position_x
+position_y
+position_z
+junction_type
+stability_score
+promotion_status
+validation_status
+
+Minimum nodeA_candidates.csv fields, if enabled:
+
+run_id
+nodeA_id
+associated_nodeP_id
+criticality_type
+closure_change_flag
+topology_change_flag
+context_assignment_change_flag
+eigenstructure_support_flag
+sensitivity_status
+promotion_status
+validation_status
+
+================================================================================
+15. FAILURE MODES
+================================================================================
+
+F1. The formal zero-set scaffold exists but retained structures are unstable.
+
+F2. Seams or junctions disappear under modest mesh, tolerance, or domain changes.
+
+F3. Node P candidates proliferate without interpretive value.
+
+F4. Node A candidates are falsely promoted from ordinary junctions.
+
+F5. The scaffold language duplicates existing parity-network language without
+adding testable discipline.
+
+F6. The phrase “datum scaffold” causes confusion with Node 0 or Node 1.
+
+F7. Renders imply scaffold authority not supported by ledger diagnostics.
+
+F8. The branch encourages claim-rung skipping from formal equality to physical
+meaning.
+
+If these failure modes dominate, this note should remain a conceptual footnote,
+not an active branch.
+
+================================================================================
+16. CLAIM BOUNDARY
+================================================================================
+
+This note does not claim:
+
+- modified gravity;
+- new field equations;
+- a new force;
+- physical seams or nodes;
+- discrete spacetime;
+- quantized gravity;
+- automatic observability;
+- automatic Node A;
+- that the parity network is the canonical registration datum;
+- that formal zero-set existence equals evidentiary support;
+- that every algebraic equality is meaningful;
+- that rendering reveals the scaffold without validation.
+
+This note claims only:
+
+A declared weak-field scene and readable comparison rule formally imply a parity
+zero-set scaffold. Retained and validated portions of that scaffold may provide
+diagnostic support for Node Psi geometry, Node P junction candidates, possible
+Node A criticality testing, and recursive scaffold logic.
+
+================================================================================
+17. PUBLICATION RULE
+================================================================================
+
+Do not publish this note in current form.
+
+Most public-facing content is already covered by Paper II, which defines pairwise
+parity surfaces and many-source parity networks. The distinct value here is private
+method architecture: scaffold inheritance, Node P / Node A discipline, retention
+logic, and datum-candidate caution.
+
+A future public descendant is unlikely unless benchmark evidence shows that the
+node-seam scaffold grammar produces a clean, general, nonproprietary mathematical
+result.
+
+================================================================================
+18. NEXT ACTIONS
+================================================================================
+
+1. Preserve the original hypothesis block as source material.
+2. Use this synchronized v0.1 note only as an internal bridge.
+3. Do not add to UI root unless space permits and the branch becomes active.
+4. Test the formal-to-retained distinction on simple two-source and three-source
+   benchmarks.
+5. Add explicit Node P / Node A rejection tests to avoid overpromotion.
+6. Connect any future scaffold claim to machine-readable residual records.
+7. Keep canonical Phase I stabilization ahead of scaffold expansion.
+
+================================================================================
+SHORT INTERNAL FORM
+================================================================================
+
+Once a scene and readable comparison rule are declared, the formal parity
+zero-set scaffold is immediately implied by Q_i and Psi_ij. But the retained parity
+network is not automatic, and datum authority is not free. Formal equality exists
+first; extraction retains; the ledger certifies; validation interprets. Faces divide,
+seams connect, junctions nominate, and criticality resolves only if earned.

@@ -1,0 +1,432 @@
+ATLAS INTERNAL NOTE
+Recursive Scaffold Calculus for Derived GCS / Parity-Context Geometry
+Scrubbed successor to: Toward a Manifold Gravity Calculus
+
+Version: v0.2 synchronized internal draft
+Date: 2026-04-25
+Prepared for: Atlas Solver Project / Daniel Scieszinski
+
+Status: Internal live-branch synthesis note
+Lane: Private Atlas method / derived-diagnostic grammar branch
+Public status: Not approved for public science release in this form
+Canonical status: Not Phase I milestone evidence; does not redefine canonical extraction
+Primary alignment: GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV, ATLAS_ARCHITECTURE_CANON v0.2, ATLAS_LANE_GOVERNANCE, and current internal notes on Node A, nested in-cell foliation, global parity bundle, and closure-overlap-handoff-embedding.
+
+================================================================================
+ABSTRACT
+================================================================================
+
+This internal note synchronizes the earlier white paper "Toward a Manifold Gravity Calculus" with current Atlas vocabulary, lane governance, and claim discipline. The viable core is not a new gravitational theory and not a public claim that Atlas has established a new calculus. The viable core is an internal grammar for derived diagnostic structures extracted from a declared weak-field many-source scene: GCS/parity-context cells, retained faces, seams, junctions, low-margin regions, handoff supports, offset families, nested in-cell leaves, child-datum candidates, and lineage-preserving scaffold graphs.
+
+The earlier phrase "manifold gravity calculus" is retained only as a developmental label. The synchronized internal term is recursive scaffold calculus: a support-first diagnostic grammar for how retained GCS/parity-context structures may be refined, related, integrated, and propagated without modifying general relativity. Physical sources generate the modeled field. The certified relational ledger stores the lawful state. Node Psi extracts GCS/parity-context structures. Validation determines whether those structures earn interpretation. Rendering communicates but never decides.
+
+This note does not modify Einstein's equations, introduce a new force, replace differential geometry, define a physical scaffold, or claim that derived parity structures are observables by themselves. It proposes a private Atlas method branch for organizing derived readability geometry after canonical Phase I extraction has been stabilized.
+
+================================================================================
+1. PURPOSE AND DISPOSITION
+================================================================================
+
+The source white paper was written as a standalone conceptual document and used bold language: a new manifold gravity calculus, recursive parity, handoff geometry, scaffold propagation, and geometry as negotiated jurisdiction across a smooth manifold. Its useful insight is real: once GCS/parity-context geometry is extracted reproducibly, Atlas needs a disciplined grammar for the derived structures and their refinements.
+
+However, in current canon this material belongs in the private Atlas method lane. It touches child datums, scaffold propagation, support lineage, extracted manifolds, handoff derivatives, stratified integrals, and downstream export of internal diagnostic structures. Under lane governance, that is implementation-facing method material, not public science exposition.
+
+Forward decision:
+
+- Preserve as an internal live-branch synthesis note.
+- Do not publish as a public white paper.
+- Do not treat as canonical Phase I doctrine.
+- Use it as a unifying grammar for internal branches after canonical GCS/parity extraction is stable.
+- Demote "new calculus" language to "candidate recursive scaffold calculus."
+
+================================================================================
+2. FOUNDATION ALIGNMENT
+================================================================================
+
+Paper I inheritance:
+A GCS is a Gravitational Coherence Surface: a parity horizon where a declared gravitational contribution reaches equality with its derived gravitational context under a declared readability rule. It is not a force boundary, physical membrane, causal horizon, event horizon, or orbital-stability limit.
+
+Paper II inheritance:
+Many-source parity geometry begins with declared source-readable contributions Q_i and pairwise residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x),
+
+with parity surfaces
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+Retained portions of these surfaces may assemble into many-source parity networks.
+
+Paper III inheritance:
+Retained faces, seams, low-margin regions, and transition loci are derived interface geometry in the mesoscale comparison layer. The scaffold grammar belongs downstream of this derived interface layer.
+
+Paper IV inheritance:
+The proof-of-concept extraction paper establishes only operational recoverability under the declared scalar tidal-readable branch. It does not establish final invariance, observability, or a canonical refinement standard.
+
+Architecture inheritance:
+Atlas is ledger-first. Derived structures must be extracted from certified relational state. No render, metaphor, or downstream spatial tool may create evidence. Live branches do not redefine canonical Phase I unless promoted.
+
+================================================================================
+3. TERMINOLOGY REPAIR
+================================================================================
+
+Older / risky wording -> current replacement
+
+- manifold gravity calculus -> recursive scaffold calculus or derived diagnostic scaffold grammar
+- second geometry -> derived diagnostic layer or derived interface geometry
+- geometry as negotiated jurisdiction -> source-readable partition structure or lawful reference-domain grammar
+- parity points as first lawful anchors -> retained parity supports as candidate support anchors
+- support manifolds -> retained support structures or derived support manifolds, with diagnostic status explicit
+- child datums from any support object -> child-datum candidates only from validated support objects
+- arbitrary numerical resolution -> declared numerical resolution subject to convergence and sensitivity checks
+- new derivative / new integral -> candidate scaffold derivative / candidate scaffold functional
+- the natural object of the framework -> a possible internal organizing object, not canonical ontology
+- exported to downstream spatial tools -> rendered or exported as downstream expression of ledgered diagnostics
+
+================================================================================
+4. CORE HYPOTHESIS
+================================================================================
+
+Internal working claim:
+Once retained GCS/parity-context structures are reproducibly extracted under a declared weak-field readability rule, those structures may support a recursive diagnostic grammar. Stable support objects can be refined, thickened, offset, linked, integrated, and used as lineage-preserving candidate anchors for deeper interrogation, provided every refinement remains registered to the original scene and validated against simpler baselines.
+
+Compact statement:
+The recursive scaffold calculus treats retained GCS/parity-context structures as validated diagnostic supports over a certified relational ledger. It asks how cells, faces, seams, low-margin bands, handoff supports, in-cell leaves, and child-datum candidates can be related and refined without turning them into new physics.
+
+================================================================================
+5. FORMAL STARTING POINT
+================================================================================
+
+Let a declared weak-field scene be evaluated on a chosen spatial slice Sigma_t. Let physical sources S_i have masses M_i and positions x_i. The current Phase I scalar readable branch is
+
+    Q_i(x) = M_i / (||x - x_i||^2 + eps^2)^(3/2),
+
+or, away from sources in analytic shorthand,
+
+    Q_i(x) proportional to M_i / r_i(x)^3.
+
+The pairwise residual is
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+The pairwise parity surface is
+
+    Sigma_ij = { x in U : Psi_ij(x) = 0 },
+
+where U is the declared comparison domain.
+
+The source-readable margin against the strongest local competitor may be written
+
+    m_i(x) = Q_i(x) - max_{j != i} Q_j(x).
+
+A margin-threshold in-cell family may be written
+
+    C_i(tau) = { x : m_i(x) >= tau }.
+
+These definitions are diagnostic. Q_i is not the metric. Psi_ij is not a force. Sigma_ij is not a wall. C_i(tau) is not a physical enclosure unless a separate physical interpretation is earned, which is not claimed here.
+
+================================================================================
+6. PRIMITIVE DIAGNOSTIC OBJECTS
+================================================================================
+
+The source paper listed cells, parity supports, sheets, exposed faces, seams, junctions, low-margin bands, offsets, child datums, and scaffold graphs as primitives of a proposed calculus. In synchronized Atlas terms, these are not physical primitives. They are candidate diagnostic objects derived from certified relational state.
+
+Internal diagnostic object list:
+
+- readable contribution Q_i;
+- pairwise residual Psi_ij;
+- parity surface Sigma_ij;
+- retained face I_ij subset Sigma_ij;
+- GCS / parity-context cell C_i;
+- low-margin band B_ij^eps = { x : |Psi_ij(x)| < eps };
+- seam or junction candidate;
+- Node P parity-junction candidate;
+- Node A critical-transition candidate, only if earned;
+- closure domain;
+- overlap-active domain pair;
+- handoff support H_ij;
+- nested in-cell C_i(tau);
+- core datum or core set K_i;
+- child-datum candidate;
+- lineage graph or scaffold graph;
+- renderable scaffold view.
+
+These objects are permitted only as extracted or derived diagnostics. They do not generate curvature and do not replace physical source nodes.
+
+================================================================================
+7. CANDIDATE OPERATORS
+================================================================================
+
+The earlier paper proposed bisection, offset, thickness, recursive support propagation, scaffold derivatives, and scaffold integrals. The synchronized internal grammar keeps these as candidate operators, not canonical methods.
+
+O1. Parity extraction / bisection.
+Given Q_i and Q_j, extract a retained support from Psi_ij = 0. This is not arbitrary bisection of space; it is field-earned equality under the declared readable rule.
+
+O2. Relevance filtering.
+From raw Sigma_ij candidates, retain only the portions that participate in local partition, transition, closure, or contextual parity structure under declared criteria.
+
+O3. Thickness / low-margin expansion.
+For declared epsilon,
+
+    B_ij^epsilon = { x : |Psi_ij(x)| < epsilon }.
+
+This identifies a near-parity neighborhood. It is a diagnostic tolerance band, not a physical membrane.
+
+O4. Offset measurement.
+Measure displacement of a retained support relative to a declared reference: equal-mass benchmark, previous run, previous threshold leaf, geometric bisector, barycentric reference, or parent-context baseline. The reference must be declared.
+
+O5. Handoff extraction.
+Inside overlap-active regions, identify local identity-transition supports using residual sign change, winner-change, low margin, or declared handoff criteria.
+
+O6. Nested in-cell continuation.
+For retained cells, threshold the margin field m_i(x) to produce C_i(tau), inner leaves, centroid trajectory c_i(tau), and core set K_i.
+
+O7. Child-datum candidate propagation.
+Validated support objects may propose child-datum candidates only if they preserve invertible registration back to Node 0 and explicit lineage back to the certified ledger.
+
+O8. Scaffold graph assembly.
+Assemble cells, faces, seams, junction candidates, handoff supports, in-cell leaves, and child-datum candidates into a lineage-aware graph for diagnostics and rendering.
+
+O9. Validation.
+Every operator must be tested against tolerance, sampling, domain, source-roster, and simpler-baseline checks.
+
+================================================================================
+8. RECURSIVE SUPPORT RULE
+================================================================================
+
+Synchronized rule:
+A stable retained support object may seed a child-datum candidate only if it is derived from the certified relational ledger, passes the declared validation gate for its branch, and preserves known registration back to the root scene.
+
+This rule is deliberately stricter than the source white paper. A parity point, face, seam, or low-margin region is not automatically a support anchor. It becomes a candidate anchor only after stability and relevance are demonstrated.
+
+Required lineage metadata:
+
+- source scene ID;
+- run ID;
+- parent support ID;
+- support type;
+- extraction rule;
+- readable branch;
+- tolerance;
+- sampling method;
+- Node 0 registration transform;
+- Node 1 parent relation;
+- Node -1 ledger reference;
+- validation status;
+- interpretation status.
+
+Without this lineage, recursive refinement becomes unregistered local patchwork and should not be trusted.
+
+================================================================================
+9. CANDIDATE SCAFFOLD DERIVATIVES
+================================================================================
+
+The source paper proposed a handoff derivative. In synchronized form this remains a candidate diagnostic, not a new physical derivative.
+
+Let n_ij be a declared local normal to a retained face I_ij, and let f be a declared scalar diagnostic field. A candidate transverse scaffold derivative may be written
+
+    H_ij[f] = n_ij dot grad f evaluated on I_ij.
+
+Possible uses:
+
+- measure sharpness of readable handoff;
+- compare transition stiffness across faces;
+- identify strong low-margin gradients;
+- support Node A candidate diagnostics when paired with stability checks;
+- compare deformation across parameter sweeps.
+
+Caution:
+H_ij[f] does not replace ordinary derivatives on the manifold. It is a diagnostic derivative evaluated on an extracted support structure. It has meaning only after f, I_ij, n_ij, units, tolerance, and branch status are declared.
+
+Related candidate derivatives:
+
+- seam tangent derivative;
+- face offset derivative under a deformation parameter;
+- centroid trajectory derivative dc_i/dtau for in-cell families;
+- closure-score derivative under source-roster or domain sweeps;
+- eigenstructure rotation rate near retained supports, if tidal-eigenstructure branch is enabled.
+
+================================================================================
+10. CANDIDATE SCAFFOLD FUNCTIONALS
+================================================================================
+
+The source paper proposed stratified scaffold integrals. In synchronized form these are candidate diagnostic functionals only.
+
+A generic scaffold functional may aggregate a declared scalar diagnostic f over retained strata:
+
+    I_scaf[f] = sum_i int_{C_i} f dV
+              + alpha sum_{i<j} int_{I_ij} f dA
+              + beta sum_{i<j<k} int_{Gamma_ijk} f ds
+              + gamma sum_J f(J),
+
+where C_i are retained cells, I_ij retained faces, Gamma_ijk seam supports, and J junction candidates. The weights alpha, beta, gamma must be declared and cannot be treated as universal constants.
+
+Possible internal diagnostics:
+
+- total retained face area;
+- seam length;
+- junction valence;
+- low-margin volume;
+- handoff support density;
+- closure-cell volume;
+- in-cell shrink law;
+- persistence-weighted support count;
+- deformation budget under source perturbation.
+
+This is not an action, not a conservation law, and not an observable unless a later empirical calibration earns that role.
+
+================================================================================
+11. PARTITION / SCAFFOLD STATE
+================================================================================
+
+The source paper proposed a partition bundle over Sigma_t. In synchronized Atlas terms, use scaffold state or derived partition state.
+
+At a sampled point x, Atlas may ledger:
+
+- Q_vec(x);
+- B_Psi(x) full or compressed pairwise residual bundle;
+- source ordering O(x);
+- top margin Delta_12(x);
+- low-margin flags;
+- retained cell membership;
+- nearest retained face ID;
+- seam or junction candidate membership;
+- in-cell threshold membership where enabled;
+- handoff support membership where enabled;
+- support lineage metadata;
+- validation flags.
+
+The scaffold state is not fundamental ontology. It is induced bookkeeping over a declared scene. Its purpose is to make extracted diagnostic geometry queryable, reproducible, and comparable.
+
+================================================================================
+12. RELATION TO CURRENT INTERNAL BRANCHES
+================================================================================
+
+Global parity bundle:
+The parity bundle B_Psi(x) supplies the pointwise relational census from which retained parity structures may be filtered.
+
+Closure-overlap-handoff-embedding:
+The handoff branch is a downstream extraction family over retained closure domains and overlap-active relations.
+
+Nested in-cell foliation:
+The in-cell branch supplies a possible surface-to-volume continuation grammar for retained cells.
+
+Node A adjudication:
+The Node A branch studies candidate critical transitions where retained GCS/parity-context geometry may lose closure, fission, reseal, or change contextual assignment.
+
+Recursive scaffold calculus:
+This note is not a fifth branch competing with those branches. It is a synthesis grammar that describes how the branches may relate once each earns evidence.
+
+================================================================================
+13. COMPUTATIONAL CYCLE
+================================================================================
+
+Recommended internal cycle:
+
+1. Declare scene, regime, units, coordinates, domain, Node 0, Node 1, source roster, readable rule, tolerance, and sampling method.
+2. Compute and ledger Q_i, Psi_ij, margins, parity-bundle summaries, and sampling metadata.
+3. Extract canonical Phase I parity/GCS structures.
+4. Apply relevance filtering and closure/junction diagnostics.
+5. Only then enable live branches: handoff, in-cell, Node A, eigenstructure, or child-datum candidates.
+6. Record branch-specific machine-readable diagnostics.
+7. Validate under tolerance, sampling, domain, and source-roster changes.
+8. Render downstream views with metadata.
+9. Interpret conservatively.
+
+This is support-first refinement, not generic adaptive meshing. It is also not public science doctrine.
+
+================================================================================
+14. TEST PROGRAM
+================================================================================
+
+Stage 1: canonical benchmark compatibility.
+The scaffold grammar must reproduce Paper II benchmarks: equal-mass midpoint parity, unequal-mass one-third law, and equal-mass equilateral triple parity without inventing extra structures.
+
+Stage 2: relevance filtering.
+Test whether scaffold-state records improve retained-face selection relative to naive all-pairs extraction.
+
+Stage 3: low-margin stability.
+Sweep epsilon in B_ij^epsilon and test whether low-margin structures deform continuously rather than teleporting.
+
+Stage 4: handoff branch comparison.
+Compare closure-overlap-handoff structures to retained parity faces and determine whether handoff adds stable diagnostic value.
+
+Stage 5: in-cell continuation.
+For retained cells, compute C_i(tau), V_i(tau), A_i(tau), c_i(tau), and K_i. Compare against omni-radial and centroid/barycenter baselines.
+
+Stage 6: scaffold functional sanity.
+Compute simple functionals such as retained face area, seam length, low-margin volume, and closure-cell volume. Require declared units and normalization.
+
+Stage 7: Node A guardrail.
+Verify that criticality diagnostics do not produce false Node A candidates in simple benchmark scenes.
+
+Stage 8: downstream correlation, optional.
+Only after stability is demonstrated, test whether scaffold diagnostics correlate with geodesic comparisons, residual analysis, or morphology-sensitive classification.
+
+================================================================================
+15. FAILURE MODES
+================================================================================
+
+F1. The scaffold grammar adds vocabulary but no measurable diagnostic improvement.
+
+F2. Candidate derivatives or functionals are unstable under modest tolerance or sampling changes.
+
+F3. Child-datum propagation creates unregistered local patchwork.
+
+F4. Low-margin bands become arbitrary tolerance artifacts.
+
+F5. Handoff supports or scaffold graphs do not improve relevance filtering or interpretation.
+
+F6. Rendered scaffolds look persuasive while machine-readable diagnostics fail.
+
+F7. The grammar encourages claim-rung skipping from derived structure to dynamics, observability, or new physics.
+
+If these failure modes dominate, this note should remain a conceptual fossil rather than a method branch.
+
+================================================================================
+16. CLAIM BOUNDARY
+================================================================================
+
+This note does not claim:
+
+- modified gravity;
+- a new force;
+- a physical scaffold;
+- a new field equation;
+- a replacement for differential geometry;
+- a replacement for numerical relativity;
+- a canonical Atlas method;
+- a public Paper V;
+- observability;
+- branch-independent uniqueness;
+- geodesics snapping to parity supports;
+- that derived structures generate curvature;
+- that child datums are physical sources;
+- that renders are evidence.
+
+It claims only that stable retained GCS/parity-context structures may support an internal recursive diagnostic grammar worth testing.
+
+================================================================================
+17. LANE AND PUBLICATION RULE
+================================================================================
+
+This note is internal. It governs private method concepts: support propagation, child-datum candidates, scaffold lineage, branch operators, diagnostic functionals, and export grammar. Under lane governance, it belongs to the private Atlas method lane by default.
+
+A future public descendant may be possible only after the underlying branches have stable benchmark evidence and after private implementation details are abstracted away. Even then, the public framing should be conservative: derived diagnostic scaffold grammar in weak-field many-source readability, not a new gravity calculus.
+
+================================================================================
+18. NEXT ACTIONS
+================================================================================
+
+1. Preserve this synchronized note as the active internal successor to the Manifold Gravity Calculus white paper.
+2. Do not upload the source white paper as active doctrine unless marked stale.
+3. Do not publish this as public science.
+4. Use the note to cross-index the internal branches: parity bundle, handoff, in-cell foliation, and Node A.
+5. Add only the simplest scaffold diagnostics to scratch runs after canonical parity/GCS extraction is stable.
+6. Require units, tolerances, branch flags, and ledger references for every scaffold derivative or functional.
+7. Revisit promotion only after benchmark evidence demonstrates that the grammar improves reliability or interpretation beyond existing canonical outputs.
+
+================================================================================
+SHORT INTERNAL FORM
+================================================================================
+
+Stable retained GCS/parity-context structures may support a recursive scaffold grammar: faces, seams, low-margin bands, handoff supports, in-cell leaves, and child-datum candidates can be refined and related if they remain ledgered, registered, and validated. This is an internal diagnostic calculus candidate, not new gravity, not public doctrine, and not canonical Phase I evidence.

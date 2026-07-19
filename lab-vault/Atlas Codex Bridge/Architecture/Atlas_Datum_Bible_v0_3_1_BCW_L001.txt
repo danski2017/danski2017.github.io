@@ -1,0 +1,1116 @@
+Atlas Datum Bible v0.3.1
+Shell-Local Cartesian Cell Complexes, Barycentric Compression Witnessing, and BCW-L001
+
+Relational Labs / Atlas Solver
+Date: 2026-05-16
+Revision: v0.3.1 final pass, Section 8 scalar scaffold / BCW branch clarification
+Status: Internal lab methodology document
+Claim Status: Procedural doctrine and first-ledger seed, not a certified physics result
+
+Purpose
+-------
+
+This document formalizes Datum Bible v0.3 for Atlas Solver. It incorporates the Architecture Lab correction following the GFRO overclaim, the restoration of lawful barycenter adjustment, and Claude wing's pressure-test insights.
+
+The document defines datum discipline for lawful Atlas scene interrogation:
+
+    source roster -> true field evaluation -> collapsed surrogate comparison -> compression delta -> shell-local Cartesian cell complex -> ledger -> render audit.
+
+This document does not replace the existing node taxonomy. It complements it.
+
+Node taxonomy defines what scene objects are.
+
+Datum discipline defines how declared scene objects are interrogated.
+
+The root program anchor is:
+
+    GR gives the local law.
+    Atlas asks for the missing calculus of context.
+
+This document preserves the Atlas doctrine:
+
+    Sources contribute.
+    Datums interrogate.
+    Witnesses report.
+    Ledger remembers.
+    Rendering audits.
+
+Rendering remains downstream of ledgered extraction and never decides mathematically. However, rendering is also the human-in-the-loop audit surface through which Daniel can inspect whether the pipeline preserved or damaged lawful diagnostic structure.
+
+0. Post-GFRO Correction
+-----------------------
+
+GFRO was promoted too high when treated as a lawful full-context / full-Riemann coordinate emitter.
+
+Corrected status:
+
+    GFRO is not presently certified as a full-context Riemann/Weyl emitter.
+    Analytic emission is certified only for narrow pairwise source-source branches reducible to Apollonius-type distance-ratio zero sets.
+    Serious declared scenes still require ledger-first field evaluation.
+
+The new lawful direction is not "emit full parity geometry from rhetoric."
+
+The new lawful direction is:
+
+    evaluate the true roster field;
+    evaluate a declared collapsed surrogate;
+    compute the tensor delta;
+    sample the contested geometry with disciplined datums;
+    ledger the source-datum-field relation;
+    render for human audit.
+
+This becomes BCW:
+
+    Barycentric Compression Witnessing.
+
+1. Core Doctrine
+----------------
+
+1. Sources contribute; datums interrogate.
+2. Node 0 registers the scene; it does not decide the scene.
+3. Node B is a compression witness, not a source.
+4. Node G is a morphology witness, not a source.
+5. Cartesian means globally aligned cells, not rectangular boxes.
+6. A GCS remains a parity surface; its sampling support is a finite handoff band.
+7. Resolution follows contested structure, not empty volume.
+8. Neighboring shell supports must overlap and reconcile.
+9. Every sampled value carries its branch label.
+10. Rendering audits the ledger; it never replaces the ledger.
+
+Compact form:
+
+    Surface is object; band is witness support.
+
+2. Node and Datum Roles
+-----------------------
+
+2.1 Node 0: Global Registration Datum
+
+Node 0 is the global registration datum of the declared scene.
+
+Node 0 may snap to a declared central dominant source when the scene has one and when that placement is useful for coordinate sanity. This does not make Node 0 a source. The physical source contributes curvature through its source record; Node 0 contributes nothing.
+
+Node 0 owns:
+
+    global coordinate registration;
+    global XYZ axis orientation;
+    scene frame identity;
+    domain registry;
+    cross-domain indexing.
+
+Node 0 does not own:
+
+    source identity;
+    parity decision;
+    retention rank;
+    curvature contribution;
+    parent-child adjudication.
+
+Rule:
+
+    Node 0 may sit on a source; it may not become the source.
+
+Bias safeguard:
+
+    Node 0 may center the map; it may not crown the king.
+
+Serious scenes should preserve Node B, Node G, and parent-context witnesses even when Node 0 snaps to a central source.
+
+2.2 Node B: Mass Barycenter / Compression Witness
+
+Node B is the mass barycenter of a declared source group.
+
+For a group G with sources i, masses M_i, and positions p_i:
+
+    B_G = sum_i(M_i p_i) / sum_i(M_i)
+
+Node B is not a physical contributor. It does not generate field terms.
+
+Node B defines a collapsed reference model for group-compression testing.
+
+Given total group mass:
+
+    M_G = sum_i M_i
+
+the barycenter surrogate field is:
+
+    E_bar,G(x) = E[M_G, B_G](x)
+
+where E[M_G, B_G](x) is the weak-field electric-Weyl / tidal tensor that would be produced by a single collapsed surrogate of mass M_G placed at B_G.
+
+This surrogate is a comparison witness, not an added physical source.
+
+The actual group field is:
+
+    E_actual,G(x) = sum_{i in G} E_i(x)
+
+The group compression delta is:
+
+    Delta_E_G(x) = E_actual,G(x) - E_bar,G(x)
+
+This delta is the group-context identity residual.
+
+Core rule:
+
+    The barycenter does not contribute curvature.
+    It defines the collapsed reference model.
+    The delta between the true roster field and the barycenter surrogate field is the group-context identity residual.
+
+Claude wing formulation:
+
+    Delta_E_G is the failure of group-compressibility.
+
+Interpretation:
+
+Where Delta_E_G is small relative to the barycenter surrogate, the group is parent-readable as a compressed contributor under the declared rule.
+
+Where Delta_E_G is large, the group's internal source structure remains unresolved and must be carried explicitly.
+
+2.3 Node G: Geometric Centroid / Morphology Witness
+
+Node G is the unweighted geometric centroid of a declared source roster or group.
+
+For N sources at positions p_i:
+
+    G = (1/N) sum_i p_i
+
+Node G is not usually the global registration origin. It is a morphology witness.
+
+Node G answers:
+
+    Where is the shape-center of the declared roster, ignoring mass?
+
+Node B answers:
+
+    Where does mass compress?
+
+Node 0 answers:
+
+    Where does the ledger begin counting?
+
+Useful offsets:
+
+    ||B - G||      mass-shape asymmetry
+    ||Node0 - B|| registration-vs-compression offset
+    ||Node0 - G|| registration-vs-geometry offset
+
+Rule:
+
+    Node G does not usually register the scene.
+    It audits the scene's shape.
+
+2.4 Measure-to-Witness Mapping
+
+The three gravitational identity measures should not be collapsed into one node.
+
+Recommended mapping:
+
+    Budget:
+        primary witness = physical source or resolved group.
+
+    Jurisdiction:
+        primary witness = Node B compression witness and Delta_E_G.
+
+    Compression:
+        primary witness = surrogate ladder E_sur,G^(L).
+        Node G acts as morphology audit, helping separate mass-driven compression failure from shape-driven compression failure.
+
+3. Field Branch: Weak-Field Electric-Weyl / Tidal Tensor
+--------------------------------------------------------
+
+For a source i of mass M_i at position p_i and query point x:
+
+    r_i = x - p_i
+    d_i = ||r_i||
+    n_i = r_i / d_i
+
+The weak-field exterior electric-Weyl / tidal contribution is:
+
+    E_i(x) = G M_i / d_i^3 * (3 n_i n_i^T - I)
+
+The total scene tensor is:
+
+    E_total(x) = sum_i E_i(x)
+
+For a group G:
+
+    E_actual,G(x) = sum_{i in G} E_i(x)
+
+The barycenter surrogate tensor is:
+
+    E_bar,G(x) = E[M_G, B_G](x)
+
+The compression delta is:
+
+    Delta_E_G(x) = E_actual,G(x) - E_bar,G(x)
+
+Recommended scalar witnesses:
+
+    chi_G(x) = ||Delta_E_G(x)||_F / (||E_bar,G(x)||_F + epsilon)
+
+    eta_G(x) = ||Delta_E_G(x)||_F / (||E_actual,G(x)||_F + epsilon)
+
+Primary candidate compression parity:
+
+    ||Delta_E_G(x)||_F = ||E_bar,G(x)||_F
+
+Equivalently:
+
+    chi_G(x) = 1
+
+This asks:
+
+    Where does the group's unresolved internal curvature identity equal its collapsed parent-readable identity?
+
+4. Barycenter Surrogate Interior / No-Claim Rule
+------------------------------------------------
+
+Node B is not a source.
+
+However, E_bar,G is evaluated as a collapsed pointlike surrogate. Therefore the surrogate evaluation can produce artificial singular or softened-center behavior around B_G.
+
+Every BCW run must declare a barycenter surrogate softening radius or exclusion radius.
+
+No compression-delta claim may be made inside the barycenter surrogate no-claim zone.
+
+Recommended first-pass surrogate softening:
+
+    epsilon_B = max(
+        source_softening_scale,
+        beta * R_group_extent,
+        minimum_numerical_length
+    )
+
+Default beta for BCW-L001:
+
+    beta = 0.03 to 0.05 of group extent.
+
+Rule:
+
+    Node B is not a source, but its surrogate model needs evaluation hygiene.
+
+5. Group Declaration Relativity
+-------------------------------
+
+Compression-delta parity is group-declaration-relative.
+
+A BCW shell answers:
+
+    Is this declared group readable as this declared collapsed surrogate under this declared branch?
+
+Change the group membership, and the question changes.
+
+This is not a bug. It is the context calculus operating honestly.
+
+Every BCW run must declare:
+
+    group_id;
+    member source_ids;
+    group purpose;
+    group status: physical, diagnostic, candidate, or audit-only;
+    parent context;
+    compression surrogate type;
+    allowed comparison branch;
+    softening/exclusion rule;
+    claim status.
+
+No BCW shell may be interpreted without its group declaration.
+
+Rule:
+
+    No group declaration, no BCW interpretation.
+
+6. Surrogate Ladder
+-------------------
+
+The monopole barycenter surrogate is rung L=0.
+
+BCW-L001 is restricted to L=0.
+
+Future ledgers may define higher-order surrogate branches:
+
+    E_sur,G^(L)(x)
+
+where L may represent:
+
+    L = 0 monopole surrogate;
+    L = 2 quadrupole-augmented surrogate;
+    L = 3 octupole-augmented surrogate;
+    higher multipole or other declared compression branch.
+
+For any surrogate rung L:
+
+    Delta_E_G^(L)(x) = E_actual,G(x) - E_sur,G^(L)(x)
+
+    chi_G^(L)(x) = ||Delta_E_G^(L)(x)||_F / (||E_sur,G^(L)(x)||_F + epsilon)
+
+Interpretation:
+
+    The monopole BCW shell asks where the group stops being readable as a single collapsed mass.
+
+    The surrogate ladder asks how much internal structure must the parent carry before the group becomes compressible to tolerance.
+
+Rule:
+
+    Monopole BCW is rung zero, not the whole compression theory.
+
+7. Cartesian Cell Complex Rule
+------------------------------
+
+Cartesian does not mean rectangular domain.
+
+Cartesian means globally aligned cells.
+
+A shell-local Cartesian cell complex is a globally registered collection of small axis-aligned Cartesian cells selected around a parity, handoff, compression-delta, or low-margin band.
+
+Each cell inherits Node 0 XYZ orientation.
+
+Local domains may vary in:
+
+    center;
+    extent;
+    resolution;
+    shape;
+    refinement tier;
+    cell inclusion mask.
+
+Local domains may not rotate their XYZ axes unless explicitly declared as a derived diagnostic frame.
+
+Rule:
+
+    Refine locally, register globally.
+
+A shell-local cell complex is not a cube or box around a GCS. It is an irregular banded collection of little Cartesian cells that follow the contested geometry.
+
+8. GCS Surface, Legacy Scalar Scaffold, and BCW Handoff Band
+----------------------------------------------------------------
+
+The GCS remains a surface.
+
+In the broad contribution-context grammar, a GCS may be written:
+
+    Sigma_A = {x : Q_A(x) = Q_K(x)}
+
+or using residual:
+
+    Psi_A(x) = Q_A(x) - Q_K(x)
+
+    Sigma_A = {x : Psi_A(x) = 0}
+
+This notation is the general scalar readability scaffold. In the narrow pairwise point-source branch, it includes the certified Apollonius-type distance-ratio zero sets.
+
+The scalar Q notation may index, scout, compare, or scaffold. It must not be silently promoted to a serious full-context / full-Riemann / full-Weyl emitter.
+
+For serious group-context work in the BCW branch, the corresponding surface is:
+
+    Sigma_G^(L) = {x : chi_G^(L)(x) = 1}
+
+Equivalently:
+
+    Sigma_G^(L) =
+        {x : ||Delta_E_G^(L)(x)||_F = ||E_sur,G^(L)(x)||_F}
+
+where:
+
+    Delta_E_G^(L)(x) = E_actual,G(x) - E_sur,G^(L)(x)
+
+For BCW-L001, the surrogate rung is L = 0:
+
+    E_sur,G^(0)(x) = E_bar,G(x)
+
+and therefore:
+
+    Delta_E_G^(0)(x) = E_actual,G(x) - E_bar,G(x)
+
+The BCW residual is the tensor-ledger branch for group-context compression witnessing.
+
+The GCS is the mathematical parity surface. Its sampling support is a finite handoff band.
+
+The support band is not the object itself. It is the datum support used to evaluate crossing, delta, overlap, refinement, topology, and neighbor consistency.
+
+Core distinction:
+
+    Mathematical object:
+        Sigma_A = {x : Psi_A(x) = 0}
+        or, in BCW branch:
+        Sigma_G^(L) = {x : chi_G^(L)(x) = 1}
+
+    Sampling support:
+        D_Sigma = {cells C_k : C_k intersects the declared near-parity band}
+
+    Rendered / retained geometry:
+        the cell complex, seams, overlaps, low-margin regions, and supports derived after evaluation.
+
+Rule:
+
+    Surface is object; band is witness support.
+    Scalar Q may scaffold; BCW tensors adjudicate group-context compression.
+
+9. Overlap and Reconciliation Rule
+----------------------------------
+
+A parity shell must not be evaluated as an isolated surface.
+
+Every shell-local cell complex must include:
+
+    inner-side cells;
+    core seam cells;
+    outer-side / neighbor-overlap cells.
+
+Neighboring shell supports must overlap enough to compare:
+
+    residual agreement;
+    barycenter compression delta;
+    low-margin ambiguity;
+    handoff smoothness;
+    seam coordinate consistency;
+    topology behavior.
+
+If two overlapping shell complexes disagree, neither wins automatically.
+
+Disagreement triggers:
+
+    overlap audit;
+    local refinement;
+    branch-label check;
+    softening/interior check;
+    possible declared ambiguity.
+
+Rule:
+
+    Overlap disagreement is diagnostic, not noise.
+
+10. Resolution Rule
+-------------------
+
+Resolution follows contested structure, not empty volume.
+
+For each source or group A:
+
+1. Estimate characteristic support scale:
+
+    R_A = candidate GCS radius, support extent, shell extent, or handoff scale.
+
+2. Define shell thickness:
+
+    w_A = alpha * R_A
+
+Recommended alpha values:
+
+    alpha = 0.03 to 0.10 for smooth/confident shells
+    alpha = 0.10 to 0.20 for uncertain, distorted, or scout shells
+
+3. Define baseline cell size:
+
+    h_A = w_A / N_band
+
+Recommended N_band values:
+
+    core seam band:       16 to 24 cells across thickness
+    overlap band:          8 to 12 cells per side
+    quiet interior:         sparse confirmation only
+
+4. Refine locally when triggered by:
+
+    high residual gradient;
+    high barycenter-delta gradient;
+    low-margin ambiguity;
+    junction candidate;
+    topology ambiguity;
+    render audit concern.
+
+5. Refinement multipliers:
+
+    one ordinary trigger:
+        h_A -> h_A / 2
+
+    junction or topology trigger:
+        h_A -> h_A / 4
+
+6. Stop refinement when:
+
+    extracted structure converges; or
+    instability under refinement becomes the result.
+
+Rule:
+
+    A source's mass sets the expected jurisdiction scale.
+    Residual and delta complexity set the resolution.
+
+Operational rule:
+
+    Sample by shell thickness, not scene size.
+    Refine by contested curvature, not source prestige.
+
+11. Source Mass and Resolution
+------------------------------
+
+Earth's parity structure should not be sampled the same way as the Sun's.
+
+The same standard applies, but the absolute sampling scale differs.
+
+A massive central source may require broad coverage but not necessarily ultra-fine sampling everywhere.
+
+A smaller source embedded in dominant context may require finer absolute sampling near its compressed support boundary because its shell is compact and high-gradient.
+
+Rule:
+
+    Do not give every source the same grid.
+    Give every contested boundary enough cells to testify.
+
+12. Physical Source Softening and Interior Rule
+-----------------------------------------------
+
+Point-source expressions diverge at source centers. Every serious scene must declare an interior or softening policy.
+
+For each physical source:
+
+    physical radius or softening radius;
+    exterior-valid domain;
+    interior rule or exclusion mask;
+    source-center no-claim zone if needed.
+
+No parity, delta, or handoff claim may depend on unresolved source-center divergence.
+
+Rule:
+
+    No naked singularity dependence in the first ledger.
+
+13. Branch Labeling Rule
+------------------------
+
+Every sampled value must carry a branch label.
+
+Examples:
+
+    scalar M/r^3 branch;
+    electric-Weyl norm branch;
+    electric-Weyl alignment branch;
+    source-context residual branch;
+    group-parent residual branch;
+    barycenter compression delta branch;
+    surrogate ladder branch;
+    entropy / attribution branch;
+    topology audit branch;
+    render datum branch.
+
+No shell from one branch may be compared to another branch without explicit bridge declaration.
+
+Rule:
+
+    No branch label, no interpretation.
+
+14. Promotion and Demotion Rule
+-------------------------------
+
+Candidate structures must pass through statuses.
+
+Allowed statuses:
+
+    drafted:
+        coarse trigger or analytic construction only
+
+    sampled:
+        evaluated at declared resolution
+
+    crossing_confirmed:
+        threshold crossing bracketed
+
+    converged:
+        crossing stable under refinement
+
+    retained:
+        context-relevant and overlap-consistent
+
+    interpreted:
+        allowed into scientific / visual claim layer
+
+    demoted:
+        unstable, underdeclared, topology ambiguous, branch-mismatched, or failed audit
+
+No object jumps from drafted to interpreted.
+
+Rule:
+
+    Candidate geometry is not scene architecture until retained.
+
+15. Topology Audit Rule
+-----------------------
+
+If a shell leaks, opens, folds, tunnels, forms islands, or fragments, it is not automatically a discovery and not automatically a failure.
+
+Possible causes:
+
+    underdeclared scene;
+    incomplete context;
+    inadequate sampling;
+    projection artifact;
+    tolerance artifact;
+    physical source softening artifact;
+    barycenter surrogate softening artifact;
+    genuine topology transition.
+
+Status:
+
+    topology_audit_required
+
+Rule:
+
+    Topology surprise triggers audit before interpretation.
+
+16. Rendering Rule
+------------------
+
+Rendering is last in the pipeline and never decides mathematically.
+
+However, rendering is the human-in-the-loop audit interface. It must show enough provenance for Daniel to inspect whether the math pipeline preserved or damaged lawful structure.
+
+Renders should show, as applicable:
+
+    physical sources;
+    Node 0 axes;
+    Node B markers;
+    Node G markers;
+    shell-local cell complexes;
+    overlap bands;
+    crossing cells;
+    retained/demoted statuses;
+    branch labels;
+    barycenter surrogate markers if used;
+    datum provenance.
+
+Rule:
+
+    Rendering audits the ledger; it never replaces the ledger.
+
+17. BCW-L001: First Ledger Target
+---------------------------------
+
+Name:
+
+    BCW-L001: Barycentric Compression Witness Ledger 001
+
+Purpose:
+
+    Generate the first lawful ledger for group-context identity residuals using actual source roster field versus barycenter collapsed surrogate field.
+
+Claim status:
+
+    methodology test / candidate diagnostic ledger
+    not a certified physical result
+
+Primary question:
+
+    Does a declared group's resolved weak-field electric-Weyl structure have a measurable compression-delta boundary relative to its monopole barycenter surrogate?
+
+Scene type:
+
+    Controlled synthetic 12-source weak-field cluster.
+
+Do not use LSN or observational data for BCW-L001.
+
+Reason:
+
+    BCW-L001 is an instrument calibration run.
+    Real scenes bring source authority, parent context, observational uncertainty, and roster completeness questions.
+    The first test should be deterministic, rerunnable, and small enough for sensitivity sweeps.
+
+Recommended first scene:
+
+    12 softened point sources;
+    mass ratio range 1:30 or 1:100;
+    non-symmetric bounded 3D arrangement;
+    avoid perfect symmetry;
+    avoid coplanar-only placement;
+    avoid one source so dominant that everything becomes trivial hierarchy.
+
+Example mass ladder:
+
+    [30, 18, 12, 8, 5, 3, 2, 1.5, 1.2, 1.0, 0.8, 0.6]
+
+Groups:
+
+    G_all = all 12 sources
+
+Optional audit groups:
+
+    G_heavy = top 3 masses
+    G_light = remaining 9 masses
+    G_spatial_A / G_spatial_B = split by geometry after Node B / Node G inspection
+
+Node declarations:
+
+    Node 0:
+        central dominant source if one exists and is spatially sensible,
+        otherwise explicit external/global origin
+
+    Node B:
+        mass barycenter of G_all
+
+    Node G:
+        geometric centroid of G_all
+
+Field branch:
+
+    weak-field electric-Weyl / tidal tensor
+
+Primary residual branch:
+
+    barycenter compression delta, monopole surrogate rung L=0
+
+Primary scalar:
+
+    chi_G = ||Delta_E_G||_F / (||E_bar,G||_F + epsilon)
+
+Primary candidate shell:
+
+    chi_G = 1
+
+Scout band:
+
+    0.5 <= chi_G <= 2.0
+
+Primary sampler:
+
+    shell-local Cartesian cell complexes
+
+Secondary audit:
+
+    coarse global Cartesian topology audit
+
+Optional witness:
+
+    barycenter radial scout for crossing hints only
+
+18. BCW-L001 Step Sequence
+--------------------------
+
+1. Declare scene passport.
+
+Required fields:
+
+    scene name;
+    mode;
+    purpose;
+    regime;
+    units;
+    coordinates;
+    Node 0;
+    Node B;
+    Node G;
+    source roster;
+    group roster;
+    parent context;
+    datum roster;
+    field branch;
+    residual branch;
+    surrogate rung;
+    sampling plan;
+    physical source softening/interior rule;
+    barycenter surrogate no-claim rule;
+    claim status.
+
+2. Register global frame.
+
+    Set Node 0.
+    Lock global XYZ orientation.
+    All Cartesian cells inherit this orientation.
+
+3. Build source roster.
+
+For each physical source:
+
+    source_id;
+    mass;
+    position;
+    radius or softening;
+    group membership;
+    active flag.
+
+4. Declare group roster.
+
+For each group:
+
+    group_id;
+    member source_ids;
+    group purpose;
+    group status;
+    parent context;
+    surrogate type;
+    surrogate rung;
+    allowed branch;
+    softening/exclusion rule;
+    claim status.
+
+5. Compute derived witnesses.
+
+For each declared group:
+
+    Node B;
+    Node G;
+    ||Node0 - B||;
+    ||Node0 - G||;
+    ||B - G||.
+
+6. Coarse scout pass.
+
+At each scout datum x:
+
+    compute E_actual,G(x);
+    compute E_bar,G(x);
+    compute Delta_E_G(x);
+    compute chi_G(x);
+    compute eta_G(x) if desired;
+    apply physical-source and barycenter-surrogate no-claim masks.
+
+7. Detect candidate contested bands.
+
+Triggers:
+
+    chi_G near threshold;
+    high gradient of chi_G;
+    high gradient of Delta_E_G;
+    low-margin region;
+    nearby pairwise parity candidate;
+    topology uncertainty;
+    visual/audit concern.
+
+8. Spawn shell-local Cartesian cell complexes.
+
+For each candidate band:
+
+    create irregular set of globally aligned Cartesian cells;
+    include inner, seam/core, and outer/neighbor overlap cells;
+    assign complex_id;
+    assign group_id;
+    assign branch label;
+    assign surrogate rung;
+    assign resolution tier;
+    assign neighbor links if applicable.
+
+9. Refine contested cells.
+
+For each cell complex:
+
+    evaluate cell corners;
+    evaluate cell center;
+    optionally evaluate face centers;
+    bracket crossings;
+    refine crossing/high-gradient cells;
+    refine topology and junction cells more deeply;
+    avoid densifying quiet interiors;
+    exclude no-claim cells from interpretation.
+
+10. Write compact ledger records.
+
+For each cell record:
+
+    scene_id;
+    complex_id;
+    cell_id;
+    resolution_tier;
+    Node0 frame ID;
+    cell center;
+    cell bounds or reconstructible index;
+    source roster hash;
+    group_id;
+    branch label;
+    surrogate rung;
+    E_actual compact tensor;
+    E_bar compact tensor;
+    Delta_E compact tensor or norm;
+    norm_actual;
+    norm_bar;
+    norm_delta;
+    chi;
+    eta optional;
+    gradient estimates;
+    crossing flag;
+    overlap flag;
+    topology flag;
+    physical_source_softening flag;
+    barycenter_surrogate_no_claim flag;
+    status.
+
+11. Reconcile overlaps.
+
+Where complexes overlap:
+
+    compare residual values;
+    compare crossing estimates;
+    compare gradients;
+    compare shell coordinates.
+
+If agreement is within tolerance:
+
+    mark overlap_consistent.
+
+If disagreement persists after refinement:
+
+    mark audit_required or declared_ambiguity.
+
+12. Promote or demote structures.
+
+Apply status ladder:
+
+    drafted -> sampled -> crossing_confirmed -> converged -> retained -> interpreted
+
+or:
+
+    drafted/sampled -> demoted
+
+13. Render audit package.
+
+Render must display:
+
+    physical sources;
+    Node 0 axes;
+    Node B;
+    Node G;
+    barycenter surrogate no-claim zone;
+    shell-local cell complexes;
+    overlap bands;
+    crossing cells;
+    retained/demoted statuses;
+    branch labels;
+    surrogate rung.
+
+19. Ledger Table Sketch
+-----------------------
+
+scene_passport
+
+    scene_id
+    mode
+    regime
+    units
+    coordinate_frame
+    Node0_policy
+    field_branch
+    residual_branch
+    surrogate_rung
+    claim_status
+
+source_roster
+
+    source_id
+    mass
+    x
+    y
+    z
+    radius_or_softening
+    group_id
+    active_flag
+
+group_roster
+
+    group_id
+    member_source_ids
+    group_purpose
+    group_status
+    parent_context
+    surrogate_type
+    surrogate_rung
+    branch
+    claim_status
+
+derived_nodes
+
+    node_id
+    node_type
+    group_id
+    x
+    y
+    z
+    role
+    contributes_field
+
+softening_registry
+
+    object_id
+    object_type: physical_source / barycenter_surrogate
+    radius_or_epsilon
+    no_claim_radius
+    rule
+
+cell_complex_registry
+
+    complex_id
+    group_id
+    branch
+    surrogate_rung
+    threshold
+    resolution_policy
+    status
+
+cell_ledger
+
+    complex_id
+    cell_id
+    tier
+    center_x
+    center_y
+    center_z
+    h_x
+    h_y
+    h_z
+    E_actual_6
+    E_bar_6
+    Delta_E_6 optional
+    norm_actual
+    norm_bar
+    norm_delta
+    chi
+    eta
+    grad_chi
+    crossing_flag
+    overlap_flag
+    topology_flag
+    physical_source_softening_flag
+    barycenter_surrogate_no_claim_flag
+    status
+
+overlap_registry
+
+    overlap_id
+    complex_a
+    complex_b
+    agreement_metric
+    status
+
+render_manifest
+
+    render_id
+    source_ledger
+    displayed_layers
+    hidden_layers
+    audit_notes
+
+20. Closing Doctrine
+--------------------
+
+The GCS remains a surface.
+
+The handoff band is how the surface is interrogated.
+
+The cell complex is the finite datum support.
+
+The barycenter is not a source.
+
+The barycenter surrogate is a compression witness.
+
+The compression delta is the group-context identity residual.
+
+Delta_E_G is the failure of group-compressibility.
+
+Compression-delta parity is group-declaration-relative.
+
+The monopole surrogate is rung zero of a future surrogate ladder.
+
+The ledger is the authority.
+
+The render is the audit window.
+
+Atlas does not modify GR. Atlas formalizes the declared context in which the GR-governed field is read.
+
+End of Datum Bible v0.3.1
