@@ -1,0 +1,57 @@
+{
+ "schema": "atlas-magnetic-weyl/1",
+ "provenance": "LSN-66 BL fused scene + kinematics: harvested declared astrometry (kinematics_real.json); SIMBAD TAP harvest 2026-07-18 (raw CSV receipt simbad_harvest_20260718.csv); distances from GAIA_LSN_PARENT_001 scene plan (declared roster geometry); registration rotation recovered by Horn quaternion fit of SIMBAD equatorial unit vectors to roster unit positions; C5-B2 magnetic Weyl with kappa=-2 NUMERICALLY LOCKED (OBS_042 numeric Riemann crosscheck 2026-07-17, structure exact at O(v)); super-Poynting magnitude on total fields; SIGNED P vector per the ratified E-Sign Adjudication v0.1 (P_BR = -eps E_atlas B, founder 2026-07-18); momentum monitor = physical divergence of psi^-10-weighted composite Bowen-York curvature (roadmap Phase 4 proxy), central differences step 0.02; declared 64^3 volume lattice, guard 1.0",
+ "declared": {
+  "kappa_locked": -2,
+  "obs042": "analysis/et_tov3_scout/OBS042_KAPPA_CROSSCHECK/obs042_kappa_crosscheck_20260717.json",
+  "e_sign_map": "E_atlas = -C_i0j0 (stretch-positive tidal convention; ratified 2026-07-18)",
+  "beta_ref": 0.0001,
+  "seed": 2026,
+  "fd_step": 0.02,
+  "lattice": {
+   "n": 64,
+   "box_lo": [
+    -10.78,
+    -11.66,
+    -9.59
+   ],
+   "box_hi": [
+    12,
+    11.08,
+    11.6
+   ]
+  },
+  "guard_radius": 1,
+  "linearity_note": "B, P_BR(~beta), and Ahat scale linearly in beta (P_BR quadratic in field but linear in beta); rescale in-viewer without re-bake"
+ },
+ "files": {
+  "dynwit": {
+   "file": "dynwit.f32",
+   "per_point": [
+    "x",
+    "y",
+    "z",
+    "Bfro",
+    "magfrac",
+    "Pmag",
+    "Mres",
+    "Efro"
+   ],
+   "n_points": 257482
+  },
+  "pvec": {
+   "file": "pvec.f32",
+   "per_point": [
+    "x",
+    "y",
+    "z",
+    "Px",
+    "Py",
+    "Pz"
+   ],
+   "n_points": 257482,
+   "definition": "P_BR = -eps_ijk E_atlas B (E-Sign Adjudication v0.1, founder-ratified 2026-07-18; E_atlas = stretch-positive = -C_i0j0)"
+  }
+ },
+ "claim": "Implemented/Observed. C5-B2 magnetic tensor: structure confirmed exact at O(v), kappa=-2 locked under the declared Atlas convention (OBS_042); signed P_BR per ratified sign map. NOT radiative balance, NOT conservation, NOT a prediction (seam boundaries preserved). Kinematics are a declared diagnostic family, not astrometry. Momentum monitor is a constraint-residual display (promotion-order doctrine), not a solved constraint. Surface integration remains unauthorized."
+}

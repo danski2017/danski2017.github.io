@@ -1,0 +1,408 @@
+ATLAS INTERNAL NOTE
+Closure -> Overlap -> Handoff -> Embedding Branch
+Hierarchy-aware handoff extraction inside retained GCS/parity-context structure
+
+Version: v0.2 synchronized internal draft
+Date: 2026-04-25
+Prepared for: Atlas Solver Project / Daniel Scieszinski
+
+Status: Internal live-branch method memo
+Lane: Private Atlas method / extraction-support branch
+Public status: Not approved for public science release in this form
+Canonical status: Not Phase I milestone evidence; downstream branch only
+Primary alignment: GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV, ATLAS_ARCHITECTURE_CANON v0.2, ATLAS_LANE_GOVERNANCE
+
+================================================================================
+ABSTRACT
+================================================================================
+
+This internal note synchronizes the earlier hierarchical handoff memo with current Atlas vocabulary, architecture doctrine, and claim discipline. The viable core is the method branch:
+
+    closure -> overlap -> handoff -> embedding
+
+The branch tries to convert raw many-source comparison output into hierarchy-aware local transition structure. Closure identifies the meaningful contextual domain under a declared readability rule. Overlap identifies which retained source-local domains coexist and therefore deserve pairwise attention. Handoff identifies local identity-transition supports inside overlap-valid regions. Embedding attaches hierarchy and parent-context tags to those handoff supports.
+
+This branch remains private and internal because it governs extraction logic, overlap gating, hierarchy tagging, and implementation-sensitive diagnostics. It does not modify general relativity, introduce a new force, define a new physical object, or replace canonical Phase I parity/GCS extraction. It may become valuable only if it improves relevance filtering, reduces pairwise clutter, stabilizes handoff structures, and passes repeatability and sensitivity checks.
+
+================================================================================
+1. PURPOSE AND DISPOSITION
+================================================================================
+
+This note repairs and preserves an earlier lab memo titled Hierarchical Handoff Breakthrough. The original memo recorded a useful development run and a genuine conceptual shift away from flat all-pairs overlays toward hierarchy-aware, overlap-gated handoff extraction.
+
+The goal of this rewrite is not public release. The goal is to preserve the useful method insight while bringing it under current Atlas doctrine.
+
+Forward decision:
+
+- Lane: Private Atlas method / live branch.
+- Immediate use: scratch benchmark design, overlap-gating tests, hierarchy-tag design, handoff visual grammar, and future child/parent or closure-overlap work.
+- Canonical status: not canonical. It may support Phase I only after the canonical GCS/parity-context extraction path is stable and after this branch demonstrates measurable improvement.
+- Best future public descendant: none yet. The public papers already cover the science-level concepts. This note is implementation-facing.
+
+================================================================================
+2. SOURCE MEMO SUMMARY
+================================================================================
+
+The source memo recorded a 12-source breathing-room scene with the following run fingerprint:
+
+- scene: twelve body breathing room v3;
+- launch nodes: 15;
+- ray count: 322;
+- radial steps: 12;
+- stored precision: 6 significant digits;
+- closure point count: 15,546;
+- handoff point count: 4,670;
+- active overlap edges: 30;
+- max embedding depth: 3;
+- top closure source: S11, with 3,085 closure points;
+- top handoff pair: S11|S12, with 483 handoff points.
+
+The original memo described this as a breakthrough because handoff supports appeared as partition-like seams and corridor regions embedded inside enclosing closure structure rather than as unfiltered pairwise fog.
+
+Synchronized interpretation:
+The run is a valuable developmental signal and visual-method milestone. It is not evidence by itself. Its value must be tested through machine-readable diagnostics, repeated scenes, sampling checks, threshold checks, source-roster sensitivity, and comparison against simpler retention rules.
+
+================================================================================
+3. FOUNDATION ALIGNMENT
+================================================================================
+
+Paper I inheritance:
+A GCS is a parity horizon where a declared gravitational contribution reaches equality with its derived gravitational context under a declared readability rule. It is not a force boundary, material membrane, causal horizon, event horizon, or orbital-stability limit.
+
+Paper II inheritance:
+Many-source parity geometry begins with declared source-readable contributions Q_i and pairwise residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x),
+
+with pairwise parity surfaces
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+Retained portions of such surfaces may assemble into many-source parity networks. Handoff extraction is downstream of this grammar. It does not replace Q_i, Psi_ij, Sigma_ij, or retained GCS/parity-context extraction.
+
+Paper III inheritance:
+Retained faces, seams, low-margin regions, and transition loci are derived interface geometry in the mesoscale comparison layer. Handoff supports are candidate transition structures in this layer and must remain diagnostic, not dynamical.
+
+Paper IV inheritance:
+Proof-of-concept extraction establishes operational recoverability under the scalar tidal-readable branch only. It does not establish invariance, final extraction standards, or observational status. Handoff inherits that restraint.
+
+Architecture inheritance:
+Atlas is ledger-first. The handoff branch must derive from stored relational state. Rendering communicates the branch but never decides its evidentiary status.
+
+Lane governance inheritance:
+Because this note governs extraction order, overlap gating, implementation logic, and hierarchy tags, it belongs to the private Atlas method lane.
+
+================================================================================
+4. TERMINOLOGY REPAIR
+================================================================================
+
+Older / risky wording -> current replacement
+
+- Node 1 floor -> declared parent-context relation, enclosing contextual relation, or declared readability baseline when explicitly scalar
+- continuous background actor -> lawful parent scene relation or derived contextual field under the declared rule
+- clearest evidence of breakthrough -> clearest visual expression of the branch; evidence requires ledgered diagnostics
+- main live path forward -> active live branch downstream of canonical Phase I parity/GCS stabilization
+- pairwise fog -> unfiltered all-pairs residual clutter or unrelevance-filtered pairwise overlay
+- closure shells -> retained closure domains or GCS/parity-context closure supports
+- handoff boundaries -> overlap-gated local identity-transition supports
+- embedding depth -> provisional hierarchy tag, not canonical parent assignment
+- floor value -> declared scalar readability baseline, if and only if that scalar convention is explicitly declared
+
+================================================================================
+5. CORE HYPOTHESIS
+================================================================================
+
+Internal working claim:
+In many-source weak-field scenes, handoff structure becomes more meaningful when extracted only inside regions where retained source-local closure domains overlap. Closure defines where a source or retained cell has contextual relevance. Overlap defines which competitors coexist in a meaningful domain. Handoff marks local transitions in source-readable dominance inside those overlap-valid regions. Embedding tags describe how those transitions sit inside larger closure or parent-context structure.
+
+Compact statement:
+Closure determines meaningful domain. Overlap determines relevance. Handoff determines local identity transition. Embedding records hierarchy context.
+
+This is a method hypothesis, not a new physical claim.
+
+================================================================================
+6. FORMAL SETUP
+================================================================================
+
+Let a declared weak-field scene contain physical sources S_i with masses M_i and positions x_i. Let x be a sampled point on a declared slice Sigma_t.
+
+The Phase I scalar readable branch is
+
+    Q_i(x) = M_i / (||x - x_i||^2 + eps^2)^(3/2),
+
+or, away from sources in analytic shorthand,
+
+    Q_i(x) proportional to M_i / r_i(x)^3.
+
+Pairwise residuals are
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+A source-readable margin against the strongest local competitor may be defined as
+
+    m_i(x) = Q_i(x) - max_{j != i} Q_j(x).
+
+A retained closure domain for source or cell i may be represented generically as
+
+    C_i = { x : source or cell i passes the declared closure/context rule at x }.
+
+The exact closure rule must be declared per branch. Examples may include positive readable margin, comparison to a derived context, comparison to a declared parent-context readability baseline, or retained GCS/parity-context membership.
+
+For two retained domains C_i and C_j, define overlap support
+
+    O_ij = C_i intersect C_j.
+
+The pair (i,j) is overlap-active if O_ij is nonempty and passes declared size, density, stability, or support thresholds.
+
+A handoff support H_ij is a retained local transition structure inside O_ij where source-readable identity changes between i and j, or where their declared dominance/ordering is locally unresolved under the declared rule.
+
+Symbolically:
+
+    H_ij subset O_ij,
+
+with candidate detection based on one or more of:
+
+    Psi_ij(x) near 0,
+    sign change of Psi_ij across neighboring samples,
+    winner identity change across neighboring samples,
+    low margin between top readable competitors,
+    stable local transition across sampling and tolerance sweeps.
+
+================================================================================
+7. PIPELINE
+================================================================================
+
+The synchronized branch pipeline is:
+
+1. Ledger / relational state.
+   Compute and store Q_i, Psi_ij, source rankings, margins, low-margin flags, and relevant sampling metadata in the certified relational ledger.
+
+2. Closure.
+   Extract or identify retained source-local or cell-local closure domains under the declared readability and parent-context rule.
+
+3. Overlap.
+   Build an overlap graph whose nodes are retained domains and whose edges indicate overlap-active domain pairs.
+
+4. Handoff.
+   Within overlap-active regions, extract local identity-transition supports using declared residual, margin, winner-change, or low-margin criteria.
+
+5. Embedding.
+   Tag handoff supports with hierarchy context: enclosing closure domains, parent-context relation, depth proxy, dominant contextual actor, overlap strength, and local compression state.
+
+6. Validation.
+   Test whether extracted handoff supports persist under tolerance, sampling, domain, and nearby-scene perturbations.
+
+7. Rendering.
+   Render closure domains, handoff supports, and embedding tags as downstream visualizations of ledgered diagnostics.
+
+================================================================================
+8. INTERPRETATION
+================================================================================
+
+Closure domains provide contextual enclosure or local relevance structure. They do not become physical shells or force walls.
+
+Overlap-active edges identify which local domains coexist meaningfully at the declared scale and tolerance. They are a relevance-filtering device.
+
+Handoff supports describe local identity-transition structure inside overlap-valid regions. They are not geodesics, attractors, physical barriers, or direct observables.
+
+Embedding tags give provisional hierarchy context. They are not automatic parent-scene assignments and do not override Node 1 declarations.
+
+The branch is valuable only if it reduces arbitrary pairwise clutter, improves junction legibility, clarifies source-in-system interpretation, or supports repeatable hierarchy-aware extraction.
+
+================================================================================
+9. RELATION TO GLOBAL PARITY BUNDLE NOTE
+================================================================================
+
+The Global Parity Bundle note defines a pointwise relational census B_Psi(x) built from Q_i and Psi_ij values. The handoff branch can be viewed as one downstream extraction family over that census.
+
+Recommended relation:
+
+- B_Psi(x): pointwise relational ledger state.
+- Closure domains C_i: retained contextual supports derived from declared closure/context rules.
+- Overlap graph: relevance structure over retained domains.
+- Handoff supports H_ij: local identity-transition structures inside overlap-active regions.
+- Embedding tags: hierarchy labels attached to H_ij and related supports.
+
+This keeps the architecture clean: the bundle stores relational state; closure-overlap-handoff extracts one branch of structure from that state.
+
+================================================================================
+10. DIAGNOSTIC QUANTITIES
+================================================================================
+
+Candidate machine-readable diagnostics:
+
+Closure diagnostics:
+- closure point count per source or cell;
+- closure domain volume or sample count;
+- closure score;
+- open-ray fraction where applicable;
+- source-roster sensitivity;
+- parent-context relation used;
+- scalar readability baseline if declared.
+
+Overlap diagnostics:
+- overlap graph edge list;
+- active overlap edge count;
+- overlap sample count per edge;
+- overlap strength;
+- overlap stability across thresholds;
+- exposed-vs-buried pair classification.
+
+Handoff diagnostics:
+- handoff point count per pair;
+- handoff density inside overlap region;
+- sign-change count;
+- low-margin count;
+- winner-change count;
+- handoff connected components;
+- handoff persistence under tolerance and sampling changes.
+
+Embedding diagnostics:
+- enclosing closure IDs;
+- parent-context tag;
+- embedding depth proxy;
+- local source ordering;
+- top-k compression score;
+- dominant contextual actor if declared;
+- totality or parent-context ratio if defined.
+
+Render metadata:
+- scene ID;
+- run ID;
+- source roster;
+- readable branch;
+- closure rule;
+- overlap threshold;
+- handoff criterion;
+- sampling method;
+- tolerance;
+- output manifest.
+
+================================================================================
+11. TESTABLE CONSEQUENCES
+================================================================================
+
+T1. Relevance gain.
+Overlap-gated handoff should produce fewer irrelevant pair structures than naive all-pairs parity extraction.
+
+T2. Stability gain.
+Handoff supports inside overlap-valid regions should be more stable under modest perturbations than unfiltered pairwise candidate surfaces.
+
+T3. Junction clarity.
+Triple and higher-order negotiation regions should become clearer when interpreted through overlap and local ordering rather than as accidental intersections of unrelated pair sheets.
+
+T4. Hierarchy clarity.
+Embedding tags should clarify whether a handoff support sits inside one closure domain, multiple overlapping closure domains, or a broader parent-context region.
+
+T5. Compression clarity.
+Handoff density and low-margin counts should correlate with multi-source compression rather than with sampling artifacts.
+
+T6. Render-to-ledger agreement.
+The visual handoff skeleton should correspond to machine-readable handoff components, overlap edges, and closure records.
+
+================================================================================
+12. FAILURE MODES
+================================================================================
+
+F1. Handoff extraction adds no information beyond existing retained pairwise parity faces.
+
+F2. Overlap gating discards meaningful structures or keeps arbitrary ones.
+
+F3. Handoff supports teleport under modest threshold, sampling, domain, or source-position changes.
+
+F4. Embedding-depth tags are unstable or merely visual.
+
+F5. The branch depends on a scalar parent-context baseline that is not lawfully declared.
+
+F6. Renders look convincing but ledger diagnostics do not support the claimed structure.
+
+F7. The pipeline becomes more complex without improving canonical Phase I reliability.
+
+If these failure modes dominate, the branch should remain historical or scratch-only.
+
+================================================================================
+13. RUN FINGERPRINT FROM SOURCE MEMO
+================================================================================
+
+The following run should be preserved as developmental source material, not canonical evidence:
+
+    scene: twelve body breathing room v3
+    launch nodes: 15
+    ray count: 322
+    radial steps: 12
+    stored precision: 6 significant digits
+    closure points: 15,546
+    handoff points: 4,670
+    active overlap edges: 30
+    max embedding depth: 3
+    top closure source: S11, 3,085 closure points
+    top handoff pair: S11|S12, 483 handoff points
+
+Interpretation:
+This run suggested that overlap-gated handoff supports may produce a partition skeleton embedded inside retained closure context. The result must be rerun under current conventions before any evidence claim is made.
+
+================================================================================
+14. RENDERING NOTE
+================================================================================
+
+The source memo included a four-panel visual comparison:
+
+1. closure domains shown as red contextual shells;
+2. handoff supports shown as blue partition-like points;
+3. handoff supports colored by embedding-depth proxy;
+4. integrated closure-plus-handoff structure.
+
+Synchronized interpretation:
+The figure is useful as an internal visual explanation of the branch. It should not be treated as evidence. A future render should include current terminology, clear source markers, declared closure rule, overlap threshold, handoff criterion, and metadata tying the image to machine-readable diagnostics.
+
+================================================================================
+15. CLAIM BOUNDARY
+================================================================================
+
+This note does not claim:
+
+- modified gravity;
+- a new force;
+- a physical membrane, shell, or wall;
+- that handoff supports are geodesics;
+- that handoff supports are observables;
+- that closure domains are physical enclosures;
+- that embedding depth is a canonical hierarchy measure;
+- that the 12-source run is canonical evidence;
+- that this branch replaces canonical Phase I extraction.
+
+It claims only that closure-overlap-handoff-embedding is a promising internal method branch for extracting hierarchy-aware local identity-transition structure from ledgered weak-field readability data.
+
+================================================================================
+16. CANONICAL RELATION
+================================================================================
+
+Canonical Phase I remains:
+
+    sources -> Q_i -> Psi_ij -> zero-set extraction -> relevance filtering -> GCS/parity-context extraction -> junction/closure diagnostics -> sensitivity checks -> outputs -> ledger.
+
+The handoff branch may be tested downstream as:
+
+    ledgered Q_i / Psi_ij / margins -> retained closure domains -> overlap graph -> handoff supports -> embedding tags -> validation.
+
+Promotion condition:
+The branch may influence canonical Phase I only if it demonstrably improves relevance filtering, closure interpretation, junction stability, or repeatable hierarchy-aware extraction.
+
+================================================================================
+17. NEXT ACTIONS
+================================================================================
+
+1. Preserve this synchronized note as the active internal version of the closure-overlap-handoff-embedding branch.
+2. Do not publish it as public science.
+3. Reproduce the 12-source scene under current canon if the branch is revisited.
+4. Add machine-readable diagnostics for closure, overlap edges, handoff supports, and embedding tags.
+5. Compare overlap-gated handoff extraction against canonical retained pairwise GCS/parity faces.
+6. Run nearby scene perturbations to measure stability of overlap relationships and handoff skeletons.
+7. Replace simple embedding-depth proxy with declared hierarchy tags only after validation.
+8. Keep renders subordinate to ledgered diagnostics.
+
+================================================================================
+SHORT INTERNAL FORM
+================================================================================
+
+Closure determines meaningful domain. Overlap determines relevance. Handoff determines local identity transition. Embedding records hierarchy context. This is a private Atlas method branch for reducing pairwise clutter and extracting hierarchy-aware partition structure from certified relational state. It is not public science, not a force claim, and not canonical Phase I evidence until validated.

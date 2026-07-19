@@ -1,0 +1,80 @@
+[
+  {
+    "radial_band": "r0_0_12",
+    "r_lo": 0.0,
+    "r_hi": 12.0,
+    "n_points": 251,
+    "stable_fraction": 0.9760956175298805,
+    "eigenvector_delta_angle_p50": 0.37034595012664795,
+    "eigenvector_delta_angle_p95": 0.9694178700447083,
+    "delta_abs_weyl_p95": 0.0017922885017469525,
+    "pinch_active": 1,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r1_12_24",
+    "r_lo": 12.0,
+    "r_hi": 24.0,
+    "n_points": 1852,
+    "stable_fraction": 0.9789416846652268,
+    "eigenvector_delta_angle_p50": 0.024563074111938477,
+    "eigenvector_delta_angle_p95": 0.9721072316169739,
+    "delta_abs_weyl_p95": 0.00039489814662374556,
+    "pinch_active": 1,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r2_24_42",
+    "r_lo": 24.0,
+    "r_hi": 42.0,
+    "n_points": 9356,
+    "stable_fraction": 0.9711415134672937,
+    "eigenvector_delta_angle_p50": 0.00031387805938720703,
+    "eigenvector_delta_angle_p95": 0.014295920729637146,
+    "delta_abs_weyl_p95": 4.805199569091201e-05,
+    "pinch_active": 0,
+    "weyl_tail_active": 1,
+    "collapse_transition": 1
+  },
+  {
+    "radial_band": "r3_42_66",
+    "r_lo": 42.0,
+    "r_hi": 66.0,
+    "n_points": 32936,
+    "stable_fraction": 0.972977896526597,
+    "eigenvector_delta_angle_p50": 1.633167266845703e-05,
+    "eigenvector_delta_angle_p95": 0.00067099928855896,
+    "delta_abs_weyl_p95": 2.9961956897750497e-05,
+    "pinch_active": 0,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r4_66_96",
+    "r_lo": 66.0,
+    "r_hi": 96.0,
+    "n_points": 92664,
+    "stable_fraction": 0.9885608218941552,
+    "eigenvector_delta_angle_p50": 1.3232231140136719e-05,
+    "eigenvector_delta_angle_p95": 0.00012183189392089844,
+    "delta_abs_weyl_p95": 6.898015271872282e-06,
+    "pinch_active": 0,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  },
+  {
+    "radial_band": "r5_96_1e+06",
+    "r_lo": 96.0,
+    "r_hi": 96.0,
+    "n_points": 137566,
+    "stable_fraction": 0.9997964613349228,
+    "eigenvector_delta_angle_p50": 3.933906555175781e-06,
+    "eigenvector_delta_angle_p95": 6.580352783203125e-05,
+    "delta_abs_weyl_p95": 1.360001988359727e-06,
+    "pinch_active": 0,
+    "weyl_tail_active": 1,
+    "collapse_transition": 0
+  }
+]

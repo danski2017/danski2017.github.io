@@ -1,0 +1,195 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — The Lalande Island (multi-component parity cell)</title>
+<style>
+ body{margin:0;background:#07080c;color:#cfd6e4;font-family:-apple-system,system-ui,sans-serif;overflow:hidden}
+ #hud{position:fixed;top:0;left:0;right:0;padding:12px 16px;z-index:2;pointer-events:none;
+      background:linear-gradient(#07080cee,#07080c00)}
+ #hud h1{font-size:16px;margin:0 0 3px;color:#eef2fa}
+ #hud .sub{font-size:11px;color:#8d96a8;line-height:1.5;max-width:720px}
+ #hud .sub b{color:#ffc65e}
+ #phase{position:fixed;top:84px;left:16px;font-size:12px;color:#ffd9a0;z-index:2;font-weight:600}
+ #strip{position:fixed;left:0;right:0;bottom:0;height:120px;background:#0a0c12ee;border-top:1px solid #232b3a;z-index:2}
+ #stripLabel{position:fixed;left:16px;bottom:96px;font-size:10px;color:#8d96a8;z-index:3}
+ #claim{position:fixed;right:12px;bottom:126px;font-size:9.5px;color:#6d7689;z-index:2;max-width:340px;text-align:right;line-height:1.4}
+</style></head><body>
+<div id="hud">
+ <h1>The Lalande Island — a commons trough witnessed through lalande's ratio</h1>
+ <div class="sub">lalande_21185, BL fused cross-term-aware LSN-66 scene · GR FN parity &rho; = ||&Delta;<sub>a</sub>E||<sub>F</sub>/||E&#771;<sup>(&minus;a)</sup>||<sub>F</sub>, TF witness, DEN A, ||&middot;||<sub>&delta;</sub> ·
+ <b>gold</b>: main parity shell (r&asymp;2.5) · <b>red</b>: detached component at r&asymp;6.1 — adjudicated a COMMONS RE-EMERGENCE TROUGH (founder, 2026-07-16): a context-cancellation region (||E||&asymp;4e-16, entropy 0.82) where many faint signatures reach parity together, WITNESSED THROUGH (not owned by) lalande's ratio; stein_2051_b and gj_412_a carry components in the same trough (Commons Survey 001). The multi-component TOPOLOGY of lalande's parity set stands; the earlier pairing language is retracted</div>
+</div>
+<div id="phase">computing scene…</div>
+<canvas id="strip"></canvas>
+<div id="stripLabel">&Psi;(r) = log&#8321;&#8320; &rho; along the island ray — zero crossings marked</div>
+<div id="claim">Diagnostic geometry over a declared analytic substrate. Parity loci are convention-declared comparisons, not membranes. Observed 2026-07-16; persistence sweeps owed. Render is a witness, not evidence — the numbers came first (GFRO_CERT_SWEEP_001).</div>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+const vwInit=()=>Math.max(innerWidth,document.documentElement.clientWidth||0,800);
+const vhInit=()=>Math.max(innerHeight,document.documentElement.clientHeight||0,450);
+const roster=await (await fetch('datasets/BL_FOAM_BAKED_001/gaia66_roster.json')).json();
+const ti=roster.findIndex(s=>s.id==='lalande_21185'),T=roster[ti];
+const fn=e=>Math.sqrt(e[0]*e[0]+e[1]*e[1]+e[2]*e[2]+2*(e[3]*e[3]+e[4]*e[4]+e[5]*e[5]));
+function Etf(x,y,z,skip){
+ let ex=0,D0=0,D1=0,D2=0,h0=0,h1=0,h2=0,h3=0,h4=0,h5=0;
+ for(let k=0;k<roster.length;k++){
+  if(k===skip)continue;
+  const s=roster[k],mu=s.mu,dx=x-s.x[0],dy=y-s.x[1],dz=z-s.x[2];
+  const r2=dx*dx+dy*dy+dz*dz,r=Math.sqrt(r2),r3=r2*r,r5=r2*r3;
+  ex+=mu/r;D0-=mu*dx/r3;D1-=mu*dy/r3;D2-=mu*dz/r3;
+  h0+=mu*(3*dx*dx/r5-1/r3);h1+=mu*(3*dy*dy/r5-1/r3);h2+=mu*(3*dz*dz/r5-1/r3);
+  h3+=mu*3*dx*dy/r5;h4+=mu*3*dx*dz/r5;h5+=mu*3*dy*dz/r5;
+ }
+ const Pp=1+ex,lap=h0+h1+h2,g2=D0*D0+D1*D1+D2*D2,c1=-2/Pp,c2=6/(Pp*Pp),dg=c1*lap-2*g2/(Pp*Pp);
+ const e=[c1*h0+c2*D0*D0+dg,c1*h1+c2*D1*D1+dg,c1*h2+c2*D2*D2+dg,c1*h3+c2*D0*D1,c1*h4+c2*D0*D2,c1*h5+c2*D1*D2];
+ const t=(e[0]+e[1]+e[2])/3;return [e[0]-t,e[1]-t,e[2]-t,e[3],e[4],e[5]];
+}
+function Psi(x,y,z){
+ const ef=Etf(x,y,z,-1),ea=Etf(x,y,z,ti);
+ const dE=[ef[0]-ea[0],ef[1]-ea[1],ef[2]-ea[2],ef[3]-ea[3],ef[4]-ea[4],ef[5]-ea[5]];
+ return Math.log10((fn(dE)+1e-300)/(fn(ea)+1e-300));
+}
+const grad=(x,y,z,e=1e-4)=>[(Psi(x+e,y,z)-Psi(x-e,y,z))/(2*e),(Psi(x,y+e,z)-Psi(x,y-e,z))/(2*e),(Psi(x,y,z+e)-Psi(x,y,z-e))/(2*e)];
+function project(p){let [x,y,z]=p;
+ for(let i=0;i<8;i++){const v=Psi(x,y,z);if(Math.abs(v)<1e-4)return [x,y,z];
+  const g=grad(x,y,z),g2=g[0]*g[0]+g[1]*g[1]+g[2]*g[2];if(g2<1e-18)return null;
+  x-=v*g[0]/g2;y-=v*g[1]/g2;z-=v*g[2]/g2;}
+ return Math.abs(Psi(x,y,z))<1e-3?[x,y,z]:null;}
+function crawl(seeds,h,MAX){
+ const cell=h*0.6,hash=new Map();
+ const key=p=>`${Math.round(p[0]/cell)},${Math.round(p[1]/cell)},${Math.round(p[2]/cell)}`;
+ const near=p=>{const cx=Math.round(p[0]/cell),cy=Math.round(p[1]/cell),cz=Math.round(p[2]/cell);
+  for(let i=-1;i<=1;i++)for(let j=-1;j<=1;j++)for(let k=-1;k<=1;k++){
+   const q=hash.get(`${cx+i},${cy+j},${cz+k}`);if(!q)continue;
+   for(const t of q){const a=p[0]-t[0],b=p[1]-t[1],c=p[2]-t[2];if(a*a+b*b+c*c<cell*cell)return true;}}
+  return false;};
+ const acc=[],accept=p=>{const k=key(p);if(!hash.has(k))hash.set(k,[]);hash.get(k).push(p);};
+ let frontier=[];
+ for(const s of seeds){const ps=project(s);if(ps&&!near(ps)){accept(ps);acc.push(ps);frontier.push(ps);}}
+ while(frontier.length&&acc.length<MAX){
+  const next=[];
+  for(const p of frontier){
+   if(acc.length>=MAX)break;
+   const g=grad(...p),gl=Math.hypot(...g);if(gl<1e-9)continue;
+   const n=[g[0]/gl,g[1]/gl,g[2]/gl];
+   let t1=Math.abs(n[0])<0.9?[1,0,0]:[0,1,0];
+   let d1=[n[1]*t1[2]-n[2]*t1[1],n[2]*t1[0]-n[0]*t1[2],n[0]*t1[1]-n[1]*t1[0]];
+   const dl=Math.hypot(...d1);d1=[d1[0]/dl,d1[1]/dl,d1[2]/dl];
+   const d2=[n[1]*d1[2]-n[2]*d1[1],n[2]*d1[0]-n[0]*d1[2],n[0]*d1[1]-n[1]*d1[0]];
+   for(let k=0;k<6;k++){
+    const a=k*Math.PI/3;
+    const c=[p[0]+h*(Math.cos(a)*d1[0]+Math.sin(a)*d2[0]),p[1]+h*(Math.cos(a)*d1[1]+Math.sin(a)*d2[1]),p[2]+h*(Math.cos(a)*d1[2]+Math.sin(a)*d2[2])];
+    if(near(c))continue;
+    const pr=project(c);
+    if(!pr||near(pr))continue;
+    accept(pr);acc.push(pr);next.push(pr);
+   }
+  }
+  frontier=next;
+ }
+ return acc;
+}
+// find the island ray: fib sweep, outermost crossing per ray, take r>4.5
+const GA=Math.PI*(3-Math.sqrt(5)),ND=128;
+let island=null,mainSeed=null;
+for(let d=0;d<ND;d++){
+ const zc=1-2*(d+0.5)/ND,rr=Math.sqrt(1-zc*zc),th=GA*d;
+ const u=[rr*Math.cos(th),rr*Math.sin(th),zc];
+ let prev=null,last=NaN;
+ for(let q=0;q<220;q++){
+  const r=0.05*Math.pow(8/0.05,q/219);
+  const v=Psi(T.x[0]+r*u[0],T.x[1]+r*u[1],T.x[2]+r*u[2]);
+  if(prev!==null&&(v>0)!==(prev>0))last=r;
+  prev=v;
+ }
+ if(last===last){
+  if(last>4.5&&!island)island={u,r:last};
+  if(!mainSeed&&last<4.5)mainSeed=[T.x[0]+last*u[0],T.x[1]+last*u[1],T.x[2]+last*u[2]];
+ }
+}
+document.getElementById('phase').textContent='crawling main shell…';
+await new Promise(r=>setTimeout(r,30));
+const main=crawl([mainSeed],0.22,4000);
+document.getElementById('phase').textContent='crawling the island…';
+await new Promise(r=>setTimeout(r,30));
+const isSeed=[T.x[0]+island.r*island.u[0],T.x[1]+island.r*island.u[1],T.x[2]+island.r*island.u[2]];
+const isle=crawl([isSeed],0.05,3000);
+// Psi(r) profile along island ray
+const RMAXP=7.5,NPROF=560,prof=[];
+for(let q=0;q<NPROF;q++){
+ const r=0.15+ (RMAXP-0.15)*q/(NPROF-1);
+ prof.push([r,Psi(T.x[0]+r*island.u[0],T.x[1]+r*island.u[1],T.x[2]+r*island.u[2])]);
+}
+// ---- render ----
+const ren=new THREE.WebGLRenderer({antialias:true});
+ren.setSize(vwInit(),vhInit()-120);ren.setPixelRatio(Math.min(devicePixelRatio,2));
+document.body.appendChild(ren.domElement);
+ren.domElement.style.cssText='position:fixed;top:0;left:0';
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,vwInit()/(vhInit()-120),.01,500);
+const world=new THREE.Group();scene.add(world);
+world.position.set(-T.x[0],-T.x[1],-T.x[2]);
+const cloud=(pts,color,size,op)=>{const g=new THREE.BufferGeometry();
+ g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(pts.flat()),3));
+ const o=new THREE.Points(g,new THREE.PointsMaterial({size,color,transparent:true,opacity:op,depthWrite:false,blending:THREE.AdditiveBlending}));
+ world.add(o);return o;};
+cloud(main,0xffc65e,0.09,.75);
+const isleObj=cloud(isle,0xff5030,0.05,.95);
+// star + neighbors
+cloud([T.x],0x9fd8ff,0.28,1);
+cloud(roster.filter((s,i)=>i!==ti).map(s=>s.x),0x5a6a90,0.16,.5);
+// island ray line
+{const g=new THREE.BufferGeometry();
+ g.setAttribute('position',new THREE.BufferAttribute(new Float32Array([
+  T.x[0],T.x[1],T.x[2],T.x[0]+RMAXP*island.u[0],T.x[1]+RMAXP*island.u[1],T.x[2]+RMAXP*island.u[2]]),3));
+ world.add(new THREE.Line(g,new THREE.LineBasicMaterial({color:0x39527d,transparent:true,opacity:.8})));}
+const probe=new THREE.Mesh(new THREE.SphereGeometry(0.09,12,10),new THREE.MeshBasicMaterial({color:0xffffff}));
+world.add(probe);
+document.getElementById('phase').textContent='';
+// strip chart
+const vw=()=>Math.max(innerWidth,document.documentElement.clientWidth||0,800);
+const vh=()=>Math.max(innerHeight,document.documentElement.clientHeight||0,450);
+const sc=document.getElementById('strip');
+let SW=vw();
+function sizeStrip(){SW=vw();sc.width=SW*devicePixelRatio;sc.height=120*devicePixelRatio;
+ sc.style.width=SW+'px';sc.style.height='120px';
+ sx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+const sx=sc.getContext('2d');sizeStrip();
+function drawStrip(rNow){
+ const W=SW,H=120;sx.clearRect(0,0,W,H);
+ const x=r=>30+(W-50)*(r-0.15)/(RMAXP-0.15);
+ const vClamp=v=>Math.max(-2.2,Math.min(2.2,v));
+ const y=v=>H/2 - vClamp(v)*(H/2-14)/2.2;
+ sx.strokeStyle='#232b3a';sx.beginPath();sx.moveTo(30,y(0));sx.lineTo(W-20,y(0));sx.stroke();
+ sx.fillStyle='#5d6678';sx.font='9px sans-serif';sx.fillText('ρ = 1',4,y(0)+3);
+ sx.strokeStyle='#ffc65e';sx.beginPath();
+ prof.forEach(([r,v],i)=>{i?sx.lineTo(x(r),y(v)):sx.moveTo(x(r),y(v));});sx.stroke();
+ for(let i=1;i<prof.length;i++){
+  if((prof[i][1]>0)!==(prof[i-1][1]>0)){
+   const r=prof[i][0];sx.fillStyle=r>4.5?'#ff5030':'#ffc65e';
+   sx.beginPath();sx.arc(x(r),y(0),3.4,0,7);sx.fill();
+  }
+ }
+ sx.fillStyle='#fff';sx.beginPath();sx.arc(x(rNow),y(prof[Math.floor((rNow-0.15)/(RMAXP-0.15)*(NPROF-1))]?.[1]??0),3,0,7);sx.fill();
+ sx.fillStyle='#8d96a8';sx.font='10px sans-serif';
+ sx.fillText('drowned (ρ<1)',x(3.6)-30,y(-1.4));
+ sx.fillStyle='#ff5030';sx.fillText('the island',x(6.05)-22,14);
+ sx.fillStyle='#ffc65e';sx.fillText('main shell',x(2.5)-24,14);
+}
+addEventListener('resize',()=>{cam.aspect=vwInit()/(vhInit()-120);cam.updateProjectionMatrix();ren.setSize(vwInit(),vhInit()-120);sizeStrip();});
+let t=0;
+(function anim(){
+ requestAnimationFrame(anim);
+ t+=1/60;
+ const scan=(t*0.9)%9;                      // scan cycle
+ const rNow=Math.min(RMAXP,0.15+scan);
+ probe.position.set(T.x[0]+rNow*island.u[0],T.x[1]+rNow*island.u[1],T.x[2]+rNow*island.u[2]);
+ isleObj.material.opacity=(rNow>5.4&&rNow<6.8)?0.55+0.45*Math.sin(t*10):0.9;
+ isleObj.material.size=(rNow>5.4&&rNow<6.8)?0.09:0.05;
+ const az=t*0.12,el=0.42+0.12*Math.sin(t*0.05),R=13.5;
+ cam.position.set(R*Math.cos(az)*Math.cos(el),R*Math.sin(el)*0.9,R*Math.sin(az)*Math.cos(el));
+ cam.lookAt(0,0,0);
+ drawStrip(rNow);
+ ren.render(scene,cam);
+})();
+</script></body></html>

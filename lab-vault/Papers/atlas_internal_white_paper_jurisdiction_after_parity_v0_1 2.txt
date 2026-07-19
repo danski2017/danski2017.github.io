@@ -1,0 +1,722 @@
+ATLAS INTERNAL WHITE PAPER
+Jurisdiction After Parity:
+Recursive Attribution Bisection, Rim Negotiation, and K-Datum Coupling
+
+Status:
+Internal speculative attractor
+Not public doctrine
+Not a certified Atlas result
+Not a revival of Paper VI as written
+
+Date:
+May 2026
+
+Prepared for:
+Atlas Solver internal lab use
+
+Purpose:
+To preserve and discipline the revived identity/jurisdiction insight after the retraction of the previous Paper VI parity-stack formulation. This white paper defines the new internal attractor, its lawful scope, its experimental use, its kill conditions, and its relationship to the existing GCS sequence.
+
+
+1. Executive Summary
+
+The earlier Paper VI direction, centered on parity stacks and an identity surface, failed because it allowed a readability-family or k-like operator to behave as an outward identity-expansion mechanism. That contradicted the root definition of a gravitational coherence surface.
+
+A GCS is the surface where a declared gravitational contribution reaches equality with its derived context under a declared readability rule. Once contribution and context reach parity, the declared source no longer possesses clean unilateral attribution authority beyond that boundary. Therefore, any construction that expands source identity outward past the certified GCS is jurisdictionally invalid.
+
+This white paper proposes a corrected internal attractor:
+
+Jurisdiction After Parity.
+
+The corrected idea does not ask whether identity can expand outward. It asks what becomes lawful after a GCS has already been certified.
+
+The working attractor is:
+
+A certified GCS may define a source-resolved attribution jurisdiction. Its interior may be mapped by recursive attribution bisection. Its rim may record contextual negotiation. The interpretability of both interior and rim structure depends on co-declared K-resolution and datum-resolution. Meaningful child sources may impose local resolution obligations. All identity language remains conditional on convergence and independent witness support.
+
+This is not public doctrine. It is a lab attractor. It is allowed to guide experiments, language, scene design, and diagnostic design. It is not allowed to protect itself from failure.
+
+If the branch fails monopole controls, K/datum refinement, convergence testing, or independent witness comparison, Atlas abandons it.
+
+
+2. Background
+
+The GCS sequence established the core public object: a gravitational coherence surface is a parity boundary where a declared contribution reaches equality with its derived context under a declared readability rule. The GCS is not a force cutoff, material membrane, causal horizon, or physical wall. It is a derived mathematical object inside a declared gravitational scene. The foundational grammar requires scene, contribution, derived context, and readability rule.
+
+The many-source extension introduced pairwise source-readable comparisons, residual fields, retained parity faces, seams, and junctions. It also established a crucial discipline: not every algebraic zero set deserves interpretive rank. Retention and relevance matter.
+
+The mesoscale readability paper framed parity faces, seams, low-margin regions, and transition loci as candidate derived interface geometry between pointwise field evaluation and coarse averaging. It emphasized persistence, perturbation testing, and failure conditions.
+
+The proof-of-concept extraction paper showed that under the declared scalar tidal-readable branch, many-source weak-field scenes can yield recoverable boundary-support structure, while explicitly limiting the claim to operational recoverability rather than invariance, observability, or final physical authority.
+
+The nesting handoff paper elevated scene declaration, parent context, child domains, handoff confidence, tidal orientation witnesses, and the distinction between acceleration dominance, tidal dominance, and identity dominance. It also defined gravitational scenes as structured declarations rather than mere coordinate containers.
+
+The information-boundary draft proposed a speculative interpretation of GCS surfaces as source-attribution boundaries. In a normalized binary support model, attribution entropy peaks exactly at contribution-context parity. This provides a formal bridge between GCS parity and maximal attribution uncertainty, but only at a carefully limited claim level.
+
+The failed Paper VI branch tried to extend these ideas through a parity-stack or identity-surface construction. That branch is retracted from public doctrine. The present white paper does not revive it. It extracts the usable attractor from its failure.
+
+
+3. The Failure Mode of the Old Paper VI
+
+The previous Paper VI formulation treated k-family variation as though it could reveal or expand a larger identity surface around a declared source.
+
+That was the error.
+
+The GCS is already the boundary at which a declared contribution reaches equality with its derived context. If a k-like branch is allowed to inflate source identity beyond that boundary, it violates the very parity condition that gives the GCS its meaning.
+
+The failure was not the use of identity language.
+
+The failure was outward jurisdictional inflation.
+
+Identity language remains potentially useful if disciplined as source-attribution bookkeeping identity inside a declared scene. But identity cannot be allowed to behave as a mystical expansion field. It must inherit from certified parity, not create parity retroactively.
+
+Internal correction:
+
+No k-family, branch family, foliation parameter, render parameter, or interpretive layer may extend source-resolved jurisdiction beyond a certified GCS unless a new scene, contribution, context, and readability rule certify a new boundary.
+
+
+4. The New Attractor: Jurisdiction After Parity
+
+The new internal attractor is named:
+
+Jurisdiction After Parity.
+
+It begins only after a GCS has been certified.
+
+The core question is no longer:
+
+How far can identity extend?
+
+The corrected question is:
+
+Once contribution-context parity has certified a boundary, what lawful structure exists inside the source-resolved domain and at its contested rim?
+
+The attractor has four parts:
+
+First, a certified GCS defines a source-resolved jurisdiction.
+
+Second, the interior of that jurisdiction may be mapped by recursive attribution bisection.
+
+Third, the rim may be studied as a context-negotiation zone.
+
+Fourth, K-resolution and datum-resolution must be co-declared before any interior or rim structure can be certified.
+
+This attractor is not a claim of discovery. It is a disciplined experimental target.
+
+
+5. Boundary Primacy
+
+The GCS is sovereign.
+
+It is not one shell among many. It is the first earned boundary.
+
+A GCS is defined by a declared contribution, a derived context, and a readability rule. At the GCS, source and context reach equality. This gives the GCS boundary primacy.
+
+Inside the certified boundary, the declared source has dominant attribution support over its derived context.
+
+At the boundary, source and context are in parity.
+
+Beyond the boundary, the source no longer holds clean unilateral attribution authority.
+
+This gives the first internal axiom:
+
+Axiom 1: Boundary Primacy
+
+No interior, rim, wireframe, k-family, recursive layer, foam structure, or identity claim has interpretive authority unless it inherits from a certified GCS or from another explicitly certified parity relation.
+
+
+6. Source-Resolved Jurisdiction
+
+A source-resolved jurisdiction is the interior domain enclosed by a certified GCS, interpreted under the same scene, contribution, context, and readability rule that generated the boundary.
+
+This is not ownership of gravity.
+
+It is ownership of the bookkeeping relation.
+
+In internal language, the GCS is the jurisdictional border of source-resolved attribution. The source does not stop contributing outside it. The field does not break. Matter does not encounter a wall. But the bookkeeping relation changes.
+
+Allowed internal identity language:
+
+source-attribution identity
+gravitational bookkeeping identity
+source-resolved jurisdiction
+identity boundary within a declared scene
+
+Disallowed or heavily restricted language:
+
+absolute gravitational identity
+universal identity surface
+fundamental self-boundary
+physical shell
+identity membrane
+
+Identity is not abandoned. It is narrowed.
+
+
+7. Recursive Attribution Bisection
+
+Interior structure should not be generated by arbitrary shell depths.
+
+Once the GCS is certified, the interior may be foliated by recursive attribution bisection.
+
+Let the declared source contribution be A and its derived context be K. Let their comparable readable supports be QA and QK.
+
+Define attribution weights:
+
+wA = QA / (QA + QK)
+
+wK = QK / (QA + QK)
+
+At the GCS:
+
+wA = 1/2
+wK = 1/2
+
+The GCS is therefore the 50/50 attribution boundary.
+
+Moving inward, the source attribution increases and the contextual attribution decreases. Instead of selecting arbitrary depths, define interior layers by recursively halving the remaining contextual claim.
+
+Interior sequence:
+
+GCS boundary:
+50/50
+
+First inward layer:
+75/25
+
+Second inward layer:
+87.5/12.5
+
+Third inward layer:
+93.75/6.25
+
+Fourth inward layer:
+96.875/3.125
+
+Equivalent formulation:
+
+wK = 2^-n
+wA = 1 - 2^-n
+
+where n = 1, 2, 3, ...
+
+The GCS is n = 1.
+
+Each layer halves the remaining contextual attribution claim.
+
+These layers are not physical shells. They are bookkeeping strata.
+
+Axiom 2: Recursive Interior
+
+Inside a certified GCS, attribution strata must be generated by recursive bisection or another declared non-arbitrary rule. They must not be hand-picked for visual effect.
+
+
+8. What k Becomes
+
+The k-family is not restored as an identity generator.
+
+In the new attractor, k or K-foliation is demoted into a surveying operator.
+
+It may help with:
+
+interior gradient witnessing
+falloff communication
+rim sensitivity
+comparison of smooth and nested interiors
+branch comparison against stronger diagnostics
+diagnostic interpolation
+
+It may not:
+
+expand source identity beyond GCS parity
+create a new outer identity shell
+override contribution-context equality
+replace GR-native witnesses
+turn pretty contours into certified structure
+
+The revised principle:
+
+k does not grant jurisdiction.
+k interrogates jurisdiction already certified by parity.
+
+
+9. Monopole Control
+
+An ideal monopole should be quiet.
+
+If a declared source is represented as a smooth monopole and its derived context is smooth, recursive bisection should produce smooth nested attribution strata. No rich skeleton, internal foam, branch structure, or seam network should appear.
+
+This is not a failure.
+
+It is the correct null.
+
+Earlier wireframe attempts may have looked disappointing because they were asking a smooth ideal monopole to produce internal structure it did not possess. In that case, smoothness is evidence of method honesty.
+
+Axiom 3: Monopole Null
+
+A clean monopole with smooth context should produce smooth interior bisection and no internal skeleton. A complex wireframe in such a control is a warning sign, not a triumph.
+
+
+10. Rim Negotiation
+
+The rim is where the action lives.
+
+At the GCS rim, source and context are comparable. This is where contextual pressure becomes visible in the attribution boundary.
+
+Rim features may include:
+
+compression
+lobes
+saddles
+anisotropic thinning
+low-margin bands
+seams
+junctions
+foam-like negotiation regions
+
+These features are not automatically meaningful. They must persist under K-resolution refinement, datum-resolution refinement, and appropriate controls.
+
+But when they do persist, they may encode how the declared source-resolved jurisdiction meets its context.
+
+Internal slogan:
+
+The interior tells how attribution consolidates.
+The rim tells how context answers.
+
+Axiom 4: Rim Contest
+
+The GCS rim is the proper location for studying source-context negotiation. Rim structures are candidates only until retained, stabilized, and validated.
+
+
+11. No Outside Badlands
+
+The phrase “outside the GCS” can mislead.
+
+Beyond the GCS, one does not enter nothing.
+
+Beyond the GCS is:
+
+another source jurisdiction
+a group jurisdiction
+parent-context assimilation
+low-margin negotiation
+unresolved context
+or evidence of hidden nesting
+
+There is no outside badlands.
+
+There is only context.
+
+Crossing a GCS means the bookkeeping relation changes. It does not mean gravity stops.
+
+Axiom 5: No Outside Badlands
+
+Beyond a certified GCS is not absence. It is another attribution regime.
+
+
+12. Declaration Knobs
+
+The new attractor does not eliminate all degrees of freedom.
+
+It relocates them upstream.
+
+There are two lawful declaration knobs:
+
+1. Scene declaration
+2. K-foliation resolution
+
+These are not tuning knobs. They define the question.
+
+Scene declaration includes:
+
+source roster
+domain
+coordinate convention
+Node 0 / registration datum
+Node 1 / parent relation
+declared contribution
+derived context
+datum roster
+readability rule
+claim purpose
+validation plan
+
+K-foliation resolution defines how finely context is represented.
+
+Examples:
+
+K_smooth:
+context represented as smooth parent monopole or compressed field
+
+K_rostered:
+context represented by explicit physical sources
+
+K_grouped:
+context represented by declared source groups
+
+K_nested:
+context represented through child-parent hierarchy
+
+K_uncertain:
+context represented with unresolved parent contribution or confidence penalty
+
+Changing K-resolution changes the question being asked.
+
+Axiom 6: Declaration Knobs Only
+
+Scene declaration and K-foliation resolution are legitimate freedoms because they define the diagnostic question. They must be declared before extraction and may not be tuned after inspection to rescue a desired result.
+
+
+13. Datum Duality
+
+Datum-resolution is the dual axis of K-resolution.
+
+K-resolution determines how finely context can speak.
+
+Datum-resolution determines how finely the scene can be heard.
+
+A finely foliated K cannot be certified by a sparse datum.
+
+A coarse K cannot support fine foam claims unless the analysis is explicitly an audit for missing structure.
+
+A high-resolution datum applied to a smooth K should report smoothness, not invent complexity.
+
+This yields the resolution-matching principle:
+
+Certification requires K/datum resolution matching.
+
+Examples:
+
+Smooth K + high-resolution datum:
+expected result is smoothness unless the high-resolution audit reveals that K was underdeclared.
+
+Rostered K + sparse datum:
+uncertified foam or missed structure likely.
+
+Nested K + no child-associated datums:
+handoff claims are under-witnessed.
+
+Uncertainty-bounded K + no confidence ledger:
+false precision risk.
+
+Axiom 7: Datum Duality
+
+K-resolution and datum-resolution must be co-declared. No structure may be certified at a finer scale than both K and the datum can support.
+
+
+14. Meaningful Source Resolution Obligation
+
+The smallest object in a scene does not automatically set global resolution.
+
+That would make the method impossible.
+
+Instead, the smallest meaningful declared source creates a local resolution obligation.
+
+A source is meaningful when it has interpretive rank in the claim being tested.
+
+A source may be meaningful because:
+
+it is part of the declared contribution
+it is part of the derived context
+it participates in source-source parity
+it participates in child-parent handoff
+it affects a morphology-sensitive comparison
+it is the smallest declared source whose identity is being tested
+
+Best-practice rule:
+
+Meaningful sources set local resolution obligations.
+Convergence tests decide whether those obligations were satisfied.
+
+EMS example:
+
+If the question is Earth monopole readability in solar context, Moon-local resolution may not be required.
+
+If the question is Earth-Moon nesting in solar context, Moon-scale resolution becomes locally obligatory.
+
+If the question is Moon-local identity or handoff, Moon-associated datums and Moon-scale K-foliation are required.
+
+Axiom 8: Meaningful-Source Obligation
+
+The smallest meaningful source creates local resolution obligations where claims involve that source, but does not impose global maximum resolution by default.
+
+
+15. Validation Ladder
+
+This branch must remain easy to kill.
+
+The internal validation ladder is:
+
+1. Declare scene.
+2. Declare contribution.
+3. Declare derived context.
+4. Declare K-foliation resolution.
+5. Declare datum-resolution.
+6. Extract certified GCS.
+7. Generate recursive attribution bisection.
+8. Measure interior attribution gradient.
+9. Measure rim irregularity.
+10. Compare against monopole control.
+11. Refine K-resolution.
+12. Refine datum-resolution.
+13. Check convergence.
+14. Compare with independent witnesses:
+    tidal eigenstructure
+    Riemann/Weyl diagnostics
+    trajectory behavior
+    released-lattice deformation
+    geodesic/congruence diagnostics where available
+15. Promote identity language only if convergence supports it.
+
+Axiom 9: Identity by Convergence
+
+Identity language is earned only when recursive bisection, rim structure, K/datum refinement, controls, and independent witnesses converge.
+
+
+16. Success Conditions
+
+The attractor gains confidence if:
+
+1. Smooth monopole controls remain smooth.
+
+2. Recursive bisection produces no artificial skeleton in smooth controls.
+
+3. Anisotropic context produces stable rim deformation.
+
+4. Rostered K produces rim features not present in smooth K, and those features persist under refinement.
+
+5. Composite source rosters produce internal attribution structures absent from monopole compression.
+
+6. K-resolution refinement changes results continuously or converges.
+
+7. Datum-resolution refinement changes results continuously or converges.
+
+8. Rim features survive relevance filtering and stability tests.
+
+9. Many-source foam coincides with low-margin or high-attribution-ambiguity regions.
+
+10. Structures correlate with at least one independent witness family.
+
+
+17. Kill Conditions
+
+The branch should be abandoned if:
+
+1. Recursive bisection produces complex skeletons in smooth monopole controls.
+
+2. Rim structures teleport under modest K-resolution refinement.
+
+3. Rim structures teleport under datum-resolution refinement.
+
+4. Foam depends mainly on tolerance choices.
+
+5. Composite-source structures vanish under reasonable refinement.
+
+6. Structures add nothing beyond trivial contouring.
+
+7. No independent witness correlates with the retained features.
+
+8. Identity language repeatedly outruns convergence.
+
+9. The method requires post-hoc tuning to preserve the hypothesis.
+
+10. The branch becomes a narrative shield instead of an experimental attractor.
+
+No rescue maneuvers are allowed.
+
+No tuning k until it works.
+
+No treating pretty rims as evidence.
+
+No promoting foam without retention and stability.
+
+No public-facing revival unless the evidence hardens.
+
+
+18. Micro-World Bridge
+
+The micro-world is an attractive test arena because it makes the monopole/composite contrast severe.
+
+A smooth monopole should remain quiet.
+
+An explicit composite source roster may reveal internal attribution structure.
+
+The test question is:
+
+Does explicit source structure produce internal recursive-bisection geometry that disappears under monopole compression?
+
+Candidate scenes:
+
+ideal monopole
+equal two-source toy
+unequal two-source toy
+equal three-source toy
+perturbed three-source toy
+quark-like triplet
+atomic source roster
+iron-clump lattice
+perturbed lattice
+matched-budget rearrangements
+
+This is not an observability claim.
+
+It is not quantum gravity.
+
+It is not a claim about physical atomic shells.
+
+It is a source-attribution bookkeeping test in declared weak-field ensembles.
+
+Internal slogan:
+
+The micro-world is where the monopole mask comes off.
+
+
+19. Relationship to the Information-Boundary Draft
+
+The information-boundary draft gives the cleanest formal language for attribution weights.
+
+At GCS parity, source and context attribution weights are equal.
+
+In the normalized binary support model, attribution entropy is maximized at parity.
+
+Recursive bisection extends this inward by mapping the retreat of contextual claim inside the parity boundary.
+
+Rim negotiation extends it boundaryward by identifying where multiple attribution claims become comparable.
+
+Many-source foam can be understood as low-margin or high-attribution-ambiguity structure, provided it survives relevance filtering and stability tests.
+
+This connection is useful but not decisive.
+
+Attribution entropy is a bookkeeping diagnostic, not thermodynamic entropy.
+
+The information-boundary branch remains speculative beyond its narrow formal result.
+
+
+20. Internal Claim Ladder
+
+Level 0:
+Jurisdiction After Parity is an internal attractor only.
+
+Level 1:
+A certified GCS defines a contribution-context parity boundary.
+
+Level 2:
+Inside the boundary, source attribution dominates context attribution under the declared rule.
+
+Level 3:
+Recursive attribution bisection provides a non-arbitrary interior foliation.
+
+Level 4:
+Interior layer spacing and deformation may diagnose attribution consolidation.
+
+Level 5:
+Rim irregularity may encode contextual contest under declared K-resolution.
+
+Level 6:
+K-resolution and datum-resolution jointly determine what can be certified.
+
+Level 7:
+Composite or nested scenes may produce internal attribution structures absent from monopole controls.
+
+Level 8:
+Such structures may correlate with tidal, Riemann/Weyl, trajectory, or released-lattice witnesses.
+
+Level 9:
+Only multi-witness convergence supports stronger identity language.
+
+Level 10:
+Only after repeated success across benchmark families may any public-facing Paper VI successor be considered.
+
+
+21. Operational Posture
+
+This attractor is to be used as a compass, not a conclusion.
+
+Use it to design experiments.
+
+Use it to choose comparisons.
+
+Use it to clarify scene passports.
+
+Use it to discipline render interpretation.
+
+Use it to identify what should be measured next.
+
+Do not use it to protect weak results.
+
+Do not use it to explain away failed controls.
+
+Do not use it to revive public Paper VI prematurely.
+
+Do not use it to promote identity language without convergence.
+
+Lab slogan:
+
+Use the attractor to aim.
+Use the ledger to decide.
+
+
+22. Immediate Experimental Program
+
+The next experiment family should include:
+
+1. Monopole null
+A smooth source in smooth context should produce smooth recursive bisection and no skeleton.
+
+2. Two-source benchmark
+Equal and unequal source-source cases should produce lawful parity/rim behavior.
+
+3. Three-source benchmark
+Symmetric and perturbed three-source scenes should produce stable junction behavior if the method is seeing real relational structure.
+
+4. Composite micro-scene
+Explicit source rosters should be compared against monopole compression.
+
+5. K-resolution sweep
+Run smooth K, rostered K, grouped K, and nested K against the same scene where possible.
+
+6. Datum-resolution sweep
+Run sparse, production, and audit-level datum interrogation.
+
+7. Independent witness check
+Begin with tidal eigenstructure. Upgrade to Riemann/Weyl where the runner supports it.
+
+8. Retention audit
+No foam or rim feature is promoted unless it survives relevance, stability, and convergence checks.
+
+
+23. Conclusion
+
+The old Paper VI tried to grow identity outward and failed.
+
+The new internal attractor turns inward and rimward.
+
+The GCS defines the jurisdiction.
+
+Recursive bisection maps the interior.
+
+Rim negotiation records the context.
+
+K-resolution declares how finely context is allowed to speak.
+
+Datum-resolution declares how finely the scene can hear.
+
+Meaningful sources create local resolution obligations.
+
+Convergence decides what survives.
+
+Identity language remains available, but only as source-attribution bookkeeping identity inside a declared scene.
+
+This is not public doctrine.
+
+It is an attractor at the goal.
+
+If it hardens, it becomes architecture.
+
+If it fails, Atlas abandons it.
+
+Final line:
+
+The field remains continuous.
+The bookkeeping changes.
+The GCS is the border court; recursive bisection is its interior map; rim negotiation is where context speaks back.

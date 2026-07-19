@@ -1,0 +1,528 @@
+MANY_SOURCE_PARITY_NETWORKS_PUBLIC_v0.3_polished_theory.txt
+
+Many-Source Parity Networks in Weak-Field Gravitational Readability
+
+Draft: v0.3 polished theory draft
+Date: 2026-04-24
+Author: Daniel Scieszinski
+Contact: danski2017@gmail.com
+
+================================================================================
+ABSTRACT
+================================================================================
+
+The gravitational coherence surface formalism defines an operational boundary of
+source-specific gravitational distinguishability against a calibrated
+environment. This paper develops the corresponding many-source construction. For
+a weak-field source ensemble, assign each source a declared source-readable
+tidal contribution Q_i. Pairwise equality, Q_i = Q_j, defines a balance surface
+between sources. In the point-mass weak-field specialization Q_i proportional to
+M_i/r_i^3, this construction recovers the midpoint plane for equal masses and
+the deformation law r_i/r_j = (M_i/M_j)^(1/3) for unequal masses.
+
+For three or more sources, relevance-filtered portions of these pairwise balance
+surfaces assemble into a many-source parity network. The network is a derived
+diagnostic geometry of gravitational readability. It is not a force boundary, a
+physical barrier, or a modification of general relativity. Its purpose is to
+make source-readable balance and transition structure explicit inside a declared
+weak-field comparison rule.
+
+This paper gives the minimal mathematical construction, benchmark cases, and
+local existence conditions for many-source parity networks. Broader questions
+about mesoscale interpretation and proof-of-concept extraction results are
+reserved for companion work.
+
+Keywords:
+weak-field gravity, general relativity, tidal field, parity surface,
+gravitational distinguishability, source readability, many-body systems,
+diagnostic geometry
+
+================================================================================
+1. INTRODUCTION
+================================================================================
+
+The gravitational coherence surface was introduced to describe where a
+source-specific gravitational signal remains readable against its environment.
+It is not a dynamical stability boundary. Matter can cross it freely. Orbits
+need not respond sharply. It is a boundary of distinguishability: the location
+where a chosen source-readable signal reaches parity with a calibrated
+environmental threshold.
+
+This paper asks the many-source version of that question.
+
+If several sources are present, one can compare their source-readable
+contributions directly. Where does source i become as readable as source j?
+Where do those equality structures meet? How do they assemble when more than
+two sources are present?
+
+The construction is intentionally conservative. Work in a declared weak-field
+regime. Assign each source a readable diagnostic contribution Q_i. Compare
+sources pairwise through
+
+    Psi_ij = Q_i - Q_j.
+
+The parity surface for sources i and j is the zero set
+
+    Psi_ij = 0.
+
+In two-source settings, this surface is the balance surface between the two
+source-readable contributions. In many-source settings, relevance-filtered
+portions of such surfaces can assemble into a parity network.
+
+This paper does not claim a new force, a new field equation, or a new physical
+barrier. It gives the minimal mathematical scaffold for a derived readability
+geometry.
+
+================================================================================
+2. SCOPE OF THIS PAPER
+================================================================================
+
+This paper has a narrow scope.
+
+It defines:
+- source-readable contributions Q_i,
+- pairwise comparison fields Psi_ij,
+- parity surfaces Sigma_ij,
+- two-source benchmark behavior,
+- three-source benchmark behavior,
+- local smoothness conditions,
+- and the many-source parity network as a relevance-filtered union of retained
+  pairwise faces.
+
+It does not report extraction results. It does not argue the full interpretive
+importance of the mesoscale layer. It does not describe implementation details,
+sampling strategies, or solver architecture.
+
+The result should be read as a public mathematical theory paper. It supplies the
+clean construction that later interpretive and results work can cite without
+having to rederive the foundations.
+
+================================================================================
+3. WEAK-FIELD SETUP
+================================================================================
+
+Let a finite collection of gravitating sources S_i have masses M_i and positions
+x_i on a chosen weak-field time slice. Let x be a point in the modeled domain,
+and define
+
+    r_i(x) = ||x - x_i||.
+
+A softened distance may be used in numerical work,
+
+    r_i,eps(x) = sqrt(||x - x_i||^2 + eps^2),
+
+but the analytic benchmark cases below use the unsoftened expression away from
+source locations.
+
+The source-readable contribution Q_i is a nonnegative diagnostic scalar derived
+from the weak-field contribution of source i. The narrow branch emphasized here
+is the point-mass tidal scaling
+
+    Q_i(x) proportional to M_i / r_i(x)^3.
+
+This branch is motivated by the leading tidal falloff of a weak-field point
+mass. It is not a replacement for the metric and is not an observable by itself.
+It is a deliberately simple readable proxy used to make the first parity
+construction analytically transparent.
+
+A richer weak-field treatment may carry the tidal tensor
+
+    E_ab approximately partial_a partial_b Phi
+
+or source-attributed contributions E_ab^(i), and then define a scalar readable
+quantity by projection or norm. Those richer branches are not required for the
+minimal construction developed here.
+
+================================================================================
+4. PAIRWISE PARITY SURFACES
+================================================================================
+
+Given two source-readable contributions Q_i and Q_j, define the pairwise
+comparison field
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+The pairwise parity surface is
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+The sign of Psi_ij records which source has the larger readable contribution
+under the declared diagnostic:
+
+    Psi_ij > 0:
+    source i is more readable than source j.
+
+    Psi_ij < 0:
+    source j is more readable than source i.
+
+    Psi_ij = 0:
+    the two contributions are in parity.
+
+This is a statement about equality of a declared readable diagnostic. It is not
+a statement that force vanishes or that motion changes discontinuously.
+
+Under the point-mass tidal proxy,
+
+    Q_i = k M_i / r_i^3,
+    Q_j = k M_j / r_j^3,
+
+where k is a common proportionality factor. Pairwise parity gives
+
+    M_i / r_i^3 = M_j / r_j^3,
+
+or equivalently,
+
+    r_i / r_j = (M_i / M_j)^(1/3).
+
+================================================================================
+5. TWO-SOURCE BENCHMARKS
+================================================================================
+
+5.1 Equal masses
+
+For M_i = M_j, the parity condition becomes
+
+    r_i = r_j.
+
+The parity surface is therefore the set of points equidistant from the two
+sources. In Euclidean space this is the perpendicular bisector plane of the
+segment joining the sources. In a two-dimensional cross-section it appears as
+the midpoint line.
+
+[Insert Figure 1: Equal-mass two-source parity]
+
+This is the simplest analytic test of the construction.
+
+5.2 Unequal masses
+
+For unequal masses,
+
+    r_i / r_j = (M_i / M_j)^(1/3).
+
+If M_i > M_j, then parity requires r_i > r_j. The equality surface therefore
+lies closer to the lower-mass source. The stronger source remains readable from
+farther away, so the weaker source must be approached more closely for its
+contribution to match.
+
+[Insert Figure 2: Unequal-mass parity surface deformation]
+
+This one-third-power displacement law is the cleanest benchmark for
+mass-sensitive deformation of the parity surface.
+
+================================================================================
+6. THREE-SOURCE BENCHMARK
+================================================================================
+
+The equal-mass equilateral three-source case gives the simplest nontrivial
+many-source benchmark.
+
+Place three equal masses at the vertices of an equilateral triangle. Under the
+point-mass tidal proxy,
+
+    Q_i proportional to M / r_i^3.
+
+For each pair,
+
+    Q_i = Q_j  iff  r_i = r_j.
+
+Thus each pairwise parity surface is the perpendicular bisector plane of the
+corresponding source pair. In the plane of the sources, the three bisectors meet
+at the circumcenter. In three dimensions, the corresponding pairwise surfaces
+intersect along a line perpendicular to the triangle plane.
+
+[Insert Figure 3: Equal-mass three-body parity benchmark]
+
+This benchmark introduces triple-balance structure. A triple-balance locus
+satisfies
+
+    Q_i = Q_j = Q_k.
+
+In symmetric scenes this structure is analytically simple. In perturbed scenes,
+it provides a useful test of whether extracted geometry deforms continuously
+under controlled changes of mass or source position.
+
+================================================================================
+7. LOCAL EXISTENCE AND SEAM CONDITIONS
+================================================================================
+
+The parity surfaces used here have ordinary local existence conditions.
+
+Let Q_i and Q_j be differentiable in an open region U, and define
+
+    Psi_ij = Q_i - Q_j.
+
+If there exists x_* in U such that
+
+    Psi_ij(x_*) = 0
+
+and
+
+    grad Psi_ij(x_*) != 0,
+
+then the implicit function theorem implies that the local zero set
+Psi_ij = 0 is a smooth embedded surface near x_*.
+
+For three sources i, j, and k, a triple-balance set satisfies
+
+    Q_i = Q_j = Q_k.
+
+Equivalently, two independent residuals vanish, for example
+
+    Psi_ij = 0,
+    Psi_ik = 0.
+
+When the corresponding parity surfaces intersect transversely in three
+dimensions, their intersection is generically one-dimensional. In a
+two-dimensional cross-section, it appears as a pointlike junction.
+
+These statements are local. They do not assert that every equality surface is
+globally meaningful or observationally relevant.
+
+================================================================================
+8. MANY-SOURCE PARITY NETWORKS
+================================================================================
+
+For a source set {S_i}, every pair defines a candidate comparison field
+
+    Psi_ij = Q_i - Q_j.
+
+The raw collection of zero sets Psi_ij = 0 may be large. In a many-source
+system, however, not every algebraic equality surface is equally meaningful.
+Two sources may have a formal equality in a region where neither source is
+contextually relevant to the local readable structure.
+
+The many-source parity network is therefore defined as a retained union of
+relevance-filtered pairwise faces:
+
+    N = union over retained pairs I_ij,
+
+where I_ij is the retained portion of the pairwise parity surface between
+sources i and j.
+
+The filtering criterion depends on the declared diagnostic purpose. At minimum,
+the retained face should participate in the local source-readable partition or
+transition structure of the modeled scene. This prevents the network from being
+identified with every algebraic zero crossing anywhere in the domain.
+
+[Insert Figure 4: Relevance filtering in a many-source scene]
+
+This distinction is essential. Pairwise residuals provide lawful comparison
+channels. The parity network is a derived retained structure.
+
+================================================================================
+9. RELATION TO THE GRAVITATIONAL COHERENCE SURFACE
+================================================================================
+
+The single-source gravitational coherence surface compares a source-readable
+signal with a calibrated background or environmental threshold:
+
+    source signal = environmental threshold.
+
+The many-source parity construction compares source-readable signals with one
+another:
+
+    source signal i = source signal j.
+
+[Insert Figure 5: From gravitational coherence to source-source parity]
+
+Both constructions are diagnostic comparisons. Both concern gravitational
+readability. Neither introduces a force cutoff.
+
+The many-source construction can be viewed as the source-source extension of the
+coherence idea. Instead of asking where one source fades into the environment,
+it asks where multiple source-readable contributions become mutually balanced.
+
+================================================================================
+10. LIMITS AND NON-CLAIMS
+================================================================================
+
+The present construction is intentionally limited.
+
+It does not modify general relativity.
+
+It does not introduce a new force.
+
+It does not define a physical wall or membrane.
+
+It does not by itself imply orbital stability or instability.
+
+It does not claim that every zero crossing is meaningful.
+
+It does not claim that the parity network is a fundamental invariant.
+
+It does not replace tidal tensors, metrics, geodesic deviation, or numerical
+relativity.
+
+It does not claim observational detection.
+
+The claim is narrower: once a source-readable weak-field diagnostic is declared,
+pairwise equality structures and their retained many-source network can be
+defined, benchmarked, and studied as diagnostic geometry.
+
+================================================================================
+11. OUTLOOK
+================================================================================
+
+The next theoretical steps are straightforward.
+
+First, benchmark the equal-mass and unequal-mass two-source cases.
+
+Second, benchmark the equal-mass equilateral three-source case and controlled
+perturbations.
+
+Third, study which portions of raw pairwise equality surfaces should be retained
+as meaningful faces in many-source scenes.
+
+Fourth, compare the simple scalar readable branch Q_i proportional to M_i/r_i^3
+against richer weak-field tidal tensor diagnostics.
+
+Fifth, distinguish mathematical parity structure from operationally useful
+parity structure through stability and sensitivity testing.
+
+The broader interpretation of these structures as a mesoscale descriptive layer
+belongs to companion work. Proof-of-concept extraction results belong to a
+separate results paper. The present paper remains focused on the core
+mathematical construction.
+
+================================================================================
+12. CONCLUSION
+================================================================================
+
+The gravitational coherence surface provided a way to ask where a source remains
+gravitationally readable against its environment. The many-source parity network
+extends that readability logic to source-source comparison.
+
+The construction is compact:
+
+    declare Q_i,
+    form Psi_ij = Q_i - Q_j,
+    extract the parity surface Psi_ij = 0,
+    retain the portions that participate in the meaningful many-source
+    readability network.
+
+In the point-mass tidal proxy Q_i proportional to M_i/r_i^3, the benchmark
+geometry is analytically transparent. Equal masses produce midpoint surfaces.
+Unequal masses obey the one-third-power distance law. Three equal sources
+produce triple-balance structure.
+
+This is not new gravity. It is a mathematical scaffold for derived
+gravitational readability geometry in weak-field multi-source systems.
+
+================================================================================
+APPENDIX A. BENCHMARK FORMULAS
+================================================================================
+
+A.1 Pairwise readable field
+
+    Q_i = k M_i / r_i^3
+
+A.2 Pairwise parity
+
+    Q_i = Q_j
+
+    k M_i / r_i^3 = k M_j / r_j^3
+
+    M_i / r_i^3 = M_j / r_j^3
+
+    r_i / r_j = (M_i / M_j)^(1/3)
+
+A.3 Equal masses
+
+If M_i = M_j, then
+
+    r_i = r_j.
+
+The parity surface is the perpendicular bisector surface.
+
+A.4 Unequal masses
+
+If M_i > M_j, then
+
+    r_i > r_j.
+
+The equality surface lies closer to the lower-mass source.
+
+A.5 Local surface existence
+
+If
+
+    Psi_ij(x_*) = 0
+
+and
+
+    grad Psi_ij(x_*) != 0,
+
+then the local zero set is a smooth embedded surface near x_*.
+
+A.6 Generic triple seam
+
+For three sources,
+
+    Q_i = Q_j = Q_k.
+
+If the corresponding pairwise surfaces intersect transversely, the triple set
+is generically one-dimensional in three dimensions and pointlike in a
+two-dimensional cross-section.
+
+================================================================================
+APPENDIX B. FIGURE CAPTIONS
+================================================================================
+
+Figure 1. Equal-mass two-source parity.
+For two equal masses under the weak-field tidal proxy Q_i proportional to
+M_i/r_i^3, the equality condition Q_i = Q_j reduces to r_i = r_j. The parity
+surface is the geometric midpoint surface.
+
+Figure 2. Unequal-mass parity surface deformation.
+For unequal masses in the same readable-field regime, the equality condition
+obeys r_i/r_j = (M_i/M_j)^(1/3). The balance surface shifts toward the lower-mass
+source.
+
+Figure 3. Equal-mass three-body parity benchmark.
+Three equal masses at the vertices of an equilateral triangle produce three
+pairwise equality structures meeting at a central triple-junction/seam in
+cross-section.
+
+Figure 4. Relevance filtering in a many-source scene.
+Many algebraic equality candidates may exist, but not every candidate deserves
+interpretive rank. Relevance filtering retains the portions that participate in
+the contextual parity network under the declared diagnostic rule.
+
+Figure 5. From gravitational coherence to source-source parity.
+The single-source GCS compares a source-readable gravitational signal to an
+environmental threshold. The many-source parity construction compares
+source-readable contributions to one another.
+
+================================================================================
+REFERENCES
+================================================================================
+
+Buchert, T. (2000). On average properties of inhomogeneous cosmologies. General
+Relativity and Gravitation, 32, 105-125.
+
+Geroch, R. P. (1970). Multipole moments. II. Curved space. Journal of
+Mathematical Physics, 11, 2580-2588.
+
+Hansen, R. O. (1974). Multipole moments of stationary space-times. Journal of
+Mathematical Physics, 15, 46-52.
+
+Hill, G. W. (1878). Researches in the lunar theory. American Journal of
+Mathematics, 1, 5-26.
+
+Loffler, F., et al. (2012). The Einstein Toolkit: A community computational
+infrastructure for relativistic astrophysics. Classical and Quantum Gravity, 29,
+115001.
+
+Souami, D., Cresson, J., Biernacki, C., & Pierret, F. (2020). On the local and
+global properties of gravitational spheres of influence. Monthly Notices of the
+Royal Astronomical Society, 496, 4287-4300.
+
+Zalaletdinov, R. M. (2008). The averaging problem in cosmology and macroscopic
+gravity. International Journal of Modern Physics A, 23, 1173-1181.
+
+Scieszinski, D. (2026). The Gravitational Coherence Surface: Signal-to-Noise
+Limits on Gravitational Identity. Faculty review draft.
+
+================================================================================
+END
+================================================================================

@@ -1,0 +1,162 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — Commons Atlas (islands + webbing)</title>
+<style>
+ body{margin:0;background:#07080c;color:#cfd6e4;font-family:-apple-system,system-ui,sans-serif;overflow:hidden}
+ #hud{position:fixed;top:0;left:0;right:0;padding:12px 16px;z-index:2;pointer-events:none;
+      background:linear-gradient(#07080cee,#07080c00)}
+ #hud h1{font-size:16px;margin:0 0 3px;color:#eef2fa}
+ #hud .sub{font-size:11px;color:#8d96a8;line-height:1.5;max-width:760px}
+ #hud .sub b{color:#ffc65e}
+ #panel{position:fixed;top:96px;left:12px;z-index:3;background:#0a0c12ee;border:1px solid #232b3a;
+        border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.9;max-width:230px}
+ #panel h2{font-size:10px;margin:0 0 4px;color:#8d96a8;text-transform:uppercase;letter-spacing:.08em}
+ #panel label{display:block;cursor:pointer;user-select:none}
+ #panel .bands{display:flex;flex-wrap:wrap;gap:3px;margin:4px 0}
+ #panel .bands button{background:#141a26;border:1px solid #2a3347;color:#9aa5bb;font-size:10px;
+        border-radius:4px;padding:2px 6px;cursor:pointer}
+ #panel .bands button.on{border-color:#5b8dee;color:#dfe7fa;background:#22304d}
+ #panel input[type=range]{width:120px;vertical-align:middle}
+ #passport{position:fixed;left:0;right:0;bottom:0;z-index:2;background:#0a0c12ee;border-top:1px solid #232b3a;
+        padding:7px 14px;font-size:10px;color:#8d96a8;line-height:1.5}
+ #passport b{color:#c8d2e6}
+ #claim{position:fixed;right:12px;bottom:56px;font-size:9.5px;color:#6d7689;z-index:2;max-width:360px;
+        text-align:right;line-height:1.4}
+ #legend{position:fixed;right:12px;top:96px;z-index:2;font-size:10px;color:#8d96a8;text-align:right;line-height:1.7}
+ .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-left:6px;vertical-align:-1px}
+</style></head><body>
+<div id="hud">
+ <h1>Commons Atlas — trough islands + parity webbing</h1>
+ <div class="sub">LSN-66 BL fused cross-term-aware scene · commons-native primitives (dual-primitive doctrine 2026-07-16) ·
+ <b>webbing</b>: nodes where &ge;3 sources sit within |&Psi;| &lt; 0.3 of parity (outside source guards), colored by full-scene ||E|| decile band ·
+ <b>islands</b>: the 9 high-attribution-entropy tidal-amplitude troughs (entropy &ge; 0.75; lab shorthand: cancellation troughs — mechanism claims need tensor-bundle support) ·
+ <b>red surface</b>: a LOCAL PATCH (crawl radius-capped at 3.0) of the H = 0.75 commons frontier — the boundary of ONE globally connected disputed territory, not a shell around the trough (frontier probe 2026-07-17: single component at H&ge;0.75, dominant backbone persists to H&ge;0.88)</div>
+</div>
+<div id="panel">
+ <h2>Layers</h2>
+ <label><input type="checkbox" id="tWeb" checked> Webbing (W)</label>
+ <label><input type="checkbox" id="tIsl" checked> Island troughs (I)</label>
+ <label><input type="checkbox" id="tHs" checked> H=0.75 surface (H)</label>
+ <label><input type="checkbox" id="tRos" checked> Roster sources (R)</label>
+ <h2 style="margin-top:8px">Webbing filter</h2>
+ <label><input type="checkbox" id="tStrict"> Strict rung (&ge;3 @ |&Psi;|&lt;0.2)</label>
+ <div class="bands" id="bands"></div>
+ <label>Color: <select id="cmode" style="background:#141a26;color:#cfd6e4;border:1px solid #2a3347;border-radius:4px">
+   <option value="band">||E|| band</option><option value="entropy">entropy</option><option value="nearc">carrier count</option>
+ </select></label>
+ <label>Point size <input type="range" id="psize" min="1" max="12" value="5"></label>
+</div>
+<div id="legend"></div>
+<div id="claim">Diagnostic geometry over a declared analytic substrate. ADJUDICATED 2026-07-18 (GPT wing): 8 troughs REPRODUCED within the declared roster family; H&ge;0.85 backbone REPRODUCED vs matched percolation null (0/20 exceedances); one trough (0.809, 1.481, &minus;7.843) FRAGILE CANDIDATE (canary); NO connectivity claims below H 0.85. Parent-context limitation: &Lambda;<sub>&Pi;</sub> uncalibrated — persistence under the real unresolved parent environment is not claimed. Webbing remains Observed. Render is a witness, not evidence (COMMONS_SURVEY_001/002 + PERSISTENCE_SWEEP_001).</div>
+<div id="passport"><b>passport</b> · substrate: LSN-66 BL fused (gaia66, frozen) · witness: E<sub>ij</sub> TF · DEN A re-solves · norm: ||&middot;||<sub>&delta;</sub> ·
+ primitive: declared 64&sup3; volume lattice · payload: datasets/COMMONS_ATLAS_001 (baked, frozen) · claim ceiling: <b>Reproduced-in-family (troughs/backbone) &middot; Observed (webbing)</b> · <span id="counts"></span></div>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from './vendor/OrbitControls.js';
+const man=await (await fetch('datasets/COMMONS_ATLAS_001/manifest.json')).json();
+const isl=await (await fetch('datasets/COMMONS_ATLAS_001/islands.json')).json();
+const roster=await (await fetch('datasets/BL_FOAM_BAKED_001/gaia66_roster.json')).json();
+const buf=await (await fetch('datasets/COMMONS_ATLAS_001/webbing.f32')).arrayBuffer();
+const W=new Float32Array(buf);const NW=W.length/8;
+
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,0.05,600);
+cam.position.set(16,10,22);
+const ren=new THREE.WebGLRenderer({antialias:true});
+ren.setSize(innerWidth,innerHeight);ren.setPixelRatio(Math.min(devicePixelRatio,2));
+document.body.appendChild(ren.domElement);
+const ctl=new OrbitControls(cam,ren.domElement);
+const ctr=isl.lalande_trough_center;
+ctl.target.set(0.8,0.7,0.4);ctl.enableDamping=true;
+scene.add(new THREE.AmbientLight(0xffffff,0.7));
+const dl=new THREE.DirectionalLight(0xffffff,0.9);dl.position.set(20,30,10);scene.add(dl);
+
+// band ramp (plasma-like, 10 stops) / entropy ramp
+const BANDC=['#0d0887','#41049d','#6a00a8','#8f0da4','#b12a90','#cc4778','#e16462','#f2844b','#fca636','#f0f921']
+  .map(c=>new THREE.Color(c));
+const colOf=(mode,band,H,nc)=>{
+  if(mode==='band')return BANDC[band|0];
+  if(mode==='entropy'){const t=Math.min(1,Math.max(0,(H-0.5)/0.45));return new THREE.Color().setHSL(0.62-0.62*t,0.85,0.35+0.3*t);}
+  const t=Math.min(1,(nc-3)/9);return new THREE.Color().setHSL(0.33-0.33*t,0.9,0.4+0.25*t);
+};
+
+// webbing points
+const geo=new THREE.BufferGeometry();
+const pos=new Float32Array(NW*3),col=new Float32Array(NW*3);
+geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+const mat=new THREE.PointsMaterial({size:0.28,vertexColors:true,sizeAttenuation:true,
+  transparent:true,opacity:0.95,depthWrite:false});
+const webPts=new THREE.Points(geo,mat);scene.add(webPts);
+const bandsOn=new Set([0,1,2,3,4,5,6,7,8,9]);
+function rebuildWeb(){
+  const strict=document.getElementById('tStrict').checked;
+  const mode=document.getElementById('cmode').value;
+  let n=0;
+  for(let p=0;p<NW;p++){
+    const o=8*p,band=W[o+3],n02=W[o+4],n03=W[o+5],H=W[o+6];
+    if(!bandsOn.has(band|0))continue;
+    if(strict&&n02<3)continue;
+    pos[3*n]=W[o];pos[3*n+1]=W[o+1];pos[3*n+2]=W[o+2];
+    const c=colOf(mode,band,H,strict?n02:n03);
+    col[3*n]=c.r;col[3*n+1]=c.g;col[3*n+2]=c.b;n++;
+  }
+  geo.setDrawRange(0,n);
+  geo.attributes.position.needsUpdate=true;geo.attributes.color.needsUpdate=true;
+  document.getElementById('counts').textContent=
+    `webbing ${n}/${NW} nodes · islands ${isl.troughs.length} · H-surface ${isl.h_level_surface.pts.length} pts`;
+}
+
+// island troughs: gold octahedra, lalande's ringed red
+const islGrp=new THREE.Group();scene.add(islGrp);
+isl.troughs.forEach((t,i)=>{
+  const m=new THREE.Mesh(new THREE.OctahedronGeometry(0.34),
+    new THREE.MeshStandardMaterial({color:i===0?0xff4d4d:0xffc65e,emissive:i===0?0x661111:0x664d11}));
+  m.position.set(...t.x);islGrp.add(m);
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(0.62,0.03,8,40),
+    new THREE.MeshBasicMaterial({color:i===0?0xff4d4d:0x8d96a8,transparent:true,opacity:0.55}));
+  ring.position.set(...t.x);ring.rotation.x=Math.PI/2;islGrp.add(ring);
+});
+// H surface points
+const hg=new THREE.BufferGeometry();
+hg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(isl.h_level_surface.pts.flat()),3));
+const hPts=new THREE.Points(hg,new THREE.PointsMaterial({size:0.16,color:0xff6a5e,transparent:true,opacity:0.8,depthWrite:false}));
+scene.add(hPts);
+
+// roster
+const rosGrp=new THREE.Group();scene.add(rosGrp);
+const muMax=Math.max(...roster.map(s=>s.mu));
+for(const s of roster){
+  const m=new THREE.Mesh(new THREE.SphereGeometry(0.10+0.16*Math.cbrt(s.mu/muMax),12,10),
+    new THREE.MeshStandardMaterial({color:0x9aa5bb,emissive:0x1c2230}));
+  m.position.set(...s.x);rosGrp.add(m);
+}
+
+// band buttons
+const bandsDiv=document.getElementById('bands');
+for(let b=0;b<10;b++){
+  const bt=document.createElement('button');bt.textContent='b'+b;bt.className='on';
+  bt.style.borderColor='#'+BANDC[b].getHexString();
+  bt.onclick=()=>{bandsOn.has(b)?bandsOn.delete(b):bandsOn.add(b);bt.classList.toggle('on');rebuildWeb();};
+  bandsDiv.appendChild(bt);
+}
+// legend
+document.getElementById('legend').innerHTML=
+  '||E|| bands: faint '+BANDC.map((c,b)=>`<span class="sw" style="background:#${c.getHexString()}"></span>`).join('')+' strong<br>'+
+  '<span class="sw" style="background:#ffc65e"></span> island trough · <span class="sw" style="background:#ff4d4d"></span> lalande trough + H surface · <span class="sw" style="background:#9aa5bb"></span> source';
+
+const bind=(id,obj)=>{document.getElementById(id).onchange=e=>{obj.visible=e.target.checked;};};
+bind('tWeb',webPts);bind('tIsl',islGrp);bind('tHs',hPts);bind('tRos',rosGrp);
+document.getElementById('tStrict').onchange=rebuildWeb;
+document.getElementById('cmode').onchange=rebuildWeb;
+document.getElementById('psize').oninput=e=>{mat.size=0.056*e.target.value;};
+addEventListener('keydown',e=>{
+  const t={w:'tWeb',i:'tIsl',h:'tHs',r:'tRos'}[e.key.toLowerCase()];
+  if(t){const el=document.getElementById(t);el.checked=!el.checked;el.dispatchEvent(new Event('change'));}
+});
+addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();ren.setSize(innerWidth,innerHeight);});
+rebuildWeb();
+(function loop(){requestAnimationFrame(loop);ctl.update();ren.render(scene,cam);})();
+</script></body></html>

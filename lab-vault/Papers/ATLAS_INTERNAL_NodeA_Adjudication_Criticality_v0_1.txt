@@ -1,0 +1,297 @@
+center
+minipage0.92
+Lane status: Private Atlas method / internal research hypothesis.
+Public status: Not approved for public science release in this form.
+Canonical status: Live branch only. Not Phase I milestone evidence.
+Primary alignment: GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV, and ATLAS_ARCHITECTURE_CANON v0.2.
+minipage
+center
+
+abstract
+This internal note consolidates the adjudication-event paper family into current Atlas vocabulary and claim discipline. The working hypothesis is that a retained GCS or many-source parity-context structure may undergo localized critical reclassification when smooth continuation can no longer preserve its role as a coherent separator of readable regimes. Such a site is treated as a Node A candidate: an earned, derived critical-transition candidate in the GCS family, not a force center, physical source, singularity, observable, or established dynamical mechanism.
+
+The note preserves the useful core of the earlier adjudication drafts: the distinction between deformation and topology change; the taxonomy of true perforation, near-perforation, projection artifact, and hierarchical misclassification; the adjudication ladder from smooth deformation through critical constriction to reseal, fission, or rare higher-genus continuation; and the margin-threshold scaffold
+[
+(x)  M_ir_i(x)^3, 
+(x)=(x)-(x), 
+m_i(x)=(x)-_j i Q_j(x),
+]
+with threshold family
+[
+C_i()=x:m_i(x) .
+]
+The stronger phrase ``topological quantization'' is retained only as an internal research label for a possible Morse-theoretic classification of threshold-family topology changes. It is not a public claim and not current evidence.
+abstract
+
+Purpose and disposition
+
+This document starts the internal repair process for four related adjudication-event drafts. The goal is not to publish them. The goal is to preserve the viable content, synchronize the language with the current public four-paper foundation, and place the idea correctly inside the Atlas architecture.
+
+The result belongs to the Node A / adjudication candidate branch. In the architecture canon, Node A is a live research branch, not canonical milestone evidence. It may become canonical only after robust extraction, stability diagnostics, and reproducible scene transitions are demonstrated.
+
+Forward decision
+
+center
+tabular>p0.25p0.62
+
+Question & Decision 
+
+Lane & Internal Atlas method / research hypothesis. 
+Public release & No, not yet. 
+Best future public descendant & A cautious science-lane note after benchmark evidence exists. 
+Best private descendant & Node A candidate extraction and criticality diagnostics method note. 
+Immediate use & Benchmark design, vocabulary stabilization, and criticality-test planning. 
+Canonical status & Live branch only. Not Phase I evidence. 
+
+tabular
+center
+
+Foundation alignment
+
+The current public and private roots define the required grammar.
+
+Paper I inheritance
+
+A Gravitational Coherence Surface is a parity horizon where a declared gravitational contribution reaches equality with its derived gravitational context under a declared readability rule. It is not a causal horizon, event horizon, material membrane, force boundary, or orbital stability limit.
+
+This note must therefore avoid older root language in which the GCS is defined as parity with a ``calibrated environmental floor.'' Calibration may be a measurement-layer special case, but it is not the root definition.
+
+Paper II inheritance
+
+The many-source grammar is
+[
+(x)=(x)-(x),
+=x:(x)=0.
+]
+Retained portions of pairwise parity surfaces may assemble into many-source parity networks. An adjudication candidate, if it exists, must be derived from this retained GCS/parity-context structure. It must not replace it.
+
+Paper III inheritance
+
+Paper III gives the interpretive layer: retained faces, seams, low-margin regions, and transition loci are derived interface geometry in the mesoscale comparison layer. The adjudication hypothesis belongs downstream of that layer. It asks what happens when such derived geometry approaches critical reclassification.
+
+Paper IV inheritance
+
+Paper IV establishes only proof-of-concept recoverability under the declared scalar tidal-readable branch. It does not establish invariance, observability, or final extraction standards. This note must inherit that restraint. Adjudication candidates must be treated as proposed diagnostics requiring stricter benchmark testing.
+
+Core hypothesis
+
+Internal working claim
+
+A retained GCS or many-source parity-context structure may tolerate large geometric deformation while remaining one lawful contextual enclosure. A would-be perforation, fission, or closure transition may instead localize into a critical site before the geometry can be lawfully reclassified. That site is a Node A candidate or adjudication candidate.
+
+Definition
+
+An adjudication event is a hypothesized localized critical transition in derived readability geometry where a retained GCS/parity-context structure can no longer preserve a single coherent contextual assignment under deformation.
+
+It is not:
+itemize
+ a curvature singularity,
+ a force center,
+ a physical source,
+ an event horizon or trapping horizon,
+ a geodesic attractor,
+ an observable by itself,
+ evidence of spacetime discreteness,
+ a canonical Phase I result.
+itemize
+
+It is a candidate diagnostic site where topology, closure, or contextual assignment may change under a declared readability rule.
+
+Perforation taxonomy
+
+The earlier drafts correctly identified that ``hole-like'' geometry is not one thing. Atlas should preserve the following taxonomy as an anti-overclaim tool.
+
+center
+tabularp0.23p0.31p0.34
+
+Case & Appearance & Interpretive status 
+
+True perforation & A multiply connected retained boundary that remains one lawful readable object. & Allowed only if topology, sampling, threshold, and domain tests support a genuine higher-genus continuation. 
+Near-perforation & A thin neck, pinch, or nearly closed passage that appears hole-like at finite resolution. & Candidate critical-constriction regime. May produce nodal condensation without topology change. 
+Projection or slice artifact & A hole appears only in a projection, thresholded render, or slice. & Likely representational, not a property of the underlying retained structure. 
+Hierarchical misclassification & One apparent shell-with-hole is better described as multiple lawful cells plus mediator structure. & Indicates the scene may require child/parent, subgroup, or closure/handoff analysis rather than a puncture claim. 
+
+tabular
+center
+
+Adjudication ladder
+
+The useful ladder is:
+
+enumerate
+ Smooth deformation. A retained boundary bends, stretches, corrugates, or compresses while preserving its class.
+ Critical constriction. A neck or pinch forms. The geometry approaches possible reclassification.
+ Nodal condensation. A localized Node A candidate appears as unresolved readable obligations concentrate.
+ Reseal. The boundary returns to its prior class after the stress passes.
+ Fission. The structure separates into multiple lawful descendant cells.
+ Higher-genus continuation. A true multiply connected retained object persists. This is rare and requires strong evidence.
+enumerate
+
+This ladder is conceptual until benchmarked. It must not be used as evidence by itself.
+
+Minimal mathematical scaffold
+
+Let a declared weak-field source ensemble contain sources $S_i$ with masses $M_i$, positions $x_i$, and distances
+[
+r_i(x)=|x-x_i|.
+]
+The current Phase I scalar readable branch is
+[
+(x)=M_i(|x-x_i|^2+^2)^3/2,
+]
+or, in unsoftened analytic notation away from sources,
+[
+(x) M_ir_i(x)^3.
+]
+Pairwise residuals are
+[
+(x)=(x)-(x).
+]
+A source-readable margin may be defined by
+[
+m_i(x)=(x)-_j iQ_j(x).
+]
+The margin-threshold family is
+[
+C_i()=x:m_i(x) .
+]
+A candidate critical event occurs at a parameter value $^$ or deformation parameter $^$ where connectivity, closure status, retained-cell count, or contextual assignment changes, provided the transition survives sensitivity checks.
+
+Candidate Morse-theoretic classification
+
+The stronger earlier phrase topological quantization should be demoted in current Atlas doctrine. The safer internal formulation is:
+
+quote
+Because topology changes in threshold families are indexed by integer-valued invariants, Node A candidates may admit a discrete Morse-theoretic or stratified-topology classification once benchmark evidence exists.
+quote
+
+This means:
+itemize
+ component counts, Betti numbers, genus, and connectivity classes are integer-valued;
+ topology is stable between critical thresholds;
+ topology may change at critical thresholds;
+ different critical sites may be typed by codimension or index;
+ none of this implies quantized spacetime, quantized gravity, energy quantization, or a new force.
+itemize
+
+Codimension typing, internal only
+
+In a many-source scene, retained structures may be stratified by independent parity constraints:
+itemize
+ one independent equality: face-class structure;
+ two independent equalities: triple-junction curve or seam-class structure;
+ three independent equalities: quadruple-junction point or node-class structure;
+ more generally, $k$ independent constraints suggest codimension-$k$ candidate critical structure.
+itemize
+
+This is a promising internal classification hypothesis. It is not yet evidence.
+
+Evidence requirements
+
+A Node A candidate earns interpretation only if it passes tests aligned with the architecture canon:
+
+enumerate
+ concentrated GCS or parity-context deformation,
+ reproducible critical constriction, fission, reseal, closure loss, or closure transition,
+ persistence under tolerance changes,
+ persistence under sampling changes,
+ persistence under domain changes,
+ source-roster sensitivity checks,
+ separation from projection and slice artifacts,
+ agreement between machine-readable diagnostics and render,
+ optional tidal-eigenstructure support, such as rapid eigenvector rotation, eigenvalue spread, or near-degeneracy,
+ clear distinction between reference relevance and force relevance.
+enumerate
+
+No render may promote a Node A candidate by itself.
+
+Benchmark program
+
+The benchmark program should proceed in increasing difficulty.
+
+Stage 1: analytic anchors
+
+Use equal-mass two-source, unequal-mass two-source, and equal-mass equilateral three-source scenes to verify that no false Node A candidates appear where benchmark geometry is simple.
+
+Stage 2: controlled three-source deformation
+
+Perturb one mass or one position in the equilateral scene. Track retained faces, seams, low-margin regions, and candidate constrictions. Require continuous deformation before any criticality claim.
+
+Stage 3: four-source stratification test
+
+Use a controlled four-source scene to test face, triple-junction, and possible quadruple-junction behavior. Look for codimension typing, but keep it descriptive until stable.
+
+Stage 4: threshold-family sweeps
+
+Sweep $$ in $C_i()$ and measure component count, Euler characteristic where practical, Betti numbers where available, closure score, and candidate critical thresholds.
+
+Stage 5: artifact rejection
+
+Repeat across sampling, domain, threshold, and rendering styles. A candidate that disappears under modest changes is an artifact or unstable scratch result.
+
+Stage 6: optional eigenstructure bridge
+
+Only after stable GCS/parity-context criticality appears, compare with tidal tensor eigenstructure diagnostics. Eigenstructure may support Node A candidacy but must not replace GCS evidence.
+
+Lane and publication rule
+
+This note is internal because it touches live Atlas method architecture: Node A, criticality diagnostics, closure transition, source-roster sensitivity, sampling dependence, and potential extraction pathways.
+
+A future public descendant may exist, but it must remove or abstract private architecture language and should be titled cautiously, for example:
+
+quote
+Adjudication Events in Weak-Field Readability Geometry: A Hypothesis on Critical Reclassification of Derived Parity Boundaries
+quote
+
+Even then, it should be released only after controlled benchmark evidence exists.
+
+Synchronized terminology
+
+center
+tabularp0.38p0.48
+
+Older / risky wording & Current replacement 
+
+calibrated environmental floor as root GCS definition & derived gravitational context under a declared readability rule 
+gravity context structure as GCS acronym & Gravitational Coherence Surface 
+shared parity networks & many-source parity networks 
+mesoscale residue & mesoscale comparison layer or derived interface geometry 
+perforation observed in render & candidate perforation requiring topology and artifact checks 
+node as physical object & Node A candidate as derived critical-transition diagnostic 
+topological quantization & candidate Morse-theoretic classification of threshold-family topology changes 
+everyday systems as examples & structural analog scenes only, not observability claims 
+
+tabular
+center
+
+Claim boundary
+
+This note does not claim:
+itemize
+ modified gravity,
+ a new force,
+ quantized gravity,
+ discrete spacetime,
+ literal tearing or perforation of spacetime,
+ observational detection,
+ branch-independent uniqueness,
+ that seams are attractors,
+ that Node A is canonical evidence,
+ that topology changes have been demonstrated in Atlas results.
+itemize
+
+It claims only that the GCS/parity-context framework naturally motivates an internal hypothesis: retained readability geometry may have critical reclassification sites, and those sites can be tested through controlled weak-field benchmarks.
+
+Next actions
+
+enumerate
+ Archive the four source drafts as developmental source material.
+ Keep this consolidated note as the active internal sync artifact for the adjudication branch.
+ Design a scratch benchmark for three-source and four-source deformation using the existing Phase I $Q_i$ and $_ij$ grammar.
+ Add margin-threshold diagnostics only as an internal branch, not as a replacement for canonical Phase I extraction.
+ Do not publish a public Paper V until benchmark evidence and lane review are complete.
+enumerate
+
+Internal source basis
+
+This note consolidates four adjudication-event drafts supplied April 2026, including the shorter science-lane hypothesis versions and the longer topological-quantization version. It preserves their useful hypothesis content while downgrading claim strength to match the four-pillar public foundation and ATLAS_ARCHITECTURE_CANON v0.2.

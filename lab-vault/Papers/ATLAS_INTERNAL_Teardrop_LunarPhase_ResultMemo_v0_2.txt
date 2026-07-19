@@ -1,0 +1,509 @@
+ATLAS INTERNAL RESULT MEMO
+Teardrop Closure Asymmetry and Lunar-Phase Handoff Modulation
+Synchronized successor to: Dominance Asymmetry in Weak-Field Multi-Source Gravitational Coherence Surfaces
+
+Version: v0.2 synchronized internal draft
+Date: 2026-04-25
+Prepared for: Atlas Solver Project / Daniel Scieszinski
+
+Status: Internal high-value result seed
+Lane: Private Atlas method / internal results and diagnostics
+Public status: Not approved for public science release in this form
+Canonical status: Not Phase I milestone evidence yet
+Primary alignment: GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV, ATLAS_ARCHITECTURE_CANON v0.2, ATLAS_LANE_GOVERNANCE
+
+================================================================================
+ABSTRACT
+================================================================================
+
+This internal memo preserves and synchronizes a major Atlas result night: the extraction of two related weak-field many-source readability signatures.
+
+First, in a staged twelve-source scene, source-local closure clouds exhibit measurable asymmetry. The closure-support cloud of a source is displaced and elongated according to its relational competition with neighboring sources. This effect is here called the teardrop closure signature. Its first quantitative descriptors are the bias fraction, defined as closure-cloud centroid offset divided by mean closure radius, and the principal-axis aspect ratio of the closure cloud.
+
+Second, in an Earth-Moon-Sun-Jupiter scene sampled across lunar phase, the Moon-associated handoff support shows a robust primary anti-Earth orientation and a secondary Sun-correlated phase modulation. Dense directionally-adapted sampling reveals this secondary modulation more cleanly than sparse isotropic sampling.
+
+These are derived diagnostic signatures inside a declared weak-field readability branch. They are not forces, physical membranes, causal horizons, orbital-stability limits, new invariants, or direct observables by themselves. They are candidate Atlas diagnostics requiring convergence testing, branch comparison, roster sensitivity checks, and ledger-confirmed reproducibility before any public-facing or canonical claim.
+
+================================================================================
+1. PURPOSE AND DISPOSITION
+================================================================================
+
+The source paper was written during an important exploratory night. It reported two strong internal findings:
+
+1. source-local teardrop closure asymmetry in a twelve-body staged cluster;
+2. lunar-phase modulation of the Moon-associated handoff cloud in the Earth-Moon-Sun system.
+
+The source document is valuable because it captured the first clear transition from “Atlas can extract parity geometry” to “Atlas can measure scene-dependent deformation signatures in extracted geometry.”
+
+However, the source paper uses now-stale terminology and over-strong claim language. It describes the GCS in terms of an environmental floor and calls bias fraction an observable. Current Atlas doctrine requires a cleaner framing:
+
+A GCS is a parity boundary where a declared gravitational contribution reaches equality with its derived gravitational context under a declared readability rule.
+
+The extracted structures in this memo are derived diagnostics, not observables by default.
+
+Forward decision:
+
+- Preserve as an internal result memo.
+- Do not publish in current form.
+- Treat as a high-value result seed.
+- Re-run under current canonical conventions before citing as evidence.
+- Use it to design convergence and sensitivity tests for closure-cloud asymmetry and handoff-support modulation.
+
+================================================================================
+2. FOUNDATION ALIGNMENT
+================================================================================
+
+Paper I inheritance:
+A Gravitational Coherence Surface is a parity boundary where a declared gravitational contribution reaches equality with its derived gravitational context under a declared readability rule. It is not a force boundary, physical membrane, causal horizon, event horizon, or orbital-stability limit.
+
+Paper II inheritance:
+Many-source parity begins with declared source-readable contributions Q_i and pairwise residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x),
+
+with parity surfaces
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+Retained portions of those surfaces may assemble into many-source parity networks.
+
+Paper III inheritance:
+Retained faces, seams, low-margin regions, and transition loci are derived interface geometry in the mesoscale comparison layer. Teardrop closure asymmetry and handoff modulation belong to this diagnostic middle layer.
+
+Paper IV inheritance:
+Proof-of-concept extraction establishes operational recoverability under the scalar tidal-readable branch. It does not establish final invariance, observability, or canonical extraction standards.
+
+Architecture inheritance:
+Atlas is ledger-first. Extracted closure clouds and handoff supports must be tied to machine-readable relational state. Renders communicate the result but do not decide evidence.
+
+================================================================================
+3. TERMINOLOGY REPAIR
+================================================================================
+
+Older / risky wording -> current replacement
+
+- environmental tidal floor as root GCS definition -> derived gravitational context under a declared readability rule
+- closure shell as physical object -> closure-support cloud or retained closure support
+- observable of competitive position -> derived diagnostic measure; candidate observable only after calibration
+- teardrop as universal fact -> teardrop closure asymmetry as a candidate generic diagnostic requiring testing
+- handoff cloud as physical structure -> Moon-associated handoff support
+- direct geometric observable -> extracted geometric diagnostic
+- sampling proves reality -> sampling refinement supports candidacy; convergence required
+- first reported observable -> internal Atlas first extraction unless literature review and validation support stronger language
+- sparse sampling buries signal in noise -> sparse sampling fails to resolve the candidate modulation under this extraction path
+- flashlight method as serious default -> directionally-adapted diagnostic sampling branch; compare against omni-radial standard
+
+================================================================================
+4. DECLARED READABLE BRANCH
+================================================================================
+
+Let a declared weak-field source ensemble contain physical sources S_i with masses M_i and positions x_i.
+
+For source i, define softened distance
+
+    r_{i,eps}(x) = sqrt(||x - x_i||^2 + eps^2).
+
+The current Phase I scalar readable branch is
+
+    Q_i(x) = M_i / (||x - x_i||^2 + eps^2)^(3/2).
+
+The source paper used the equivalent tidal-proxy scaling with a constant factor:
+
+    Q_i(x) = 2 G M_i / |x - x_i|^3.
+
+Since the factor 2G is common to all sources in pairwise equality, it cancels for parity and ordering diagnostics. Current Atlas notation should use the simpler canonical branch unless physical units require the constant factor.
+
+Pairwise residuals are
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+The dominant source at x is
+
+    i*(x) = argmax_i Q_i(x).
+
+A handoff support is a retained local transition structure where source-readable dominance or near-dominance changes under the declared extraction rule.
+
+================================================================================
+5. RESULT SEED 1: TEARDROP CLOSURE ASYMMETRY
+================================================================================
+
+The twelve-source staged cluster in the source paper contained one heavy source, three mid-tier sources, and eight small-tier sources on an AU-scale irregular layout.
+
+The source paper reports a full-scene xy slice in which red closure-support points and blue first-handoff points form a cellular nested architecture around the staged source ensemble. The page 3 figure is important as a visual lineage marker: it shows that closure and handoff supports were not appearing as shapeless all-pairs clutter, but as organized scene-dependent structure.
+
+For each source, the closure cloud was analyzed in source-relative coordinates using:
+
+1. mean closure radius,
+2. closure-cloud centroid offset,
+3. bias fraction,
+4. principal-axis aspect ratio.
+
+Define closure-cloud centroid
+
+    c_i = mean_x(x in closure support for source i).
+
+Define source position
+
+    x_i.
+
+Define centroid offset vector
+
+    b_i = c_i - x_i.
+
+Define mean closure radius
+
+    r_mean,i = mean_x ||x - x_i||.
+
+Define bias fraction
+
+    beta_i = ||b_i|| / r_mean,i.
+
+A perfectly isotropic sampled closure cloud would have beta_i approximately 0, subject to sampling noise.
+
+The source paper reports the following pattern:
+
+- heavy source S01: bias fraction 0.081;
+- mid-tier sources S02-S04: bias fractions approximately 0.267 to 0.296;
+- small-tier sources: variable bias fractions approximately 0.106 to 0.267;
+- aspect ratios ranging roughly 1.51 to 2.35.
+
+Interpretation:
+The heavy source appears comparatively uncontested and therefore has lower closure centroid bias. Mid-tier sources are more strongly shaped by the heavy source and show larger closure asymmetry. Small-tier sources show context-dependent deformation based on their local competitive environment.
+
+This is the teardrop closure signature.
+
+Current claim:
+The teardrop closure signature is a candidate derived diagnostic of source-in-scene competition. It measures the asymmetry of a retained closure-support cloud under a declared readability branch.
+
+It is not yet an observable in the public-science sense.
+
+================================================================================
+6. RESULT SEED 2: LUNAR-PHASE HANDOFF MODULATION
+================================================================================
+
+The source paper next examined an Earth-Moon-Sun-Jupiter scene across 36 lunar phases.
+
+For each phase, the extraction pipeline identified Moon-associated handoff support and computed its centroid relative to the Moon.
+
+Let H_M(phi) be the Moon-associated handoff support at lunar phase phi.
+
+Define handoff centroid
+
+    h_M(phi) = mean_x(x in H_M(phi)).
+
+Define Moon position
+
+    x_M(phi).
+
+Define handoff bias vector
+
+    u_M(phi) = h_M(phi) - x_M(phi).
+
+The source paper compares u_M(phi) against reference directions:
+
+- toward Earth,
+- anti-Earth,
+- toward Sun,
+- anti-Sun.
+
+Primary signal:
+Across the 36 phases, the Moon-associated handoff centroid points close to the anti-Earth direction. The source paper reports approximately 4.4 degrees ± 2.9 degrees from anti-Earth.
+
+Interpretation:
+Earth is the dominant local competitor for Moon-readable dominance. The Moon-associated handoff support is compressed or concentrated toward Earth-facing transition regions, while the centroid offset indicates a stable anti-Earth bias in the support geometry.
+
+Secondary signal:
+Dense directionally-adapted sampling reveals a Sun-correlated modulation of the Moon-associated handoff bias over lunar phase. Sparse isotropic sampling shows the same candidate structure only noisily or incompletely.
+
+The page 9 figure is the key result seed. Its upper panel compares the Moon handoff-bias direction against anti-Sun and anti-Earth directions across lunar phase. Its lower panel shows handoff-bias magnitude variation. The dense sampling path produces a cleaner phase-coherent curve than the sparse sampling path.
+
+Current claim:
+The lunar-phase result is a candidate extracted geometric modulation of Moon-associated handoff support, correlated with changing Sun-Earth-Moon geometry.
+
+It is not yet a public claim of a direct observable.
+
+================================================================================
+7. WHY THIS NIGHT MATTERED
+================================================================================
+
+This result night mattered because it introduced two new categories of Atlas diagnostics:
+
+1. shape diagnostics over retained closure support;
+2. phase-dependent diagnostics over retained handoff support.
+
+Before this result, the main Atlas question was whether parity and closure structures could be extracted at all.
+
+After this result, Atlas had a stronger question:
+
+Can extracted weak-field readability geometry carry stable, parameter-dependent deformation signatures?
+
+The teardrop result suggests a source-local shape signature.
+
+The lunar-phase result suggests a scene-parameter modulation signature.
+
+Together they imply that Atlas diagnostics may be tested through ordinary scientific controls:
+
+- change source masses,
+- change source positions,
+- change phase,
+- change roster,
+- change sampling density,
+- change readable branch,
+- compare whether extracted diagnostics deform continuously or collapse.
+
+This turns visual geometry into measurable candidate structure.
+
+================================================================================
+8. CLAIM BOUNDARY
+================================================================================
+
+This memo does not claim:
+
+- modified gravity;
+- new field equations;
+- new forces;
+- physical closure shells;
+- physical handoff membranes;
+- causal horizons;
+- event horizons;
+- orbital-stability boundaries;
+- direct observability;
+- branch-independent invariance;
+- final canonical extraction status;
+- that teardrop asymmetry is universal without further testing;
+- that lunar-phase modulation has been converged;
+- that adaptive sampling outranks omni-radial extraction;
+- that renders alone are evidence.
+
+This memo claims only:
+
+Under a declared weak-field scalar readability branch, exploratory Atlas extraction produced two high-value candidate diagnostics:
+
+1. source-local closure-cloud asymmetry, measured by bias fraction and aspect ratio;
+2. Moon-associated handoff-support modulation across lunar phase, including a primary anti-Earth orientation and a candidate Sun-correlated secondary modulation.
+
+Both require hardening.
+
+================================================================================
+9. REQUIRED HARDENING TESTS
+================================================================================
+
+A. Teardrop closure asymmetry tests
+
+1. Equal isolated source sanity check.
+   A single source or sufficiently isolated source should yield near-zero bias fraction, within sampling error.
+
+2. Equal-mass two-source benchmark.
+   Closure asymmetry should respect symmetry and not invent directional bias inconsistent with the scene.
+
+3. Unequal-mass two-source benchmark.
+   Bias direction and magnitude should deform smoothly with mass ratio.
+
+4. Three-source equilateral benchmark.
+   Symmetric source placement should suppress spurious asymmetric bias.
+
+5. Staged cluster rerun.
+   Reproduce the twelve-source result with current ledger and output standards.
+
+6. Sampling sweep.
+   Test beta_i and aspect ratio under increasing angular and radial resolution.
+
+7. Domain sweep.
+   Confirm that beta_i does not change materially under reasonable domain expansion.
+
+8. Tolerance sweep.
+   Confirm that extracted closure-cloud metrics deform continuously under extraction tolerance changes.
+
+9. Branch comparison.
+   Compare scalar Q_i results against tensor-norm or projection branches as validation only.
+
+B. Lunar-phase handoff tests
+
+1. Phase resolution sweep.
+   Repeat 36, 72, and possibly 144 phase samples.
+
+2. Angular sampling sweep.
+   Compare sparse isotropic, dense isotropic, directionally-adapted, and omni-radial sampling.
+
+3. Radial sampling sweep.
+   Confirm that handoff centroid direction and magnitude stabilize with radial refinement.
+
+4. Jupiter on/off roster sensitivity.
+   Quantify whether Jupiter affects the modulation or is negligible at declared tolerance.
+
+5. Sun off control.
+   Remove Sun or replace with declared null parent context to verify loss of Sun-correlated modulation.
+
+6. Inclination control.
+   Compare zero-inclination and 5.14-degree inclined lunar orbit.
+
+7. Coordinate-frame check.
+   Verify that modulation is not an artifact of projection or frame convention.
+
+8. Handoff criterion comparison.
+   Compare winner-change, Psi near-zero, and low-margin definitions.
+
+9. Ledger/render agreement.
+   Ensure plotted curves are generated from machine-readable handoff records, not from render-only selection.
+
+================================================================================
+10. MACHINE-READABLE OUTPUT REQUIREMENTS
+================================================================================
+
+For future reruns, output should include:
+
+config.json
+summary.json
+manifest.json
+relational_ledger_index.json
+closure_summary.csv
+closure_points.csv or compressed closure-support records
+handoff_summary.csv
+handoff_points.csv or compressed handoff-support records
+source_shape_metrics.csv
+phase_handoff_metrics.csv
+sampling_sweep_summary.csv
+domain_sweep_summary.csv
+tolerance_sweep_summary.csv
+plots/closure_scene_xy.png
+plots/source_relative_teardrops.png
+plots/lunar_phase_direction.png
+plots/lunar_phase_magnitude.png
+plots/thumbnail.png
+
+Required source_shape_metrics.csv fields:
+
+run_id
+source_id
+mass
+position_x
+position_y
+position_z
+closure_point_count
+r_mean
+centroid_x
+centroid_y
+centroid_z
+bias_x
+bias_y
+bias_z
+bias_magnitude
+bias_fraction
+principal_axis_1
+principal_axis_2
+principal_axis_3
+aspect_ratio
+dominant_competitor_id
+angle_to_dominant_competitor
+sampling_mode
+tolerance
+validation_status
+
+Required phase_handoff_metrics.csv fields:
+
+run_id
+phase_deg
+moon_position_x
+moon_position_y
+moon_position_z
+handoff_point_count
+handoff_centroid_x
+handoff_centroid_y
+handoff_centroid_z
+bias_x
+bias_y
+bias_z
+bias_magnitude
+angle_to_earth
+angle_to_anti_earth
+angle_to_sun
+angle_to_anti_sun
+sampling_mode
+radial_steps
+angular_count
+handoff_criterion
+validation_status
+
+================================================================================
+11. RELATION TO HANDOFF BRANCH
+================================================================================
+
+This memo depends on the closure-overlap-handoff family but should not over-promote it.
+
+Canonical Phase I remains:
+
+sources -> Q_i -> Psi_ij -> zero-set extraction -> relevance filtering -> GCS/parity-context extraction -> junction/closure diagnostics -> sensitivity checks -> outputs -> ledger.
+
+This result memo uses a downstream diagnostic branch:
+
+ledgered Q_i / Psi_ij / margins
+-> retained closure support
+-> handoff support
+-> shape metrics
+-> phase modulation metrics
+-> convergence tests
+-> interpretation
+
+Promotion condition:
+The teardrop and lunar-phase diagnostics may become canonical supporting diagnostics only if they improve stability, relevance filtering, scene comparison, or predictive benchmark behavior across controlled sweeps.
+
+================================================================================
+12. INTERNAL VALUE
+================================================================================
+
+This memo is worth keeping because it contains three durable advances:
+
+1. Quantification.
+   Closure clouds were not merely rendered. They were measured by bias fraction and aspect ratio.
+
+2. Parameter dependence.
+   The Moon-associated handoff support was tracked across orbital phase, turning extraction into a scene-parameter diagnostic.
+
+3. Sampling insight.
+   The lunar result exposed that sparse isotropic sampling can miss hierarchy-localized structure, while targeted/adaptive sampling can reveal it.
+
+The third point must be handled carefully. Serious Atlas extraction still prefers omni-radial or validated unbiased interrogation. But adaptive sampling is valuable as a diagnostic flashlight when explicitly labeled and cross-checked.
+
+================================================================================
+13. PUBLICATION RULE
+================================================================================
+
+Do not publish this memo in current form.
+
+A future public descendant may be possible after hardening, likely not as “Atlas method,” but as a conservative results note:
+
+Candidate title:
+Closure-Asymmetry Diagnostics in Weak-Field Many-Source Readability Geometry
+
+or:
+
+Phase-Dependent Handoff-Support Modulation in the Earth-Moon-Sun Weak-Field Scene
+
+Before public release, remove or abstract:
+
+- Atlas private method architecture;
+- closure-overlap-handoff implementation details;
+- internal node language;
+- unvalidated “observable” language;
+- claims of novelty unless literature review supports them;
+- any suggestion of new dynamics.
+
+================================================================================
+14. NEXT ACTIONS
+================================================================================
+
+1. Preserve this memo as the active synchronized internal version.
+2. Archive the source PDF as historical source material from the result night.
+3. Do not treat the result as canonical evidence yet.
+4. Reproduce the twelve-source teardrop metrics under current output standard.
+5. Reproduce the lunar-phase modulation under current ledger-first output standard.
+6. Add sampling, tolerance, and domain sweeps.
+7. Compare adaptive sampling against omni-radial extraction.
+8. Test whether bias fraction and aspect ratio remain stable across reruns.
+9. Only after hardening, consider a public science-lane descendant.
+
+================================================================================
+SHORT INTERNAL FORM
+================================================================================
+
+This was the night Atlas first extracted measurable deformation signatures from retained weak-field readability geometry. The teardrop closure signature measures source-local closure-cloud asymmetry through bias fraction and aspect ratio. The lunar-phase result tracks Moon-associated handoff-support bias across orbital phase and reveals a candidate Sun-correlated modulation under dense adaptive sampling. Both are high-value internal result seeds, not public claims and not canonical evidence until convergence and sensitivity checks are complete.

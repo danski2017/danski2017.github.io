@@ -1,0 +1,307 @@
+ATLAS INTERNAL NOTE
+Global Parity Bundle as Collective Comparator
+Pointwise many-source relational state for retained GCS/parity-context extraction
+
+Version: v0.2 synchronized internal draft
+Date: 2026-04-25
+Prepared for: Atlas Solver Project / Daniel Scieszinski
+
+Status: Internal live-branch / architecture-support note
+Lane: Private Atlas method / ledger and extraction-support branch
+Public status: Not approved for public science release in this form
+Canonical status: Not Phase I milestone evidence as a named object; its ledger content overlaps with the canonical Phase I pairwise-residual census
+Primary alignment: GCS Paper I, Many-Source Paper II, Mesoscale Paper III, Proof-of-Concept Paper IV, ATLAS_ARCHITECTURE_CANON v0.2, ATLAS_LANE_GOVERNANCE
+
+================================================================================
+ABSTRACT
+================================================================================
+
+This internal note synchronizes the earlier Global Parity Object hypothesis with current Atlas vocabulary and architecture doctrine. The viable core is not a new physical object and not a replacement for GCS/parity-network extraction. It is a ledger-level relational state: at each sampled point x, Atlas may store the complete many-source parity bundle built from declared source-readable contributions Q_i and pairwise residuals Psi_ij = Q_i - Q_j. This bundle can support relevance filtering, source ordering, low-margin detection, compression diagnostics, and junction interpretation.
+
+Because the current architecture canon already assigns Node P to parity-junction candidates, this note avoids using P(x) as a named node or architectural object. The synchronized term is parity-bundle state or global parity bundle, denoted here as B_Psi(x). Pairwise residuals are the coordinate channels. The parity-bundle state is the pointwise collective relational census. Retained GCS/parity-context structures remain the extracted diagnostic geometry.
+
+The hypothesis remains internal because it concerns ledger schema, relevance filtering, compression metrics, and extraction-support logic. It is not public science doctrine and should not be promoted until it demonstrates practical improvement over ordinary pairwise residual extraction.
+
+================================================================================
+1. PURPOSE AND DISPOSITION
+================================================================================
+
+The earlier draft proposed a Global Parity Object as the collective relational comparator for multi-source GCS evaluation. Its main insight is useful: isolated pairwise residuals are not enough to describe the full local many-source competitive state. However, the draft overlaps strongly with Paper II, Paper III, and the architecture canon.
+
+Forward decision:
+
+- Preserve the idea as an internal parity-bundle / ledger-state note.
+- Do not treat it as a separate public paper.
+- Do not name it Node P, because Node P already means parity-junction candidate in the architecture canon.
+- Do not let it replace canonical Phase I extraction.
+- Use it as a possible schema and diagnostic layer for relevance filtering and many-source compression.
+
+Redundancy ruling:
+
+This note is partly redundant with Paper II because Paper II already defines pairwise residuals and many-source parity networks. It is partly redundant with the architecture canon because the canon already requires pairwise comparison metadata in the certified ledger. Its distinct contribution is narrower: it frames the full pointwise residual bundle as a useful collective state for filtering, ordering, compression, and junction diagnostics before extraction is interpreted.
+
+================================================================================
+2. FOUNDATION ALIGNMENT
+================================================================================
+
+Paper I inheritance:
+A GCS is a parity horizon where a declared gravitational contribution reaches equality with its derived gravitational context under a declared readability rule. It is not a force boundary, material membrane, causal horizon, event horizon, or orbital-stability limit.
+
+Paper II inheritance:
+Many-source parity begins with declared source-readable contributions Q_i and pairwise residuals
+
+    Psi_ij(x) = Q_i(x) - Q_j(x),
+
+with pairwise parity surfaces
+
+    Sigma_ij = { x : Psi_ij(x) = 0 }.
+
+Retained portions of those surfaces may assemble into many-source parity networks. The parity-bundle state does not replace Sigma_ij or the retained network; it stores the local relational information from which filtering and extraction may be supported.
+
+Paper III inheritance:
+The mesoscale comparison layer contains retained faces, seams, low-margin regions, and transition loci as derived interface geometry. The parity-bundle state may help identify which raw pairwise equalities participate in that mesoscale layer.
+
+Paper IV inheritance:
+Proof-of-concept extraction has shown only operational recoverability under a declared scalar tidal-readable branch. It does not establish invariance or final extraction standards. The parity-bundle hypothesis inherits that restraint.
+
+Architecture inheritance:
+Atlas is ledger-first. The parity-bundle state belongs in the ledger/interrogation/extraction-support layers, not in physics. It is not a source, force, observable, or new field. It may support Node Psi extraction and Node P candidate identification, but it is not Node P itself.
+
+================================================================================
+3. TERMINOLOGY REPAIR
+================================================================================
+
+Older term -> current term
+
+- Global Parity Object -> global parity bundle, parity-bundle state, or full pairwise residual bundle
+- P(x) -> B_Psi(x), to avoid conflict with Node P
+- scalar floor -> derived context, strongest competitor, or lawful parent relation depending on role
+- GCS compared against a global object -> declared contribution or retained cell interpreted relative to the full pointwise many-source parity-bundle state
+- pairwise residuals are coordinates; global parity object is comparator -> pairwise residuals are coordinate channels; the parity-bundle state is the pointwise collective relational census; retained GCS/parity-context structures are extracted diagnostic geometry
+
+================================================================================
+4. CORE HYPOTHESIS
+================================================================================
+
+Internal working claim:
+In many-source weak-field scenes, the complete pointwise bundle of pairwise residuals carries useful relational information beyond any isolated pair. Archiving this bundle may improve relevance filtering, low-margin detection, compression diagnostics, source ordering, and interpretation of retained GCS/parity-context structures.
+
+Compact statement:
+Pairwise residuals are the coordinate channels. The parity-bundle state is the collective pointwise census. Retained parity faces and cells are extracted views over that stored relational state.
+
+This is not a new diagnostic family on equal footing with the GCS. It is a ledger and extraction-support layer for the existing GCS/parity-network program.
+
+================================================================================
+5. FORMAL SETUP
+================================================================================
+
+Let a declared weak-field scene contain N physical sources S_i with source-readable contributions Q_i(x). In the Phase I scalar branch,
+
+    Q_i(x) = M_i / (||x - x_i||^2 + eps^2)^(3/2),
+
+or, away from sources in analytic shorthand,
+
+    Q_i(x) proportional to M_i / r_i(x)^3.
+
+For each unordered pair i < j, define
+
+    Psi_ij(x) = Q_i(x) - Q_j(x).
+
+The number of unique pairwise residual channels is
+
+    N_pair = N(N - 1) / 2.
+
+Define the parity-bundle state at x as
+
+    B_Psi(x) = { Psi_ij(x) : 1 <= i < j <= N }.
+
+This bundle may be supplemented by the source-readable value vector
+
+    Q_vec(x) = (Q_1(x), Q_2(x), ..., Q_N(x)),
+
+and derived ordering and margin objects:
+
+    O(x) = ranking of sources by Q_i(x),
+
+    m_i(x) = Q_i(x) - max_{j != i} Q_j(x),
+
+    Delta_12(x) = Q_(1)(x) - Q_(2)(x),
+
+where Q_(1) and Q_(2) denote the largest and second-largest readable contributions at x.
+
+Candidate compression diagnostics may include:
+
+    C_top,k(x) = normalized spread among the top k readable contributors,
+
+    Z_eta(x) = number of pair channels with |Psi_ij(x)| <= eta,
+
+where eta is a declared tolerance tied to scene scale, readable-field magnitude, and numerical precision.
+
+All such quantities are diagnostics. None is a force, source, or observable by itself.
+
+================================================================================
+6. INTERPRETATION
+================================================================================
+
+A single residual Psi_ij asks a two-source question: which of sources i and j is more readable at x under the declared rule?
+
+The parity-bundle state asks a many-source bookkeeping question: what is the local ordering, crowding, near-equality, and competition structure of the declared source ensemble at x?
+
+From B_Psi(x), Q_vec(x), O(x), and margin diagnostics, Atlas may derive:
+
+- dominant-source ordering,
+- runner-up structure,
+- low-margin zones,
+- near-tie counts,
+- exposed pair relations,
+- buried pair relations,
+- multi-source compression regions,
+- candidate seam and junction support,
+- relevance-filtering evidence for retained faces.
+
+This supports Paper III's mesoscale comparison layer without making the bundle itself a physical object.
+
+================================================================================
+7. RELATION TO GCS AND NODE PSI
+================================================================================
+
+The GCS remains the keystone diagnostic: a parity horizon where a declared contribution reaches equality with derived context under a declared readability rule.
+
+Node Psi remains the extracted parity-comparison diagnostic layer containing GCS surfaces, retained faces, seams, junctions, closure cells, and parity-context networks.
+
+The parity-bundle state B_Psi(x) belongs one step earlier. It is a pointwise ledger/interrogation object that stores the pairwise residual census from which Node Psi extraction may derive retained structures.
+
+Recommended hierarchy:
+
+1. Physical sources generate Q_i.
+2. Ledger stores Q_vec and B_Psi.
+3. Extraction uses Psi_ij zero sets and relevance rules.
+4. Node Psi contains retained GCS/parity-context structures.
+5. Node P marks parity-junction candidates only after extraction and stability checks.
+6. Node A marks critical-transition candidates only after stronger diagnostics.
+
+The parity-bundle state is not Node P and not Node A.
+
+================================================================================
+8. WHY THREE SOURCES MATTER
+================================================================================
+
+One-source case:
+No source-source parity bundle exists. GCS logic compares a declared contribution with derived context.
+
+Two-source case:
+The bundle contains one residual channel, so pairwise and bundle views are equivalent.
+
+Three-source and higher:
+The bundle contains multiple residual channels. Local interpretation can no longer be reduced to one equality surface without losing information about the rest of the source ensemble. Triple-junctions, low-margin zones, and relevance-filtering decisions become collective rather than merely pairwise.
+
+This is the useful threshold claim:
+Three sources are the first regime where the full parity-bundle state can add interpretive and filtering value beyond a single pairwise residual.
+
+================================================================================
+9. BUILD IMPLICATIONS
+================================================================================
+
+Recommended internal implementation order:
+
+1. For each sampled point x, compute Q_i(x) for all declared physical sources.
+2. Compute and ledger all Psi_ij(x) for i < j.
+3. Store source ordering O(x) and top-k margins.
+4. Store near-zero pair count Z_eta(x) for declared eta values.
+5. Derive exposed-versus-buried pair classification candidates.
+6. Use the bundle diagnostics to support relevance filtering of pairwise parity faces.
+7. Compare against ordinary pairwise extraction before any canonical promotion.
+
+Minimal machine-readable additions for scratch tests:
+
+- Q_vec sample records,
+- pairwise residual vector records or compressed summaries,
+- top source ID,
+- runner-up source ID,
+- top margin,
+- near-zero pair count,
+- compression score,
+- exposed pair candidate flag,
+- buried pair candidate flag.
+
+Storage caution:
+For large N and dense sampling, B_Psi can be expensive. The branch should test compressed summaries before demanding full archival of every pair channel in heavy runs.
+
+================================================================================
+10. TESTABLE CONSEQUENCES
+================================================================================
+
+T1. Relevance-filtering gain:
+Bundle-informed filtering should distinguish exposed pair faces from buried algebraic equalities more cleanly than naive all-pairs extraction.
+
+T2. Junction-legibility gain:
+Triple-junction and higher-order shared regions should be easier to identify as multi-source compression states rather than after-the-fact intersections of unrelated pair surfaces.
+
+T3. Stability gain:
+Regions classified by bundle summaries should be at least as stable under modest perturbations as regions classified by isolated residual channels alone.
+
+T4. Source-in-system clarity:
+Interpreting a retained cell or contribution relative to B_Psi should clarify whether the local source is dominant, runner-up, buried, or part of a low-margin tie.
+
+T5. Reduced arbitrariness:
+The retained parity-context scaffold should look less like a pile of pairwise cuts and more like a coherent extracted view over a stored relational census.
+
+================================================================================
+11. FAILURE MODES
+================================================================================
+
+F1. B_Psi adds no practical information beyond Q_i ranking and existing pairwise residual extraction.
+
+F2. Bundle diagnostics are unstable under mesh, tolerance, domain, or readable-branch perturbations.
+
+F3. Bundle storage cost is high but does not improve relevance filtering, junction legibility, or closure diagnostics.
+
+F4. Apparent higher-order structure is only a visualization artifact of redundant pairwise bookkeeping.
+
+F5. Compressed summaries lose the very relational structure the bundle was supposed to preserve.
+
+If these failure modes dominate, the note should be demoted to historical architecture background.
+
+================================================================================
+12. LANE AND PUBLICATION RULE
+================================================================================
+
+This note is internal because it governs ledger contents, extraction support, relevance filtering, compression diagnostics, and implementation choices. Under lane governance, implementation-governing documents belong to the private Atlas method lane by default.
+
+A future public descendant is unlikely to be needed. The public science content is already covered by Paper II and Paper III. The private value here is schema and extraction support.
+
+================================================================================
+13. CLAIM BOUNDARY
+================================================================================
+
+This note does not claim:
+
+- modified gravity;
+- a new force;
+- a new physical field;
+- a new observable;
+- a new source object;
+- that the bundle is an ontology;
+- that pairwise faces are shadows of a deeper physical object;
+- that B_Psi replaces GCS or Node Psi;
+- that the branch is canonical evidence.
+
+It claims only that storing and analyzing the full pointwise pairwise-residual bundle may improve many-source relevance filtering and mesoscale parity-context extraction.
+
+================================================================================
+14. NEXT ACTIONS
+================================================================================
+
+1. Preserve this synchronized note as the active internal version of the parity-bundle hypothesis.
+2. Do not add it to the public paper set.
+3. Add optional parity-bundle summaries to scratch runs, not canonical runs, until usefulness is demonstrated.
+4. Test on equal-mass three-source and unequal-mass deformed benchmarks.
+5. Compare bundle-informed retention against naive all-pairs retention.
+6. Track whether bundle summaries improve junction stability and reduce buried-pair clutter.
+7. Promote only if the branch improves canonical Phase I reliability.
+
+================================================================================
+SHORT INTERNAL FORM
+================================================================================
+
+Pairwise residuals are the coordinate channels. The parity-bundle state is the pointwise collective relational census. Retained GCS/parity-context structures are extracted views over that stored state. Preserve this as an internal ledger and relevance-filtering hypothesis, not a public object and not a new ontology.

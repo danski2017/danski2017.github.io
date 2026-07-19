@@ -1,0 +1,3349 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ATLAS Field Metric Viewer</title>
+<style>
+  :root{color-scheme:dark;--bg:#090b0f;--panel:#10141ddf;--line:#2b3342;--text:#d8dee9;--muted:#8d96a8;--blue:#74a8ff;--green:#62d394;--amber:#f6c66b;--red:#ff7373}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:12px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
+  #c{position:fixed;inset:0}
+  .panel{position:fixed;background:var(--panel);border:1px solid var(--line);border-radius:6px;backdrop-filter:blur(8px);box-shadow:0 12px 28px #0008}
+  #top{left:10px;top:10px;width:360px;padding:10px 12px}
+  #top h1{font-size:15px;margin:0 0 4px;font-weight:650;letter-spacing:.2px}
+  #top .claim{color:var(--muted);font-size:11px}
+	  #controls{right:10px;top:10px;width:310px;max-height:calc(100vh - 20px);overflow:auto;padding:10px 12px}
+	  #inspect{left:0;top:50%;width:330px;max-height:min(62vh,520px);padding:10px 12px 10px 28px;display:block;transform:translate(calc(-100% - 1px),-50%);transition:transform .18s ease;z-index:3}
+	  #inspect.open{transform:translate(0,-50%)}
+	  #inspectToggle{position:absolute;right:-28px;top:12px;width:28px;height:42px;padding:0;border-radius:0 6px 6px 0;border-left:0;background:#151b25;font-size:16px;line-height:1}
+	  #inspect.open #inspectToggle{background:#223047;border-color:#5e7fb8}
+	  #probeRows{max-height:calc(min(62vh,520px) - 42px);overflow:auto}
+  h2{font-size:11px;margin:12px 0 7px;color:var(--muted);text-transform:uppercase;letter-spacing:.55px}
+  h2:first-child{margin-top:0}
+  label{display:flex;align-items:center;gap:8px;padding:3px 0;color:var(--text)}
+  input[type=checkbox]{accent-color:var(--green)}
+  select,input[type=range]{width:100%;box-sizing:border-box}
+  select{background:#161b24;color:var(--text);border:1px solid var(--line);border-radius:5px;padding:5px}
+  input[type=range]{accent-color:var(--blue)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .mini{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:5px}
+  .value{color:var(--blue);font-variant-numeric:tabular-nums}
+  .stat{display:flex;justify-content:space-between;border-bottom:1px solid #202735;padding:2px 0;font-variant-numeric:tabular-nums}
+  .stat span:first-child{color:var(--muted)}
+  .badge{display:inline-block;padding:1px 6px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:10px;margin-right:4px}
+  .note{color:var(--muted);font-size:10px;margin-top:6px}
+  .panelSwitch{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-bottom:10px;position:sticky;top:0;background:linear-gradient(#10141d,#10141ddf);padding-bottom:8px;z-index:2}
+  .panelSwitch button{font-weight:650;text-align:center;font-size:11px;padding:6px 3px}
+  .panelSwitch button.active{background:#223047;border-color:#5e7fb8;color:#eef4ff}
+  .toolCard{border:1px solid #242d3c;background:#121822;border-radius:6px;padding:8px;margin:8px 0}
+  .toolCard strong{display:block;font-size:12px;margin-bottom:3px}
+  .toolCard .tag{float:right;color:var(--green);font-size:10px;font-variant-numeric:tabular-nums}
+  .artifactLink{display:block;color:#a9c7ff;text-decoration:none;border-bottom:1px solid #202735;padding:3px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .artifactLink:hover{color:#d7e6ff}
+  .commandBox{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#090d14;border:1px solid #263042;border-radius:5px;padding:7px;white-space:pre-wrap;word-break:break-word;color:#cbd8ee;font-size:10px;max-height:118px;overflow:auto;width:100%;box-sizing:border-box;resize:vertical}
+  .statusLine{border-left:3px solid var(--blue);padding-left:7px;color:var(--muted);font-size:10px;margin-top:7px}
+  #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);background:#090b0fcc;z-index:10}
+  #labels{position:fixed;left:calc((100vw - 330px)/2);top:126px;transform:translateX(-50%);display:none;gap:170px;pointer-events:none;color:#eef2ff;font-size:12px;text-shadow:0 1px 4px #000;z-index:2}
+  .warn{color:var(--amber)}
+  button{background:#18202c;color:var(--text);border:1px solid var(--line);border-radius:5px;padding:5px 8px;cursor:pointer}
+  button:hover{border-color:#4a5970}
+  @media (max-width:760px){
+    #top{left:8px;right:8px;top:8px;width:auto}
+    #controls{left:8px;right:8px;top:122px;width:auto;max-height:calc(100vh - 130px)}
+	    #inspect{width:300px;max-height:48vh}
+    #labels{display:none!important}
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="loading">loading field metric dataset...</div>
+<div id="labels"><span>baseline</span><span>target removed</span><span>delta footprint</span></div>
+<section id="top" class="panel">
+  <h1>ATLAS Field Metric Viewer</h1>
+  <div id="sceneTitle" class="claim">counterfactual eigen-orientation footprint</div>
+  <div style="margin-top:7px">
+    <span class="badge" id="targetBadge">target</span>
+    <span class="badge" id="sampleBadge">samples</span>
+    <span class="badge" id="datasetBadge">dataset</span>
+    <span class="badge" id="foamBadge">no foam overlay</span>
+  </div>
+  <div id="passport" style="margin-top:7px;padding-top:6px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);line-height:1.5"></div>
+</section>
+<section id="controls" class="panel">
+  <div class="panelSwitch" aria-label="tool panel switch">
+    <button id="atlasPanelBtn" type="button" class="active">Atlas Native</button>
+    <button id="importedPanelBtn" type="button">Imported Tools</button>
+    <button id="recoveryPanelBtn" type="button">Recovery Lab</button>
+    <button id="blPanelBtn" type="button">BL Foam</button>
+  </div>
+  <div id="atlasNativePanel">
+  <h2>Dataset</h2>
+  <select id="datasetSelect">
+    <option value="datasets/PINCH_STAGEB_MULTI_TARGET_002/viewer_multi_manifest.json" selected>StageB multi-target / 16 removals</option>
+    <option value="datasets/GAIA_LSN_PARENT_001/viewer_multi_manifest.json">Gaia LSN parent / baseline + removal layers</option>
+    <option value="datasets/PINCH_EIGENFIELD_LEDGER_001_B03/viewer_dataset_manifest.json">Eigenfield ledger / B03 only</option>
+  </select>
+  <div id="targetLane">
+    <h2>Target</h2>
+    <select id="targetSelect"></select>
+    <div class="note">keys: [ and ] cycle removal targets &middot; \ cycles layer story</div>
+    <div id="targetScan" style="margin-top:7px"></div>
+  </div>
+	  <h2>View</h2>
+	  <div class="row2">
+	    <select id="viewMode">
+	      <option value="single">single layer</option>
+	      <option value="wink">wink target</option>
+	      <option value="feature">feature shift</option>
+	      <option value="compare">before / after / delta</option>
+	    </select>
+    <select id="layerMode">
+      <option value="baseline">baseline</option>
+      <option value="removed">target removed</option>
+      <option value="delta">delta</option>
+      <option value="footprint">footprint only</option>
+    </select>
+  </div>
+  <div style="margin-top:8px"><select id="fieldSelect"></select></div>
+  <div class="mini"><span>comparison focus</span><span class="value" id="compareMetricVal"></span></div>
+  <select id="compareMetric">
+    <option value="absWeyl" selected>absWeyl full/removed/delta</option>
+    <option value="lambdaSpread">lambda spread full/removed/delta</option>
+    <option value="lambda0">lambda0 full/removed/delta</option>
+    <option value="lambda1">lambda1 full/removed/delta</option>
+    <option value="lambda2">lambda2 full/removed/delta</option>
+    <option value="eigenGap">eigen-gap stability</option>
+    <option value="orientation">eigenvector orientation response</option>
+  </select>
+  <div class="mini"><span>comparison style</span><span class="value" id="compareStyleVal"></span></div>
+  <select id="compareStyle">
+    <option value="feature" selected>feature displacement</option>
+    <option value="amplified">delta-amplified footprint</option>
+    <option value="snapshots">fixed field snapshots</option>
+  </select>
+  <div class="mini"><span>point opacity</span><span>point size</span></div>
+  <div class="row2"><input id="pointOpacity" type="range" min="5" max="100" value="78"><input id="pointSize" type="range" min="10" max="180" value="70"></div>
+
+	  <h2>Probe Sampling</h2>
+	  <div class="mini"><span>activation</span><span class="value" id="probeModeVal"></span></div>
+	  <select id="probeSampling">
+	    <option value="cartesian">cartesian all probes</option>
+	    <option value="staggered">staggered lattice</option>
+	    <option value="blueNoise">blue-noise subset</option>
+	    <option value="radialShells">target radial shells</option>
+	    <option value="omniRadial" selected>target omni-radial rays</option>
+	  </select>
+	  <div class="mini"><span>probe density</span><span class="value" id="probeDensityVal"></span></div>
+	  <input id="probeDensity" type="range" min="5" max="100" value="55" step="5">
+	  <div class="mini"><span>phase / seed</span><span class="value" id="probePhaseVal"></span></div>
+	  <input id="probePhase" type="range" min="0" max="17" value="0" step="1">
+		  <div class="note">Sampling only activates existing probes; non-cartesian modes auto-drop from 100% so the pattern is visible.</div>
+
+		  <h2>Wink</h2>
+		  <div class="mini"><span>target presence</span><span class="value" id="winkVal"></span></div>
+		  <input id="winkPresence" type="range" min="0" max="100" value="100" step="1">
+		  <div class="mini"><span>delta story</span><span class="value" id="winkModeVal"></span></div>
+		  <select id="winkDeltaMode">
+		    <option value="removal" selected>removal footprint</option>
+		    <option value="influence">influence reveal</option>
+		  </select>
+		  <div class="row3" style="margin-top:7px">
+		    <button id="winkFull" type="button">full</button>
+		    <button id="winkGone" type="button">removed</button>
+		    <button id="winkPlay" type="button">wink</button>
+		  </div>
+		  <div class="note">Field interpolation stays full-to-removed; delta story controls when response overlays brighten.</div>
+
+	  <h2>Feature Shift</h2>
+	  <div class="mini"><span>metric</span><span class="value" id="featureMetricVal"></span></div>
+	  <select id="featureMetric">
+	    <option value="absWeyl" selected>absWeyl ridges</option>
+	    <option value="lambda0">lambda0 magnitude</option>
+	    <option value="lambda1">lambda1 magnitude</option>
+	    <option value="lambda2">lambda2 magnitude</option>
+	    <option value="lambdaSpread">lambda spread</option>
+	  </select>
+	  <div class="mini"><span>feature density</span><span class="value" id="featureDensityVal"></span></div>
+	  <input id="featureDensity" type="range" min="2" max="30" value="8" step="1">
+	  <div class="mini"><span>motion gain</span><span class="value" id="featureGainVal"></span></div>
+	  <input id="featureGain" type="range" min="25" max="300" value="100" step="25">
+	  <div class="row3" style="margin-top:7px">
+	    <button id="featureFull" type="button">full</button>
+	    <button id="featureGone" type="button">removed</button>
+	    <button id="featurePlay" type="button">shift</button>
+	  </div>
+
+	  <h2>Lumen Lattice</h2>
+	  <div class="row2">
+	    <select id="lumenMode">
+	      <option value="released" selected>released</option>
+	      <option value="raw">raw datum</option>
+	      <option value="delta">delta release</option>
+	    </select>
+	    <select id="lumenMetric">
+	      <option value="absWeyl" selected>absWeyl</option>
+	      <option value="lambdaSpread">lambda spread</option>
+	      <option value="eigenvectorDelta">orientation delta</option>
+	    </select>
+	  </div>
+	  <div class="mini"><span>datum stride</span><span class="value" id="lumenStrideVal"></span></div>
+	  <input id="lumenStride" type="range" min="2" max="6" value="3" step="1">
+	  <div class="mini"><span>release gain</span><span class="value" id="lumenGainVal"></span></div>
+	  <input id="lumenGain" type="range" min="0" max="400" value="120" step="10">
+
+	  <h2>Footprint</h2>
+	  <div class="mini"><span>eigen-gap floor</span><span class="value" id="gapVal"></span></div>
+  <input id="gapSlider" type="range" min="0" max="20" value="2" step="0.5">
+  <div class="mini"><span>angle threshold</span><span class="value" id="angleVal"></span></div>
+  <input id="angleSlider" type="range" min="0" max="100" value="5" step="1">
+  <label><input id="ampEnabled" type="checkbox">use amplitude floor</label>
+  <div class="mini"><span>delta absWeyl floor</span><span class="value" id="ampVal"></span></div>
+  <input id="ampSlider" type="range" min="-10" max="-2" value="-8" step="0.25">
+
+  <h2>Layers</h2>
+  <label><input id="showPoints" type="checkbox" checked>delta / field points</label>
+  <label><input id="showFootprint" type="checkbox" checked>footprint points</label>
+  <label><input id="showFullVectors" type="checkbox">baseline eigenvectors</label>
+  <label><input id="showRemovedVectors" type="checkbox">removed eigenvectors</label>
+	  <label><input id="showUnstable" type="checkbox">unstable eigen-gap points</label>
+	  <label><input id="showSurface" type="checkbox">candidate surface preview</label>
+	  <label><input id="showLumen" type="checkbox">lumen datum lattice</label>
+	  <label><input id="showSources" type="checkbox" checked>source roster</label>
+	  <label id="blOverlayLabel" style="display:none"><input id="showBLOverlay" type="checkbox">BL parity foam overlay <span class="badge" style="margin-left:4px">analytic &middot; registered s=6.626</span></label>
+
+  <h2>Candidate Boundary</h2>
+  <div id="topology"></div>
+  <div class="claim warn" style="margin-top:7px">Candidate surface is an interpretation over raw footprint points.</div>
+  </div>
+  <div id="importedToolsPanel" style="display:none">
+    <h2>Imported Tools</h2>
+    <div class="note">Read-only external audit lane. These tools do not replace Atlas native ledgers or Field Metric controls.</div>
+
+    <div class="toolCard">
+      <span class="tag">cross-check</span>
+      <strong>kuibit</strong>
+      <div class="note">Einstein Toolkit output reader/auditor. Current audit found 26/26 expected ET fields at it=0, rl=0, shape 55 x 105 x 105.</div>
+    </div>
+    <div class="toolCard">
+      <span class="tag">volume audit</span>
+      <strong>yt</strong>
+      <div class="note">3D field analysis: volume scouts, point-cloud showcase renders, midplanes, projections, radial profiles, edge-band audits, and fast scouting before Atlas viewer layers are promoted.</div>
+    </div>
+    <div class="toolCard">
+      <span class="tag">schema</span>
+      <strong>openPMD-api</strong>
+      <div class="note">Portable scientific export path. Held as schema-only until an Atlas export format is approved.</div>
+    </div>
+    <div class="toolCard">
+      <span class="tag">reference</span>
+      <strong>EinsteinPy</strong>
+      <div class="note">Known-metric convention checks. Minkowski Ricci scalar reference check passed with R=0.</div>
+    </div>
+    <div class="toolCard">
+      <span class="tag">notebook</span>
+      <strong>OGRePy</strong>
+      <div class="note">Symbolic GR notebook workbench. Kept out of runtime Field Metric dependencies.</div>
+    </div>
+
+    <h2>External Audit Outputs</h2>
+    <a class="artifactLink" href="imported_tools/kuibit_vs_h5py_comparator_summary.md" target="_blank">kuibit comparator summary</a>
+    <a class="artifactLink" href="imported_tools/yt_midplane_field_audit.png" target="_blank">yt midplane field audit PNG</a>
+    <a class="artifactLink" href="imported_tools/yt_projection_field_audit.png" target="_blank">yt projection field audit PNG</a>
+    <a class="artifactLink" href="imported_tools/yt_source_radial_profiles.csv" target="_blank">yt source radial profiles CSV</a>
+    <a class="artifactLink" href="imported_tools/yt_edge_band_audit.csv" target="_blank">yt edge-band audit CSV</a>
+    <a class="artifactLink" href="imported_tools/openpmd_schema_proposal.md" target="_blank">openPMD schema proposal</a>
+
+    <h2>3D Showcase Outputs</h2>
+    <div class="note">3D-first advisory views over the existing Atlas full/removed/delta caches. Use these before leaning on 2D MRI-style slices for lab decisions.</div>
+    <a class="artifactLink" href="imported_tools/showcase_3d_delta_quad.png" target="_blank">3D full / removed / scalar delta / orientation delta quad</a>
+    <a class="artifactLink" href="imported_tools/showcase_3d_absweyl_eigengap.png" target="_blank">3D absWeyl + eigen-gap stable ridges</a>
+    <a class="artifactLink" href="imported_tools/showcase_3d_constraint_residual.png" target="_blank">3D Hamiltonian residual audit</a>
+    <a class="artifactLink" href="imported_tools/showcase_3d_ricci_weyl_overlay.png" target="_blank">3D Ricci / Weyl overlay</a>
+    <a class="artifactLink" href="imported_tools/showcase_3d_constraint_vs_identity.png" target="_blank">3D constraint-vs-identity gate</a>
+    <a class="artifactLink" href="imported_tools/showcase_3d_identity_delta_summary.json" target="_blank">3D identity delta summary JSON</a>
+
+    <h2>Launch Workflow</h2>
+    <select id="toolWorkflowSelect"></select>
+    <div class="stat"><span>tool</span><b id="toolWorkflowTool"></b></div>
+    <div class="stat"><span>base model</span><b id="toolWorkflowBase"></b></div>
+    <div class="note" id="toolWorkflowDesc"></div>
+    <div class="statusLine" id="toolWorkflowPromotion"></div>
+    <div class="mini"><span>terminal command</span><span class="value" id="toolCommandStatus">ready</span></div>
+    <textarea class="commandBox" id="toolCommandBox" readonly rows="5"></textarea>
+    <div class="row2" style="margin-top:7px">
+      <button id="copyToolCommand" type="button">copy command</button>
+      <button id="openToolOutput" type="button">open output</button>
+    </div>
+    <div id="toolWorkflowOutputs" style="margin-top:7px"></div>
+    <div class="note">Safe bridge: the viewer prepares vetted commands and opens artifacts in the browser. It does not execute shell commands.</div>
+    <div class="claim warn" style="margin-top:7px">Imported-tool outputs are advisory until promoted into Atlas native tools.</div>
+  </div>
+  <div id="recoveryLabPanel" style="display:none">
+    <h2>Recovery Lab</h2>
+    <div class="note">Experimental registered full/ablation diagnostics. Tensor evidence is primary; orientation remains gated by eigenvalue separation and convergence status.</div>
+
+    <h2>Case</h2>
+    <select id="recoveryCase"></select>
+    <div class="row2" style="margin-top:7px">
+      <select id="recoveryRealization"></select>
+      <select id="recoveryView">
+        <option value="matter_constraint" selected>matter + constraint audit</option>
+        <option value="scalar_tensor">scalar tail / tensor identity</option>
+        <option value="stability">stable / unstable eigengeometry</option>
+        <option value="persistence">persistent support</option>
+        <option value="counterfactual">full / removed / delta</option>
+        <option value="controls">baseline / control</option>
+      </select>
+    </div>
+
+    <h2>Witness</h2>
+    <select id="recoveryWitness">
+      <option value="tensor_delta_norm" selected>proper tensor delta norm</option>
+      <option value="abs_signed_intensity_change">absolute scalar-intensity change</option>
+      <option value="signed_intensity_change">signed scalar-intensity change</option>
+      <option value="eigenshape_delta">normalized eigenvalue-shape change</option>
+      <option value="orientation_delta">principal-orientation response</option>
+      <option value="abs_compression_fraction_delta">compression-fraction change</option>
+      <option value="hamiltonian_max">Hamiltonian residual</option>
+    </select>
+    <div class="mini"><span>proper-volume scale</span><span class="value" id="recoveryScaleVal">pointwise</span></div>
+    <select id="recoveryScale">
+      <option value="0" selected>pointwise</option>
+      <option value="1">1-cell proper-volume RMS</option>
+      <option value="2">2-cell proper-volume RMS</option>
+      <option value="4">4-cell proper-volume RMS</option>
+    </select>
+    <div class="mini"><span>eigen-gap floor</span><span class="value" id="recoveryGapVal">0.020</span></div>
+    <input id="recoveryGap" type="range" min="0" max="10" value="2" step="0.5">
+    <div class="mini"><span>support tolerance</span><span class="value" id="recoveryThresholdVal">100%</span></div>
+    <input id="recoveryThreshold" type="range" min="25" max="200" value="100" step="5">
+
+    <h2>Sampling Control</h2>
+    <select id="recoverySampling">
+      <option value="all" selected>all sampled probes</option>
+      <option value="staggered">staggered activation</option>
+      <option value="blue_noise">blue-noise activation</option>
+      <option value="radial_shells">radial-shell activation</option>
+      <option value="omni_radial">omni-radial activation</option>
+    </select>
+    <div class="mini"><span>density</span><span class="value" id="recoveryDensityVal">100%</span></div>
+    <input id="recoveryDensity" type="range" min="20" max="100" value="100" step="5">
+    <div class="mini"><span>phase</span><span class="value" id="recoveryPhaseVal">0</span></div>
+    <input id="recoveryPhase" type="range" min="0" max="17" value="0" step="1">
+    <label><input id="recoveryShowSources" type="checkbox" checked>source roster</label>
+    <label><input id="recoveryShowActive" type="checkbox" checked>active recoverability support</label>
+    <label><input id="recoveryConditionOrientation" type="checkbox">orientation-conditioned support</label>
+    <label><input id="recoveryShowUnstable" type="checkbox">eigen-gap indeterminate probes</label>
+
+    <h2>Evidence Status</h2>
+    <div id="recoveryStats"></div>
+    <a class="artifactLink" id="recoveryMidplaneLink" target="_blank">2D matter / residual / witness audit</a>
+    <a class="artifactLink" id="recovery3dLink" target="_blank">static 3D sampled audit</a>
+    <a class="artifactLink" href="../IDENTITY_RECOVERABILITY_CW_001/SPRINT_CLOSEOUT.md" target="_blank">sprint scientific closeout</a>
+    <a class="artifactLink" href="../IDENTITY_RECOVERABILITY_CW_001/existing_data/SCIENTIFIC_REPORT.md" target="_blank">existing-data report</a>
+    <a class="artifactLink" href="../IDENTITY_RECOVERABILITY_CW_001/controls/registered_convergence_report.json" target="_blank">registered convergence report</a>
+    <a class="artifactLink" href="../IDENTITY_RECOVERABILITY_CW_001/et_bridge/ET_CONSTRAINT_CONTROLLED_BRIDGE_STATUS.md" target="_blank">ET bridge status</a>
+    <div class="claim warn" style="margin-top:7px">Finite support means recoverable above the declared tolerance, not zero influence or a physical membrane.</div>
+  </div>
+  <div id="blFoamPanel" style="display:none">
+    <h2>BL Parity Foam</h2>
+    <div class="note">Analytic Brill&ndash;Lindquist / conformal-ball diagnostic lane. Frobenius-norm E<sub>ij</sub> parity ablation: &rho;<sub>s</sub> = ||&Delta;<sub>s</sub>E||<sub>F</sub> / ||context||<sub>F</sub>, extracted live in-browser by omni-radial ray march. No dataset payload; scenes are declared analytic substrates.</div>
+
+    <h2>Scene</h2>
+    <select id="blScene">
+      <option value="familyS" selected>Family S / 5 conformal balls (compact, &phi;&le;0.3)</option>
+      <option value="gaia66">Gaia LSN-66 punctures (weak field, &phi;~1e-13)</option>
+      <option value="interior">Interior parity shell lab / two-ball</option>
+    </select>
+    <div id="blConfigWrap">
+      <h2>Configuration</h2>
+      <select id="blConfig"></select>
+      <div class="row3" style="margin-top:7px"><button id="blWinkFull" type="button">full</button><button id="blWinkGone" type="button">removed</button><button id="blWinkPlay" type="button">wink</button></div>
+    </div>
+
+    <div id="blFoamControls">
+      <h2>Comparison Contract</h2>
+      <div class="mini"><span>denominator</span><span class="value" id="blDenVal">A fused</span></div>
+      <select id="blDen">
+        <option value="A" selected>DEN A &mdash; fused re-solved ablated context</option>
+        <option value="B">DEN B &mdash; pasted isolated-E sum</option>
+        <option value="AB">A + B overlay &mdash; fork ledger</option>
+      </select>
+      <div class="mini"><span>witness</span><span class="value" id="blWitVal">E trace-free</span></div>
+      <select id="blWit">
+        <option value="TF" selected>E_ij trace-free (lawful tidal witness)</option>
+        <option value="RAW">R3_ij raw (slice-curvature diagnostic)</option>
+        <option value="TFG">E_ij trace-free &middot; &gamma;-own physical norm (A2 convention lane)</option>
+      </select>
+      <div class="note">Common numerator: fused &Delta;<sub>s</sub>E. A&ndash;B locus divergence is a candidate map of fused-context reorganization discarded by linear pasting. Ledger d_AB uses matched outermost &rho;=1 crossing per ray; the view shows all crossings.</div>
+      <h2>Compute Budget</h2>
+      <label><input id="blBaked" type="checkbox" checked>use frozen bake &mdash; certified march, all sources, instant</label>
+      <div class="note">Frozen arrangements from <code>BL_FOAM_BAKED_001</code> (blueprint: freeze-in-time). Uncheck to compute live with the controls below.</div>
+      <div class="mini"><span>march quality</span><span class="value" id="blQualityVal">fast</span></div>
+      <select id="blQuality">
+        <option value="fast" selected>fast &mdash; survey march (lighter CPU)</option>
+        <option value="certified">certified &mdash; instrument march (ledger-grade)</option>
+      </select>
+      <div id="blCapWrap">
+        <div class="mini"><span>foam probe sources</span><span class="value" id="blCapVal">top 8</span></div>
+        <select id="blCap">
+          <option value="8" selected>top 8 (declared cap)</option>
+          <option value="16">top 16 (declared cap)</option>
+          <option value="33">top 33 (declared cap)</option>
+          <option value="66">all 66 (heavy: ~1 min single core)</option>
+        </select>
+      </div>
+      <div class="note">All extraction is client-side JS in this tab &mdash; no solver, no ET run, memory bounded to a few MB per cached probe source. Quantitative ledger claims should cite the certified march.</div>
+    </div>
+
+    <div id="blInteriorControls" style="display:none">
+      <h2>Two-Ball Controls</h2>
+      <div class="mini"><span>neighbor distance D</span><span class="value" id="blDVal">3.00</span></div>
+      <input id="blD" type="range" min="1.2" max="8" step="0.05" value="3">
+      <div class="mini"><span>neighbor mass &mu;&#8345;</span><span class="value" id="blMuVal">0.160</span></div>
+      <input id="blMu" type="range" min="0" max="0.30" step="0.005" value="0.16">
+      <div class="mini"><span>context parameter &chi;</span><span class="value" id="blChiVal">&mdash;</span></div>
+      <div class="note">Interior parity shell: innermost &rho;=1 crossing inside the probe's matter radius (TF witness, DEN A). Red markers: rays whose interior parity branch has reached the matter boundary. &mu;&#8345;=0 is the isolated control &mdash; the shell must be absent.</div>
+    </div>
+
+    <h2>Display</h2>
+    <div class="mini"><span>point opacity</span><span>point size</span></div>
+    <div class="row2"><input id="blOpacity" type="range" min="10" max="100" value="80"><input id="blSize" type="range" min="10" max="200" value="80"></div>
+    <label><input id="blShowBalls" type="checkbox" checked>source geometry</label>
+
+    <h2>Layer Stack &mdash; Atlas Native &middot; BL substrate <span class="badge">native</span></h2>
+    <div id="blLayerStack" style="border-left:2px solid #2b3342;padding-left:8px">
+    <div id="blEigenSection">
+    <h2>Base-Model Eigen Layers</h2>
+    <label><input id="blEigDelta" type="checkbox">orientation-delta cloud (vs full scene)</label>
+    <label><input id="blEigVectors" type="checkbox">principal eigenvector pairs</label>
+    <div class="mini"><span>eigen-gap floor</span><span class="value" id="blEigGapVal">0.05</span></div>
+    <input id="blEigGap" type="range" min="0" max="30" value="5" step="1">
+    <div class="note">Baked from the BL substrate &mdash; the same frozen solve that carries the foam. Eigenvectors are interpretive witnesses; displays are gated by relative eigenvalue separation (&lambda;0&minus;&lambda;1)/||&lambda;|| per the GFRO correction.</div>
+    </div>
+
+    <div id="blNetworkSection">
+    <h2>Relational Network Layers</h2>
+    <label><input id="blNetDom" type="checkbox">dominance cells (signature channel)</label>
+    <label><input id="blNetMargin" type="checkbox">low-margin transition neighborhoods</label>
+    <label><input id="blNetEntropy" type="checkbox">attribution entropy</label>
+    <label><input id="blNetAlleg" type="checkbox">tensor allegiance (continuous witness)</label>
+    <div class="mini"><span>margin threshold</span><span class="value" id="blNetMarginVal">0.15</span></div>
+    <input id="blNetMarginT" type="range" min="2" max="50" value="15" step="1">
+    <div class="row2" style="margin-top:7px"><select id="blFaceA"></select><select id="blFaceB"></select></div>
+    <label><input id="blNetFace" type="checkbox">pairwise parity face S<sub>i</sub> = S<sub>j</sub></label>
+    <div class="note">Registered per-source amplitudes S<sub>a</sub>=||&Delta;<sub>a</sub>E||<sub>F</sub> over the 66 single re-solves (GFRO Eq. 16&ndash;18; Nesting Eq. 10). Dominance cells are diagnostic organization, not ownership parcels; low margin marks transition neighborhoods, not walls. Fully solved fields remain the law &mdash; network reads are one lens (founder doctrine 2026-07-16).</div>
+    </div>
+
+    <div id="blCommonsSection">
+    <h2>Commons Layers <span class="badge">native</span></h2>
+    <label><input id="blComWeb" type="checkbox">parity webbing (banded near-parity nodes)</label>
+    <label><input id="blComIsl" type="checkbox">trough islands (9 disputed troughs)</label>
+    <label><input id="blComFrontier" type="checkbox">commons frontier patch (H = 0.75)</label>
+    <label><input id="blComStrict" type="checkbox">strict webbing rung (&ge;3 @ |&Psi;|&lt;0.2)</label>
+    <div class="row3" style="margin-top:7px"><button id="blCwCommons" type="button">commons</button><button id="blCwNetwork" type="button">network</button><button id="blCwPlay" type="button">wink</button></div>
+    <div class="note">Commons&harr;network wink (universal scrubber grammar): A = commons view (webbing + islands + frontier), B = network view (dominance cells + attribution entropy) &mdash; scrub how the disputed territory sits inside the resolved parcels. Drives the layer checkboxes; passport follows.</div>
+    <a class="artifactLink" href="commons_atlas.html" target="_blank">open Commons Atlas &mdash; dedicated 3D module</a>
+    <div class="note">Commons-native primitives on the declared 64&sup3; volume lattice (dual-primitive doctrine 2026-07-16): the 9 high-attribution-entropy tidal-amplitude troughs (entropy &ge; 0.75; lab shorthand: cancellation troughs — mechanism claims need tensor-bundle support), the certified H = 0.75 entropy surface, and the banded near-parity webbing (&ge;3 sources within |&Psi;| &lt; 0.3, outside source guards). Frozen payload datasets/COMMONS_ATLAS_001; evidence COMMONS_SURVEY_001/002, CONTEXT_SWEEP_001, DENSITY_PROBE_001. ADJUDICATED 2026-07-18: 8 troughs + H&ge;0.85 backbone REPRODUCED in-family (idx-7 fragile candidate/canary; no connectivity claims below H 0.85; &Lambda;<sub>&Pi;</sub> uncalibrated); webbing remains Observed.</div>
+    </div>
+
+    <div id="blDynSection">
+    <h2>Dynamic Witnesses <span class="badge">native</span></h2>
+    <label><input id="blDynB" type="checkbox">magnetic Weyl ||B||<sub>F</sub> (C5-B2 candidate)</label>
+    <label><input id="blDynFrac" type="checkbox">magnetic fraction ||B||/(||E||+||B||)</label>
+    <label><input id="blDynP" type="checkbox">super-Poynting |P<sub>BR</sub>| (E&times;B witness)</label>
+    <label><input id="blDynM" type="checkbox">momentum-constraint residual ||M||</label>
+    <label><input id="blDynPvec" type="checkbox">super-Poynting FLOW (signed vectors)</label>
+    <label>kinematics: <select id="blDynKin" style="background:#141a26;color:#cfd6e4;border:1px solid #2a3347;border-radius:4px">
+      <option value="MAGNETIC_WEYL_002">harvested astrometry (SIMBAD 2026-07-18)</option>
+      <option value="MAGNETIC_WEYL_001">declared synthetic (seed 2026)</option>
+    </select></label>
+    <div class="mini"><span>shown fraction (top by value)</span><span class="value" id="blDynTopVal">20%</span></div>
+    <input id="blDynTop" type="range" min="5" max="100" value="20" step="5">
+    <div class="note">B_ij = &kappa;/2c &middot; &epsilon;<sub>kl(i</sub>v<sup>k</sup>E<sub>j)</sub><sup>l</sup> per source (C5-B2 structure CONFIRMED exact at O(v); &kappa; = &minus;2 NUMERICALLY LOCKED under the declared Atlas convention &mdash; OBS_042 numeric Riemann crosscheck 2026-07-17; sign of P<sub>BR</sub> awaits E-sign adjudication, |P<sub>BR</sub>| unaffected). Velocities are a DECLARED seeded kinematic family (&beta;<sub>ref</sub> = 10<sup>&minus;4</sup>, seed 2026), not astrometry; B and the monitor scale linearly in &beta;. Momentum monitor = &part;<sub>j</sub>(&psi;<sup>&minus;10</sup>&Acirc;<sup>ij</sup>) over the composite Bowen&ndash;York sum &mdash; a constraint-residual display (promotion-order doctrine), not a solved constraint. Not radiative balance, not conservation, not a prediction; surface integration remains unauthorized. Frozen payload datasets/MAGNETIC_WEYL_001.</div>
+    </div>
+    </div>
+    <button id="blLayersOff" type="button">all layers off</button>
+
+    <h2>Disagreement Ledger</h2>
+    <div id="blStats"><div class="note">select the BL Foam lane to extract</div></div>
+    <div class="claim warn" style="margin-top:7px">Analytic BL/conformal scenes are declared diagnostic substrates, not ET-fused GR. Coordinate-chart Frobenius ||&middot;||<sub>&delta;</sub> under shared Euclidean chart identification; no physical-metric cancellation is claimed. Parity loci are convention-declared comparisons, not physical membranes. Vocabulary candidate, not decision.</div>
+  </div>
+</section>
+<section id="inspect" class="panel" aria-label="probe drawer">
+  <button id="inspectToggle" type="button" aria-label="open probe drawer" title="Probe details">&gt;</button>
+  <h2>Probe</h2>
+  <div id="probeRows"><div class="note">Click a rendered probe to inspect field values.</div></div>
+</section>
+
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three.module.js",
+  "three/addons/controls/OrbitControls.js": "./vendor/OrbitControls.js"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const $=id=>document.getElementById(id);
+const canvas=$('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,logarithmicDepthBuffer:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(devicePixelRatio);
+renderer.setSize(innerWidth,innerHeight);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x090b0f);
+const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,0.1,5000);
+camera.position.set(118,92,112);
+const COMPOSITION_SHIFT_X=0.10;
+function applyCameraComposition(){
+  camera.clearViewOffset();
+  camera.setViewOffset(innerWidth,innerHeight,Math.round(innerWidth*COMPOSITION_SHIFT_X),0,innerWidth,innerHeight);
+}
+applyCameraComposition();
+const controls=new OrbitControls(camera,canvas);
+controls.enableDamping=true;
+scene.add(new THREE.HemisphereLight(0xdde8ff,0x20242d,1.15));
+const dl=new THREE.DirectionalLight(0xffffff,1.25); dl.position.set(80,100,60); scene.add(dl);
+const world=new THREE.Group(); scene.add(world);
+const recoveryWorld=new THREE.Group(); recoveryWorld.visible=false; scene.add(recoveryWorld);
+const blWorld=new THREE.Group(); blWorld.visible=false; scene.add(blWorld);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;renderer.setSize(innerWidth,innerHeight);applyCameraComposition();camera.updateProjectionMatrix();});
+
+const VIR=[[68,1,84],[72,40,120],[62,74,137],[49,104,142],[38,130,142],[31,158,137],[53,183,121],[110,206,88],[181,222,43],[253,231,37]];
+const MAG=[[0,0,4],[40,11,84],[101,21,110],[159,42,99],[212,72,66],[245,125,21],[250,193,39],[252,253,191]];
+const REC_DIV=[[38,70,140],[78,121,190],[166,202,232],[238,238,232],[244,165,130],[192,61,62]];
+function lut(table,t){t=Math.max(0,Math.min(1,t));const x=t*(table.length-1),i=Math.floor(x),f=x-i,a=table[i],b=table[Math.min(i+1,table.length-1)];return[(a[0]+(b[0]-a[0])*f)/255,(a[1]+(b[1]-a[1])*f)/255,(a[2]+(b[2]-a[2])*f)/255];}
+function colorFor(v,lo,hi,table=VIR){return lut(table,(v-lo)/(hi-lo+1e-30));}
+function fmt(v){if(!Number.isFinite(v))return 'nan'; if(Math.abs(v)>999||Math.abs(v)<0.001&&v!==0)return v.toExponential(2); return v.toFixed(4);}
+
+let D=null;
+let mainPoints=null, footprintPoints=null, unstablePoints=null, surfacePoints=null;
+let featureFullPoints=null, featureRemovedPoints=null, featureShiftLines=null;
+let lumenLines=null;
+let fullVecLines=null, removedVecLines=null, compareGroup=null, sourceGroup=null;
+let currentMask=null, currentShell=null, scalarIndex={};
+let catalog=null;
+let winkAnim=null;
+let featureStats=null;
+let lumenStats=null;
+let compareStats=null;
+let probeStats=null;
+let lastViewMode=null;
+let ray=new THREE.Raycaster(); ray.params.Points.threshold=2.2; let mouse=new THREE.Vector2();
+window.__PINCH_LAB_READY=false;
+let importedLaunch=null;
+let selectedWorkflow=null;
+let recoveryCatalog=null;
+let recoveryCurrent=null;
+let recoveryBaseline=null;
+const recoveryCache=new Map();
+let recoveryLoading=null;
+let recoveryUpdateToken=0;
+let activeToolPanel='atlas';
+
+function setToolPanel(which){
+  const imported=which==='imported';
+  const recovery=which==='recovery';
+  const bl=which==='bl';
+  const atlas=!imported&&!recovery&&!bl;
+  const leavingRecovery=activeToolPanel==='recovery'&&!recovery;
+  const leavingBL=activeToolPanel==='bl'&&!bl;
+  activeToolPanel=bl?'bl':(recovery?'recovery':(imported?'imported':'atlas'));
+  if(!recovery)recoveryUpdateToken++;
+  $('atlasNativePanel').style.display=atlas?'block':'none';
+  $('importedToolsPanel').style.display=imported?'block':'none';
+  $('recoveryLabPanel').style.display=recovery?'block':'none';
+  $('blFoamPanel').style.display=bl?'block':'none';
+  $('atlasPanelBtn').classList.toggle('active',atlas);
+  $('importedPanelBtn').classList.toggle('active',imported);
+  $('recoveryPanelBtn').classList.toggle('active',recovery);
+  $('blPanelBtn').classList.toggle('active',bl);
+  world.visible=!recovery&&!bl;
+  recoveryWorld.visible=recovery;
+  blWorld.visible=bl;
+  $('foamBadge').textContent=bl?'BL parity foam lane':'no foam overlay';
+  if(recovery||bl)$('labels').style.display='none';
+  else $('labels').style.display=D&&$('viewMode').value==='compare'?'flex':'none';
+  if(!recovery&&!bl&&D){
+    restoreAtlasHeader();
+    if(atlas)updateAtlasPassport();
+    if(leavingRecovery||leavingBL){
+      if($('viewMode').value==='compare')frameCompareScene();else frameScene();
+    }
+  }
+  if(imported)setPassport(['<b>lane</b> Imported Tools — external advisory outputs; not Atlas native ledgers']);
+  if(recovery)setPassport(['<b>substrate</b> registered Gaia recovery cases — ET-derived witnesses',
+    '<b>claim</b> tolerance-defined support; orientation gated by eigen-gap convergence']);
+  if(recovery)initRecoveryLab().catch(err=>{
+    $('recoveryStats').innerHTML=`<div class="claim warn">Recovery Lab load failed: ${err.message}</div>`;
+    console.error(err);
+  });
+  if(bl)BL.enter();
+}
+function restoreAtlasHeader(){
+  if(!D)return;
+  const target=D.manifest.target_source;
+  $('sceneTitle').textContent=D.manifest.source_experiment+' -> '+target.id+' removed';
+  $('targetBadge').textContent=`target ${target.id} M=${Number(target.M).toFixed(3)}`;
+  $('sampleBadge').textContent=D.n.toLocaleString()+' samples';
+  $('datasetBadge').textContent=catalog?`${catalog.manifest.targets.length} removals`:'single removal';
+}
+// ---- Phase 3a (blueprint): passport ribbon + first cross-substrate overlay ----
+// Registration between the Atlas Native Gaia parent frame and the BL LSN-66
+// roster: uniform scale, least-squares over 7 matched stars, residual 0.0.
+const BL_REG_SCALE=6.625997;
+function setPassport(parts){
+  $('passport').innerHTML=parts.filter(Boolean).map(p=>`<span style="margin-right:10px">${p}</span>`).join('');
+}
+function atlasIsGaiaParent(){return $('datasetSelect').value.includes('GAIA_LSN_PARENT_001');}
+let blOverlayPoints=null;
+function clearBLOverlay(){
+  if(blOverlayPoints){world.remove(blOverlayPoints);blOverlayPoints.geometry.dispose();blOverlayPoints.material.dispose();blOverlayPoints=null;}
+}
+async function updateBLOverlay(){
+  clearBLOverlay();
+  if(atlasIsGaiaParent()&&$('showBLOverlay').checked){
+    try{
+      const man=await fjson('datasets/BL_FOAM_BAKED_001/manifest.json');
+      const me=man.scenes.gaia66.configs[0].modes['A_TF'];
+      const pos=await fbuf('datasets/BL_FOAM_BAKED_001/'+me.file,Float32Array);
+      const scaled=new Float32Array(pos.length);
+      for(let i=0;i<pos.length;i++)scaled[i]=pos[i]*BL_REG_SCALE;
+      const g=new THREE.BufferGeometry();
+      g.setAttribute('position',new THREE.BufferAttribute(scaled,3));
+      blOverlayPoints=new THREE.Points(g,new THREE.PointsMaterial({size:1.6,color:0xffc65e,
+        transparent:true,opacity:.75,depthWrite:false,blending:THREE.AdditiveBlending}));
+      world.add(blOverlayPoints);
+    }catch(e){console.error('BL overlay load failed',e);}
+  }
+  (window.__PINCH_LAB_STATE=window.__PINCH_LAB_STATE||{}).blOverlayCount=blOverlayPoints?blOverlayPoints.geometry.attributes.position.count:0;
+  updateAtlasPassport();
+}
+function updateAtlasPassport(){
+  if(!D)return;
+  const ds=$('datasetSelect').selectedOptions[0].textContent;
+  const grid=catalog&&catalog.manifest.grid?`${catalog.manifest.grid.sample_dims_zyx.join('x')} dx=${catalog.manifest.grid.dx}`:`${D.n.toLocaleString()} probes`;
+  const overlay=(blOverlayPoints&&$('showBLOverlay').checked)
+    ?`<b style="color:var(--amber)">+ BL foam overlay — analytic substrate, registered s=${BL_REG_SCALE.toFixed(3)}, advisory composition</b>`:'';
+  setPassport([
+    `<b>substrate</b> ${ds} — custom constrained static diagnostic, not fused GR`,
+    `<b>witness</b> ${$('fieldSelect').value||'-'}`,
+    `<b>chart</b> coordinate-chart`,
+    `<b>grid</b> ${grid}`,
+    overlay,
+  ]);
+}
+function setInspectOpen(open){
+  $('inspect').classList.toggle('open',open);
+  $('inspectToggle').textContent=open?'<':'>';
+  $('inspectToggle').setAttribute('aria-label',open?'close probe drawer':'open probe drawer');
+}
+$('atlasPanelBtn').addEventListener('click',()=>setToolPanel('atlas'));
+$('importedPanelBtn').addEventListener('click',()=>setToolPanel('imported'));
+$('recoveryPanelBtn').addEventListener('click',()=>setToolPanel('recovery'));
+$('blPanelBtn').addEventListener('click',()=>setToolPanel('bl'));
+$('showBLOverlay').onchange=updateBLOverlay;
+$('datasetSelect').addEventListener('change',()=>{$('showBLOverlay').checked=false;clearBLOverlay();});
+$('inspectToggle').addEventListener('click',()=>setInspectOpen(!$('inspect').classList.contains('open')));
+
+function setCommandStatus(text,good=true){
+  const el=$('toolCommandStatus');
+  if(!el)return;
+  el.textContent=text;
+  el.style.color=good?'var(--green)':'var(--amber)';
+}
+function renderWorkflow(){
+  if(!importedLaunch||!importedLaunch.workflows?.length)return;
+  const id=$('toolWorkflowSelect').value||importedLaunch.workflows[0].id;
+  selectedWorkflow=importedLaunch.workflows.find(w=>w.id===id)||importedLaunch.workflows[0];
+  $('toolWorkflowTool').textContent=selectedWorkflow.tool;
+  $('toolWorkflowBase').textContent=selectedWorkflow.base_model;
+  $('toolWorkflowDesc').textContent=selectedWorkflow.description;
+  $('toolWorkflowPromotion').textContent=selectedWorkflow.promotion;
+  $('toolCommandBox').value=`cd ${importedLaunch.repo_root}\n${selectedWorkflow.command}`;
+  const outputs=$('toolWorkflowOutputs');
+  if(outputs){
+    outputs.innerHTML='';
+    const links=selectedWorkflow.outputs?.length?selectedWorkflow.outputs:[{label:'primary output',path:selectedWorkflow.primary_output}];
+    for(const output of links.filter(o=>o?.path)){
+      const a=document.createElement('a');
+      a.className='artifactLink';
+      a.href=output.path;
+      a.target='_blank';
+      a.rel='noopener';
+      a.textContent=output.label||output.path;
+      outputs.appendChild(a);
+    }
+  }
+  setCommandStatus('ready');
+}
+async function initImportedLaunchpad(){
+  try{
+    importedLaunch=await fjson('imported_tools/tool_launch_manifest.json');
+    const sel=$('toolWorkflowSelect');
+    sel.innerHTML='';
+    for(const workflow of importedLaunch.workflows){
+      const opt=document.createElement('option');
+      opt.value=workflow.id;
+      opt.textContent=workflow.label;
+      sel.appendChild(opt);
+    }
+    sel.addEventListener('change',renderWorkflow);
+    $('copyToolCommand').addEventListener('click',async()=>{
+      const box=$('toolCommandBox');
+      const text=box.value;
+      try{
+        if(navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+        else{
+          const area=document.createElement('textarea');
+          box.focus();
+          box.select();
+          document.execCommand('copy');
+        }
+        setCommandStatus('copied');
+      }catch(err){
+        $('toolCommandBox').focus();
+        $('toolCommandBox').select();
+        setCommandStatus('select command manually',false);
+      }
+    });
+    $('openToolOutput').addEventListener('click',()=>{
+      if(selectedWorkflow?.primary_output) window.open(selectedWorkflow.primary_output,'_blank','noopener');
+    });
+    renderWorkflow();
+  }catch(err){
+    $('toolCommandBox').value='Imported tool launch manifest failed to load.';
+    setCommandStatus('manifest missing',false);
+  }
+}
+
+function recoveryCaseRecord(){
+  return recoveryCatalog?.cases?.find(row=>row.id===$('recoveryCase').value)||recoveryCatalog?.cases?.[0];
+}
+function recoveryRealizationRecord(caseRecord=null){
+  const record=caseRecord||recoveryCaseRecord();
+  return record?.realizations?.find(row=>row.realization===$('recoveryRealization').value)||record?.realizations?.[0];
+}
+function recoveryFileUrl(manifestUrl,artifact){
+  return manifestUrl.replace(/dataset_manifest\.json$/,'')+artifact;
+}
+async function loadRecoveryDataset(manifestUrl){
+  if(recoveryCache.has(manifestUrl))return recoveryCache.get(manifestUrl);
+  const manifest=await fjson(manifestUrl);
+  const [pos,idx,scalars,flags]=await Promise.all([
+    fbuf(recoveryFileUrl(manifestUrl,'positions.bin'),Float32Array),
+    fbuf(recoveryFileUrl(manifestUrl,'grid_index.bin'),Uint16Array),
+    fbuf(recoveryFileUrl(manifestUrl,'scalars.bin'),Float32Array),
+    fbuf(recoveryFileUrl(manifestUrl,'flags.bin'),Uint8Array),
+  ]);
+  const scalarIndex={};
+  manifest.scalar_fields.forEach((name,index)=>scalarIndex[name]=index);
+  const dataset={manifest,pos,idx,scalars,flags,scalarIndex,n:manifest.grid.sample_count};
+  recoveryCache.set(manifestUrl,dataset);
+  return dataset;
+}
+function recoveryScalar(dataset,index,name){
+  return dataset.scalars[index*dataset.manifest.scalar_fields.length+dataset.scalarIndex[name]];
+}
+function recoveryClearWorld(){
+  recoveryWorld.traverse(obj=>{
+    obj.geometry?.dispose?.();
+    if(Array.isArray(obj.material))obj.material.forEach(material=>material.dispose?.());
+    else obj.material?.dispose?.();
+  });
+  recoveryWorld.clear();
+}
+function recoveryQuantile(values,q){
+  const finite=values.filter(Number.isFinite).sort((a,b)=>a-b);
+  if(!finite.length)return 0;
+  const position=(finite.length-1)*q;
+  const lo=Math.floor(position),hi=Math.ceil(position),fraction=position-lo;
+  return finite[lo]+(finite[hi]-finite[lo])*fraction;
+}
+const RECOVERY_LOG_FIELDS=new Set(['rho_full','rho_removed','hamiltonian_max','proper_weyl_norm_full','proper_weyl_norm_removed','tensor_delta_norm','abs_signed_intensity_change','tensor_scale_1','tensor_scale_2','tensor_scale_4']);
+function recoveryDisplayValue(dataset,index,field){
+  const value=recoveryScalar(dataset,index,field);
+  return RECOVERY_LOG_FIELDS.has(field)?Math.log10(Math.abs(value)+1e-30):value;
+}
+function recoveryCombinedRange(items){
+  const values=[];
+  for(const {dataset,field} of items){
+    for(let index=0;index<dataset.n;index++)values.push(recoveryDisplayValue(dataset,index,field));
+  }
+  if(items.some(item=>item.field==='signed_intensity_change')){
+    const limit=recoveryQuantile(values.map(Math.abs),0.98)||1;
+    return [-limit,limit];
+  }
+  let lo=recoveryQuantile(values,0.02),hi=recoveryQuantile(values,0.98);
+  if(!Number.isFinite(lo)||!Number.isFinite(hi)||lo===hi){lo=0;hi=1;}
+  return [lo,hi];
+}
+function recoveryRange(dataset,_indices,field){
+  return recoveryCombinedRange([{dataset,field}]);
+}
+function recoveryMakePoints(dataset,indices,field,offset=0,table=VIR,opacity=.72,size=.68,range=null,colorOverride=null){
+  const draw=indices;
+  const [lo,hi]=range||recoveryRange(dataset,draw,field);
+  const positions=new Float32Array(draw.length*3);
+  const colors=new Float32Array(draw.length*3);
+  for(let k=0;k<draw.length;k++){
+    const index=draw[k];
+    positions[k*3]=dataset.pos[index*3]+offset;
+    positions[k*3+1]=dataset.pos[index*3+1];
+    positions[k*3+2]=dataset.pos[index*3+2];
+    const color=colorOverride||colorFor(recoveryDisplayValue(dataset,index,field),lo,hi,table);
+    colors[k*3]=color[0];colors[k*3+1]=color[1];colors[k*3+2]=color[2];
+  }
+  const geometry=new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  geometry.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  const material=new THREE.PointsMaterial({size,sizeAttenuation:true,vertexColors:true,transparent:true,opacity,depthWrite:false});
+  const points=new THREE.Points(geometry,material);
+  points.userData={indices:draw,recovery:true};
+  return points;
+}
+function recoveryMakeSources(dataset,offset=0){
+  const group=new THREE.Group();
+  if(!$('recoveryShowSources').checked)return group;
+  for(const source of dataset.manifest.sources){
+    const color=source.is_target?0xff5555:0x8995a4;
+    const geometry=new THREE.SphereGeometry(source.is_target?1.9:0.72,14,14);
+    const material=new THREE.MeshStandardMaterial({
+      color,
+      emissive:color,
+      emissiveIntensity:source.is_target?0.42:0.08,
+      roughness:.5,
+      transparent:true,
+      opacity:source.is_target?0.95:0.62,
+    });
+    const mesh=new THREE.Mesh(geometry,material);
+    mesh.position.set(source.x+offset,source.y,source.z);
+    group.add(mesh);
+  }
+  return group;
+}
+function recoveryTargetCenter(dataset){
+  const targets=dataset.manifest.sources.filter(source=>source.is_target);
+  if(!targets.length)return [0,0,0];
+  const mass=targets.reduce((sum,source)=>sum+Number(source.M||1),0)||1;
+  return targets.reduce((center,source)=>[
+    center[0]+source.x*Number(source.M||1)/mass,
+    center[1]+source.y*Number(source.M||1)/mass,
+    center[2]+source.z*Number(source.M||1)/mass,
+  ],[0,0,0]);
+}
+function recoverySampleMask(dataset){
+  const mode=$('recoverySampling').value;
+  const density=+$('recoveryDensity').value/100;
+  const phase=+$('recoveryPhase').value;
+  const center=recoveryTargetCenter(dataset);
+  const mask=new Uint8Array(dataset.n);
+  for(let i=0;i<dataset.n;i++){
+    if(mode==='all'&&density>=1){mask[i]=1;continue;}
+    const z=dataset.idx[i*3],y=dataset.idx[i*3+1],x=dataset.idx[i*3+2];
+    let score;
+    if(mode==='staggered')score=((x+2*y+3*z+phase)%11)/11;
+    else if(mode==='radial_shells'){
+      const px=dataset.pos[i*3]-center[0],py=dataset.pos[i*3+1]-center[1],pz=dataset.pos[i*3+2]-center[2];
+      score=((Math.floor(Math.hypot(px,py,pz)/Math.max(1,dataset.manifest.grid.dx))+phase)%17)/17;
+    }else if(mode==='omni_radial'){
+      const px=dataset.pos[i*3]-center[0],py=dataset.pos[i*3+1]-center[1],pz=dataset.pos[i*3+2]-center[2];
+      const angular=Math.floor((Math.atan2(py,px)+Math.PI)*31)+257*Math.floor((Math.atan2(pz,Math.hypot(px,py)+1e-30)+Math.PI/2)*31);
+      score=((Math.abs(angular*65537+phase*8191)%1009))/1009;
+    }else{
+      const hash=Math.abs(((z*73856093)^(y*19349663)^(x*83492791)^(phase*2654435761))|0);
+      score=(hash%1009)/1009;
+    }
+    mask[i]=score<density?1:0;
+  }
+  return mask;
+}
+function recoveryFieldForScale(){
+  const scale=+$('recoveryScale').value;
+  const witness=$('recoveryWitness').value;
+  return scale>0&&witness==='tensor_delta_norm'?`tensor_scale_${scale}`:witness;
+}
+function recoveryMasks(dataset,caseRecord,thresholdDataset=dataset){
+  const sample=recoverySampleMask(dataset);
+  const gap=+$('recoveryGap').value/100;
+  const conditionOrientation=$('recoveryConditionOrientation').checked;
+  const scale=+$('recoveryScale').value;
+  const tensorField=scale>0?`tensor_scale_${scale}`:'tensor_delta_norm';
+  const multiplier=+$('recoveryThreshold').value/100;
+  const tensorValues=[];
+  for(let i=0;i<thresholdDataset.n;i++)tensorValues.push(recoveryScalar(thresholdDataset,i,tensorField));
+  const base=scale===0?Number(caseRecord.baseline_amplitude_threshold):recoveryQuantile(tensorValues,0.95);
+  const threshold=base*multiplier;
+  const stable=new Uint8Array(dataset.n),active=new Uint8Array(dataset.n);
+  const all=[],stableIndices=[],unstableIndices=[],activeIndices=[];
+  for(let i=0;i<dataset.n;i++){
+    if(!sample[i])continue;
+    all.push(i);
+    const isStable=recoveryScalar(dataset,i,'eigen_gap')>=gap;
+    stable[i]=isStable?1:0;
+    if(isStable)stableIndices.push(i);else unstableIndices.push(i);
+    const amplitudeActive=recoveryScalar(dataset,i,tensorField)>=threshold;
+    const isActive=amplitudeActive&&(!conditionOrientation||(isStable&&recoveryScalar(dataset,i,'orientation_delta')>=.05));
+    active[i]=isActive?1:0;
+    if(isActive)activeIndices.push(i);
+  }
+  return {sample,stable,active,all,stableIndices,unstableIndices,activeIndices,threshold,tensorField,gap,multiplier,conditionOrientation};
+}
+function recoveryLabels(names){
+  const spans=[...document.querySelectorAll('#labels span')];
+  spans.forEach((span,index)=>span.textContent=names[index]||'');
+  $('labels').style.display='flex';
+}
+function recoveryAddSupport(dataset,masks,offset=0,color=[.95,.72,.25]){
+  if(!$('recoveryShowActive').checked||!masks.activeIndices.length)return;
+  recoveryWorld.add(recoveryMakePoints(dataset,masks.activeIndices,masks.tensorField,offset,MAG,.88,.92,null,color));
+}
+async function recoveryUpdateView(){
+  if(!recoveryCatalog||activeToolPanel!=='recovery')return;
+  const updateToken=++recoveryUpdateToken;
+  const caseRecord=recoveryCaseRecord();
+  const realization=recoveryRealizationRecord(caseRecord);
+  if(!caseRecord||!realization)return;
+  recoveryClearWorld();
+  const currentDataset=await loadRecoveryDataset(realization.manifest_url);
+  const baselineRecord=caseRecord.realizations.find(row=>row.realization==='baseline');
+  const baselineDataset=await loadRecoveryDataset(baselineRecord.manifest_url);
+  if(updateToken!==recoveryUpdateToken||activeToolPanel!=='recovery')return;
+  recoveryCurrent=currentDataset;
+  recoveryBaseline=baselineDataset;
+  const masks=recoveryMasks(recoveryCurrent,caseRecord,recoveryBaseline);
+  const baselineMasks=recoveryMasks(recoveryBaseline,caseRecord,recoveryBaseline);
+  const view=$('recoveryView').value;
+  const field=recoveryFieldForScale();
+  $('recoveryScaleVal').textContent=+$('recoveryScale').value?`${$('recoveryScale').value} cells`:'pointwise';
+  $('recoveryGapVal').textContent=masks.gap.toFixed(3);
+  $('recoveryThresholdVal').textContent=`${Math.round(masks.multiplier*100)}%`;
+  $('recoveryDensityVal').textContent=`${$('recoveryDensity').value}%`;
+  $('recoveryPhaseVal').textContent=$('recoveryPhase').value;
+  if(view==='matter_constraint'){
+    const fullRange=recoveryRange(recoveryCurrent,masks.all,'rho_full');
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.all,'rho_full',-58,MAG,.72,.62,fullRange));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,-58));
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.all,'hamiltonian_max',58,VIR,.72,.62));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,58));
+    recoveryLabels(['matter density','constraint residual','']);
+  }else if(view==='scalar_tensor'){
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.all,'abs_signed_intensity_change',0,VIR,.34,.46));
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.activeIndices,masks.tensorField,0,MAG,.88,.92));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,0));
+    recoveryLabels(['scalar tail + tensor support','','']);
+  }else if(view==='stability'){
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.stableIndices,'orientation_delta',0,MAG,.72,.58));
+    if($('recoveryShowUnstable').checked)recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.unstableIndices,'eigen_gap',0,VIR,.78,.72,null,[1,.25,.25]));
+    recoveryAddSupport(recoveryCurrent,masks);
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent));
+    recoveryLabels(['stable eigengeometry','','']);
+  }else if(view==='persistence'){
+    recoveryAddSupport(recoveryBaseline,baselineMasks,-58,[.28,.82,.92]);
+    recoveryAddSupport(recoveryCurrent,masks,58,[.98,.68,.22]);
+    recoveryWorld.add(recoveryMakeSources(recoveryBaseline,-58));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,58));
+    recoveryLabels(['baseline support',`${realization.realization} support`,'']);
+  }else if(view==='counterfactual'){
+    const counterfactualRange=recoveryCombinedRange([
+      {dataset:recoveryCurrent,field:'proper_weyl_norm_full'},
+      {dataset:recoveryCurrent,field:'proper_weyl_norm_removed'},
+    ]);
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.all,'proper_weyl_norm_full',-82,VIR,.65,.50,counterfactualRange));
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.all,'proper_weyl_norm_removed',0,VIR,.65,.50,counterfactualRange));
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.activeIndices,masks.tensorField,82,MAG,.86,.82));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,-82));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,0));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,82));
+    recoveryLabels(['full','removed','tensor delta']);
+  }else{
+    const baselineField=+$('recoveryScale').value?`tensor_scale_${$('recoveryScale').value}`:field;
+    const comparisonRange=recoveryCombinedRange([
+      {dataset:recoveryBaseline,field:baselineField},
+      {dataset:recoveryCurrent,field},
+    ]);
+    recoveryWorld.add(recoveryMakePoints(recoveryBaseline,baselineMasks.all,baselineField,-58,VIR,.68,.55,comparisonRange));
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.all,field,58,VIR,.68,.55,comparisonRange));
+    recoveryAddSupport(recoveryBaseline,baselineMasks,-58,[.28,.82,.92]);
+    recoveryAddSupport(recoveryCurrent,masks,58,[.98,.68,.22]);
+    recoveryWorld.add(recoveryMakeSources(recoveryBaseline,-58));
+    recoveryWorld.add(recoveryMakeSources(recoveryCurrent,58));
+    recoveryLabels(['baseline witness',`${realization.realization} witness`,'']);
+  }
+  if(view!=='stability'&&$('recoveryShowUnstable').checked&&masks.unstableIndices.length){
+    recoveryWorld.add(recoveryMakePoints(recoveryCurrent,masks.unstableIndices,'eigen_gap',0,VIR,.68,.62,null,[1,.25,.25]));
+  }
+  const convergence=realization.convergence;
+  const rows=[
+    stat('case role',caseRecord.role),
+    stat('realization',realization.realization),
+    stat('solver substrate','Hamiltonian constraint solve'),
+    stat('rendered probes',masks.all.length.toLocaleString()),
+    stat('stable probes',masks.stableIndices.length.toLocaleString()),
+    stat('active support',masks.activeIndices.length.toLocaleString()),
+    stat('support mode',masks.conditionOrientation?'orientation-conditioned':'tensor amplitude primary'),
+    stat('tensor threshold',fmt(masks.threshold)),
+    stat('compression gate',recoveryCatalog.compression_decision.decision),
+    stat('ET bridge',recoveryCatalog.et_bridge_status),
+  ];
+  if(convergence)rows.push(
+    stat('tensor/topology',convergence.tensor_topology_status),
+    stat('orientation',convergence.orientation_status),
+    stat('compression',convergence.compression_status),
+    stat('tensor relative L2',fmt(convergence.tensor_delta_relative_l2)),
+    stat('radial p95 change',`${(100*convergence.radial_p95_relative_change).toFixed(2)}%`),
+    stat('edge contact',convergence.control_edge_contact?'yes':'no'),
+  );
+  else rows.push(stat('convergence','baseline reference'));
+  $('recoveryStats').innerHTML=rows.join('');
+  $('recoveryMidplaneLink').href=caseRecord.midplane_audit;
+  $('recovery3dLink').href=caseRecord.sampled_3d_audit;
+  $('sceneTitle').textContent=`Recovery Lab -> ${caseRecord.id} / ${realization.realization}`;
+  $('targetBadge').textContent=`case ${caseRecord.id}`;
+  $('sampleBadge').textContent=`${masks.all.length.toLocaleString()} probes`;
+  $('datasetBadge').textContent='Recovery Lab experimental';
+  window.__ATLAS_RECOVERY_STATE={
+    ready:true,caseId:caseRecord.id,realization:realization.realization,view,field,
+    sampled:masks.all.length,stable:masks.stableIndices.length,active:masks.activeIndices.length,
+    threshold:masks.threshold,gap:masks.gap,conditionOrientation:masks.conditionOrientation,convergence:convergence||null,
+  };
+  frameRecoveryScene();
+}
+function populateRecoveryRealizations(){
+  const caseRecord=recoveryCaseRecord();
+  const select=$('recoveryRealization');
+  const previous=select.value;
+  select.innerHTML='';
+  for(const realization of caseRecord.realizations){
+    const option=document.createElement('option');
+    option.value=realization.realization;
+    option.textContent=`${realization.realization}  ${realization.shape_zyx.join('x')}  dx=${realization.dx}`;
+    select.appendChild(option);
+  }
+  select.value=caseRecord.realizations.some(row=>row.realization===previous)?previous:'baseline';
+}
+async function initRecoveryLab(){
+  if(recoveryCatalog){await recoveryUpdateView();return;}
+  if(recoveryLoading)return recoveryLoading;
+  recoveryLoading=(async()=>{
+    recoveryCatalog=await fjson('recovery_lab/recovery_manifest.json');
+    const caseSelect=$('recoveryCase');
+    for(const caseRecord of recoveryCatalog.cases){
+      const option=document.createElement('option');
+      option.value=caseRecord.id;
+      option.textContent=`${caseRecord.id} / ${caseRecord.role}`;
+      caseSelect.appendChild(option);
+    }
+    caseSelect.value='single_sun';
+    populateRecoveryRealizations();
+    const refresh=()=>recoveryUpdateView().catch(err=>{console.error(err);$('recoveryStats').innerHTML=`<div class="claim warn">${err.message}</div>`;});
+    caseSelect.addEventListener('change',()=>{populateRecoveryRealizations();refresh();});
+    ['recoveryRealization','recoveryView','recoveryWitness','recoveryScale','recoveryGap','recoveryThreshold','recoverySampling','recoveryDensity','recoveryPhase','recoveryShowSources','recoveryShowActive','recoveryConditionOrientation','recoveryShowUnstable'].forEach(id=>$(id).addEventListener('input',refresh));
+    await recoveryUpdateView();
+  })();
+  try{await recoveryLoading;}finally{recoveryLoading=null;}
+}
+
+async function fjson(url){return fetch(url).then(r=>{if(!r.ok)throw new Error(url);return r.json();});}
+async function fbuf(url,Type){const b=await fetch(url).then(r=>{if(!r.ok)throw new Error(url);return r.arrayBuffer();});return new Type(b);}
+function fileUrl(datasetUrl,name){return datasetUrl.replace(/viewer_dataset_manifest\.json$/,'')+name;}
+
+function getScalar(i,name){return D.scalars[i*D.scalarNames.length+scalarIndex[name]];}
+function vecAt(arr,i){return [arr[i*3],arr[i*3+1],arr[i*3+2]];}
+function hasScalar(name){return Object.prototype.hasOwnProperty.call(scalarIndex,name);}
+function pairedField(field){
+  const pairs={
+    absWeyl_full:['absWeyl_full','absWeyl_removed'],
+    absWeyl_removed:['absWeyl_full','absWeyl_removed'],
+    lambda0_full:['lambda0_full','lambda0_removed'],
+    lambda0_removed:['lambda0_full','lambda0_removed'],
+    lambda1_full:['lambda1_full','lambda1_removed'],
+    lambda1_removed:['lambda1_full','lambda1_removed'],
+    lambda2_full:['lambda2_full','lambda2_removed'],
+    lambda2_removed:['lambda2_full','lambda2_removed'],
+  };
+  return pairs[field]||null;
+}
+function winkPresence(){
+  const p=+$('winkPresence').value/100;
+  $('winkVal').textContent=`${Math.round(p*100)}% present`;
+  return p;
+}
+function winkDeltaMode(){
+  const mode=$('winkDeltaMode')?.value||'removal';
+  const label=mode==='influence'?'influence reveal':'removal footprint';
+  if($('winkModeVal'))$('winkModeVal').textContent=label;
+  return mode;
+}
+function deltaDisplayAmount(removal){
+  return winkDeltaMode()==='influence'?Math.max(0,1-removal):removal;
+}
+function removalAmountForView(){
+  const mode=$('viewMode').value;
+  if(mode==='wink'||mode==='feature')return 1-winkPresence();
+  winkPresence();
+  winkDeltaMode();
+  const layer=$('layerMode').value;
+  return (layer==='removed'||layer==='delta'||layer==='footprint')?1:0;
+}
+function winkValue(i,field,removal,deltaDisplay=removal){
+  const pair=pairedField(field);
+  if(pair&&hasScalar(pair[0])&&hasScalar(pair[1])){
+    const a=getScalar(i,pair[0]), b=getScalar(i,pair[1]);
+    return a+(b-a)*removal;
+  }
+  if(field==='eigenvector_delta_angle'||field.startsWith('delta_')){
+    return getScalar(i,field)*deltaDisplay;
+  }
+  return getScalar(i,field);
+}
+function winkRange(field,indices){
+  const pair=pairedField(field);
+  let lo=Infinity, hi=-Infinity;
+  if(pair&&hasScalar(pair[0])&&hasScalar(pair[1])){
+    for(const i of indices){
+      const a=getScalar(i,pair[0]), b=getScalar(i,pair[1]);
+      if(a<lo)lo=a; if(a>hi)hi=a;
+      if(b<lo)lo=b; if(b>hi)hi=b;
+    }
+  }else if(field==='eigenvector_delta_angle'||field.startsWith('delta_')){
+    lo=0; hi=0;
+    for(const i of indices){
+      const v=getScalar(i,field);
+      if(v<lo)lo=v; if(v>hi)hi=v;
+    }
+  }else{
+    return null;
+  }
+  if(!Number.isFinite(lo)||lo===hi){lo=0;hi=1;}
+  return [lo,hi];
+}
+
+async function loadDatasetEntry(url){
+  $('loading').style.display='flex';
+  window.__PINCH_LAB_READY=false;
+  const manifest=await fjson(url);
+  if(manifest.schema==='atlas-pinch-lab-viewer-multi/1'){
+    catalog={url,manifest};
+    populateTargetSelect(manifest);
+    const selected=$('targetSelect').value || manifest.targets[0]?.target_id;
+    const target=manifest.targets.find(t=>t.target_id===selected) || manifest.targets[0];
+    return loadDataset(target.manifest_url);
+  }
+  catalog=null;
+  $('targetLane').style.display='none';
+  return loadDataset(url,manifest);
+}
+
+function populateTargetSelect(manifest){
+  $('targetLane').style.display='block';
+  const sel=$('targetSelect');
+  const previous=sel.value;
+  sel.innerHTML='';
+  for(const t of manifest.targets){
+    const o=document.createElement('option');
+    o.value=t.target_id;
+    o.textContent=`${t.target_id}  M=${Number(t.M).toFixed(3)}  fp=${t.default_footprint_points.toLocaleString()}  ${t.default_heuristic_label}`;
+    sel.appendChild(o);
+  }
+  const ids=manifest.targets.map(t=>t.target_id);
+  sel.value=ids.includes(previous)?previous:(ids.includes('B03')?'B03':ids[0]);
+  sel.onchange=()=>{
+    const t=manifest.targets.find(row=>row.target_id===sel.value);
+    if(t)loadDataset(t.manifest_url);
+  };
+}
+
+async function loadDataset(url,manifest=null){
+  $('loading').style.display='flex';
+  window.__PINCH_LAB_READY=false;
+  world.clear();
+  scalarIndex={};
+  D={url,manifest:manifest||await fjson(url)};
+  D.n=D.manifest.grid.sample_count;
+  D.scalarNames=D.manifest.scalar_fields;
+  D.scalarNames.forEach((n,i)=>scalarIndex[n]=i);
+  const [pos,idx,scalars,e0f,e0r,flags]=await Promise.all([
+    fbuf(fileUrl(url,'positions.bin'),Float32Array),
+    fbuf(fileUrl(url,'grid_index.bin'),Uint16Array),
+    fbuf(fileUrl(url,'scalars.bin'),Float32Array),
+    fbuf(fileUrl(url,'e0_full.bin'),Float32Array),
+    fbuf(fileUrl(url,'e0_removed.bin'),Float32Array),
+    fbuf(fileUrl(url,'flags.bin'),Uint8Array),
+  ]);
+  D.pos=pos; D.ijk=idx; D.scalars=scalars; D.e0f=e0f; D.e0r=e0r; D.flags=flags;
+  D.dims=D.manifest.grid.sample_dims_zyx;
+  D.gridToPoint=new Int32Array(D.dims[0]*D.dims[1]*D.dims[2]).fill(-1);
+  for(let i=0;i<D.n;i++){
+    const z=D.ijk[i*3], y=D.ijk[i*3+1], x=D.ijk[i*3+2];
+    D.gridToPoint[(z*D.dims[1]+y)*D.dims[2]+x]=i;
+  }
+  setupControls();
+  buildSources();
+  updateAll();
+  frameScene();
+  $('loading').style.display='none';
+  window.__PINCH_LAB_READY=true;
+}
+
+function setupControls(){
+  $('sceneTitle').textContent=D.manifest.source_experiment+' -> '+D.manifest.target_source.id+' removed';
+  const t=D.manifest.target_source;
+  $('targetBadge').textContent=`target ${t.id} M=${Number(t.M).toFixed(3)}`;
+  $('sampleBadge').textContent=D.n.toLocaleString()+' samples';
+  $('datasetBadge').textContent=catalog?`${catalog.manifest.targets.length} removals`:'single removal';
+  const fields=['absWeyl_full','absWeyl_removed','lambda0_full','lambda1_full','lambda2_full','lambda0_removed','lambda1_removed','lambda2_removed','delta_lambda0','delta_lambda1','delta_lambda2','eigen_gap_full','eigenvector_delta_angle','delta_absWeyl','delta_ricci_trace','delta_compression_fraction'];
+  const previousField=$('fieldSelect').value;
+  $('fieldSelect').innerHTML='';
+  fields.forEach(f=>{const o=document.createElement('option');o.value=f;o.textContent=f;$('fieldSelect').appendChild(o);});
+  $('fieldSelect').value=fields.includes(previousField)?previousField:'eigenvector_delta_angle';
+  updateTargetScan();
+  const ids=['viewMode','layerMode','fieldSelect','compareMetric','compareStyle','pointOpacity','pointSize','probeSampling','probeDensity','probePhase','winkPresence','winkDeltaMode','featureMetric','featureDensity','featureGain','lumenMode','lumenMetric','lumenStride','lumenGain','gapSlider','angleSlider','ampEnabled','ampSlider','showPoints','showFootprint','showFullVectors','showRemovedVectors','showUnstable','showSurface','showLumen','showSources'];
+  ids.forEach(id=>$(id).oninput=updateAll);
+  $('probeSampling').oninput=()=>{
+    if($('probeSampling').value!=='cartesian'&&+$('probeDensity').value>=100)$('probeDensity').value=55;
+    updateAll();
+  };
+  $('winkFull').onclick=()=>{stopWink();$('viewMode').value='wink';$('winkPresence').value=100;updateAll();};
+  $('winkGone').onclick=()=>{stopWink();$('viewMode').value='wink';$('winkPresence').value=0;updateAll();};
+  $('winkPlay').onclick=playWink;
+  $('featureFull').onclick=()=>{stopWink();$('viewMode').value='feature';$('winkPresence').value=100;updateAll();};
+  $('featureGone').onclick=()=>{stopWink();$('viewMode').value='feature';$('winkPresence').value=0;updateAll();};
+  $('featurePlay').onclick=playFeatureShift;
+}
+
+function updateTargetScan(){
+  if(!catalog){
+    $('targetScan').innerHTML='<div class="note">Single-target Phase 1 dataset.</div>';
+    return;
+  }
+  const t=catalog.manifest.targets.find(row=>row.target_id===D.manifest.target_source.id);
+  if(!t){$('targetScan').innerHTML='';return;}
+  $('targetScan').innerHTML=[
+    stat('role/profile',`${t.role} / ${t.profile}`),
+    stat('default footprint',Number(t.default_footprint_points).toLocaleString()),
+    stat('default components',Number(t.default_component_count).toLocaleString()),
+    stat('largest component',Number(t.default_largest_component_points).toLocaleString()),
+    stat('collapse band',(t.collapse_bands||[]).join(', ')||'none'),
+  ].join('');
+}
+
+function stopWink(){
+  if(winkAnim!==null)cancelAnimationFrame(winkAnim);
+  winkAnim=null;
+}
+
+function playPresenceMode(mode){
+  stopWink();
+  $('viewMode').value=mode;
+  const from=+$('winkPresence').value/100;
+  const to=from>0.5?0:1;
+  const start=performance.now();
+  const duration=1300;
+  const step=now=>{
+    const t=Math.min(1,(now-start)/duration);
+    const eased=t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+    $('winkPresence').value=Math.round((from+(to-from)*eased)*100);
+    updateAll();
+    if(t<1)winkAnim=requestAnimationFrame(step);
+    else winkAnim=null;
+  };
+  winkAnim=requestAnimationFrame(step);
+}
+function playWink(){playPresenceMode('wink');}
+function playFeatureShift(){playPresenceMode('feature');}
+
+function buildSources(){
+  sourceGroup=new THREE.Group();
+  for(const s of D.manifest.sources){
+    const color=s.is_target?0xff4d4d:0x9aa6b2;
+    const g=new THREE.SphereGeometry(s.is_target?2.2:1.25,18,18);
+    const m=new THREE.MeshStandardMaterial({color,emissive:color,emissiveIntensity:s.is_target?0.55:0.16,roughness:.45,transparent:true,opacity:1});
+    const mesh=new THREE.Mesh(g,m); mesh.position.set(s.x,s.y,s.z); mesh.userData={id:s.id,isTarget:s.is_target,baseScale:s.is_target?2.2:1.25}; sourceGroup.add(mesh);
+  }
+  world.add(sourceGroup);
+}
+
+function updateSources(removal){
+  if(!sourceGroup)return;
+  if($('viewMode').value==='compare'){
+    sourceGroup.visible=false;
+    return;
+  }
+  sourceGroup.visible=true;
+  for(const mesh of sourceGroup.children){
+    if(mesh.userData?.isTarget){
+      const presence=Math.max(0,1-removal);
+      mesh.visible=$('showSources').checked&&presence>0.015;
+      mesh.material.opacity=presence;
+      const scale=Math.max(0.05,presence);
+      mesh.scale.setScalar(scale);
+    }else{
+      mesh.visible=$('showSources').checked;
+      mesh.material.opacity=$('showSources').checked?0.9:0;
+      mesh.scale.setScalar(1);
+    }
+  }
+}
+
+function thresholds(){
+  const gap=+$('gapSlider').value/100;
+  const angle=+$('angleSlider').value/100;
+  const ampEnabled=$('ampEnabled').checked;
+  const amp=Math.pow(10,+$('ampSlider').value);
+  $('gapVal').textContent=gap.toFixed(3);
+  $('angleVal').textContent=angle.toFixed(2);
+  $('ampVal').textContent=ampEnabled?amp.toExponential(1):'off';
+  return {gap,angle,ampEnabled,amp};
+}
+
+function computeMask(){
+  const t=thresholds();
+  const mask=new Uint8Array(D.n);
+  const stable=new Uint8Array(D.n);
+  let active=0, stableCount=0;
+  for(let i=0;i<D.n;i++){
+    const eg=getScalar(i,'eigen_gap_full');
+    const da=getScalar(i,'eigenvector_delta_angle');
+    const dw=getScalar(i,'delta_absWeyl');
+    const st=eg>=t.gap;
+    stable[i]=st?1:0;
+    if(st) stableCount++;
+    const ok=st && da>=t.angle && (!t.ampEnabled || dw>=t.amp);
+    if(ok){mask[i]=1;active++;}
+  }
+  currentMask=mask;
+  return {mask,stable,active,stableCount};
+}
+
+function shellFromMask(mask){
+  const shell=[];
+  const [nz,ny,nx]=D.dims;
+  const neigh=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  for(let i=0;i<D.n;i++){
+    if(!mask[i])continue;
+    const z=D.ijk[i*3],y=D.ijk[i*3+1],x=D.ijk[i*3+2];
+    let boundary=false;
+    for(const [dz,dy,dx] of neigh){
+      const zz=z+dz, yy=y+dy, xx=x+dx;
+      if(zz<0||yy<0||xx<0||zz>=nz||yy>=ny||xx>=nx){boundary=true;break;}
+      const j=D.gridToPoint[(zz*ny+yy)*nx+xx];
+      if(j<0||!mask[j]){boundary=true;break;}
+    }
+    if(boundary)shell.push(i);
+  }
+  currentShell=shell;
+  return shell;
+}
+
+function fieldRange(field,indices,valueFn=null){
+  let lo=Infinity,hi=-Infinity;
+  for(const i of indices){const v=valueFn?valueFn(i):getScalar(i,field); if(v<lo)lo=v; if(v>hi)hi=v;}
+  if(!Number.isFinite(lo)||lo===hi){lo=0;hi=1;}
+  return [lo,hi];
+}
+
+function indicesForLayer(mask,stable){
+  const layer=$('layerMode').value;
+  const out=[];
+  for(let i=0;i<D.n;i++){
+    if(layer==='footprint'&&!mask[i])continue;
+    if(layer==='baseline'||layer==='removed'||layer==='delta'||layer==='footprint')out.push(i);
+  }
+  return out;
+}
+
+const PROBE_LABELS={
+  cartesian:'cartesian',
+  staggered:'staggered',
+  blueNoise:'blue-noise',
+  radialShells:'radial shells',
+  omniRadial:'omni radial',
+};
+function probeSamplingSettings(){
+  const mode=$('probeSampling').value;
+  const density=+$('probeDensity').value/100;
+  const phase=+$('probePhase').value;
+  $('probeModeVal').textContent=PROBE_LABELS[mode]||mode;
+  $('probeDensityVal').textContent=`${Math.round(density*100)}%`;
+  $('probePhaseVal').textContent=String(phase);
+  return {mode,density,phase,label:PROBE_LABELS[mode]||mode};
+}
+function resetProbeStats(settings){
+  probeStats={mode:settings.label,density:settings.density,phase:settings.phase,input:0,rendered:0};
+}
+function hash01(a,b,c,d=0){
+  let x=((a|0)*374761393+((b|0)*668265263)+((c|0)*2147483647)+((d|0)*1274126177))|0;
+  x=(x^(x>>>13))*1274126177;
+  x=(x^(x>>>16))>>>0;
+  return x/4294967295;
+}
+function targetOffset(i){
+  const t=D.manifest.target_source;
+  return [D.pos[i*3]-t.x,D.pos[i*3+1]-t.y,D.pos[i*3+2]-t.z];
+}
+function keepProbe(i,settings){
+  if(settings.mode==='cartesian')return true;
+  const z=D.ijk[i*3], y=D.ijk[i*3+1], x=D.ijk[i*3+2];
+  const density=Math.max(0.01,Math.min(1,settings.density));
+  const phase=settings.phase;
+  if(settings.mode==='staggered'){
+    const stride=density>=0.9?1:(density>=0.62?2:(density>=0.36?3:4));
+    return ((x+2*y+3*z+phase+((y+phase)&1)*2+((z+phase)&1)*3)%stride)===0;
+  }
+  if(settings.mode==='blueNoise'){
+    return hash01(x,y,z,phase)<density;
+  }
+  const [dx,dy,dz]=targetOffset(i);
+  const r=Math.hypot(dx,dy,dz);
+  const spacing=D.manifest.grid.sample_spacing||3;
+  if(settings.mode==='radialShells'){
+    const shellStep=spacing*(2.0+(1-density)*3.5);
+    const width=spacing*(0.18+density*0.72);
+    const shifted=r+phase*spacing*0.37;
+    const mod=((shifted%shellStep)+shellStep)%shellStep;
+    const shellDist=Math.min(mod,shellStep-mod);
+    return shellDist<=width && hash01(x,z,y,phase)<Math.min(1,0.35+density*0.75);
+  }
+  if(settings.mode==='omniRadial'){
+    if(r<1e-9)return true;
+    const rays=Math.max(6,Math.round(8+density*36));
+    const theta=(Math.atan2(dy,dx)+Math.PI)/(2*Math.PI);
+    const phi=Math.acos(Math.max(-1,Math.min(1,dz/r)))/Math.PI;
+    const a=Math.floor(theta*rays);
+    const b=Math.floor(phi*Math.max(4,Math.round(rays*0.5)));
+    const rayOpen=hash01(a,b,phase,11)<Math.min(0.92,0.16+density*0.70);
+    const radialGate=((Math.floor(r/spacing)+phase+a+b)%2)===0 || density>0.74;
+    return rayOpen&&radialGate;
+  }
+  return true;
+}
+function sampleProbeIndices(indices){
+  const settings=probeSamplingSettings();
+  if(!probeStats||probeStats.phase!==settings.phase||probeStats.density!==settings.density||probeStats.mode!==settings.label){
+    resetProbeStats(settings);
+  }
+  probeStats.input+=indices.length;
+  if(settings.mode==='cartesian'){
+    probeStats.rendered+=indices.length;
+    return indices;
+  }
+  const out=[];
+  for(const i of indices)if(keepProbe(i,settings))out.push(i);
+  if(!out.length&&indices.length)out.push(indices[0]);
+  probeStats.rendered+=out.length;
+  return out;
+}
+function sampleProbePairs(pairs){
+  const settings=probeSamplingSettings();
+  if(!probeStats||probeStats.phase!==settings.phase||probeStats.density!==settings.density||probeStats.mode!==settings.label){
+    resetProbeStats(settings);
+  }
+  probeStats.input+=pairs.length;
+  if(settings.mode==='cartesian'){
+    probeStats.rendered+=pairs.length;
+    return pairs;
+  }
+  const out=pairs.filter(p=>keepProbe(p.i,settings)||keepProbe(p.j,settings));
+  if(!out.length&&pairs.length)out.push(pairs[0]);
+  probeStats.rendered+=out.length;
+  return out;
+}
+
+function makePoints(indices,field,table=VIR,opacity=0.78,size=0.7,valueFn=null,rangeOverride=null){
+  const [lo,hi]=rangeOverride||fieldRange(field,indices,valueFn);
+  const drawIndices=sampleProbeIndices(indices);
+  const pos=new Float32Array(drawIndices.length*3);
+  const col=new Float32Array(drawIndices.length*3);
+  for(let k=0;k<drawIndices.length;k++){
+    const i=drawIndices[k];
+    pos[k*3]=D.pos[i*3]; pos[k*3+1]=D.pos[i*3+1]; pos[k*3+2]=D.pos[i*3+2];
+    const c=colorFor(valueFn?valueFn(i):getScalar(i,field),lo,hi,table);
+    col[k*3]=c[0]; col[k*3+1]=c[1]; col[k*3+2]=c[2];
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const mat=new THREE.PointsMaterial({size,sizeAttenuation:true,vertexColors:true,transparent:true,opacity,depthWrite:false});
+  const p=new THREE.Points(g,mat);
+  p.userData.indices=drawIndices;
+  return p;
+}
+
+function makeVectorLines(indices,vecArray,color,limit=4200){
+  let take=sampleProbeIndices(indices);
+  if(take.length>limit){
+    const step=Math.max(1,Math.floor(take.length/limit));
+    take=take.filter((_,n)=>n%step===0).slice(0,limit);
+  }
+  const verts=new Float32Array(take.length*2*3);
+  const len=2.1;
+  for(let k=0;k<take.length;k++){
+    const i=take[k], vx=vecArray[i*3], vy=vecArray[i*3+1], vz=vecArray[i*3+2];
+    const px=D.pos[i*3], py=D.pos[i*3+1], pz=D.pos[i*3+2];
+    verts[k*6]=px-vx*len*.5; verts[k*6+1]=py-vy*len*.5; verts[k*6+2]=pz-vz*len*.5;
+    verts[k*6+3]=px+vx*len*.5; verts[k*6+4]=py+vy*len*.5; verts[k*6+5]=pz+vz*len*.5;
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(verts,3));
+  const m=new THREE.LineBasicMaterial({color,transparent:true,opacity:.72});
+  return new THREE.LineSegments(g,m);
+}
+
+function makeWinkVectorLines(indices,removal,color=0xd6f0ff,limit=4200){
+  let take=sampleProbeIndices(indices);
+  if(take.length>limit){
+    const step=Math.max(1,Math.floor(take.length/limit));
+    take=take.filter((_,n)=>n%step===0).slice(0,limit);
+  }
+  const verts=new Float32Array(take.length*2*3);
+  const len=2.1;
+  for(let k=0;k<take.length;k++){
+    const i=take[k];
+    let fx=D.e0f[i*3], fy=D.e0f[i*3+1], fz=D.e0f[i*3+2];
+    let rx=D.e0r[i*3], ry=D.e0r[i*3+1], rz=D.e0r[i*3+2];
+    if(fx*rx+fy*ry+fz*rz<0){rx=-rx;ry=-ry;rz=-rz;}
+    let vx=fx+(rx-fx)*removal, vy=fy+(ry-fy)*removal, vz=fz+(rz-fz)*removal;
+    const n=Math.hypot(vx,vy,vz)||1;
+    vx/=n; vy/=n; vz/=n;
+    const px=D.pos[i*3], py=D.pos[i*3+1], pz=D.pos[i*3+2];
+    verts[k*6]=px-vx*len*.5; verts[k*6+1]=py-vy*len*.5; verts[k*6+2]=pz-vz*len*.5;
+    verts[k*6+3]=px+vx*len*.5; verts[k*6+4]=py+vy*len*.5; verts[k*6+5]=pz+vz*len*.5;
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(verts,3));
+  return new THREE.LineSegments(g,new THREE.LineBasicMaterial({color,transparent:true,opacity:.76}));
+}
+
+const LUMEN_LABELS={absWeyl:'absWeyl',lambdaSpread:'lambda spread',eigenvectorDelta:'orientation delta'};
+function lumenSettings(){
+  const mode=$('lumenMode').value;
+  const metric=$('lumenMetric').value;
+  const stride=+$('lumenStride').value;
+  const gain=+$('lumenGain').value/100;
+  $('lumenStrideVal').textContent=`every ${stride}`;
+  $('lumenGainVal').textContent=`${Math.round(gain*100)}%`;
+  return {mode,metric,stride,gain};
+}
+function lumenMetricValue(i,metric,state){
+  const suffix=state==='removed'?'removed':'full';
+  if(metric==='absWeyl')return Math.log10(Math.abs(getScalar(i,`absWeyl_${suffix}`))+1e-30);
+  if(metric==='lambdaSpread'){
+    const vals=[
+      getScalar(i,`lambda0_${suffix}`),
+      getScalar(i,`lambda1_${suffix}`),
+      getScalar(i,`lambda2_${suffix}`),
+    ];
+    return Math.log10(Math.max(Math.max(...vals)-Math.min(...vals),1e-30));
+  }
+  if(metric==='eigenvectorDelta')return getScalar(i,'eigenvector_delta_angle');
+  return 0;
+}
+function lumenLattice(stride){
+  const [nz,ny,nx]=D.dims;
+  const nodes=[];
+  const nodeSet=new Set();
+  const edges=[];
+  function addNode(z,y,x){
+    const i=D.gridToPoint[(z*ny+y)*nx+x];
+    if(i<0)return -1;
+    if(!nodeSet.has(i)){nodeSet.add(i);nodes.push(i);}
+    return i;
+  }
+  for(let z=0;z<nz;z+=stride){
+    for(let y=0;y<ny;y+=stride){
+      for(let x=0;x<nx;x+=stride){
+        const a=addNode(z,y,x);
+        if(a<0)continue;
+        if(x+stride<nx){const b=addNode(z,y,x+stride); if(b>=0)edges.push([a,b]);}
+        if(y+stride<ny){const b=addNode(z,y+stride,x); if(b>=0)edges.push([a,b]);}
+        if(z+stride<nz){const b=addNode(z+stride,y,x); if(b>=0)edges.push([a,b]);}
+      }
+    }
+  }
+  return {nodes,edges};
+}
+function lumenRange(nodes,metric){
+  let lo=Infinity,hi=-Infinity;
+  for(const i of nodes){
+    const a=lumenMetricValue(i,metric,'full');
+    const b=lumenMetricValue(i,metric,'removed');
+    if(Number.isFinite(a)){lo=Math.min(lo,a);hi=Math.max(hi,a);}
+    if(Number.isFinite(b)){lo=Math.min(lo,b);hi=Math.max(hi,b);}
+  }
+  if(!Number.isFinite(lo)||lo===hi){lo=0;hi=1;}
+  return [lo,hi];
+}
+function lumenReleaseForNode(i,metric,state,range){
+  const vec=state==='removed'?D.e0r:D.e0f;
+  let vx=vec[i*3],vy=vec[i*3+1],vz=vec[i*3+2];
+  if(state==='removed'){
+    const dot=D.e0f[i*3]*vx+D.e0f[i*3+1]*vy+D.e0f[i*3+2]*vz;
+    if(dot<0){vx=-vx;vy=-vy;vz=-vz;}
+  }
+  const v=lumenMetricValue(i,metric,state);
+  const t=Math.max(0,Math.min(1,(v-range[0])/(range[1]-range[0]+1e-30)));
+  const spacing=D.manifest.grid.sample_spacing||3;
+  const amp=(0.12+0.88*t)*spacing*1.35;
+  return [vx*amp,vy*amp,vz*amp];
+}
+function makeLumenLines(removal,settings){
+  const {nodes,edges}=lumenLattice(settings.stride);
+  const range=lumenRange(nodes,settings.metric);
+  const releases=new Map();
+  let totalShift=0,maxShift=0;
+  for(const i of nodes){
+    const full=lumenReleaseForNode(i,settings.metric,'full',range);
+    const removed=lumenReleaseForNode(i,settings.metric,'removed',range);
+    const dx=removed[0]-full[0],dy=removed[1]-full[1],dz=removed[2]-full[2];
+    const d=Math.hypot(dx,dy,dz);
+    totalShift+=d; maxShift=Math.max(maxShift,d);
+    releases.set(i,{full,removed,delta:[dx,dy,dz],shift:d});
+  }
+  const maxEdgeShift=Math.max(1e-9,maxShift);
+  const verts=new Float32Array(edges.length*6);
+  const cols=new Float32Array(edges.length*6);
+  function releasedPos(i){
+    const p=[D.pos[i*3],D.pos[i*3+1],D.pos[i*3+2]];
+    if(settings.mode==='raw')return p;
+    const r=releases.get(i);
+    let d;
+    if(settings.mode==='delta'){
+      d=[r.delta[0]*removal,r.delta[1]*removal,r.delta[2]*removal];
+    }else{
+      d=[
+        r.full[0]+(r.removed[0]-r.full[0])*removal,
+        r.full[1]+(r.removed[1]-r.full[1])*removal,
+        r.full[2]+(r.removed[2]-r.full[2])*removal,
+      ];
+    }
+    return [p[0]+d[0]*settings.gain,p[1]+d[1]*settings.gain,p[2]+d[2]*settings.gain];
+  }
+  for(let k=0;k<edges.length;k++){
+    const [a,b]=edges[k];
+    const pa=releasedPos(a),pb=releasedPos(b);
+    verts[k*6]=pa[0]; verts[k*6+1]=pa[1]; verts[k*6+2]=pa[2];
+    verts[k*6+3]=pb[0]; verts[k*6+4]=pb[1]; verts[k*6+5]=pb[2];
+    let color;
+    if(settings.mode==='raw')color=[0.20,0.56,0.68];
+    else if(settings.mode==='delta')color=colorFor((releases.get(a).shift+releases.get(b).shift)*0.5,0,maxEdgeShift,MAG);
+    else color=[0.18,0.86,1.00];
+    cols[k*6]=color[0]; cols[k*6+1]=color[1]; cols[k*6+2]=color[2];
+    cols[k*6+3]=color[0]; cols[k*6+4]=color[1]; cols[k*6+5]=color[2];
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(verts,3));
+  g.setAttribute('color',new THREE.BufferAttribute(cols,3));
+  const opacity=settings.mode==='raw'?0.18:(settings.mode==='delta'?0.62:0.34);
+  const lines=new THREE.LineSegments(g,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity,depthWrite:false}));
+  lumenStats={
+    mode:settings.mode,
+    metric:LUMEN_LABELS[settings.metric]||settings.metric,
+    stride:settings.stride,
+    gain:settings.gain,
+    nodes:nodes.length,
+    segments:edges.length,
+    meanShift:nodes.length?totalShift/nodes.length:0,
+    maxShift,
+  };
+  return lines;
+}
+
+function makeSolidPoints(indices,color,size,opacity){
+  const drawIndices=sampleProbeIndices(indices);
+  const pos=new Float32Array(drawIndices.length*3);
+  for(let k=0;k<drawIndices.length;k++){const i=drawIndices[k];pos[k*3]=D.pos[i*3];pos[k*3+1]=D.pos[i*3+1];pos[k*3+2]=D.pos[i*3+2];}
+  const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const p=new THREE.Points(g,new THREE.PointsMaterial({color,size,sizeAttenuation:true,transparent:true,opacity,depthWrite:false}));
+  p.userData.indices=drawIndices;
+  return p;
+}
+
+const FEATURE_LABELS={
+  absWeyl:'absWeyl',
+  lambda0:'lambda0',
+  lambda1:'lambda1',
+  lambda2:'lambda2',
+  lambdaSpread:'lambda spread',
+};
+function featureSettings(){
+  const metric=$('featureMetric').value;
+  const density=+$('featureDensity').value;
+  const gain=+$('featureGain').value/100;
+  $('featureMetricVal').textContent=FEATURE_LABELS[metric]||metric;
+  $('featureDensityVal').textContent=`top ${density}%`;
+  $('featureGainVal').textContent=`${Math.round(gain*100)}%`;
+  return {metric,density,gain,maxPairs:1400};
+}
+function featureValue(i,metric,state){
+  const suffix=state==='removed'?'removed':'full';
+  if(metric==='absWeyl')return getScalar(i,`absWeyl_${suffix}`);
+  if(metric==='lambda0'||metric==='lambda1'||metric==='lambda2')return Math.abs(getScalar(i,`${metric}_${suffix}`));
+  if(metric==='lambdaSpread'){
+    const vals=[
+      getScalar(i,`lambda0_${suffix}`),
+      getScalar(i,`lambda1_${suffix}`),
+      getScalar(i,`lambda2_${suffix}`),
+    ];
+    return Math.max(...vals)-Math.min(...vals);
+  }
+  return getScalar(i,`absWeyl_${suffix}`);
+}
+function featureIndices(metric,state,stable,density){
+  const rows=[];
+  for(let i=0;i<D.n;i++){
+    if(stable&&stable[i]!==1)continue;
+    const v=featureValue(i,metric,state);
+    if(Number.isFinite(v))rows.push({i,v});
+  }
+  if(!rows.length&&stable)return featureIndices(metric,state,null,density);
+  rows.sort((a,b)=>b.v-a.v);
+  const k=Math.max(32,Math.min(rows.length,Math.round(rows.length*density/100)));
+  return rows.slice(0,k).map(row=>row.i);
+}
+function pairFeatureSets(fullIdx,removedIdx,maxPairs){
+  const pairs=[];
+  if(!fullIdx.length||!removedIdx.length)return pairs;
+  const step=Math.max(1,Math.ceil(fullIdx.length/maxPairs));
+  for(let n=0;n<fullIdx.length&&pairs.length<maxPairs;n+=step){
+    const i=fullIdx[n];
+    const px=D.pos[i*3],py=D.pos[i*3+1],pz=D.pos[i*3+2];
+    let best=removedIdx[0],bestD=Infinity;
+    for(const j of removedIdx){
+      const dx=D.pos[j*3]-px,dy=D.pos[j*3+1]-py,dz=D.pos[j*3+2]-pz;
+      const d=dx*dx+dy*dy+dz*dz;
+      if(d<bestD){bestD=d;best=j;}
+    }
+    pairs.push({i,j:best,d:Math.sqrt(bestD)});
+  }
+  return pairs;
+}
+function featurePairStats(pairs,fullCount,removedCount,settings){
+  if(!pairs.length)return {metric:FEATURE_LABELS[settings.metric]||settings.metric,density:settings.density,fullCount,removedCount,pairs:0,mean:0,median:0,max:0,gain:settings.gain};
+  const distances=pairs.map(p=>p.d).sort((a,b)=>a-b);
+  const sum=distances.reduce((a,b)=>a+b,0);
+  return {
+    metric:FEATURE_LABELS[settings.metric]||settings.metric,
+    density:settings.density,
+    fullCount,
+    removedCount,
+    pairs:pairs.length,
+    mean:sum/distances.length,
+    median:distances[Math.floor(distances.length/2)],
+    max:distances[distances.length-1],
+    gain:settings.gain,
+  };
+}
+function makeFeatureShiftPoints(pairs,removal,gain,size,opacity){
+  const drawPairs=sampleProbePairs(pairs);
+  const pos=new Float32Array(drawPairs.length*3);
+  const col=new Float32Array(drawPairs.length*3);
+  const maxD=Math.max(1e-9,...drawPairs.map(p=>p.d));
+  const indices=[];
+  for(let k=0;k<drawPairs.length;k++){
+    const p=drawPairs[k],i=p.i,j=p.j;
+    const sx=D.pos[i*3],sy=D.pos[i*3+1],sz=D.pos[i*3+2];
+    const ex=D.pos[j*3],ey=D.pos[j*3+1],ez=D.pos[j*3+2];
+    pos[k*3]=sx+(ex-sx)*removal*gain;
+    pos[k*3+1]=sy+(ey-sy)*removal*gain;
+    pos[k*3+2]=sz+(ez-sz)*removal*gain;
+    const c=colorFor(p.d,0,maxD,MAG);
+    col[k*3]=c[0]; col[k*3+1]=c[1]; col[k*3+2]=c[2];
+    indices.push(i);
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const pts=new THREE.Points(g,new THREE.PointsMaterial({size:size*1.18,sizeAttenuation:true,vertexColors:true,transparent:true,opacity,depthWrite:false}));
+  pts.userData.indices=indices;
+  return pts;
+}
+function makeFeatureShiftLines(pairs,gain){
+  const drawPairs=sampleProbePairs(pairs);
+  const verts=new Float32Array(drawPairs.length*6);
+  for(let k=0;k<drawPairs.length;k++){
+    const p=drawPairs[k],i=p.i,j=p.j;
+    const sx=D.pos[i*3],sy=D.pos[i*3+1],sz=D.pos[i*3+2];
+    const ex=D.pos[j*3],ey=D.pos[j*3+1],ez=D.pos[j*3+2];
+    verts[k*6]=sx; verts[k*6+1]=sy; verts[k*6+2]=sz;
+    verts[k*6+3]=sx+(ex-sx)*gain; verts[k*6+4]=sy+(ey-sy)*gain; verts[k*6+5]=sz+(ez-sz)*gain;
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(verts,3));
+  return new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:0xcdf7ff,transparent:true,opacity:.58,depthWrite:false}));
+}
+function makeCompareFeatureShiftLines(pairs,offset,gain){
+  const drawPairs=sampleProbePairs(pairs);
+  const verts=new Float32Array(drawPairs.length*6);
+  const cols=new Float32Array(drawPairs.length*6);
+  const maxD=Math.max(1e-9,...drawPairs.map(p=>p.d));
+  for(let k=0;k<drawPairs.length;k++){
+    const p=drawPairs[k],i=p.i,j=p.j;
+    const sx=D.pos[i*3],sy=D.pos[i*3+1],sz=D.pos[i*3+2];
+    const ex=D.pos[j*3],ey=D.pos[j*3+1],ez=D.pos[j*3+2];
+    verts[k*6]=sx+offset; verts[k*6+1]=sy; verts[k*6+2]=sz;
+    verts[k*6+3]=sx+(ex-sx)*gain+offset; verts[k*6+4]=sy+(ey-sy)*gain; verts[k*6+5]=sz+(ez-sz)*gain;
+    const c=colorFor(p.d,0,maxD,MAG);
+    cols[k*6]=c[0]; cols[k*6+1]=c[1]; cols[k*6+2]=c[2];
+    cols[k*6+3]=c[0]; cols[k*6+4]=c[1]; cols[k*6+5]=c[2];
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(verts,3));
+  g.setAttribute('color',new THREE.BufferAttribute(cols,3));
+  return new THREE.LineSegments(g,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.66,depthWrite:false}));
+}
+
+const COMPARE_LABELS={
+  absWeyl:'absWeyl',
+  lambdaSpread:'lambda spread',
+  lambda0:'lambda0',
+  lambda1:'lambda1',
+  lambda2:'lambda2',
+  eigenGap:'eigen-gap stability',
+  orientation:'eigenvector orientation',
+};
+const COMPARE_STYLE_LABELS={
+  snapshots:'fixed snapshots',
+  amplified:'delta-amplified footprint',
+  feature:'feature displacement',
+};
+function compareSettings(){
+  const metric=$('compareMetric').value;
+  const style=$('compareStyle').value;
+  $('compareMetricVal').textContent=COMPARE_LABELS[metric]||metric;
+  $('compareStyleVal').textContent=COMPARE_STYLE_LABELS[style]||style;
+  return {metric,style,label:COMPARE_LABELS[metric]||metric,styleLabel:COMPARE_STYLE_LABELS[style]||style};
+}
+function compareFeatureMetric(metric){
+  if(metric==='absWeyl'||metric==='lambdaSpread'||metric==='lambda0'||metric==='lambda1'||metric==='lambda2')return metric;
+  return 'absWeyl';
+}
+function comparePanelMetric(metric){
+  if(metric==='orientation'||metric==='eigenGap')return 'absWeyl';
+  return metric;
+}
+function lambdaSpreadValue(i,state){
+  const suffix=state==='removed'?'removed':'full';
+  const vals=[
+    getScalar(i,`lambda0_${suffix}`),
+    getScalar(i,`lambda1_${suffix}`),
+    getScalar(i,`lambda2_${suffix}`),
+  ];
+  return Math.max(...vals)-Math.min(...vals);
+}
+function compareValue(i,metric,state){
+  if(metric==='absWeyl')return getScalar(i,state==='removed'?'absWeyl_removed':'absWeyl_full');
+  if(metric==='lambdaSpread')return lambdaSpreadValue(i,state);
+  if(metric==='lambda0'||metric==='lambda1'||metric==='lambda2')return getScalar(i,`${metric}_${state==='removed'?'removed':'full'}`);
+  if(metric==='eigenGap')return getScalar(i,'eigen_gap_full');
+  if(metric==='orientation')return state==='removed'?getScalar(i,'eigenvector_delta_angle'):0;
+  return getScalar(i,state==='removed'?'absWeyl_removed':'absWeyl_full');
+}
+function compareDeltaValue(i,metric){
+  if(metric==='absWeyl')return getScalar(i,'delta_absWeyl');
+  if(metric==='lambdaSpread')return Math.abs(lambdaSpreadValue(i,'removed')-lambdaSpreadValue(i,'full'));
+  if(metric==='lambda0'||metric==='lambda1'||metric==='lambda2')return Math.abs(getScalar(i,`delta_${metric}`));
+  if(metric==='eigenGap')return Math.max(0,1-getScalar(i,'eigen_gap_full'));
+  if(metric==='orientation')return getScalar(i,'eigenvector_delta_angle');
+  return getScalar(i,'eigenvector_delta_angle');
+}
+function compareSharedRange(indices,metric){
+  let lo=Infinity,hi=-Infinity;
+  for(const i of indices){
+    for(const state of ['full','removed']){
+      const v=compareValue(i,metric,state);
+      if(v<lo)lo=v; if(v>hi)hi=v;
+    }
+  }
+  if(metric==='orientation'){lo=0;hi=1;}
+  if(!Number.isFinite(lo)||lo===hi){lo=0;hi=1;}
+  return [lo,hi];
+}
+function compareDeltaRange(indices,metric){
+  let hi=0;
+  for(const i of indices){
+    const v=compareDeltaValue(i,metric);
+    if(Number.isFinite(v))hi=Math.max(hi,v);
+  }
+  if(metric==='orientation')hi=1;
+  if(!Number.isFinite(hi)||hi<=0)hi=1;
+  return [0,hi];
+}
+function compareFeatureRange(indices,featureMetric){
+  let lo=Infinity,hi=-Infinity;
+  for(const i of indices){
+    for(const state of ['full','removed']){
+      const v=featureValue(i,featureMetric,state);
+      if(v<lo)lo=v; if(v>hi)hi=v;
+    }
+  }
+  if(!Number.isFinite(lo)||lo===hi){lo=0;hi=1;}
+  return [lo,hi];
+}
+function makeCompareSources(offset,state){
+  const group=new THREE.Group();
+  if(!$('showSources').checked)return group;
+  for(const s of D.manifest.sources){
+    const isTarget=s.is_target;
+    const removedTarget=isTarget&&state==='removed';
+    const deltaTarget=isTarget&&state==='delta';
+    const radius=isTarget?2.2:1.25;
+    const g=new THREE.SphereGeometry(deltaTarget?2.55:radius,18,18);
+    const m=new THREE.MeshStandardMaterial({
+      color:isTarget?0xff4d4d:0x9aa6b2,
+      emissive:isTarget?0xff4d4d:0x9aa6b2,
+      emissiveIntensity:isTarget?0.48:0.12,
+      roughness:.45,
+      transparent:true,
+      opacity:removedTarget?0.18:(deltaTarget?0.62:0.86),
+      wireframe:removedTarget,
+    });
+    const mesh=new THREE.Mesh(g,m);
+    mesh.position.set(s.x+offset,s.y,s.z);
+    group.add(mesh);
+  }
+  return group;
+}
+function setCompareLabels(settings){
+  const spans=[...document.querySelectorAll('#labels span')];
+  let names;
+  if(settings.style==='feature'){
+    const basis=FEATURE_LABELS[compareFeatureMetric(settings.metric)]||compareFeatureMetric(settings.metric);
+    names=[
+      `${basis} full features`,
+      `${basis} removed features`,
+      `${settings.label} matched shift`,
+    ];
+  }else if(settings.style==='amplified'){
+    const basis=COMPARE_LABELS[comparePanelMetric(settings.metric)]||comparePanelMetric(settings.metric);
+    names=[
+      `${basis} full footprint`,
+      `${basis} removed footprint`,
+      `${settings.label} amplified response`,
+    ];
+  }else{
+    names=[
+      `${settings.label} baseline`,
+      `${settings.label} target removed`,
+      `${settings.label} response`,
+    ];
+  }
+  spans.forEach((span,i)=>span.textContent=names[i]||'');
+}
+
+function clearObj(obj){if(obj){world.remove(obj); obj.geometry?.dispose?.(); obj.material?.dispose?.();}}
+
+function updateAll(){
+  if(!D)return;
+  const {mask,stable,active,stableCount}=computeMask();
+  const shell=shellFromMask(mask);
+  const featureConfig=featureSettings();
+  const lumenConfig=lumenSettings();
+  compareSettings();
+  const probeConfig=probeSamplingSettings();
+  resetProbeStats(probeConfig);
+  featureStats=null;
+  lumenStats=null;
+  compareStats=null;
+  const removal=removalAmountForView();
+  updateSources(removal);
+  clearObj(mainPoints); clearObj(footprintPoints); clearObj(unstablePoints); clearObj(surfacePoints);
+  clearObj(featureFullPoints); clearObj(featureRemovedPoints); clearObj(featureShiftLines);
+  clearObj(lumenLines);
+  clearObj(fullVecLines); clearObj(removedVecLines);
+  mainPoints=footprintPoints=unstablePoints=surfacePoints=null;
+  featureFullPoints=featureRemovedPoints=featureShiftLines=null;
+  lumenLines=null;
+  fullVecLines=removedVecLines=null;
+  if(compareGroup){world.remove(compareGroup); compareGroup=null;}
+  const mode=$('viewMode').value;
+  const enteringMode=mode!==lastViewMode;
+  lastViewMode=mode;
+  $('labels').style.display=mode==='compare'?'flex':'none';
+  const opacity=+$('pointOpacity').value/100;
+  const size=+$('pointSize').value/100;
+  const field=$('fieldSelect').value;
+  const targetMesh=sourceGroup?.children.find(mesh=>mesh.userData?.isTarget);
+  const winkAll=[...Array(D.n).keys()];
+  const winkScale=mode==='wink'?winkRange(field,winkAll):null;
+  const deltaDisplay=deltaDisplayAmount(removal);
+  window.__PINCH_LAB_STATE={
+    mode,
+    layer:$('layerMode').value,
+    field,
+    target:D.manifest.target_source.id,
+    targetPresence:Math.max(0,1-removal),
+    deltaStory:winkDeltaMode(),
+    deltaDisplay,
+    targetMeshVisible:!!targetMesh?.visible,
+    footprintPoints:active,
+    stablePoints:stableCount,
+    boundaryPreviewPoints:shell.length,
+    fixedColorScale:winkScale,
+    featureShift:null,
+    lumen:null,
+    probeSampling:null,
+  };
+  if(mode==='compare'){
+    buildCompare(mask,stable,enteringMode);
+  }else if(mode==='wink'){
+    buildWink(mask,stable,removal,deltaDisplay,field,opacity,size);
+  }else if(mode==='feature'){
+    buildFeatureShift(mask,stable,removal,opacity,size,featureConfig);
+  }else{
+    const indices=indicesForLayer(mask,stable);
+    const layer=$('layerMode').value;
+    const table=(field.includes('delta')||field==='eigenvector_delta_angle')?MAG:VIR;
+    if($('showPoints').checked && layer!=='footprint'){
+      mainPoints=makePoints(indices,field,table,opacity,size);
+      world.add(mainPoints);
+    }
+    if($('showFootprint').checked){
+      const fp=[]; for(let i=0;i<D.n;i++)if(mask[i])fp.push(i);
+      footprintPoints=makePoints(fp,'eigenvector_delta_angle',MAG,0.92,Math.max(size,0.9));
+      world.add(footprintPoints);
+    }
+    if($('showUnstable').checked){
+      const bad=[]; for(let i=0;i<D.n;i++)if(!stable[i])bad.push(i);
+      unstablePoints=makeSolidPoints(bad,0xff4b4b,0.65,0.62); world.add(unstablePoints);
+    }
+    if($('showSurface').checked){
+      surfacePoints=makeSolidPoints(shell,0x79f2ff,1.7,0.56); world.add(surfacePoints);
+    }
+    const vecBase=$('layerMode').value==='footprint'?[...Array(D.n).keys()].filter(i=>mask[i]):indices;
+    if($('showFullVectors').checked){fullVecLines=makeVectorLines(vecBase,D.e0f,0x8fb9ff); world.add(fullVecLines);}
+    if($('showRemovedVectors').checked){removedVecLines=makeVectorLines(vecBase,D.e0r,0xffc46b); world.add(removedVecLines);}
+  }
+  if($('showLumen').checked&&mode!=='compare'){
+    lumenLines=makeLumenLines(removal,lumenConfig);
+    world.add(lumenLines);
+  }
+  window.__PINCH_LAB_STATE.featureShift=featureStats;
+  window.__PINCH_LAB_STATE.lumen=lumenStats;
+  window.__PINCH_LAB_STATE.probeSampling=probeStats;
+  updateTopology(mask,active,stableCount,shell.length);
+  $('blOverlayLabel').style.display=atlasIsGaiaParent()?'':'none';
+  updateAtlasPassport();
+}
+
+function buildWink(mask,stable,removal,deltaDisplay,field,opacity,size){
+  const all=[...Array(D.n).keys()];
+  const fp=all.filter(i=>mask[i]);
+  const table=(field.includes('delta')||field==='eigenvector_delta_angle')?MAG:VIR;
+  const valueFn=i=>winkValue(i,field,removal,deltaDisplay);
+  const range=winkRange(field,all);
+  if($('showPoints').checked){
+    mainPoints=makePoints(all,field,table,opacity,size,valueFn,range);
+    world.add(mainPoints);
+  }
+  if($('showFootprint').checked&&deltaDisplay>0.015){
+    const fpValueFn=i=>winkValue(i,'eigenvector_delta_angle',removal,deltaDisplay);
+    footprintPoints=makePoints(fp,'eigenvector_delta_angle',MAG,0.06+0.34*deltaDisplay,Math.max(size,0.70),fpValueFn,winkRange('eigenvector_delta_angle',all));
+    world.add(footprintPoints);
+  }
+  if($('showUnstable').checked){
+    const bad=[]; for(let i=0;i<D.n;i++)if(!stable[i])bad.push(i);
+    unstablePoints=makeSolidPoints(bad,0xff4b4b,0.65,0.62); world.add(unstablePoints);
+  }
+  if($('showSurface').checked){
+    surfacePoints=makeSolidPoints(currentShell||[],0x79f2ff,1.7,0.56); world.add(surfacePoints);
+  }
+  const vecBase=fp.length?fp:all;
+  if($('showFullVectors').checked){fullVecLines=makeWinkVectorLines(vecBase,removal,0xd6f0ff); world.add(fullVecLines);}
+  if($('showRemovedVectors').checked){removedVecLines=makeVectorLines(vecBase,D.e0r,0xffc46b); world.add(removedVecLines);}
+}
+
+function buildFeatureShift(mask,stable,removal,opacity,size,settings){
+  const fullIdx=featureIndices(settings.metric,'full',stable,settings.density);
+  const removedIdx=featureIndices(settings.metric,'removed',stable,settings.density);
+  const pairs=pairFeatureSets(fullIdx,removedIdx,settings.maxPairs);
+  featureStats=featurePairStats(pairs,fullIdx.length,removedIdx.length,settings);
+  if($('showPoints').checked&&pairs.length){
+    mainPoints=makeFeatureShiftPoints(pairs,removal,settings.gain,Math.max(size,0.72),opacity);
+    world.add(mainPoints);
+  }
+  if($('showFootprint').checked){
+    featureFullPoints=makeSolidPoints(fullIdx,0x74a8ff,Math.max(size*0.72,0.42),0.28);
+    featureRemovedPoints=makeSolidPoints(removedIdx,0xf6c66b,Math.max(size*0.72,0.42),0.34);
+    world.add(featureFullPoints);
+    world.add(featureRemovedPoints);
+  }
+  if($('showSurface').checked&&pairs.length){
+    featureShiftLines=makeFeatureShiftLines(pairs,settings.gain);
+    world.add(featureShiftLines);
+  }
+  const pairFull=pairs.map(p=>p.i);
+  const pairRemoved=pairs.map(p=>p.j);
+  if($('showFullVectors').checked&&pairFull.length){
+    fullVecLines=makeVectorLines(pairFull,D.e0f,0x8fb9ff,2200);
+    world.add(fullVecLines);
+  }
+  if($('showRemovedVectors').checked&&pairRemoved.length){
+    removedVecLines=makeVectorLines(pairRemoved,D.e0r,0xffc46b,2200);
+    world.add(removedVecLines);
+  }
+}
+
+function buildCompare(mask,stable,enteringMode=false){
+  compareGroup=new THREE.Group();
+  const settings=compareSettings();
+  setCompareLabels(settings);
+  const offsets=[-122,0,122];
+  const all=[...Array(D.n).keys()];
+  const fp=all.filter(i=>mask[i]);
+  const opacity=+$('pointOpacity').value/100;
+  const size=+$('pointSize').value/100;
+  const sharedRange=compareSharedRange(all,settings.metric);
+  const deltaIdx=$('showFootprint').checked&&fp.length?fp:all;
+  const deltaRange=compareDeltaRange(deltaIdx,settings.metric);
+  const baselineFn=i=>compareValue(i,settings.metric,'full');
+  const removedFn=i=>compareValue(i,settings.metric,'removed');
+  const deltaFn=i=>compareDeltaValue(i,settings.metric);
+  const panelMetric=comparePanelMetric(settings.metric);
+  const panelBaselineFn=i=>compareValue(i,panelMetric,'full');
+  const panelRemovedFn=i=>compareValue(i,panelMetric,'removed');
+  const panelSharedRange=compareSharedRange(all,panelMetric);
+  const baseTable=panelMetric==='orientation'?MAG:VIR;
+  let featureModeStats=null;
+  if(settings.style==='feature'){
+    const featureMetric=compareFeatureMetric(settings.metric);
+    const density=+$('featureDensity').value;
+    const gain=+$('featureGain').value/100;
+    const fullIdx=featureIndices(featureMetric,'full',stable,density);
+    const removedIdx=featureIndices(featureMetric,'removed',stable,density);
+    const pairs=pairFeatureSets(fullIdx,removedIdx,1600);
+    const sharedFeatureRange=compareFeatureRange([...new Set([...fullIdx,...removedIdx])],featureMetric);
+    const featureFullFn=i=>featureValue(i,featureMetric,'full');
+    const featureRemovedFn=i=>featureValue(i,featureMetric,'removed');
+    if($('showPoints').checked){
+      const base=makePoints(fullIdx,'absWeyl_full',VIR,Math.max(0.46,opacity),Math.max(size,0.68),featureFullFn,sharedFeatureRange);
+      base.position.x+=offsets[0];
+      compareGroup.add(base);
+      const rem=makePoints(removedIdx,'absWeyl_removed',VIR,Math.max(0.46,opacity),Math.max(size,0.68),featureRemovedFn,sharedFeatureRange);
+      rem.position.x+=offsets[1];
+      compareGroup.add(rem);
+      const shifted=makeFeatureShiftPoints(pairs,1,gain,Math.max(size,0.74),Math.max(0.50,opacity));
+      shifted.position.x+=offsets[2];
+      compareGroup.add(shifted);
+    }
+    if($('showSurface').checked&&pairs.length){
+      featureShiftLines=makeCompareFeatureShiftLines(pairs,offsets[2],gain);
+      compareGroup.add(featureShiftLines);
+    }
+    featureModeStats=featurePairStats(pairs,fullIdx.length,removedIdx.length,{metric:featureMetric,density,gain});
+    featureModeStats.featureMetric=FEATURE_LABELS[featureMetric]||featureMetric;
+    featureModeStats.sharedMin=sharedFeatureRange[0];
+    featureModeStats.sharedMax=sharedFeatureRange[1];
+  }else{
+    const panelIdx=settings.style==='amplified'?deltaIdx:all;
+    const panelRange=settings.style==='amplified'?compareSharedRange(panelIdx,panelMetric):panelSharedRange;
+    const base2=makePoints(
+      panelIdx,
+      'absWeyl_full',
+      baseTable,
+      settings.style==='amplified'?Math.max(0.50,opacity):Math.min(0.72,opacity),
+      settings.style==='amplified'?Math.max(size,0.70):Math.max(size*0.72,0.36),
+      panelBaselineFn,
+      panelRange
+    );
+    base2.position.x+=offsets[0];
+    compareGroup.add(base2);
+    const rem=makePoints(
+      panelIdx,
+      'absWeyl_removed',
+      baseTable,
+      settings.style==='amplified'?Math.max(0.50,opacity):Math.min(0.72,opacity),
+      settings.style==='amplified'?Math.max(size,0.70):Math.max(size*0.72,0.36),
+      panelRemovedFn,
+      panelRange
+    );
+    rem.position.x+=offsets[1];
+    compareGroup.add(rem);
+    const del=makePoints(deltaIdx,'eigenvector_delta_angle',MAG,Math.max(0.42,opacity),Math.max(size,0.66),deltaFn,deltaRange);
+    del.position.x+=offsets[2];
+    compareGroup.add(del);
+  }
+  compareGroup.add(makeCompareSources(offsets[0],'full'));
+  compareGroup.add(makeCompareSources(offsets[1],'removed'));
+  compareGroup.add(makeCompareSources(offsets[2],'delta'));
+  if($('showSurface').checked){
+    surfacePoints=makeSolidPoints(currentShell||[],0x79f2ff,1.55,0.54);
+    surfacePoints.position.x+=offsets[2];
+    compareGroup.add(surfacePoints);
+  }
+  if($('showUnstable').checked){
+    const bad=[]; for(let i=0;i<D.n;i++)if(!stable[i])bad.push(i);
+    unstablePoints=makeSolidPoints(bad,0xff4b4b,0.60,0.45);
+    unstablePoints.position.x+=offsets[2];
+    compareGroup.add(unstablePoints);
+  }
+  if($('showFullVectors').checked){
+    fullVecLines=makeVectorLines(fp.length?fp:all,D.e0f,0x8fb9ff);
+    fullVecLines.position.x+=offsets[0];
+    compareGroup.add(fullVecLines);
+  }
+  if($('showRemovedVectors').checked){
+    removedVecLines=makeVectorLines(fp.length?fp:all,D.e0r,0xffc46b);
+    removedVecLines.position.x+=offsets[1];
+    compareGroup.add(removedVecLines);
+  }
+  let deltaMax=0, deltaMean=0;
+  for(const i of deltaIdx){
+    const v=deltaFn(i);
+    if(Number.isFinite(v)){deltaMean+=v; deltaMax=Math.max(deltaMax,v);}
+  }
+  deltaMean=deltaIdx.length?deltaMean/deltaIdx.length:0;
+  compareStats={
+    metric:settings.label,
+    style:settings.styleLabel,
+    panelMetric:COMPARE_LABELS[panelMetric]||panelMetric,
+    comparedPoints:all.length,
+    responsePoints:featureModeStats?featureModeStats.pairs:deltaIdx.length,
+    footprintPoints:fp.length,
+    sharedMin:settings.style==='feature'&&featureModeStats?featureModeStats.sharedMin??panelSharedRange[0]:panelSharedRange[0],
+    sharedMax:settings.style==='feature'&&featureModeStats?featureModeStats.sharedMax??panelSharedRange[1]:panelSharedRange[1],
+    responseMax:featureModeStats?featureModeStats.max:deltaMax,
+    responseMean:featureModeStats?featureModeStats.mean:deltaMean,
+    fixedScale:true,
+    featureShift:featureModeStats,
+  };
+  window.__PINCH_LAB_STATE.compare=compareStats;
+  world.add(compareGroup);
+  if(enteringMode)frameCompareScene();
+}
+
+function updateTopology(mask,active,stableCount,shellCount){
+  const probeRows=()=>probeStats?[
+    stat('probe sampling',probeStats.mode),
+    stat('probe density',`${Math.round(probeStats.density*100)}% phase ${probeStats.phase}`),
+    stat('rendered probes',`${probeStats.rendered.toLocaleString()} / ${probeStats.input.toLocaleString()}`),
+  ]:[];
+  const lumenRows=()=>lumenStats?[
+    stat('lumen mode',lumenStats.mode),
+    stat('lumen metric',lumenStats.metric),
+    stat('lumen segments',lumenStats.segments.toLocaleString()),
+    stat('lumen mean shift',fmt(lumenStats.meanShift)),
+    stat('lumen max shift',fmt(lumenStats.maxShift)),
+  ]:[];
+  if($('viewMode').value==='compare'&&compareStats){
+    const rows=[
+      stat('comparison focus',compareStats.metric),
+      stat('comparison style',compareStats.style),
+      stat('panel metric',compareStats.panelMetric),
+      stat('baseline/removed scale',`${fmt(compareStats.sharedMin)} -> ${fmt(compareStats.sharedMax)}`),
+      stat('response points',compareStats.responsePoints.toLocaleString()),
+      stat('footprint points',compareStats.footprintPoints.toLocaleString()),
+      stat('response mean',fmt(compareStats.responseMean)),
+      stat('response max',fmt(compareStats.responseMax)),
+      stat('fixed full/removed scale',compareStats.fixedScale?'yes':'no'),
+      stat('panel source rosters',$('showSources').checked?'yes':'off'),
+      ...(compareStats.featureShift?[
+        stat('feature basis',compareStats.featureShift.featureMetric||compareStats.featureShift.metric),
+        stat('full features',compareStats.featureShift.fullCount.toLocaleString()),
+        stat('removed features',compareStats.featureShift.removedCount.toLocaleString()),
+        stat('median feature shift',fmt(compareStats.featureShift.median)),
+      ]:[]),
+      ...probeRows(),
+      ...lumenRows(),
+    ];
+    $('topology').innerHTML=rows.join('');
+    return;
+  }
+  if($('viewMode').value==='feature'&&featureStats){
+    const rows=[
+      stat('feature metric',featureStats.metric),
+      stat('feature density',`top ${featureStats.density}%`),
+      stat('full features',featureStats.fullCount.toLocaleString()),
+      stat('removed features',featureStats.removedCount.toLocaleString()),
+      stat('matched paths',featureStats.pairs.toLocaleString()),
+      stat('median shift',fmt(featureStats.median)),
+      stat('mean shift',fmt(featureStats.mean)),
+      stat('max shift',fmt(featureStats.max)),
+      stat('motion gain',`${Math.round(featureStats.gain*100)}%`),
+      ...probeRows(),
+      ...lumenRows(),
+    ];
+    $('topology').innerHTML=rows.join('');
+    return;
+  }
+  const comps=components(mask);
+  const largest=comps[0]||{points:0,contactsTarget:false,intersections:[]};
+  let label='empty';
+  if(comps.length>8) label='patchwork';
+  else if(largest.contactsTarget&&comps.length<=3) label='source_lobe';
+  else if(!largest.contactsTarget&&comps.length>0) label='disconnected_islands';
+  else if(comps.length>0) label='fragmented_lobes';
+  const rows=[
+    stat('footprint points',active.toLocaleString()),
+    stat('stable points',stableCount.toLocaleString()),
+    stat('boundary preview pts',shellCount.toLocaleString()),
+    stat('components',comps.length.toLocaleString()),
+    stat('largest component',largest.points?.toLocaleString()||'0'),
+    stat('contacts target',largest.contactsTarget?'yes':'no'),
+    stat('source intersections',(largest.intersections||[]).join(', ')||'none'),
+    stat('heuristic',label),
+    ...probeRows(),
+    ...lumenRows(),
+  ];
+  $('topology').innerHTML=rows.join('');
+}
+function stat(k,v){return `<div class="stat"><span>${k}</span><span>${v}</span></div>`;}
+
+function components(mask){
+  const [nz,ny,nx]=D.dims, seen=new Uint8Array(D.n), comps=[];
+  const neigh=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  const target=D.manifest.target_source;
+  const targetR=(D.manifest.sources.find(s=>s.id===target.id)?.radius||0)+D.manifest.grid.sample_spacing*1.75;
+  const sourcePad=D.manifest.grid.sample_spacing*1.75;
+  for(let i=0;i<D.n;i++){
+    if(!mask[i]||seen[i])continue;
+    const q=[i]; seen[i]=1; let qi=0; const inds=[];
+    while(qi<q.length){
+      const cur=q[qi++]; inds.push(cur);
+      const z=D.ijk[cur*3],y=D.ijk[cur*3+1],x=D.ijk[cur*3+2];
+      for(const [dz,dy,dx] of neigh){
+        const zz=z+dz,yy=y+dy,xx=x+dx;
+        if(zz<0||yy<0||xx<0||zz>=nz||yy>=ny||xx>=nx)continue;
+        const j=D.gridToPoint[(zz*ny+yy)*nx+xx];
+        if(j>=0&&mask[j]&&!seen[j]){seen[j]=1;q.push(j);}
+      }
+    }
+    let minTarget=Infinity; const intersections=new Set();
+    for(const p of inds){
+      const px=D.pos[p*3],py=D.pos[p*3+1],pz=D.pos[p*3+2];
+      minTarget=Math.min(minTarget,Math.hypot(px-target.x,py-target.y,pz-target.z));
+      for(const s of D.manifest.sources){
+        const rr=(s.radius||0)+sourcePad;
+        if(Math.hypot(px-s.x,py-s.y,pz-s.z)<=rr)intersections.add(s.id);
+      }
+    }
+    comps.push({points:inds.length,contactsTarget:minTarget<=targetR,intersections:[...intersections]});
+  }
+  comps.sort((a,b)=>b.points-a.points);
+  return comps;
+}
+
+function frameScene(){
+  controls.target.set(0,0,0);
+  camera.position.set(128,105,122);
+  camera.near=.1;
+  camera.far=5000;
+  camera.updateProjectionMatrix();
+  controls.update();
+}
+function frameCompareScene(){
+  controls.target.set(0,0,0);
+  camera.position.set(262,188,252);
+  camera.near=.1;
+  camera.far=5000;
+  camera.updateProjectionMatrix();
+  controls.update();
+}
+function frameRecoveryScene(){
+  const box=new THREE.Box3().setFromObject(recoveryWorld);
+  if(box.isEmpty())return;
+  const sphere=box.getBoundingSphere(new THREE.Sphere());
+  const radius=Math.max(sphere.radius,1);
+  const verticalFov=THREE.MathUtils.degToRad(camera.fov);
+  const horizontalFov=2*Math.atan(Math.tan(verticalFov/2)*camera.aspect);
+  const limitingFov=Math.min(verticalFov,horizontalFov);
+  const distance=radius/Math.sin(limitingFov/2)*1.18;
+  const direction=new THREE.Vector3(1,.78,1).normalize();
+  controls.target.copy(sphere.center);
+  camera.position.copy(sphere.center).add(direction.multiplyScalar(distance));
+  camera.near=.1;
+  camera.far=Math.max(5000,distance+radius*4);
+  camera.updateProjectionMatrix();
+  controls.update();
+}
+
+function probe(i){
+  const field=$('fieldSelect').value;
+  const removal=removalAmountForView();
+  const deltaDisplay=deltaDisplayAmount(removal);
+  const rows=[
+    stat('point',i),
+    stat('x y z',`${fmt(D.pos[i*3])} ${fmt(D.pos[i*3+1])} ${fmt(D.pos[i*3+2])}`),
+    stat('current field',`${field} ${fmt(winkValue(i,field,removal,deltaDisplay))}`),
+    stat('absWeyl full',fmt(getScalar(i,'absWeyl_full'))),
+    stat('absWeyl removed',fmt(getScalar(i,'absWeyl_removed'))),
+    stat('delta absWeyl',fmt(getScalar(i,'delta_absWeyl'))),
+    stat('lambda0 full',fmt(getScalar(i,'lambda0_full'))),
+    stat('delta lambda0',fmt(getScalar(i,'delta_lambda0'))),
+    stat('eigen-gap',fmt(getScalar(i,'eigen_gap_full'))),
+    stat('orientation delta',fmt(getScalar(i,'eigenvector_delta_angle'))),
+    stat('footprint',currentMask&&currentMask[i]?'yes':'no'),
+  ];
+  $('probeRows').innerHTML=rows.join('');
+}
+
+// Phase 1 (blueprint): fast scene cycling. [ ] cycle removal targets, \ cycles
+// the layer story. Atlas Native lane only; ignored while typing in a control.
+addEventListener('keydown',ev=>{
+  const tag=(ev.target&&ev.target.tagName)||'';
+  if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA')return;
+  if(activeToolPanel==='bl'&&(ev.key==='['||ev.key===']')){
+    const sel=$('blConfig');
+    if(!sel||sel.options.length<2)return;
+    const n=sel.options.length;
+    sel.selectedIndex=(sel.selectedIndex+(ev.key===']'?1:-1)+n)%n;
+    sel.dispatchEvent(new Event('change'));
+    ev.preventDefault();
+    return;
+  }
+  if(activeToolPanel!=='atlas'||!D)return;
+  if(ev.key==='['||ev.key===']'){
+    const sel=$('targetSelect');
+    if(!sel||sel.options.length<2)return;
+    const n=sel.options.length;
+    sel.selectedIndex=(sel.selectedIndex+(ev.key===']'?1:-1)+n)%n;
+    sel.dispatchEvent(new Event('change'));
+    ev.preventDefault();
+  }else if(ev.key==='\\'){
+    const lm=$('layerMode'),order=['baseline','removed','delta','footprint'];
+    lm.value=order[(order.indexOf(lm.value)+1)%order.length];
+    lm.dispatchEvent(new Event('input'));
+    ev.preventDefault();
+  }
+});
+canvas.addEventListener('click',ev=>{
+  if(!D||activeToolPanel==='bl'||activeToolPanel==='recovery')return;
+  mouse.x=ev.clientX/innerWidth*2-1; mouse.y=-(ev.clientY/innerHeight)*2+1;
+  ray.setFromCamera(mouse,camera);
+  const targets=[mainPoints,footprintPoints,surfacePoints,featureFullPoints,featureRemovedPoints].filter(Boolean);
+  const hits=ray.intersectObjects(targets,false);
+  if(!hits.length)return;
+  const obj=hits[0].object, localIndex=hits[0].index;
+  const idx=obj.userData.indices?obj.userData.indices[localIndex]:null;
+  if(idx!==null&&idx!==undefined)probe(idx);
+});
+
+/* ============================================================
+   BL PARITY FOAM LANE — isolated, toggleable module.
+   Analytic Brill-Lindquist / conformal-ball substrates with
+   Frobenius-norm E_ij parity ablation, ported from the certified
+   Claude-wing instruments (atlas_parity_foam_v3_dual_denominator,
+   atlas_familyS_parity_foam_v1, atlas_interior_shell_lab_v1),
+   2026-07-13 lab notes. Owns: blFoamPanel controls, blWorld group.
+   Inputs: none (analytic; no dataset payload). Failure isolation:
+   all state lives in this closure; removal = delete panel + module.
+
+   NORM CONTRACT (GPT-wing corrected): full and ablated scenes carry
+   DIFFERENT conformal factors, so no physical-metric cancellation
+   occurs across the ratio. This is the coordinate-chart Frobenius
+   witness ||.||_delta under the shared Euclidean chart
+   identification — a lawful comparative diagnostic, not a
+   physical-metric norm.
+   ============================================================ */
+const BL=(()=>{
+const GAIA_SRC=[{"id":"sirius_a","mu":9.99381668151386e-14,"x":[-1.00059,5.0133,-1.53529]},{"id":"procyon_a","mu":7.2616244331504e-14,"x":[-2.97397,6.42876,0.64775]},{"id":"alpha_cen_a","mu":5.2260443218696804e-14,"x":[-1.01281,-0.8469,-2.36557]},{"id":"sirius_b","mu":4.931510122046102e-14,"x":[-1.00059,5.0133,-1.53529]},{"id":"alpha_cen_b","mu":4.4044489223618035e-14,"x":[-1.01281,-0.8469,-2.36557]},{"id":"40_eri_a","mu":4.069222497562599e-14,"x":[4.46546,9.08221,-1.35984]},{"id":"epsilon_eri","mu":3.972336247620632e-14,"x":[3.82762,5.12258,-1.06531]},{"id":"tau_ceti","mu":3.7930966852279944e-14,"x":[6.3881,3.11803,-2.02993]},{"id":"epsilon_ind_a","mu":3.6913661227889295e-14,"x":[3.52265,-1.96554,-6.16117]},{"id":"61_cyg_a","mu":3.391018747968832e-14,"x":[4.01916,-3.78417,4.43038]},{"id":"van_maanen_star","mu":3.294132498026866e-14,"x":[8.4878,1.86031,0.8202]},{"id":"stein_2051_b","mu":3.269910935541374e-14,"x":[2.39373,5.25459,9.60077]},{"id":"40_eri_bc","mu":3.260222310547178e-14,"x":[4.46546,9.08221,-1.35984]},{"id":"61_cyg_b","mu":3.051916873171949e-14,"x":[4.01916,-3.78417,4.43038]},{"id":"procyon_b","mu":2.916276123253196e-14,"x":[-2.97397,6.42876,0.64775]},{"id":"lacaille_8760","mu":2.906587498258999e-14,"x":[4.74584,-4.07998,-5.04397]},{"id":"lacaille_9352","mu":2.393090373566576e-14,"x":[5.24748,-1.26304,-3.90025]},{"id":"gj_412_a","mu":2.3252699986071993e-14,"x":[-6.90337,1.72195,6.75794]},{"id":"gj_1","mu":2.1799406236942497e-14,"x":[6.98674,0.16452,-5.33501]},{"id":"gj_832","mu":2.1799406236942497e-14,"x":[5.29203,-3.9314,-7.5851]},{"id":"ad_leo","mu":2.0346112487812994e-14,"x":[-8.55895,4.00905,3.41571]},{"id":"gj_687","mu":2.000701061301611e-14,"x":[-0.34545,-3.37974,8.55357]},{"id":"groombridge_34_a","mu":1.9135034363538416e-14,"x":[5.16824,0.41538,5.011]},{"id":"lalande_21185","mu":1.8892818738683495e-14,"x":[-4.04486,1.02094,3.02758]},{"id":"gj_674","mu":1.695509373984416e-14,"x":[-0.91848,-6.23038,-6.72815]},{"id":"ev_lac","mu":1.695509373984416e-14,"x":[6.86223,-2.53967,7.149]},{"id":"struve_2398_a","mu":1.6180003740308428e-14,"x":[0.6768,-3.58353,6.2237]},{"id":"gj_581","mu":1.5017368741004828e-14,"x":[-8.14393,-9.6591,-1.71324]},{"id":"luyten_star","mu":1.448449436632401e-14,"x":[-2.84768,7.10102,0.69963]},{"id":"wolf_1061","mu":1.4242278741469097e-14,"x":[-3.2454,-7.85803,-1.90994]},{"id":"wolf_424_ab","mu":1.4048506241585162e-14,"x":[-8.58177,-1.81752,1.39107]},{"id":"kapteyn_star","mu":1.3612518116846315e-14,"x":[1.17653,5.49709,-5.62519]},{"id":"kruger_60_a","mu":1.312808686713648e-14,"x":[3.89051,-1.91592,6.86072]},{"id":"gj_682","mu":1.3079643742165498e-14,"x":[-0.83404,-7.20338,-7.08292]},{"id":"stein_2051_a","mu":1.2595212492455663e-14,"x":[2.39373,5.25459,9.60077]},{"id":"struve_2398_b","mu":1.2013894992803864e-14,"x":[0.6768,-3.58353,6.2237]},{"id":"ross_614_a","mu":1.080281686852928e-14,"x":[-1.36533,8.22067,-0.40925]},{"id":"ez_aqr_bc","mu":8.719762494776998e-15,"x":[6.31932,-2.33866,-1.84329]},{"id":"gj_1116_ab","mu":8.719762494776998e-15,"x":[-7.3957,6.52219,3.56315]},{"id":"kruger_60_b","mu":8.525989994893065e-15,"x":[3.89051,-1.91592,6.86072]},{"id":"ross_154","mu":8.235331245067165e-15,"x":[1.18799,-5.37785,-2.43328]},{"id":"ross_128","mu":8.138444995125199e-15,"x":[-6.81987,0.36522,0.09579]},{"id":"groombridge_34_b","mu":7.896229370270281e-15,"x":[5.16824,0.41538,5.011]},{"id":"tz_ari","mu":7.024253120792581e-15,"x":[7.36817,4.52563,2.65579]},{"id":"barnards_star","mu":6.975809995821598e-15,"x":[-0.03513,-3.6866,0.30105]},{"id":"ross_248","mu":6.588264996053732e-15,"x":[4.57397,-0.36164,4.45834]},{"id":"yz_ceti","mu":6.297606246227831e-15,"x":[6.84221,2.24108,-2.20043]},{"id":"proxima_cen","mu":5.910061246459964e-15,"x":[-0.95963,-0.73446,-2.33925]},{"id":"gj_1002","mu":5.813174996517998e-15,"x":[10.0,0.09745,-1.3267]},{"id":"gj_1245_a","mu":5.570959371663082e-15,"x":[3.26981,-5.91338,6.62145]},{"id":"gj_1061","mu":5.474073121721115e-15,"x":[3.11809,4.29103,-5.21417]},{"id":"ross_614_b","mu":5.377186871779149e-15,"x":[-1.36533,8.22067,-0.40925]},{"id":"ez_aqr_a","mu":5.328743746808165e-15,"x":[6.31932,-2.33866,-1.84329]},{"id":"gj_412_b","mu":5.328743746808165e-15,"x":[-6.90337,1.72195,6.75794]},{"id":"gj_1245_b","mu":4.989641872011282e-15,"x":[3.26981,-5.91338,6.62145]},{"id":"luyten_726-8_a","mu":4.941198747040298e-15,"x":[4.68324,2.16025,-1.67012]},{"id":"luyten_726-8_b","mu":4.8443124970983325e-15,"x":[4.68324,2.16025,-1.67012]},{"id":"teegarden_star","mu":4.698983122185382e-15,"x":[5.4044,5.08434,2.25197]},{"id":"wolf_359","mu":4.359881247388499e-15,"x":[-4.65381,1.32539,0.59437]},{"id":"dx_cnc","mu":4.214551872475548e-15,"x":[-3.67433,5.33916,3.27074]},{"id":"scr_1845_a","mu":4.117665622533583e-15,"x":[0.67893,-3.34976,-6.99423]},{"id":"lhs_292","mu":4.117665622533583e-15,"x":[-8.77528,2.73032,-0.71165]},{"id":"denis_1048","mu":3.633234372823749e-15,"x":[-5.97127,1.93313,-5.25438]},{"id":"luhman_16_a","mu":1.647066249013433e-15,"x":[-2.30407,0.73407,-3.24657]},{"id":"luhman_16_b","mu":1.356407499187533e-15,"x":[-2.30407,0.73407,-3.24657]},{"id":"wise_0855","mu":2.422156248549166e-16,"x":[-3.16788,3.30508,-0.5819]}];
+const SCENES={
+  familyS:{
+    label:'Family S — 5 conformal balls R=0.6, phi<=0.3',
+    RB:0.6,
+    src:[
+      {id:'ember', mu:0.180, x:[-4.0, 0.0, 0.0]},
+      {id:'ash',   mu:0.150, x:[-2.5, 0.0, 0.0]},
+      {id:'jasper',mu:0.160, x:[ 3.5, 1.5, 0.0]},
+      {id:'flint', mu:0.155, x:[ 3.5, 3.0, 0.0]},
+      {id:'drift', mu:0.170, x:[ 0.0,-5.0, 2.0]},
+    ],
+    march:{fast:{NDIR:128,NR:120,R0:0.02,RMARCH:9.0},
+           certified:{NDIR:192,NR:170,R0:0.02,RMARCH:9.0}}, // certified = instrument params
+    ballR:0.6, viewSize:0.08,
+  },
+  gaia66:{
+    label:'Gaia LSN-66 punctures — weak field',
+    RB:0,
+    src:GAIA_SRC,           // mass-sorted desc; mu = m/2 (puncture convention)
+    march:{fast:{NDIR:80,NR:100,R0:0.05,RMARCH:null},
+           certified:{NDIR:128,NR:140,R0:0.05,RMARCH:null}}, // RMARCH set from rim below
+    ballR:0, viewSize:0.16,
+  },
+};
+(function(){ // gaia march domain: 0.9 x outermost source radius (v3 convention)
+  let rim=0; for(const s of SCENES.gaia66.src)rim=Math.max(rim,Math.hypot(s.x[0],s.x[1],s.x[2]));
+  SCENES.gaia66.march.fast.RMARCH=rim*0.9;
+  SCENES.gaia66.march.certified.RMARCH=rim*0.9;
+})();
+function marchFor(sceneKey){return SCENES[sceneKey].march[$('blQuality').value==='certified'?'certified':'fast'];}
+function gaiaCap(){return Math.min(+$('blCap').value||8,SCENES.gaia66.src.length);}
+let BAKED_CONFIGS=null; // authoritative arrangement list from the frozen bake
+function configsFor(sceneKey){
+  if(BAKED_CONFIGS&&BAKED_CONFIGS[sceneKey])return BAKED_CONFIGS[sceneKey];
+  const S=SCENES[sceneKey], out=[{label:'FULL SCENE',removed:[]}];
+  if(sceneKey==='familyS'){
+    for(let t=0;t<S.src.length;t++)out.push({label:'- '+S.src[t].id,removed:[t]});
+    out.push({label:'- pair I (ember+ash)',removed:[0,1]});
+    out.push({label:'- pair II (jasper+flint)',removed:[2,3]});
+  }else{
+    for(let t=0;t<5;t++)out.push({label:'- '+S.src[t].id,removed:[t]});
+    for(let k=2;k<=5;k++)out.push({label:'- top '+k,removed:[0,1,2,3,4].slice(0,k)});
+  }
+  return out;
+}
+// interior shell lab constants (instrument v1 / lab note v0.2)
+const INT={RB:0.6,MU_P:0.16,NDIR:256,NR:150,R0:0.008,RMARCH:10.0};
+
+// ---- marching geometry (allocated per scene) ----
+let G=null; // {NDIR,NR,NPT,DIRS,RAD,PX,PY,PZ,Wex..WH,Aex..AH,WEB}
+function allocGrid(NDIR,NR,R0,RMARCH){
+  const GAng=Math.PI*(3-Math.sqrt(5));
+  const DIRS=new Float64Array(NDIR*3);
+  for(let d=0;d<NDIR;d++){const z=1-2*(d+0.5)/NDIR,r=Math.sqrt(1-z*z),t=GAng*d;
+    DIRS[3*d]=r*Math.cos(t);DIRS[3*d+1]=r*Math.sin(t);DIRS[3*d+2]=z;}
+  const RAD=new Float64Array(NR);
+  for(let q=0;q<NR;q++)RAD[q]=R0*Math.pow(RMARCH/R0,q/(NR-1));
+  const NPT=NDIR*NR;
+  return {NDIR,NR,NPT,DIRS,RAD,
+    PX:new Float64Array(NPT),PY:new Float64Array(NPT),PZ:new Float64Array(NPT),
+    Wex:new Float64Array(NPT),WDx:new Float64Array(NPT),WDy:new Float64Array(NPT),
+    WDz:new Float64Array(NPT),WH:new Float64Array(6*NPT),
+    Aex:new Float64Array(NPT),ADx:new Float64Array(NPT),ADy:new Float64Array(NPT),
+    ADz:new Float64Array(NPT),AH:new Float64Array(6*NPT),
+    WEB:new Float64Array(6*NPT)};
+}
+function fillRayPoints(cx,cy,cz){
+  let m=0;
+  for(let d=0;d<G.NDIR;d++)for(let q=0;q<G.NR;q++){
+    G.PX[m]=cx+G.RAD[q]*G.DIRS[3*d];G.PY[m]=cy+G.RAD[q]*G.DIRS[3*d+1];G.PZ[m]=cz+G.RAD[q]*G.DIRS[3*d+2];m++;}
+}
+// one source's conformal contribution: uniform ball interior if RB>0, mu/r exterior (certified kernels)
+function addSrc(S,k,sign,ex,Dx,Dy,Dz,H){
+  const s=S.src[k],mu=sign*s.mu,sx=s.x[0],sy=s.x[1],sz=s.x[2],RB=S.RB;
+  const R2b=RB*RB,R3b=RB*RB*RB;
+  for(let p=0;p<G.NPT;p++){
+    const dx=G.PX[p]-sx,dy=G.PY[p]-sy,dz=G.PZ[p]-sz;
+    const r2=dx*dx+dy*dy+dz*dz,r=Math.sqrt(r2);
+    if(!RB||r>=RB){
+      const r3=r2*r,r5=r2*r3;
+      ex[p]+=mu/r;Dx[p]-=mu*dx/r3;Dy[p]-=mu*dy/r3;Dz[p]-=mu*dz/r3;
+      H[6*p]+=mu*(3*dx*dx/r5-1/r3);H[6*p+1]+=mu*(3*dy*dy/r5-1/r3);H[6*p+2]+=mu*(3*dz*dz/r5-1/r3);
+      H[6*p+3]+=mu*3*dx*dy/r5;H[6*p+4]+=mu*3*dx*dz/r5;H[6*p+5]+=mu*3*dy*dz/r5;
+    }else{
+      ex[p]+=mu*(3*R2b-r2)/(2*R3b);
+      Dx[p]-=mu*dx/R3b;Dy[p]-=mu*dy/R3b;Dz[p]-=mu*dz/R3b;
+      H[6*p]-=mu/R3b;H[6*p+1]-=mu/R3b;H[6*p+2]-=mu/R3b; // off-diagonals zero inside
+    }
+  }
+}
+// one source's ISOLATED closed-form E tensor accumulated into a 6n array (DEN B pasted context)
+function addIsoE(S,k,sign,EB){
+  const s=S.src[k],mu=s.mu,kx=s.x[0],ky=s.x[1],kz=s.x[2],RB=S.RB;
+  const R2b=RB*RB,R3b=RB*RB*RB;
+  for(let p=0;p<G.NPT;p++){
+    const dx=G.PX[p]-kx,dy=G.PY[p]-ky,dz=G.PZ[p]-kz;
+    const r2=dx*dx+dy*dy+dz*dz,r=Math.sqrt(r2);
+    let Pp,D0,D1,D2,h0,h1,h2,h3,h4,h5;
+    if(!RB||r>=RB){
+      const r3=r2*r,r5=r2*r3;
+      Pp=1+mu/r;D0=-mu*dx/r3;D1=-mu*dy/r3;D2=-mu*dz/r3;
+      h0=mu*(3*dx*dx/r5-1/r3);h1=mu*(3*dy*dy/r5-1/r3);h2=mu*(3*dz*dz/r5-1/r3);
+      h3=mu*3*dx*dy/r5;h4=mu*3*dx*dz/r5;h5=mu*3*dy*dz/r5;
+    }else{
+      Pp=1+mu*(3*R2b-r2)/(2*R3b);
+      D0=-mu*dx/R3b;D1=-mu*dy/R3b;D2=-mu*dz/R3b;
+      h0=-mu/R3b;h1=-mu/R3b;h2=-mu/R3b;h3=0;h4=0;h5=0;
+    }
+    const lap=h0+h1+h2,g2=D0*D0+D1*D1+D2*D2,c1=-2/Pp,c2=6/(Pp*Pp),dg=c1*lap-2*g2/(Pp*Pp);
+    const o=6*p;
+    EB[o]+=sign*(c1*h0+c2*D0*D0+dg);EB[o+1]+=sign*(c1*h1+c2*D1*D1+dg);EB[o+2]+=sign*(c1*h2+c2*D2*D2+dg);
+    EB[o+3]+=sign*(c1*h3+c2*D0*D1);EB[o+4]+=sign*(c1*h4+c2*D0*D2);EB[o+5]+=sign*(c1*h5+c2*D1*D2);
+  }
+}
+function EfrobW(ex,Dx,Dy,Dz,H,p){
+  const Pp=1+ex[p],D0=Dx[p],D1=Dy[p],D2=Dz[p];
+  const h0=H[6*p],h1=H[6*p+1],h2=H[6*p+2],h3=H[6*p+3],h4=H[6*p+4],h5=H[6*p+5];
+  const lap=h0+h1+h2,g2=D0*D0+D1*D1+D2*D2,c1=-2/Pp,c2=6/(Pp*Pp),dg=c1*lap-2*g2/(Pp*Pp);
+  return [c1*h0+c2*D0*D0+dg,c1*h1+c2*D1*D1+dg,c1*h2+c2*D2*D2+dg,
+          c1*h3+c2*D0*D1,c1*h4+c2*D0*D2,c1*h5+c2*D1*D2];
+}
+const blfn=e=>Math.sqrt(e[0]*e[0]+e[1]*e[1]+e[2]*e[2]+2*(e[3]*e[3]+e[4]*e[4]+e[5]*e[5]));
+const blfn6=(a,o)=>Math.sqrt(a[o]*a[o]+a[o+1]*a[o+1]+a[o+2]*a[o+2]+2*(a[o+3]*a[o+3]+a[o+4]*a[o+4]+a[o+5]*a[o+5]));
+const bltf=e=>{const t=(e[0]+e[1]+e[2])/3;return [e[0]-t,e[1]-t,e[2]-t,e[3],e[4],e[5]];};
+const blfn6tf=(a,o)=>{const t=(a[o]+a[o+1]+a[o+2])/3;
+  const d0=a[o]-t,d1=a[o+1]-t,d2=a[o+2]-t;
+  return Math.sqrt(d0*d0+d1*d1+d2*d2+2*(a[o+3]*a[o+3]+a[o+4]*a[o+4]+a[o+5]*a[o+5]));};
+
+// ---- per-scene lazy base caches (Float32 like the certified v3 instrument) ----
+let baseCacheA={},baseCacheB={},cacheSceneKey=null,foamCache={};
+function resetCaches(){baseCacheA={};baseCacheB={};foamCache={};}
+function baseA(S,si){
+  if(baseCacheA[si])return baseCacheA[si];
+  G.Wex.fill(0);G.WDx.fill(0);G.WDy.fill(0);G.WDz.fill(0);G.WH.fill(0);
+  for(let k=0;k<S.src.length;k++)addSrc(S,k,1,G.Wex,G.WDx,G.WDy,G.WDz,G.WH);
+  baseCacheA[si]={ex:Float32Array.from(G.Wex),Dx:Float32Array.from(G.WDx),Dy:Float32Array.from(G.WDy),
+                  Dz:Float32Array.from(G.WDz),H:Float32Array.from(G.WH)};
+  return baseCacheA[si];
+}
+function baseB(S,si){
+  if(baseCacheB[si])return baseCacheB[si];
+  G.WEB.fill(0);
+  for(let k=0;k<S.src.length;k++)addIsoE(S,k,1,G.WEB);
+  baseCacheB[si]=Float32Array.from(G.WEB);
+  return baseCacheB[si];
+}
+// extract all rho=1 crossings for source si in one configuration; record outermost per ray
+function shellPoints(S,removed,si,mode,wit,pts,outer){
+  const s=S.src[si],sx=s.x[0],sy=s.x[1],sz=s.x[2];
+  fillRayPoints(sx,sy,sz);
+  const bA=baseA(S,si);
+  G.Wex.set(bA.ex);G.WDx.set(bA.Dx);G.WDy.set(bA.Dy);G.WDz.set(bA.Dz);G.WH.set(bA.H);
+  for(const k of removed)addSrc(S,k,-1,G.Wex,G.WDx,G.WDy,G.WDz,G.WH); // config full = base - removed
+  G.Aex.set(G.Wex);G.ADx.set(G.WDx);G.ADy.set(G.WDy);G.ADz.set(G.WDz);G.AH.set(G.WH);
+  addSrc(S,si,-1,G.Aex,G.ADx,G.ADy,G.ADz,G.AH);                       // ablated = full - si
+  if(mode==='B'){
+    G.WEB.set(baseB(S,si));
+    for(const k of removed)addIsoE(S,k,-1,G.WEB);                     // pasted = base - removed - si
+    addIsoE(S,si,-1,G.WEB);
+  }
+  const useTF=(wit==='TF'||wit==='TFG');
+  const gammaOwn=(wit==='TFG'); // scene-own physical-metric norm: ratio shifts by 4*log10(Pp_abl/Pp_full)
+  for(let d=0;d<G.NDIR;d++){
+    let prev=null,prevr=0,last=NaN;
+    for(let q=0;q<G.NR;q++){
+      const p=d*G.NR+q;
+      let ef=EfrobW(G.Wex,G.WDx,G.WDy,G.WDz,G.WH,p),ea=EfrobW(G.Aex,G.ADx,G.ADy,G.ADz,G.AH,p);
+      if(useTF){ef=bltf(ef);ea=bltf(ea);}
+      const dE=[ef[0]-ea[0],ef[1]-ea[1],ef[2]-ea[2],ef[3]-ea[3],ef[4]-ea[4],ef[5]-ea[5]];
+      const den=mode==='B'?(useTF?blfn6tf(G.WEB,6*p):blfn6(G.WEB,6*p)):blfn(ea);
+      let lr=Math.log10((blfn(dE)+1e-300)/(den+1e-300));
+      if(gammaOwn)lr+=4*(Math.log10(1+G.Aex[p])-Math.log10(1+G.Wex[p]));
+      if(prev!==null&&(lr>0)!==(prev>0)){
+        const f=prev/(prev-lr),rc=prevr+f*(G.RAD[q]-prevr);
+        pts.push(sx+rc*G.DIRS[3*d],sy+rc*G.DIRS[3*d+1],sz+rc*G.DIRS[3*d+2]);
+        last=rc;
+      }
+      prev=lr;prevr=G.RAD[q];
+    }
+    outer[d]=last;
+  }
+}
+// build one configuration foam (async, chunked per source, cancellable)
+async function buildConfig(sceneKey,ci,mode,wit,token){
+  const cap=sceneKey==='gaia66'?gaiaCap():Infinity;
+  const key=sceneKey+':'+ci+':'+mode+':'+wit+':'+$('blQuality').value+':'+(cap===Infinity?'all':cap);
+  if(foamCache[key])return foamCache[key];
+  const S=SCENES[sceneKey],removed=configsFor(sceneKey)[ci].removed,rset=new Set(removed);
+  const pts=[],outers={};
+  let done=0,probed=0;
+  const nProbe=Math.min(cap===Infinity?S.src.length:cap,S.src.length);
+  for(let si=0;si<S.src.length&&probed<nProbe;si++){
+    if(!rset.has(si)){
+      const outer=new Float64Array(G.NDIR);
+      shellPoints(S,removed,si,mode,wit,pts,outer);
+      outers[si]=outer;
+      probed++;
+    }
+    done++;
+    // yield to the event loop after every probed source: keeps the tab
+    // responsive and lets a newer request cancel a stale heavy build
+    $('blStats').innerHTML=`<div class="note">extracting DEN ${mode} · ${wit} · source ${probed}/${nProbe}…</div>`;
+    await new Promise(r=>setTimeout(r,0));
+    if(token!==buildToken)return null; // superseded by a newer request
+  }
+  foamCache[key]={pos:new Float32Array(pts),count:pts.length/3,outers,probed,total:S.src.length-removed.length};
+  return foamCache[key];
+}
+const median=a=>{const b=Array.from(a).filter(Number.isFinite).sort((x,y)=>x-y);return b.length?b[Math.floor(b.length/2)]:NaN;};
+
+// ---- frozen bake (Phase 2, blueprint directive 7): fetch precomputed
+// certified arrangements from BL_FOAM_BAKED_001; live compute is fallback ----
+const BAKE_BASE='datasets/BL_FOAM_BAKED_001/';
+let bakedManifestPromise=null;
+function getBakedManifest(){
+  if(!bakedManifestPromise)bakedManifestPromise=fjson(BAKE_BASE+'manifest.json').catch(()=>null);
+  return bakedManifestPromise;
+}
+async function bakedConfig(sceneKey,ci,mode,wit){
+  const key='baked:'+sceneKey+':'+ci+':'+mode+':'+wit;
+  if(foamCache[key])return foamCache[key];
+  const man=await getBakedManifest();
+  const me=man?.scenes?.[sceneKey]?.configs?.[ci]?.modes?.[mode+'_'+wit];
+  if(!me)return null;
+  try{
+    const pos=await fbuf(BAKE_BASE+me.file,Float32Array);
+    const outerFlat=await fbuf(BAKE_BASE+me.outer_file,Float32Array);
+    const outers={};
+    me.probe_sis.forEach((si,i)=>{outers[si]=outerFlat.subarray(i*me.ndir,(i+1)*me.ndir);});
+    const entry={pos,count:me.count,outers,probed:me.probe_sis.length,
+      total:me.probe_sis.length,march:man.scenes[sceneKey].march,baked:true};
+    foamCache[key]=entry;
+    return entry;
+  }catch(e){return null;}
+}
+
+// ---- base-model eigen layers (Phase 3b): baked from the BL substrate ----
+let eigObjs=[]; const eigCache={};
+async function eigenData(sceneKey,ci){
+  const key=sceneKey+':'+ci;
+  if(eigCache[key])return eigCache[key];
+  const man=await getBakedManifest();
+  const eg=man?.scenes?.[sceneKey]?.eigen;
+  if(!eg)return null;
+  try{
+    if(!eigCache[sceneKey+':pos'])eigCache[sceneKey+':pos']=await fbuf(BAKE_BASE+eg.positions_file,Float32Array);
+    const data=await fbuf(BAKE_BASE+eg.config_files[ci],Float32Array);
+    eigCache[key]={data,pos:eigCache[sceneKey+':pos'],npts:eg.lattice.npts,stride:eg.per_point.length};
+    return eigCache[key];
+  }catch(e){return null;}
+}
+// relational network payload (dominance / margin / entropy / pairwise amplitudes)
+const netCache={};
+async function netData(sceneKey){
+  if(netCache[sceneKey])return netCache[sceneKey];
+  const man=await getBakedManifest();
+  const nw=man?.scenes?.[sceneKey]?.network;
+  const eg=man?.scenes?.[sceneKey]?.eigen;
+  if(!nw||!eg)return null;
+  try{
+    const net=await fbuf(BAKE_BASE+nw.file,Float32Array);
+    const pos=eigCache[sceneKey+':pos']||(eigCache[sceneKey+':pos']=await fbuf(BAKE_BASE+eg.positions_file,Float32Array));
+    netCache[sceneKey]={net,pos,npts:eg.lattice.npts,sources:nw.samp_sources,sampFile:nw.samp_file,samp:null};
+    return netCache[sceneKey];
+  }catch(e){return null;}
+}
+async function sampData(sceneKey){
+  const nd=await netData(sceneKey);
+  if(!nd)return null;
+  if(!nd.samp)nd.samp=await fbuf(BAKE_BASE+nd.sampFile,Float32Array).catch(()=>null);
+  return nd.samp?nd:null;
+}
+let netObjs=[];
+function clearNet(){for(const o of netObjs){blWorld.remove(o);o.geometry.dispose();o.material.dispose();}netObjs=[];}
+function netCloud(pts,cols,size){
+  if(!pts.length)return;
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(pts),3));
+  g.setAttribute('color',new THREE.BufferAttribute(new Float32Array(cols),3));
+  const o=new THREE.Points(g,new THREE.PointsMaterial({size,vertexColors:true,transparent:true,opacity:.85,depthWrite:false}));
+  blWorld.add(o);netObjs.push(o);
+}
+function domColor(i){ // categorical hue wheel, stable per source index
+  const h=(i*137.508)%360/360,s=.65,l=.55;
+  const q=l<.5?l*(1+s):l+s-l*s,p=2*l-q;
+  const f=t=>{t=(t%1+1)%1;return t<1/6?p+(q-p)*6*t:t<.5?q:t<2/3?p+(q-p)*(2/3-t)*6:p;};
+  return [f(h+1/3),f(h),f(h-1/3)];
+}
+async function networkLayersUpdate(sceneKey,ci){
+  clearNet();
+  if(sceneKey==='interior')return;
+  const wantDom=$('blNetDom').checked,wantMar=$('blNetMargin').checked,
+        wantEnt=$('blNetEntropy').checked,wantAll=$('blNetAlleg').checked,
+        wantFace=$('blNetFace').checked;
+  if(!wantDom&&!wantMar&&!wantEnt&&!wantAll&&!wantFace)return;
+  const nd=await netData(sceneKey);
+  if(!nd)return;
+  const size=(sceneKey==='familyS'?0.12:0.14);
+  const n=nd.npts,pos=nd.pos,marT=+$('blNetMarginT').value/100;
+  if(wantDom){
+    const pts=[],cols=[];
+    for(let p=0;p<n;p++){
+      pts.push(pos[3*p],pos[3*p+1],pos[3*p+2]);
+      cols.push(...domColor(nd.net[3*p]));
+    }
+    netCloud(pts,cols,size*.8);
+  }
+  if(wantMar){
+    const pts=[],cols=[];
+    for(let p=0;p<n;p++){
+      const m=nd.net[3*p+1];
+      if(m>=marT)continue;
+      pts.push(pos[3*p],pos[3*p+1],pos[3*p+2]);
+      cols.push(...lut(MAG,1-m/marT));
+    }
+    netCloud(pts,cols,size);
+  }
+  if(wantEnt){
+    const pts=[],cols=[];
+    for(let p=0;p<n;p++){
+      const H=nd.net[3*p+2];
+      if(H<0.15)continue;
+      pts.push(pos[3*p],pos[3*p+1],pos[3*p+2]);
+      cols.push(...lut(VIR,H));
+    }
+    netCloud(pts,cols,size*.9);
+  }
+  if(wantAll&&ci!==0){
+    const cur=await eigenData(sceneKey,ci);
+    if(cur){
+      const st=cur.stride,pts=[],cols=[];
+      if(st>=8)for(let p=0;p<n;p++){
+        const a=cur.data[st*p+7];
+        pts.push(pos[3*p],pos[3*p+1],pos[3*p+2]);
+        cols.push(...lut(VIR,a));
+      }
+      netCloud(pts,cols,size*.9);
+    }
+  }
+  if(wantFace){
+    const sd=await sampData(sceneKey);
+    if(sd){
+      const i=+$('blFaceA').value,j=+$('blFaceB').value;
+      if(i!==j&&Number.isFinite(i)&&Number.isFinite(j)){
+        const pts=[],cols=[],tol=0.03;
+        for(let p=0;p<n;p++){
+          const si=sd.samp[i*n+p],sj=sd.samp[j*n+p];
+          const d=Math.abs(si-sj)/(si+sj+1e-300);
+          if(d>=tol)continue;
+          pts.push(pos[3*p],pos[3*p+1],pos[3*p+2]);
+          cols.push(...lut(MAG,1-d/tol));
+        }
+        netCloud(pts,cols,size*1.1);
+      }
+    }
+  }
+}
+// ---- commons layers (COMMONS_ATLAS_001 frozen payload; gaia66 base model only) ----
+let comObjs=[],comPayload=null;
+function clearCom(){for(const o of comObjs){blWorld.remove(o);o.geometry.dispose();o.material.dispose();}comObjs=[];}
+async function comData(){
+  if(comPayload)return comPayload;
+  try{
+    const web=await fbuf('datasets/COMMONS_ATLAS_001/webbing.f32',Float32Array);
+    const isl=await fetch('datasets/COMMONS_ATLAS_001/islands.json').then(r=>{if(!r.ok)throw new Error('islands');return r.json();});
+    comPayload={web,isl};
+  }catch(e){comPayload=null;}
+  return comPayload;
+}
+async function commonsLayersUpdate(sceneKey){
+  clearCom();
+  if(sceneKey!=='gaia66')return; // commons payload is baked from the LSN-66 base model
+  const wantWeb=$('blComWeb').checked,wantIsl=$('blComIsl').checked,wantFr=$('blComFrontier').checked;
+  if(!wantWeb&&!wantIsl&&!wantFr)return;
+  const cd=await comData();
+  if(!cd)return;
+  if(wantWeb){
+    const strict=$('blComStrict').checked,NW=cd.web.length/8,pts=[],cols=[];
+    for(let p=0;p<NW;p++){
+      const o=8*p;
+      if(strict&&cd.web[o+4]<3)continue;
+      pts.push(cd.web[o],cd.web[o+1],cd.web[o+2]);
+      cols.push(...lut(VIR,cd.web[o+3]/9));
+    }
+    if(pts.length){netCloud(pts,cols,0.16);comObjs.push(netObjs.pop());}
+  }
+  if(wantFr){
+    const pts=[],cols=[];
+    for(const p of cd.isl.h_level_surface.pts){pts.push(p[0],p[1],p[2]);cols.push(1,0.42,0.37);}
+    if(pts.length){netCloud(pts,cols,0.12);comObjs.push(netObjs.pop());}
+  }
+  if(wantIsl){
+    for(let i=0;i<cd.isl.troughs.length;i++){
+      const t=cd.isl.troughs[i];
+      const m=new THREE.Mesh(new THREE.OctahedronGeometry(0.3),
+        new THREE.MeshBasicMaterial({color:i===0?0xff4d4d:0xffc65e,transparent:true,opacity:0.9}));
+      m.position.set(t.x[0],t.x[1],t.x[2]);
+      blWorld.add(m);comObjs.push(m);
+    }
+  }
+}
+// ---- dynamic witnesses (MAGNETIC_WEYL_001 frozen payload; gaia66 only) ----
+let dynObjs=[];const dynCache={};
+function clearDyn(){for(const o of dynObjs){blWorld.remove(o);o.geometry.dispose();o.material.dispose();}dynObjs=[];}
+const dynDir=()=>$('blDynKin')?$('blDynKin').value:'MAGNETIC_WEYL_001';
+async function dynFile(name){
+  const key=dynDir()+'/'+name;
+  if(key in dynCache)return dynCache[key];
+  try{dynCache[key]=await fbuf('datasets/'+key,Float32Array);}
+  catch(e){dynCache[key]=null;}
+  return dynCache[key];
+}
+const dynData=()=>dynFile('dynwit.f32');
+const pvecData=()=>dynFile('pvec.f32');
+async function dynLayersUpdate(sceneKey){
+  clearDyn();
+  if(sceneKey!=='gaia66')return; // payload baked from the LSN-66 base model
+  const wants=[['blDynB',3,MAG],['blDynFrac',4,VIR],['blDynP',5,MAG],['blDynM',6,VIR]]
+    .filter(([id])=>$(id).checked);
+  if(!wants.length&&!$('blDynPvec').checked)return;
+  const topFrac=+$('blDynTop').value/100;
+  const d=wants.length?await dynData():null;
+  if(d)for(const [id,ch,LUT] of wants){
+    const NP=d.length/8;
+    // rank by channel value, keep the top fraction, color by log-normalized value
+    const idx=[...Array(NP).keys()].sort((a,b)=>d[8*b+ch]-d[8*a+ch]).slice(0,Math.max(1,Math.floor(NP*topFrac)));
+    const vmax=Math.log10(d[8*idx[0]+ch]+1e-300),vmin=Math.log10(d[8*idx[idx.length-1]+ch]+1e-300);
+    const span=Math.max(1e-12,vmax-vmin),pts=[],cols=[];
+    for(const p of idx){
+      pts.push(d[8*p],d[8*p+1],d[8*p+2]);
+      cols.push(...lut(LUT,(Math.log10(d[8*p+ch]+1e-300)-vmin)/span));
+    }
+    if(pts.length){netCloud(pts,cols,0.13);dynObjs.push(netObjs.pop());}
+  }
+  // signed super-Poynting flow streaks (ratified definition; pvec.f32)
+  if($('blDynPvec').checked){
+    const pv=await pvecData();
+    if(pv){
+      const NP2=pv.length/6;
+      const mags=[...Array(NP2).keys()].map(p=>Math.hypot(pv[6*p+3],pv[6*p+4],pv[6*p+5]));
+      const idx=[...Array(NP2).keys()].sort((a,b)=>mags[b]-mags[a]).slice(0,Math.max(1,Math.floor(NP2*topFrac*0.25)));
+      const vmax=Math.log10(mags[idx[0]]+1e-300),vmin=Math.log10(mags[idx[idx.length-1]]+1e-300);
+      const span=Math.max(1e-12,vmax-vmin),LEN=0.34;
+      const pos2=new Float32Array(idx.length*6),col2=new Float32Array(idx.length*6);
+      idx.forEach((p,q)=>{
+        const m=mags[p],ux=pv[6*p+3]/m,uy=pv[6*p+4]/m,uz=pv[6*p+5]/m;
+        const c=lut(MAG,(Math.log10(m+1e-300)-vmin)/span);
+        const o=6*q;
+        pos2[o]=pv[6*p];pos2[o+1]=pv[6*p+1];pos2[o+2]=pv[6*p+2];
+        pos2[o+3]=pv[6*p]+LEN*ux;pos2[o+4]=pv[6*p+1]+LEN*uy;pos2[o+5]=pv[6*p+2]+LEN*uz;
+        // tail dim, head bright: encodes direction without arrowheads
+        col2[o]=c[0]*0.25;col2[o+1]=c[1]*0.25;col2[o+2]=c[2]*0.25;
+        col2[o+3]=c[0];col2[o+4]=c[1];col2[o+5]=c[2];
+      });
+      const g=new THREE.BufferGeometry();
+      g.setAttribute('position',new THREE.BufferAttribute(pos2,3));
+      g.setAttribute('color',new THREE.BufferAttribute(col2,3));
+      const o=new THREE.LineSegments(g,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0.85}));
+      blWorld.add(o);dynObjs.push(o);
+    }
+  }
+}
+function clearEig(){for(const o of eigObjs){blWorld.remove(o);o.geometry.dispose();o.material.dispose();}eigObjs=[];}
+function relGap(d,o){
+  const nl=Math.hypot(d[o],d[o+1],d[o+2]);
+  return (d[o]-d[o+1])/(nl+1e-30);
+}
+async function eigenLayersUpdate(sceneKey,ci){
+  clearEig();
+  if(sceneKey==='interior')return;
+  const wantDelta=$('blEigDelta').checked,wantVec=$('blEigVectors').checked;
+  if(!wantDelta&&!wantVec)return;
+  const full=await eigenData(sceneKey,0);
+  const cur=ci===0?full:await eigenData(sceneKey,ci);
+  if(!full||!cur)return;
+  const gapFloor=+$('blEigGap').value/100;
+  const n=full.npts,pos=full.pos,st=full.stride||7;
+  const vecLen=sceneKey==='familyS'?0.35:0.4;
+  if(wantDelta&&ci!==0){
+    const pts=[],cols=[];
+    for(let p=0;p<n;p++){
+      const o=st*p;
+      if(relGap(full.data,o)<gapFloor||relGap(cur.data,o)<gapFloor)continue;
+      const dot=Math.abs(full.data[o+3]*cur.data[o+3]+full.data[o+4]*cur.data[o+4]+full.data[o+5]*cur.data[o+5]);
+      const ang=Math.acos(Math.min(1,dot));
+      if(ang<0.02)continue;
+      pts.push(pos[3*p],pos[3*p+1],pos[3*p+2]);
+      cols.push(...lut(VIR,Math.min(1,ang/(Math.PI/4))));
+    }
+    if(pts.length){
+      const g=new THREE.BufferGeometry();
+      g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(pts),3));
+      g.setAttribute('color',new THREE.BufferAttribute(new Float32Array(cols),3));
+      const o=new THREE.Points(g,new THREE.PointsMaterial({size:vecLen*0.35,vertexColors:true,
+        transparent:true,opacity:.85,depthWrite:false}));
+      blWorld.add(o);eigObjs.push(o);
+    }
+  }
+  if(wantVec){
+    const stride=Math.max(1,Math.ceil(n/2500));
+    const mkLines=(src,hex)=>{
+      const segs=[];
+      for(let p=0;p<n;p+=stride){
+        const o=st*p;
+        if(relGap(src.data,o)<gapFloor)continue;
+        const h=vecLen/2;
+        segs.push(pos[3*p]-src.data[o+3]*h,pos[3*p+1]-src.data[o+4]*h,pos[3*p+2]-src.data[o+5]*h,
+                  pos[3*p]+src.data[o+3]*h,pos[3*p+1]+src.data[o+4]*h,pos[3*p+2]+src.data[o+5]*h);
+      }
+      if(!segs.length)return;
+      const g=new THREE.BufferGeometry();
+      g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(segs),3));
+      const l=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:hex,transparent:true,opacity:.5}));
+      blWorld.add(l);eigObjs.push(l);
+    };
+    mkLines(full,0x8fb9ff);
+    if(ci!==0)mkLines(cur,0xffc46b);
+  }
+}
+
+// ---- rendering ----
+let foamObjs=[],geomGroup=null,goldMat=null,blueMat=null,ruptMat=null,faintMat=null,framedScene=null;
+function mats(){
+  if(goldMat)return;
+  goldMat=new THREE.PointsMaterial({size:.08,color:0xffc65e,transparent:true,opacity:.8,depthWrite:false,blending:THREE.AdditiveBlending});
+  blueMat=new THREE.PointsMaterial({size:.08,color:0x5ec8ff,transparent:true,opacity:.8,depthWrite:false,blending:THREE.AdditiveBlending});
+  ruptMat=new THREE.PointsMaterial({size:.11,color:0xff5030,transparent:true,opacity:.9,depthWrite:false,blending:THREE.AdditiveBlending});
+  faintMat=new THREE.PointsMaterial({size:.09,color:0xffc65e,transparent:true,opacity:.18,depthWrite:false,blending:THREE.AdditiveBlending});
+}
+function clearFoam(){for(const o of foamObjs){blWorld.remove(o);o.geometry.dispose();}foamObjs=[];}
+function clearGeom(){
+  if(geomGroup){blWorld.remove(geomGroup);
+    geomGroup.traverse(o=>{o.geometry?.dispose?.();o.material?.dispose?.();});geomGroup=null;}
+}
+function addCloud(posArr,mat){
+  const raw=posArr instanceof Float32Array?posArr:new Float32Array(posArr);
+  const clean=[];
+  for(let i=0;i<raw.length;i+=3)
+    if(Number.isFinite(raw[i])&&Number.isFinite(raw[i+1])&&Number.isFinite(raw[i+2]))clean.push(raw[i],raw[i+1],raw[i+2]);
+  if(!clean.length)return;
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(clean),3));
+  const o=new THREE.Points(g,mat);blWorld.add(o);foamObjs.push(o);
+}
+function buildGeom(sceneKey,removedSet){
+  clearGeom();
+  geomGroup=new THREE.Group();
+  const S=sceneKey==='interior'?null:SCENES[sceneKey];
+  if(sceneKey==='interior'){
+    const probe=new THREE.Mesh(new THREE.SphereGeometry(INT.RB,20,14),
+      new THREE.MeshBasicMaterial({color:0x6a80d8,wireframe:true,transparent:true,opacity:.3}));
+    geomGroup.add(probe);
+    if(intMu>0){
+      const ngb=new THREE.Mesh(new THREE.SphereGeometry(INT.RB,16,12),
+        new THREE.MeshBasicMaterial({color:0x8a6ad8,wireframe:true,transparent:true,opacity:.25}));
+      ngb.position.set(intD,0,0);geomGroup.add(ngb);
+    }
+  }else if(S.RB>0){
+    for(let q=0;q<S.src.length;q++){
+      const rem=removedSet.has(q);
+      const mesh=new THREE.Mesh(new THREE.SphereGeometry(S.RB,14,10),
+        new THREE.MeshBasicMaterial({color:rem?0xff3320:0x6a80d8,wireframe:true,transparent:true,opacity:rem?.12:.25}));
+      mesh.position.set(...S.src[q].x);geomGroup.add(mesh);
+    }
+  }else{
+    const n=S.src.length,spos=new Float32Array(n*3),scol=new Float32Array(n*3);
+    for(let q=0;q<n;q++){spos.set(S.src[q].x,3*q);
+      const rem=removedSet.has(q);
+      scol[3*q]=rem?1:.42;scol[3*q+1]=rem?.15:.5;scol[3*q+2]=rem?.1:.85;}
+    const g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.BufferAttribute(spos,3));
+    g.setAttribute('color',new THREE.BufferAttribute(scol,3));
+    geomGroup.add(new THREE.Points(g,new THREE.PointsMaterial({size:.5,vertexColors:true})));
+  }
+  geomGroup.visible=$('blShowBalls').checked;
+  blWorld.add(geomGroup);
+}
+function frameBLScene(){
+  const box=new THREE.Box3().setFromObject(blWorld);
+  if(box.isEmpty())return;
+  const sphere=box.getBoundingSphere(new THREE.Sphere());
+  if(!Number.isFinite(sphere.radius)||!Number.isFinite(sphere.center.x))return;
+  const radius=Math.max(sphere.radius,1);
+  const aspect=(Number.isFinite(camera.aspect)&&camera.aspect>0)?camera.aspect
+    :(renderer.domElement.width/Math.max(1,renderer.domElement.height))||1.6;
+  const verticalFov=THREE.MathUtils.degToRad(camera.fov);
+  const horizontalFov=2*Math.atan(Math.tan(verticalFov/2)*aspect);
+  const distance=radius/Math.sin(Math.min(verticalFov,horizontalFov)/2)*1.15;
+  const direction=new THREE.Vector3(1,.72,1).normalize();
+  controls.target.copy(sphere.center);
+  camera.position.copy(sphere.center).add(direction.multiplyScalar(distance));
+  camera.near=.01;camera.far=Math.max(5000,distance+radius*4);
+  camera.updateProjectionMatrix();controls.update();
+}
+
+// ---- disagreement ledger (matched outermost crossing per ray, lab-note rule) ----
+function ledgerAB(sceneKey,cA,cB){
+  const S=SCENES[sceneKey],rows=[];
+  const sis=Object.keys(cA.outers).map(Number).sort((a,b)=>a-b).slice(0,8);
+  for(const si of sis){
+    const oA=cA.outers[si],oB=cB.outers[si];
+    const dev=[],signed=[];let disagree=0,missing=0;
+    for(let d=0;d<oA.length;d++){
+      const a=oA[d],b=oB[d],fa=Number.isFinite(a),fb=Number.isFinite(b);
+      if(fa&&fb){dev.push(Math.abs(a-b)/(Math.abs(b)+1e-30));signed.push(a-b);}
+      else if(fa!==fb)disagree++;
+      if(!fa&&!fb)missing++;
+    }
+    rows.push(`<div class="stat"><span>${S.src[si].id}</span><span>d_AB ${(median(dev)*100).toFixed(2)}% · bias ${median(signed)>=0?'+':''}${median(signed).toExponential(1)} · count-dis ${disagree}</span></div>`);
+  }
+  return rows.join('');
+}
+
+// ---- interior parity shell lab (certified extraction, TF / DEN A) ----
+let intD=3.0,intMu=0.16;
+function interiorExtract(){
+  const S={src:[{id:'probe',mu:INT.MU_P,x:[0,0,0]},{id:'neighbor',mu:intMu,x:[intD,0,0]}],RB:INT.RB};
+  fillRayPoints(0,0,0);
+  G.Aex.fill(0);G.ADx.fill(0);G.ADy.fill(0);G.ADz.fill(0);G.AH.fill(0);
+  if(intMu>0)addSrc(S,1,1,G.Aex,G.ADx,G.ADy,G.ADz,G.AH);       // ablated = neighbor only
+  G.Wex.set(G.Aex);G.WDx.set(G.ADx);G.WDy.set(G.ADy);G.WDz.set(G.ADz);G.WH.set(G.AH);
+  addSrc(S,0,1,G.Wex,G.WDx,G.WDy,G.WDz,G.WH);                   // full = ablated + probe
+  const inner=[],outer=[],rupt=[],shellR=[],towardR=[],awayR=[];
+  for(let d=0;d<G.NDIR;d++){
+    let prev=null,prevr=0,gotInner=false;
+    for(let q=0;q<G.NR;q++){
+      const p=d*G.NR+q;
+      const ef=bltf(EfrobW(G.Wex,G.WDx,G.WDy,G.WDz,G.WH,p)),ea=bltf(EfrobW(G.Aex,G.ADx,G.ADy,G.ADz,G.AH,p));
+      const dE=[ef[0]-ea[0],ef[1]-ea[1],ef[2]-ea[2],ef[3]-ea[3],ef[4]-ea[4],ef[5]-ea[5]];
+      const lr=Math.log10((blfn(dE)+1e-300)/(blfn(ea)+1e-300));
+      if(prev!==null&&(lr>0)!==(prev>0)){
+        const f=prev/(prev-lr),rc=prevr+f*(G.RAD[q]-prevr);
+        const px=rc*G.DIRS[3*d],py=rc*G.DIRS[3*d+1],pz=rc*G.DIRS[3*d+2];
+        if(rc<INT.RB){
+          if(!gotInner){inner.push(px,py,pz);shellR.push(rc);
+            const nx=G.DIRS[3*d];
+            if(nx>0.7)towardR.push(rc);else if(nx<-0.7)awayR.push(rc);
+            gotInner=true;}
+        }else outer.push(px,py,pz);
+      }
+      prev=lr;prevr=G.RAD[q];
+    }
+    if(!gotInner&&intMu>0)rupt.push(INT.RB*G.DIRS[3*d],INT.RB*G.DIRS[3*d+1],INT.RB*G.DIRS[3*d+2]);
+  }
+  return {inner,outer,rupt,shellR,towardR,awayR};
+}
+function interiorUpdate(){
+  clearEig();
+  clearNet();
+  ensureGrid('interior');
+  buildGeom('interior',new Set());
+  const t0=performance.now();
+  const r=interiorExtract();
+  clearFoam();
+  addCloud(r.inner,goldMat);addCloud(r.outer,faintMat);addCloud(r.rupt,ruptMat);
+  const ms=(performance.now()-t0).toFixed(0),nsh=r.shellR.length,rupN=r.rupt.length/3;
+  const chi=(intMu/INT.MU_P)*Math.pow(INT.RB/intD,3);
+  $('blChiVal').textContent=chi.toFixed(4);
+  $('blStats').innerHTML=intMu===0
+    ?`<div class="stat"><span>isolated control</span><span>${nsh===0?'shell ABSENT (definitional)':nsh+' rays?!'}</span></div><div class="note">rho undefined in isolation; shell absence is structural to the DEN A contract.</div>`
+    :`<div class="stat"><span>interior shell rays</span><span>${nsh}/${G.NDIR}</span></div>`
+     +`<div class="stat"><span>median shell r</span><span>${median(r.shellR)?.toFixed(3)??'-'}</span></div>`
+     +`<div class="stat"><span>toward / away</span><span>${r.towardR.length?median(r.towardR).toFixed(3):'-'} / ${r.awayR.length?median(r.awayR).toFixed(3):'-'}</span></div>`
+     +(rupN?`<div class="stat"><span style="color:var(--red)">boundary-event rays</span><span style="color:var(--red)">${rupN} (interior branch at matter boundary)</span></div>`:'')
+     +`<div class="note">TF witness · DEN A · ||.||_delta · chi_crit ~ 0.04 (uniform-ball family, D>=2) · ${ms} ms</div>`;
+  if(framedScene!=='interior'){
+    framedScene='interior';
+    controls.target.set(Math.min(intD,4)*0.45,0,0);
+    const dist=Math.max(4.5,Math.min(intD,6)*1.6);
+    camera.position.set(controls.target.x+dist*0.62,dist*0.5,dist*0.75);
+    camera.near=.01;camera.far=5000;
+    camera.updateProjectionMatrix();controls.update();
+  }
+}
+
+// ---- foam scenes update ----
+let buildToken=0;
+function ensureGrid(sceneKey){
+  const gridKey=sceneKey+(sceneKey==='interior'?'':':'+$('blQuality').value);
+  if(cacheSceneKey===gridKey&&G)return;
+  cacheSceneKey=gridKey;
+  resetCaches();
+  if(sceneKey==='interior')G=allocGrid(INT.NDIR,INT.NR,INT.R0,INT.RMARCH);
+  else{const m=marchFor(sceneKey);G=allocGrid(m.NDIR,m.NR,m.R0,m.RMARCH);}
+}
+async function foamUpdate(){
+  const sceneKey=$('blScene').value,ci=+$('blConfig').value||0;
+  const mode=$('blDen').value,wit=$('blWit').value;
+  const S=SCENES[sceneKey];
+  goldMat.size=blueMat.size=S.viewSize*(+$('blSize').value/80);
+  buildGeom(sceneKey,new Set(configsFor(sceneKey)[ci].removed));
+  const token=++buildToken;
+  let cA=null,cB=null,frozen=false;
+  if($('blBaked').checked){
+    if(mode==='A'||mode==='AB')cA=await bakedConfig(sceneKey,ci,'A',wit);
+    if(mode==='B'||mode==='AB')cB=await bakedConfig(sceneKey,ci,'B',wit);
+    frozen=(mode==='A'&&!!cA)||(mode==='B'&&!!cB)||(mode==='AB'&&!!cA&&!!cB);
+    if(!frozen){cA=null;cB=null;}
+  }
+  if(!frozen){
+    ensureGrid(sceneKey);
+    if(mode==='A'||mode==='AB'){cA=await buildConfig(sceneKey,ci,'A',wit,token);if(!cA)return;}
+    if(mode==='B'||mode==='AB'){cB=await buildConfig(sceneKey,ci,'B',wit,token);if(!cB)return;}
+  }
+  if(token!==buildToken)return;
+  clearFoam();
+  if(cA)addCloud(cA.pos,goldMat);
+  if(cB)addCloud(cB.pos,blueMat);
+  const counts=mode==='AB'?`A ${cA.count} gold + B ${cB.count} blue pts`:(mode==='A'?`${cA.count} gold pts`:`${cB.count} blue pts`);
+  const cRef=cA||cB;
+  const capNote=cRef.probed<cRef.total
+    ?`<div class="stat"><span style="color:var(--amber)">declared cap</span><span style="color:var(--amber)">foam for top ${cRef.probed} of ${cRef.total} surviving sources</span></div>`
+    :'';
+  const marchN=frozen?cRef.march.NDIR:G.NDIR, marchR=frozen?cRef.march.NR:G.NR;
+  const qNote=frozen
+    ?`<div class="stat"><span>march quality</span><span style="color:var(--green)">frozen bake — certified march, all sources</span></div>`
+    :($('blQuality').value==='fast'
+      ?`<div class="stat"><span>march quality</span><span>fast survey — not ledger-grade</span></div>`
+      :`<div class="stat"><span>march quality</span><span>certified instrument march (live)</span></div>`);
+  let html=`<div class="stat"><span>crossings</span><span>${counts}</span></div>`
+    +`<div class="stat"><span>march</span><span>${marchN} rays/src x ${marchR}</span></div>`
+    +qNote+capNote;
+  if(wit==='TFG'&&mode==='A'){
+    const cDelta=$('blBaked').checked?await bakedConfig(sceneKey,ci,'A','TF'):null;
+    if(cDelta)html+=`<div class="stat"><span style="color:var(--green)">A2 convention survival</span><span>rows below: γ-own (A) vs δ-chart (B)</span></div>`
+      +ledgerAB(sceneKey,cA,cDelta)
+      +`<div class="note">d_AB here = median crossing shift between the scene-own physical-metric norm and the coordinate-chart norm, per source. Small shift = parity locus survives the convention change (A2 promotion evidence).</div>`;
+  }
+  if(mode==='AB')html+=ledgerAB(sceneKey,cA,cB)
+    +`<div class="note">d_AB = median |r_A - r_B|/r_B over matched outermost crossings; count-dis = rays where exactly one denominator carries a crossing. Weak-field coincidence expected for Gaia; Family S fork ~2-8% (lab note 2026-07-13).</div>`;
+  html+=`<div class="note">${S.label} · witness ${wit==='TF'?'E_ij trace-free (num+den)':'R3_ij raw slice-curvature'} · all rho=1 crossings shown</div>`;
+  $('blStats').innerHTML=html;
+  if(framedScene!==sceneKey){framedScene=sceneKey;frameBLScene();}
+  eigenLayersUpdate(sceneKey,ci);
+  networkLayersUpdate(sceneKey,ci);
+  commonsLayersUpdate(sceneKey);
+  dynLayersUpdate(sceneKey);
+}
+
+// ---- panel wiring ----
+let wired=false,entered=false;
+let blWinkTarget,blWinkTimer=null; // ablation wink A/B scrubber state
+function blWinkStop(){if(blWinkTimer){clearInterval(blWinkTimer);blWinkTimer=null;}}
+function populateConfigs(){
+  const sceneKey=$('blScene').value,sel=$('blConfig');
+  sel.innerHTML='';
+  if(sceneKey==='interior')return;
+  configsFor(sceneKey).forEach((c,i)=>{
+    const o=document.createElement('option');o.value=i;o.textContent=c.label;sel.appendChild(o);});
+}
+function populateFaceSelects(){
+  const sceneKey=$('blScene').value;
+  if(sceneKey==='interior')return;
+  const S=SCENES[sceneKey];
+  for(const id of ['blFaceA','blFaceB']){
+    const sel=$(id);sel.innerHTML='';
+    S.src.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=s.id;sel.appendChild(o);});
+  }
+  $('blFaceB').selectedIndex=Math.min(1,S.src.length-1);
+}
+function syncVisibility(){
+  const interior=$('blScene').value==='interior';
+  $('blConfigWrap').style.display=interior?'none':'block';
+  $('blFoamControls').style.display=interior?'none':'block';
+  $('blInteriorControls').style.display=interior?'block':'none';
+  $('blCapWrap').style.display=$('blScene').value==='gaia66'?'block':'none';
+  $('blEigenSection').style.display=interior?'none':'block';
+  $('blNetworkSection').style.display=interior?'none':'block';
+}
+function blPassport(){
+  const interior=$('blScene').value==='interior';
+  const frozen=$('blBaked').checked&&!interior;
+  const stack=['foam'];
+  const comOK=$('blScene').value==='gaia66'; // commons payload exists only on the base model
+  for(const [id,name] of [['blEigDelta','eigen-delta'],['blEigVectors','eigen-vectors'],['blNetDom','dominance'],['blNetMargin','margin'],['blNetEntropy','entropy'],['blNetAlleg','allegiance'],['blNetFace','parity-face'],['blComWeb','commons-webbing'],['blComIsl','commons-islands'],['blComFrontier','commons-frontier'],['blDynB','magnetic-weyl'],['blDynFrac','magnetic-fraction'],['blDynP','super-poynting'],['blDynM','momentum-residual'],['blDynPvec','super-poynting-flow']])if($(id).checked&&(comOK||!(id.startsWith('blCom')||id.startsWith('blDyn'))))stack.push(name);
+  setPassport([
+    `<b>substrate</b> ${interior?'two-ball interior parity shell lab':SCENES[$('blScene').value].label} — analytic BL/conformal, not ET-fused GR`,
+    `<b>witness</b> ${interior||$('blWit').value==='TF'?'E_ij trace-free':'R3_ij raw'}`,
+    `<b>norm</b> coordinate-chart ||&middot;||_&delta;`,
+    `<b>march</b> ${frozen?'frozen bake — certified':'live '+$('blQuality').value}`,
+    `<b>claim</b> parity loci are convention-declared comparisons, not membranes`,
+    `<b>parent &Pi;</b> LSN roster complete to declared box; beyond-box structure undeclared (&Lambda;_&Pi; uncalibrated)`,
+    `<b>stack</b> ${stack.join(' + ')}`,
+  ]);
+}
+function update(){
+  if($('blWit').value==='TFG'&&$('blDen').value!=='A')$('blDen').value='A'; // gamma-own declared for DEN A only
+  $('blDenVal').textContent={A:'A fused',B:'B pasted',AB:'A + B'}[$('blDen').value];
+  $('blWitVal').textContent={TF:'E trace-free',RAW:'R3 raw',TFG:'E TF · γ-own'}[$('blWit').value];
+  syncVisibility();
+  blPassport();
+  if($('blScene').value==='interior')interiorUpdate();
+  else foamUpdate();
+}
+let intPend=null;
+function scheduleInterior(){if(intPend)return;intPend=setTimeout(()=>{intPend=null;update();},60);}
+function wire(){
+  if(wired)return;wired=true;
+  mats();
+  populateConfigs();
+  populateFaceSelects();
+  $('blScene').onchange=()=>{blWinkStop();populateConfigs();populateFaceSelects();framedScene=null;update();};
+  $('blConfig').onchange=update;
+  $('blDen').onchange=update;
+  $('blWit').onchange=update;
+  $('blQuality').onchange=()=>{$('blQualityVal').textContent=$('blQuality').value;update();};
+  $('blBaked').onchange=update;
+  const eigRefresh=()=>{eigenLayersUpdate($('blScene').value,+$('blConfig').value||0);blPassport();};
+  $('blEigDelta').onchange=eigRefresh;
+  $('blEigVectors').onchange=eigRefresh;
+  $('blEigGap').oninput=()=>{$('blEigGapVal').textContent=(+$('blEigGap').value/100).toFixed(2);eigRefresh();};
+  const netRefresh=()=>{networkLayersUpdate($('blScene').value,+$('blConfig').value||0);blPassport();};
+  for(const id of ['blNetDom','blNetMargin','blNetEntropy','blNetAlleg','blNetFace','blFaceA','blFaceB'])$(id).onchange=netRefresh;
+  const comRefresh=()=>{commonsLayersUpdate($('blScene').value);blPassport();};
+  for(const id of ['blComWeb','blComIsl','blComFrontier','blComStrict'])$(id).onchange=comRefresh;
+  const dynRefresh=()=>{dynLayersUpdate($('blScene').value);blPassport();};
+  for(const id of ['blDynB','blDynFrac','blDynP','blDynM','blDynPvec'])$(id).onchange=dynRefresh;
+  $('blDynTop').oninput=()=>{$('blDynTopVal').textContent=$('blDynTop').value+'%';};
+  $('blDynTop').onchange=dynRefresh;
+  $('blDynKin').onchange=dynRefresh;
+  // commons<->network wink (universal scrubber grammar; drives the checkboxes
+  // so every existing pipeline + the passport stay truthful)
+  let cwTimer=null,cwState='A';
+  const cwStop=()=>{if(cwTimer){clearInterval(cwTimer);cwTimer=null;}};
+  const cwSet=mode=>{
+    if($('blScene').value!=='gaia66')return; // commons payload is base-model only
+    cwState=mode;
+    const A=['blComWeb','blComIsl','blComFrontier'],B=['blNetDom','blNetEntropy'];
+    for(const id of A){const cb=$(id);const want=mode==='A';
+      if(cb.checked!==want){cb.checked=want;cb.dispatchEvent(new Event('change'));}}
+    for(const id of B){const cb=$(id);const want=mode==='B';
+      if(cb.checked!==want){cb.checked=want;cb.dispatchEvent(new Event('change'));}}
+  };
+  $('blCwCommons').onclick=()=>{cwStop();cwSet('A');};
+  $('blCwNetwork').onclick=()=>{cwStop();cwSet('B');};
+  $('blCwPlay').onclick=()=>{
+    if(cwTimer){cwStop();return;}
+    cwSet(cwState);
+    cwTimer=setInterval(()=>cwSet(cwState==='A'?'B':'A'),1400);
+  };
+  $('blNetMarginT').oninput=()=>{$('blNetMarginVal').textContent=(+$('blNetMarginT').value/100).toFixed(2);netRefresh();};
+  $('blCap').onchange=()=>{$('blCapVal').textContent=$('blCap').selectedOptions[0].textContent.split(' (')[0];update();};
+  $('blD').oninput=()=>{intD=+$('blD').value;$('blDVal').textContent=intD.toFixed(2);scheduleInterior();};
+  $('blMu').oninput=()=>{intMu=+$('blMu').value;$('blMuVal').textContent=intMu.toFixed(3);scheduleInterior();};
+  $('blOpacity').oninput=()=>{const v=+$('blOpacity').value/100;
+    goldMat.opacity=v*.8;blueMat.opacity=v*.8;ruptMat.opacity=v*.9;faintMat.opacity=v*.18;};
+  $('blSize').oninput=()=>{const sceneKey=$('blScene').value;
+    const base=sceneKey==='interior'?0.045:SCENES[sceneKey].viewSize;
+    const f=+$('blSize').value/80;
+    goldMat.size=base*f;blueMat.size=base*f;ruptMat.size=base*1.4*f;faintMat.size=base*1.1*f;};
+  $('blShowBalls').onchange=()=>{if(geomGroup)geomGroup.visible=$('blShowBalls').checked;};
+  $('blLayersOff').onclick=()=>{
+    for(const id of ['blEigDelta','blEigVectors','blNetDom','blNetMargin','blNetEntropy','blNetAlleg','blNetFace','blComWeb','blComIsl','blComFrontier','blDynB','blDynFrac','blDynP','blDynM','blDynPvec']){
+      const cb=$(id);if(cb.checked){cb.checked=false;cb.dispatchEvent(new Event('change'));}}};
+  $('blWinkFull').onclick=()=>{if($('blScene').value==='interior')return;
+    const sel=$('blConfig');
+    if(sel.selectedIndex>0)blWinkTarget=sel.selectedIndex;
+    sel.selectedIndex=0;sel.dispatchEvent(new Event('change'));};
+  $('blWinkGone').onclick=()=>{if($('blScene').value==='interior')return;
+    const sel=$('blConfig');
+    if(sel.selectedIndex!==0){blWinkTarget=sel.selectedIndex;return;}
+    if(blWinkTarget!==undefined){sel.selectedIndex=blWinkTarget;sel.dispatchEvent(new Event('change'));}};
+  $('blWinkPlay').onclick=()=>{if($('blScene').value==='interior')return;
+    if(blWinkTimer){blWinkStop();return;}
+    const sel=$('blConfig');
+    if(sel.selectedIndex>0)blWinkTarget=sel.selectedIndex;
+    if(blWinkTarget===undefined||blWinkTarget<1)blWinkTarget=1;
+    blWinkTimer=setInterval(()=>{const s=$('blConfig');
+      s.selectedIndex=s.selectedIndex===0?blWinkTarget:0;
+      s.dispatchEvent(new Event('change'));},1400);};
+}
+function enter(){
+  wire();
+  getBakedManifest().then(man=>{
+    if(!man||BAKED_CONFIGS)return;
+    BAKED_CONFIGS={familyS:man.scenes.familyS.configs,gaia66:man.scenes.gaia66.configs};
+    const sel=$('blConfig'),keep=sel.selectedIndex;
+    populateConfigs();
+    if(keep>=0&&keep<sel.options.length)sel.selectedIndex=keep;
+    populateFaceSelects();
+  });
+  $('sceneTitle').textContent='BL parity foam — Frobenius-norm E_ij ablation (analytic substrate)';
+  $('targetBadge').textContent='rho_s = ||Delta_sE|| / ||context||';
+  $('sampleBadge').textContent='live ray-march extraction';
+  $('datasetBadge').textContent='analytic BL substrate';
+  blPassport();
+  if(!entered){entered=true;update();}
+  else if(framedScene)frameBLScene();
+}
+return {enter};
+})();
+
+function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);}
+function startViewer(){
+  if(location.protocol==='file:'){
+    $('loading').innerHTML='ATLAS Field Metric Viewer needs the local HTTP server for dataset files.<br>Open the current localhost viewer URL instead.';
+    return;
+  }
+  initImportedLaunchpad();
+  loadDatasetEntry($('datasetSelect').value).then(()=>animate()).catch(err=>{$('loading').textContent='viewer load failed: '+err.message; console.error(err);});
+}
+startViewer();
+$('datasetSelect').onchange=e=>loadDatasetEntry(e.target.value).catch(err=>{$('loading').textContent='viewer load failed: '+err.message; console.error(err);});
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+target_id,M,profile,role,default_footprint_points,default_component_count,default_largest_component_points,default_heuristic_label,collapse_bands,all_primary_fields_finite,removed_trace_free_residual_max
+B00,1.204,A,isolated_heavy,3136,281,2428,patchwork,r3_36_48,1,1.36894057e-17
+B01,1.586,C,cluster_light,3473,328,2573,patchwork,r4_48_1e+06,1,1.22591523e-17
+B02,1.084,B,cluster_heavy,2793,275,2119,patchwork,r3_36_48,1,1.09088044e-17
+B03,0.716,B,midfield_mixed,2374,218,2059,patchwork,r3_36_48,1,1.00626879e-17
+B04,1.204,A,isolated_heavy,2407,290,1892,patchwork,r3_36_48,1,1.20863375e-17
+B05,1.586,C,cluster_light,3629,303,2837,patchwork,r4_48_1e+06,1,9.34867442e-18
+B06,1.776,C,cluster_heavy,3296,278,2222,patchwork,r3_36_48,1,1.2738151e-17
+B07,0.716,B,midfield_mixed,2363,233,2043,patchwork,r3_36_48,1,1.19687679e-17
+B08,1.204,A,isolated_heavy,2054,339,1521,patchwork,r3_36_48,1,9.72785872e-18
+B09,1.4,A,cluster_light,3479,315,2651,patchwork,r4_48_1e+06,1,1.2118934e-17
+B10,1.776,C,cluster_heavy,4124,268,3038,patchwork,r3_36_48,1,1.27994869e-17
+B11,0.716,B,midfield_mixed,2663,249,2323,patchwork,r3_36_48,1,1.25130048e-17
+B12,0.832,B,isolated_heavy,1488,301,994,patchwork,r2_26_36,1,1.0757968e-17
+B13,1.4,A,cluster_light,3646,222,2695,patchwork,r3_36_48,1,9.66098074e-18
+B14,1.776,C,cluster_heavy,3225,260,1956,patchwork,r3_36_48,1,1.62651606e-17
+B15,1.174,C,midfield_mixed,2954,316,2185,patchwork,r3_36_48,1,1.12909657e-17
