@@ -931,3 +931,167 @@ remain in `logs/et_tov3_scout_lab_log.txt` and versioned analysis manifests.
 - Claim ledger now reads: Commons class STABILIZED (tested family);
   8 troughs + backbone + carriers Reproduced; idx-7 canary; webbing/
   finger-trap Observed; Lambda_Pi uncalibrated on everything.
+
+## 2026-07-19 - THE LAB GOES PUBLIC: Vault + Instrument on GitHub Pages
+
+- Founder-directed publication executed: the full vault (8.2 MB, as
+  browsable pages) and the complete instrument (339 MB, frozen
+  payloads, fully client-side) are live at
+  https://danski2017.github.io/lab/ via merged PR #57. Pre-publication
+  scans (size/secrets/Liquid) clean and recorded; Pages build green;
+  live functional verification — the Commons Atlas rendered its full
+  payload from the public origin with zero console errors.
+- Boundaries shipped with the content: claim-ladder labels, Lambda_Pi
+  footers, and render-as-witness language are in every published note
+  and ribbon. Snapshot semantics declared (no auto-sync; re-publish
+  cadence owed to the Parking Lot). Site navigation untouched
+  (Gemini-wing follow-up). Receipt:
+  [[Archive/2026-07-19 Public Clone Receipt]].
+
+## 2026-07-19 - Public Clone Added to Canonical Boot Orientation
+
+- The existing canonical `08 Boot Loader Prompt.md` now treats the public Lab,
+  Vault, Atlas Instrument, and GitHub source repository as a first-class
+  working surface rather than a promotional afterthought.
+- Future agents are directed to retrieve published assets proactively, use
+  public -> local/private -> user-supplied priority, compare derived analyses
+  with published baselines, and preserve provenance without repeatedly asking
+  Daniel to reconstruct public context.
+- The boot rule distinguishes published snapshots, private current state, and
+  awaiting-publication material; it forbids assumed synchronization and states
+  that vault content is potentially publishable. Existing GR and
+  source/datum/witness/ledger doctrine remains unchanged.
+- No duplicate boot loader, deletion, website edit, or doctrine promotion.
+  Receipt: [[Archive/2026-07-19 Public Clone Boot Orientation Receipt]].
+
+## 2026-07-19 - Public Clone Guidance Documents Ingested
+
+- Founder supplied `RL_PUBLIC_CLONE_SKILL` v1.0 (canonical) and
+  `RL_PUBLICATION_PROTOCOL` v1.0 (candidate canonical). Vault copies now live
+  under Atlas Platform and Best Practices with their declared statuses intact.
+- The canonical boot loader links both fuller records directly and retains only
+  compact operational orientation. Desktop source files remain untouched; no
+  website content, doctrine, claim status, or publication state changed.
+- Receipt: [[Archive/2026-07-19 Public Clone Guidance Ingest Receipt]].
+
+## 2026-07-19 - Atlas Temporal Pilot I / Archived Einstein Toolkit Evolution
+
+- Reused the active local ET_2025_05 installation; no ET installation, build,
+  or evolution was performed.
+- Selectively retrieved and CRC-validated two genuine 3D `ML_BSSN::phi` slices
+  from Zenodo DOI `10.5281/zenodo.155394`: it=0/t=0 and
+  it=417792/t=898.711912089024.
+- Added the reusable TemporalScene declaration and lazy CarpetHDF5 archive
+  adapter, plus horizon/puncture provenance and a declared coordinate-registered
+  temporal residual.
+- Added an isolated fifth `Temporal NR` lane to the existing Atlas Instrument.
+  The lane declares that its residual is coordinate-dependent, interpolation-
+  dependent, non-invariant, and not gauge-free.
+- Full metric, full extrinsic curvature, constraints, and `E_ij` are absent
+  from the published subset and were not fabricated.
+- Five unit tests, fourteen integration checks, deterministic rebuild, and
+  browser QA passed. Receipt: [[Archive/2026-07-19 Atlas Temporal Pilot I ET Archive Receipt]].
+
+## 2026-07-19 - Temporal Pilot I Director Handoff And Tracker Reconciliation
+
+- Packaged exactly 26 director-facing result files in
+  `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001_DIRECTOR_SHARE_26_FILES.zip`;
+  integrity passed, SHA-256
+  `cfea7aec9e355e85a9ae365519ffb1f777adecb8e856c66e7ee80d6ecf793fe2`.
+- The internal pre-change viewer rollback backup remains preserved outside the
+  director bundle; the prior complete engineering ZIP remains unchanged.
+- Reconciled the platform dashboard, lab goals, simulation queue, ET/artifact
+  location map, dataset registry, current-state contract, root project tracker,
+  and detailed lab log with the completed Temporal NR capability and its claim
+  ceiling.
+- Documentation-only closeout: no numerical result, doctrine, archived receipt,
+  viewer behavior, website content, or public snapshot changed.
+
+## 2026-07-19 - Temporal Pilot I Curvature Extension Completed
+
+- Work Order 1B selectively retrieved 240 archived HDF5 members and extended
+  the existing Temporal NR lane with genuine 3D complex `Psi4` and Weyl
+  invariants `I/J` at the parent's two timestamps. No new evolution ran.
+- Complex fields are reconstructed from split real/imaginary storage; temporal
+  subtraction occurs before magnitude. Psi4's WeylScal4 tetrad convention and
+  I/J formulas are explicit. A masked `S=27J^2/I^3` summary remains secondary.
+- Cross-witness morphology finds strongest I/J agreement (`r=0.983`, top-decile
+  Jaccard `0.948`). All comparisons remain coordinate-dependent and do not
+  establish causation or a physical conversion.
+- Thirteen unit tests, 26 extension checks, 15 parent-regression checks,
+  deterministic rebuild, and live browser QA with zero errors pass. Receipt:
+  [[Archive/2026-07-19 Atlas Temporal Pilot I Curvature Extension Receipt]].
+
+## 2026-07-19 — Temporal Pilot I Psi4 time ladder
+
+`ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001` extended the existing Temporal NR instrument to three common full-3D phi/Psi4/I/J timestamps, two adjacent complex-residual intervals, puncture/common-horizon context, and the continuous archived finite-radius spin-weight −2 multipolar Psi4 record. The archive cannot lawfully supply the preferred 7–12 common 3D rungs. I/J coherence persists across both intervals; phi/Psi4 remains weaker. Validation and browser QA passed without an ET evolution or heavy local solve. See [[Archive/2026-07-19 Atlas Temporal Pilot I Psi4 Time Ladder Receipt]].
+
+## 2026-07-21 — External Tether & Grounding Strategy Canonized Locally
+
+- Created the vault-root Strategic Direction Sheet at v0.2, preserving its
+  Claude-wing harvest origin and incorporating GPT-wing/Director adjudication.
+- The lab now runs two parallel strategic tracks: ground Atlas objects through
+  observer/foliation and invariant audits, while immediately testing registered
+  electric-Weyl compression residuals and reduced-model failure prediction
+  against conventional non-Atlas baselines.
+- Added the strategy to the Dashboard and goals layer. No result was promoted,
+  no public clone or website was changed, and no simulation or calculation ran.
+- Receipt: [[Archive/2026-07-21 External Tether Strategic Direction Receipt]].
+
+## 2026-07-21 — SXS Horizon Dynamics Bridge Completed
+
+- Added `SXS:BBH:0305v3.0/Lev6` as a public, dense
+  `HORIZON_TRAJECTORY_SERIES` beside the frozen ET spatial archive.
+- Native A/B/C centers, masses, spins, areas, coordinate kinematics, the
+  upstream common-horizon event, and N2 strain (2,2) now share the existing
+  Temporal NR architecture and one-model instrument.
+- 21/21 integration checks and 40/40 temporal tests pass; deterministic payload
+  SHA-256 is `ed1611377433f1b443e79d57d9eb894c28cded6c343e89c5904fd60cdd928c12`.
+  No local NR evolution ran. One manual visual pass remains because the in-app
+  browser runtime was unavailable. Receipt: [[Archive/2026-07-21 Atlas SXS Horizon Dynamics Bridge Receipt]].
+
+## 2026-07-21 — SXS Event-Centered Coherence Audit Closed Negative
+
+- Verified the first native C record at `T_CH=3685.496267868691 M` and ran
+  1,517 feature rows, 720 support-matched null anchors, six symmetric plus four
+  asymmetric windows, three smoothing scales, four sampling representations,
+  13 timing jitters, and 54 settling declarations.
+- No supported window distinguished the anchor at `p<=0.05`; the best 25–50 M
+  result was `p=0.0661`, while jitter peaked at `+20 M`. Apparent A/B orbital,
+  mass, and spin concentration is endpoint-sensitive because A/B end only
+  `2.003732 M` after C begins.
+- Robust retained facts are the A/B/C coexistence ledger, comparative strain
+  peak ordering at `+7.150632 M`, and threshold-declared remnant settling.
+- Decision: `C_STOP_REFRAME`; no replication or rescue-by-Ext-CCE campaign.
+  Receipt: [[Archive/2026-07-21 Atlas SXS Event-Centered Coherence Audit Receipt]].
+
+## 2026-07-21 — `eigen_gap_full` Diagnostic Contract Harvested
+
+- Canonized the Claude-wing `eigen_gap_full` note as an Observed / Definitional
+  diagnostic contract and expanded the Dataset and Model Registry scalar
+  contract without changing any runtime behavior.
+- Recovered the exact generator: native eigenvalues are sorted by descending
+  absolute magnitude and the channel is
+  `(|lambda0|-|lambda1|)/(|lambda0|+1e-30)` in that order.
+- Reproduced all declared `single_sun` payload statistics. Corrected the source
+  note's ordering assumption and distinguished full-grid `dx=3.0` from exported
+  stride-2 spacing `6.0` solver units.
+- Claim ceiling remains Observed / Definitional; Petrov language is restricted
+  to the declared purely electric slice and the G001P negative stands. No
+  solver, generator, viewer, website, or public clone changed. Receipt:
+  [[Archive/2026-07-21 eigen_gap_full Diagnostic Contract Receipt]].
+
+## 2026-07-22 — Standard One-Way Vault-to-GitHub Sync Routine Established
+
+- The founder declared the Mac vault permanently authoritative and GitHub
+  `lab-vault/` its one-way public mirror. GitHub vault edits never flow inward;
+  local deletions propagate on an intentional sync.
+- Added a guarded preview/sync tool with pinned paths and remote, clean-checkout
+  and fast-forward-only gates, publication scans, exact SHA-256 manifests,
+  `lab-vault/`-only staging, push, and remote-SHA verification.
+- Canonical runbook: [[10 Vault GitHub Mirror Sync]]. The website shell and
+  `atlas-instrument/` remain separate publication scopes.
+- The local mirror checkout was brought forward to the already-published PR #57
+  baseline for comparison. The current vault delta was previewed; no sync commit
+  or GitHub push occurred. Receipt:
+  [[Archive/2026-07-22 Vault GitHub Mirror Sync Routine Receipt]].

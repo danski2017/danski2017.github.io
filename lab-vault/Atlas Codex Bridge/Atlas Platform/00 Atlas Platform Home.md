@@ -45,6 +45,8 @@ Read these notes in order:
 5. [[05 Dataset and Model Registry|Dataset and Model Registry]]
 6. [[06 Current State and Development Contract|Current State and Development Contract]]
 7. [[Evolution Log|Evolution Log]]
+8. [[10 Vault GitHub Mirror Sync|Vault GitHub Mirror Sync]] for the controlled
+   one-way Mac-source-to-GitHub vault publication routine
 
 For the shortest safe handoff, point a new thread to this note and tell it to
 follow [[01 New Thread Orientation]].
@@ -64,9 +66,14 @@ follow [[01 New Thread Orientation]].
 | Atlas ET analysis | `analysis/et_tov3_scout/` |
 | Repo documentation | `docs/et_tov3_scout/` |
 | Append-only lab log | `logs/et_tov3_scout_lab_log.txt` |
+| Einstein Toolkit installation | `/Users/danski2017/Desktop/EinsteinToolkit` |
 | Einstein Toolkit root | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus` |
 | ET diagnostic HDF5 | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus/ATLAS_TOV3_DIAG` |
+| Archived ET external cache | `/Users/danski2017/Desktop/EinsteinToolkit/atlas_external_data/zenodo_155394` |
+| Temporal-pilot packet | `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001/` |
 | FUKA source | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus/repos/fuka` |
+| Public mirror checkout | `/Users/danski2017/Desktop/danski2017.github.io` |
+| Vault mirror routine | `scripts/repo_tools/sync_vault_to_github_mirror.py` |
 
 ## Viewer Launch
 
@@ -114,4 +121,3 @@ Every material platform change must update:
 - [[03 Repo ET and Artifact Location Map]] if paths or dependencies changed;
 - a receipt based on [[Templates/Platform Change Receipt Template]] when the
   change affects code, datasets, provenance, controls, or claim boundaries.
-

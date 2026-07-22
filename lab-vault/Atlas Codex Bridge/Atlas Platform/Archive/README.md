@@ -24,4 +24,4 @@ It is not a duplicate of the large viewer datasets or analysis tree.
 ## Receipts
 
 - [[2026-07-15 Atlas Platform Baseline Receipt]]
-
+- [[2026-07-21 eigen_gap_full Diagnostic Contract Receipt]]

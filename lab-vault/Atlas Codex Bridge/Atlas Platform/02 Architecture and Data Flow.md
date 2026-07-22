@@ -2,7 +2,7 @@
 type: architecture
 status: canonical
 created: 2026-07-15
-updated: 2026-07-18
+updated: 2026-07-19
 tags:
   - atlas-platform
   - architecture
@@ -43,21 +43,29 @@ flowchart LR
 ## Viewer Runtime
 
 The present application is a single `index.html` containing HTML, CSS, and the
-main JavaScript module. It imports Three.js `0.160.0` and OrbitControls from
-`unpkg.com`, fetches JSON and binary payloads over HTTP, and renders WebGL point,
+main JavaScript module. It imports vendored Three.js `0.160.0` and
+OrbitControls, fetches JSON and binary payloads over HTTP, and renders WebGL point,
 vector, source, displacement, lattice, and candidate-surface layers.
 
 Because payloads are fetched, `file://` operation is intentionally unsupported.
-The current runtime requires network access to the pinned unpkg Three.js URLs
-unless those libraries are later vendored locally.
+The current runtime does not require a CDN for Three.js; the pinned library is
+stored under `pinch_lab_viewer/vendor/`.
 
-## Four Modular UI Lanes (updated 2026-07-16)
+## Five Modular UI Lanes (updated 2026-07-19)
 
 A fourth lane, **BL Foam**, was added 2026-07-15/16: the home of the canonical
 LSN-66 BL base model, its frozen arrangements, the layer stack, and the
 interior parity shell live lab. Three.js is now vendored locally (no unpkg
 dependency). See [[06 Current State and Development Contract]] and
 [[07 One-Model Redesign Blueprint]].
+
+A fifth isolated lane, **Temporal NR**, was added 2026-07-19. It reads the
+compact `ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001` payload generated from two
+genuine archived Einstein Toolkit `ML_BSSN::phi` slices, with horizon and
+puncture context. Its registered residual is explicitly coordinate-dependent,
+interpolation-dependent, non-invariant, and not gauge-free. The raw HDF5 cache
+stays outside the browser frontend, and the adapter does not imply unavailable
+full metric, extrinsic-curvature, constraint, or `E_ij` fields.
 
 ## Three Original UI Lanes
 
