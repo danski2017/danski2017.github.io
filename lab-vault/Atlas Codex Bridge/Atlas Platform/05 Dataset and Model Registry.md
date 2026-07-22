@@ -131,6 +131,22 @@ The viewer also reads full and removed principal eigenvectors, flags, positions,
 and grid indexes from separate binary arrays. Eigenvector angle is sign-invariant
 and must be conditioned on eigen-gap stability for interpretation.
 
+### `eigen_gap_full` Diagnostic Contract
+
+- Role: principal-axis stability / selection-margin channel for trace-free
+  `E_ij`; it is a diagnostic witness, not a physical source.
+- Ordering: the native `lambda0..2` payload is sorted by descending absolute
+  magnitude, so `lambda0` selects the reported principal axis.
+- Exact generator expression:
+  `(|lambda0| - |lambda1|) / (|lambda0| + 1e-30)`.
+- Low values indicate a near tie in the largest-magnitude axis selection; high
+  values indicate a more robust selection under the declared convention.
+- Eigenvector-angle interpretation must be conditioned on the declared gap
+  floor. Low-gap points are unstable or ambiguous for direction, not
+  automatically numerical artifacts.
+- Full definition, source recovery, payload checks, and bounded purely electric
+  reading: [[ATLAS Diagnostic Contract — eigen_gap_full]].
+
 ## Recovery Lab Registry
 
 Catalog:
@@ -176,6 +192,28 @@ three-star solution.
 - Status: early 256-iteration evolution lane
 - Limitation: density-only time output, insufficient for time-dependent Weyl,
   constraint, and complete field recovery in Atlas Platform
+
+### Atlas Temporal Pilot I / Archived GW150914 ET Evolution
+
+- Upstream: Zenodo DOI `10.5281/zenodo.155394`
+- Local cache: `/Users/danski2017/Desktop/EinsteinToolkit/atlas_external_data/zenodo_155394/`
+- Selected genuine 3D fields: `ML_BSSN::phi`, complex `Psi4`, and complex Weyl
+  invariants `I/J`, Carpet map 0, refinement level 3
+- Slices: iteration 0 / `t=0`; iteration 417792 / `t=898.711912089024`
+- Context: five selected horizon surfaces and two puncture tracks
+- Registration: 10,179 later-slice samples registered onto time-zero
+  coordinate probes using declared inverse-distance-squared interpolation
+- Viewer payload: `pinch_lab_viewer/datasets/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001/temporal_scene.json`
+- Evidence packets: `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001/`
+  and `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_CURVATURE_EXTENSION_001/`
+- Status: validated archived temporal curvature-witness substrate; fifth
+  `Temporal NR` instrument lane
+- Extension validation: 13/13 unit tests, 26/26 extension checks, 15/15 parent
+  regression checks, deterministic payload rebuild, browser QA with zero errors
+- Claim ceiling: genuine archived evolved field/curvature witnesses. The registered delta
+  is coordinate-dependent, interpolation-dependent, non-invariant, and not
+  gauge-free. The selected published subset does not supply full `gamma_ij`,
+  full `K_ij`, shift, constraints, or `E_ij`; none are inferred.
 
 ## FUKA BNS Frontier
 
@@ -236,3 +274,33 @@ Evidence packets (repo, hashed in the promotion brief):
 receipt + kinematics_real.json).
 Provenance root: `analysis/archives/atlas_gfro_solver_v0_9_rc2.zip`
 (DO NOT DELETE — verified 66/66 against the baked roster).
+
+## ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001
+
+- Source: GW150914_28, Zenodo DOI 10.5281/zenodo.155394, v1, CC BY 4.0.
+- Spatial support: common genuine 3D phi, complex Psi4, I, J at iterations 0, 208896, 417792 (map 0, rl 3).
+- Radiative support: finite-radius spin-weight −2 multipolar Psi4, l<=8 catalogued, full l=2 family interactive at seven radii, t/M 0–1699.953231.
+- Boundary: spatial and multipolar Psi4 are distinct; no retarded-time shift, gauge invariance, E_ij equivalence, or causal attribution is claimed.
+- Packet: `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001/`.
+
+## ATLAS_SXS_HORIZON_DYNAMICS_001
+
+- Source: `SXS:BBH:0305v3.0`, catalog `3.0.0`, `Lev6`, DOI `10.26138/SXS:BBH:0305`, CC BY 4.0 data.
+- Fidelity: `HORIZON_TRAJECTORY_SERIES`; A/B 7,376 native samples each, C 5,464, plus N2 strain (2,2).
+- Available: horizon centers, masses, vector spins, area, coordinate separation/rates/phase/arc length, common-horizon event, remnant history.
+- Boundary: coordinate-dependent source context only; no local fields, `E_ij`, constraints, proper separation, merger prediction, or handoff law.
+- Packet: `analysis/atlas_temporal_pilot/ATLAS_SXS_HORIZON_DYNAMICS_001/`.
+
+## ATLAS_SXS_EVENT_CENTERED_COHERENCE_001
+
+- Parent: `ATLAS_SXS_HORIZON_DYNAMICS_001`; no new upstream data or evolution.
+- Products: 1,517-row event feature ledger, 720-row support-matched null ledger,
+  sensitivity/cohabitation/settling ledgers, compact summary, and 14 audit PNGs.
+- Result: no supported window passes `p<=0.05`; best 25–50 M waveform-matched
+  result `p=0.0661`, with jitter maximum displaced to `+20 M`.
+- Retained facts: A/B/C coexistence `2.0037321313 M`; processing-stable
+  comparative strain peak near `tau=+7.15 M`; provisional remnant settling.
+- Claim ceiling: negative single-simulation diagnostic; no invariant, causal,
+  merger-prediction, physical-destruction, handoff-law, or replication claim.
+- Decision/packet: `C_STOP_REFRAME`;
+  `analysis/atlas_temporal_pilot/ATLAS_SXS_EVENT_CENTERED_COHERENCE_001/`.

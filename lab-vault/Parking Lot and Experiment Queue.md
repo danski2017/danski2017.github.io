@@ -2,7 +2,7 @@
 type: parking_lot
 status: active
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [relational-labs, parking-lot, experiment-queue, backlog]
 ---
 
@@ -24,6 +24,11 @@ is the historical stratum this note supersedes as the LIVING tracker.
 
 ## Bench — designed and ready to run
 
+- **Temporal Psi4 same-archive consistency pass** (2026-07-19, from Work Order
+  1B) — ingest archived multipolar Psi4 and additional available output times,
+  compare against the new spatial-grid Psi4 lane under declared extraction and
+  tetrad conventions, and align the time ladder with horizon/puncture series.
+  This low-cost precomputed-data gate precedes the SXS cross-family horizon lane.
 - **Lambda_Pi calibration** (2026-07-18) — bound the real
   exterior-context amplitude (declared catalog shell or declared
   bound) so every promoted commons claim's ceiling becomes a bounded
@@ -54,6 +59,40 @@ is the historical stratum this note supersedes as the LIVING tracker.
   hypothesis set untested.
 
 ## Parking lot (ideas, not yet designed)
+
+- **Lumen successor: observer-declared Jacobi congruence / tidal
+  microscope** (2026-07-19, founder conversation; conceptual redesign,
+  not yet designed) — the static released 3D mesh is coherent in the
+  symmetric one/few-source toy but does not scale legibly or uniquely
+  to natural many-source Atlas scenes. Central correction: the electric
+  Weyl tensor `E_ab(u)` is observer-relative and prescribes
+  instantaneous relative acceleration through geodesic deviation, not
+  a unique static node displacement. A globally deformed mesh therefore
+  assumes an integrable displacement field, a preferred center, a
+  slicing, and an observer family that a general scene does not supply.
+  Park further cosmetic tuning of the global mesh. Candidate successor
+  ladder: (1) sign-invariant local tidal ellipsoids; (2) a
+  target-custodied local tidal microscope; (3) a 4D Jacobi lattice in
+  which nodes are worldlines and each displayed 3D lattice is a
+  time-indexed cross-section. The 4D lane requires an explicit observer
+  passport — foliation, lapse, shift, initial four-velocity field,
+  tetrad-transport rule, initial relative velocities, and proper-time
+  interval — followed by geodesic/Jacobi evolution, caustic monitoring,
+  convergence tests, and comparison across declared observer/gauge
+  families. Rungs are relational measurements between trajectories,
+  not spacetime anatomy. The current baked BL initial slice can support
+  a declared slice-normal electric-Weyl witness but not a unique 4D
+  lattice history; that needs an evolved metric/connection substrate.
+  Preserve the static toy as a pedagogical and historical instrument,
+  with the sponge/compression ontology not presently supported. This
+  item supersedes render-first continuation without deleting the May-era
+  gate record:
+  [[Atlas Codex Bridge/Lumen Lattice/Lumen Lattice Next Gates]].
+
+- **Public clone sync cadence** (2026-07-19) — the GitHub Pages clone
+  (/lab/) is a snapshot; decide manual re-publish cadence vs an
+  automated sync (script or Action). Also: add /lab/ to the site's
+  header navigation (Gemini-wing surface).
 
 - **Resolved-Source Morphology Forgetting and Multipole Compression**
   (2026-07-18, founder entry; Seed / weak-field reconnaissance) —

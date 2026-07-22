@@ -2,7 +2,7 @@
 type: thread_boot
 status: canonical
 created: 2026-07-15
-updated: 2026-07-18
+updated: 2026-07-19
 tags:
   - atlas-platform
   - handoff
@@ -106,16 +106,17 @@ Use this at the beginning of future Atlas Platform goals:
 > numerical provenance, append-only logs, the ET/Atlas split, and the compute
 > safety policy. Do not touch `codex_context` unless explicitly instructed.
 
-## Handoff Completion Test (updated 2026-07-18)
+## Handoff Completion Test (updated 2026-07-19)
 
 A newly oriented thread should be able to answer, before editing:
 
 - Where is the viewer code and how is it served?
-- Which FOUR panel lanes exist (Atlas Native, Imported Tools, Recovery
-  Lab, BL Foam), and which Layer Stack sections live in the BL lane
+- Which FIVE panel lanes exist (Atlas Native, Imported Tools, Recovery
+  Lab, BL Foam, Temporal NR), and which Layer Stack sections live in the BL lane
   (eigen, network, Commons Layers, Dynamic Witnesses)?
 - Which datasets are selectable and what are their claim ceilings —
-  including COMMONS_ATLAS_001 and MAGNETIC_WEYL_001/002?
+  including COMMONS_ATLAS_001, MAGNETIC_WEYL_001/002, and the archived
+  `ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001` temporal substrate?
 - Which scripts regenerate each payload, and why must claim-wording
   fixes land in the bake SCRIPT rather than the output manifest?
 - What did the GPT-wing adjudications of 2026-07-18 promote, what did
@@ -128,9 +129,11 @@ A newly oriented thread should be able to answer, before editing:
   OBS_042 numeric Riemann crosscheck; resolved by the ratified E-sign
   map — Atlas E = stretch-positive = -C_i0j0.)
 - Where does Einstein Toolkit enter the pipeline?
+- Which genuine evolved ET fields are present in Temporal Pilot I, which full
+  Cauchy/constraint/curvature fields are absent, and why is the registered
+  residual not gauge-free?
 - What did the FUKA BNS resource stop prove and not prove?
 - Which changes require evolution-log and archive receipts, and which
   orientation docs must be synchronized when behavior or paths change?
 
 If any answer is unclear, orientation is not complete.
-

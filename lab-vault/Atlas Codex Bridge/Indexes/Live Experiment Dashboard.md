@@ -95,3 +95,7 @@ B010 resolution ladder: scalar rotation disagreement generally decreases with me
 The galaxy line remains sharper, and the real-data lane now includes a refreshed mechanism draft, completed B036 figure bundle, B037 internal manuscript draft, B037A human visual narrative, historical G001 scout, corrected G001H GFRO-hardened control, passed G001I independent check, and G001P parity-delta overlay. G001P found boundary sensitivity but not parity-specific enrichment under the first-pass proxy, so no public parity-validation claim is earned.
 
 The curvature-identity public candidate is staged through C010, with C011/C012 failure-mode and analytic-control cautions attached. B017 consolidates the galaxy lane into an internal paper spine, and B018 adds a verified SPARC source-data bridge. No website repo changes have been made.
+
+## Completed 2026-07-19 — Temporal Pilot I Psi4 time ladder
+
+`ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001` — three lawful common full-3D spatial rungs plus continuous finite-radius multipolar Psi4; I/J persistence reproduced across both adjacent intervals. Next gate: SXS cross-family horizon dynamics. Packet: `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001/`.

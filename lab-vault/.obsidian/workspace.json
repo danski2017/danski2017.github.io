@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Atlas Codex Bridge/Codex Bridge Home.md",
+                "file": "Atlas Codex Bridge/Architecture/GFRO Emitter Architecture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Codex Bridge Home"
+              "title": "GFRO Emitter Architecture"
             }
           }
         ]
@@ -180,8 +180,28 @@
       "bases:Create new base": false
     }
   },
-  "active": "dbb37580c3caa893",
+  "active": "fbd2a9acea6c2c8b",
   "lastOpenFiles": [
+    "Atlas Strategic Direction - External Tether and Grounding.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-22 Vault GitHub Mirror Sync Routine Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/10 Vault GitHub Mirror Sync.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 Atlas SXS Event-Centered Coherence Audit Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 eigen_gap_full Diagnostic Contract Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/ATLAS Diagnostic Contract — eigen_gap_full.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 Atlas SXS Horizon Dynamics Bridge Receipt.md",
+    "Lab Goals and Milestones.md",
+    "Parking Lot and Experiment Queue.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 External Tether Strategic Direction Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I Psi4 Time Ladder Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I Curvature Extension Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I ET Archive Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/08 Boot Loader Prompt.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Public Clone Guidance Ingest Receipt.md",
+    "Atlas Codex Bridge/Best Practices/RL_PUBLICATION_PROTOCOL.md",
+    "Atlas Codex Bridge/Atlas Platform/RL_PUBLIC_CLONE_SKILL.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Public Clone Boot Orientation Receipt.md",
+    "Atlas Codex Bridge/Codex Bridge Home.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Public Clone Receipt.md",
     "Atlas Codex Bridge/Architecture/RL_DOCTRINE_CANDIDATE_MATURE_NODE_GRAMMAR_v0_1.md",
     "Atlas Codex Bridge/Synthesis/RL_LAB_NOTE_NODE0_DELTA_ACCOUNTING_001_004_CLOSEOUT_v0_1.md",
     "Atlas Codex Bridge/Architecture/RL_NOTE_NODE0_DELTA_BUNDLE_STABILIZATION_v0_1.md",
@@ -191,32 +211,12 @@
     "Atlas Codex Bridge/Atlas Platform/2026-07-19 Claude Wing Review - Commons White Paper v0.4.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Node 0 Witness Coherence and Delta Bundle Receipt.md",
     "Atlas Codex Bridge/Architecture/Atlas Node Taxonomy for Simulations.md",
-    "Atlas Codex Bridge/Architecture/Reusable Components Register.md",
-    "Atlas Codex Bridge/Architecture/Proven Simulation Architecture.md",
-    "Atlas Codex Bridge/Architecture/GFRO Emitter Architecture.md",
-    "Atlas Mission Statement.md",
-    "Parking Lot and Experiment Queue.md",
-    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-18 Node 0 Compactness-to-Tail Sweep Receipt.md",
     "Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized.docx",
     "Papers/Current Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized 2.docx",
     "Papers/Current Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized 1.docx",
     "Papers/Current Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized.docx",
-    "Atlas Codex Bridge/Atlas Platform/2026-07-18 Stabilized Gate Brief for GPT Adjudication.md",
-    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-18 Commons Stabilized Gate Receipt.md",
-    "Atlas Platform Dashboard.md",
-    "Lab Goals and Milestones.md",
-    "Atlas Codex Bridge/Atlas Platform/08 Boot Loader Prompt.md",
-    "Atlas Codex Bridge/Website/Website Bridge.md",
     "Papers/Current Papers/Proof_of_Concept_Extraction_GCS_IV_Revised_v0_3.pdf",
     "Papers/Current Papers/The_Gravitational_Coherence_Surface_Revised_v0_5.pdf",
-    "Papers/Current Papers/three_measures_of_gravitational_identity_v1.pdf",
-    "Atlas Codex Bridge/Atlas Platform/04 Operations and Validation Runbook.md",
-    "Atlas Codex Bridge/Atlas Platform/03 Repo ET and Artifact Location Map.md",
-    "Atlas Codex Bridge/Atlas Platform/06 Current State and Development Contract.md",
-    "Atlas Codex Bridge/Atlas Platform/07 One-Model Redesign Blueprint.md",
-    "Atlas Codex Bridge/Atlas Platform/Evolution Log.md",
-    "Atlas Codex Bridge/Atlas Platform/05 Dataset and Model Registry.md",
-    "Atlas Codex Bridge/Atlas Platform/02 Architecture and Data Flow.md",
-    "Atlas Codex Bridge/Atlas Platform/01 New Thread Orientation.md"
+    "Papers/Current Papers/three_measures_of_gravitational_identity_v1.pdf"
   ]
 }

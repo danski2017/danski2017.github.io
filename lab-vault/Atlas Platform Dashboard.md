@@ -1,21 +1,27 @@
 ---
 type: dashboard
 status: active
-updated: 2026-07-18
+updated: 2026-07-22
 ---
 
 # Atlas Platform Dashboard
 
-## Current Focus (2026-07-18 — the Commons Era)
+## Current Focus (2026-07-21 — Commons + Genuine Temporal NR)
 
 - [[Atlas Codex Bridge/Atlas Platform/09 Findings Digest 2026-07-18|Findings Digest]] — one-document catch-up on the commons discoveries, the adjudicated claim register, and the new instrument lanes
 - [[Atlas Codex Bridge/Atlas Platform/2026-07-18 Commons Promotion Brief for GPT Adjudication|Commons Promotion Brief]] (adjudicated) + [[Atlas Codex Bridge/Atlas Platform/2026-07-18 A5 Carrier-Persistence Addendum|A5 Addendum]] (adjudicated)
 - Rulings: [[Atlas Codex Bridge/Atlas Platform/Archive/2026-07-18 GPT Adjudication Receipt - Commons Promotion|Commons Promotion Receipt]] · [[Atlas Codex Bridge/Atlas Platform/Archive/2026-07-18 GPT Adjudication Receipt - A5 Carrier Persistence|A5 Carrier Persistence Receipt]]
 - Milestone: first **Accepted Internal Reproduction Result** — 8 troughs + H≥0.85 backbone + carrier rosters Reproduced within the declared roster family (Λ_Π uncalibrated; idx-7 canary)
 - Open gates: Stabilized rung (scene families + trough-occurrence null), Λ_Π calibration, custody-renegotiation mapping
+- Temporal milestone: [[Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I ET Archive Receipt|Atlas Temporal Pilot I]] added a fifth `Temporal NR` lane using two genuine archived ET `ML_BSSN::phi` slices (`t=0` and `t=898.711912089024`), horizon surfaces, puncture tracks, and a provenance-preserved coordinate-registered residual. This is authentic archived evolution, but not a complete Cauchy state and not an `E_ij` evolution product.
+- Curvature extension: [[Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I Curvature Extension Receipt|Work Order 1B]] adds genuine archived complex `Psi4` and Weyl invariants `I/J`, complex-first temporal residuals, and cross-witness morphology to that same lane. I/J change is highly coherent in the declared registration (`r=0.983`, Jaccard `0.948`); all temporal comparisons remain coordinate-dependent and the archive still lacks a complete Cauchy state or `E_ij` time series.
+- Director handoff: the 26-file result set is packaged at `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001_DIRECTOR_SHARE_26_FILES.zip` (SHA-256 `cfea7aec9e355e85a9ae365519ffb1f777adecb8e856c66e7ee80d6ecf793fe2`).
+- SXS bridge: [[Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 Atlas SXS Horizon Dynamics Bridge Receipt|Work Order 2]] adds dense public A/B/C horizon, mass, spin, trajectory, remnant, and strain context under the same Temporal NR lane; it remains the parent substrate for the closed Work Order 3 audit.
+- SXS event audit: [[Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 Atlas SXS Event-Centered Coherence Audit Receipt|Work Order 3]] closed the proposed point-centered multichannel signature negative (`p_min=0.0661`; jitter maximum `+20 M`; A/B features endpoint-sensitive). Decision `C_STOP_REFRAME`: no replication and no Ext-CCE rescue of this score.
 
 ## Canonical Instrument
 
+- [[Atlas Strategic Direction - External Tether and Grounding|Strategic Direction — External Tether & Grounding]] — what external problems the machine should face; sits above the compute-next goals sheet
 - [[Atlas Codex Bridge/Atlas Platform/00 Atlas Platform Home|Atlas Platform Home]]
 - [[Atlas Codex Bridge/Atlas Platform/01 New Thread Orientation|New Thread Orientation]]
 - [[Atlas Codex Bridge/Atlas Platform/07 One-Model Redesign Blueprint|One-Model Redesign Blueprint]]
@@ -72,6 +78,7 @@ updated: 2026-07-18
 ## Vault Areas
 
 - [[Atlas Mission Statement]]
+- [[Atlas Strategic Direction - External Tether and Grounding|Strategic Direction — External Tether & Grounding]]
 - [[Parking Lot and Experiment Queue]]
 - [[Lab Goals and Milestones]]
 - [[Papers/README.txt|Papers]]
@@ -80,3 +87,6 @@ updated: 2026-07-18
 ## Operating Rule
 
 Codex writes only inside `Atlas Codex Bridge/` unless explicitly asked to update a specific vault note.
+
+The Mac vault is the vault source of truth. GitHub `lab-vault/` is its one-way
+public mirror; requested vault syncs use [[Atlas Codex Bridge/Atlas Platform/10 Vault GitHub Mirror Sync|the guarded sync routine]]. GitHub vault edits never flow back into the Mac source.

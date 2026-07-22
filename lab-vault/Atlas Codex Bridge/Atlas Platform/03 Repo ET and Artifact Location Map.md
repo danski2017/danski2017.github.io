@@ -18,7 +18,8 @@ Atlas Platform spans two separate Desktop trees:
 | Tree | Absolute root | Responsibility |
 |---|---|---|
 | Atlas | `/Users/danski2017/Desktop/Atlas_Solver_Project` | Viewer, configs, scripts, compact datasets, Atlas analyses, manifests, docs, logs, and Obsidian vault |
-| Einstein Toolkit | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus` | Cactus source/builds, ET executables, parameter files, raw HDF5, FUKA source, and importer source |
+| Einstein Toolkit installation | `/Users/danski2017/Desktop/EinsteinToolkit` | Active local Atlas/Relational Labs NR infrastructure, including Cactus and bounded external-data cache |
+| Einstein Toolkit Cactus tree | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus` | Cactus source/builds, ET executables, parameter files, raw HDF5, FUKA source, and importer source |
 
 The Atlas tree is the platform brain and visual pipeline. The ET tree is the
 external numerical-relativity engine and raw-output source. A viewer dataset does
@@ -138,6 +139,19 @@ Root: `/Users/danski2017/Desktop/EinsteinToolkit/Cactus`
 | `repos/KadathImporter/` | ET importer source |
 | `repos/KadathThorn/` | ET Kadath integration source |
 
+Archived temporal substrate added 2026-07-19:
+
+| Location | Role |
+|---|---|
+| `/Users/danski2017/Desktop/EinsteinToolkit/atlas_external_data/zenodo_155394/` | Selectively retrieved, CRC-validated external raw cache for Zenodo DOI `10.5281/zenodo.155394`; not a browser dependency |
+| `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001/` | Canonical temporal-pilot evidence packet, ledgers, manifests, validation, and renders |
+| `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_CURVATURE_EXTENSION_001/` | Work Order 1B complex-Psi4/I/J evidence packet, conventions, cross-witness ledgers, validation, and renders |
+| `scripts/atlas_temporal_pilot/` | Reusable TemporalScene declaration, archive adapter, bounded retrieval, build, validation, and closeout code |
+| `configs/atlas_temporal_pilot/` | Frozen temporal-pilot extraction and registration configuration |
+| `analysis/et_tov3_scout/pinch_lab_viewer/datasets/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001/` | Compact browser payload for the existing instrument's Temporal NR lane |
+| `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001_DIRECTOR_SHARE_26_FILES.zip` | Integrity-tested 26-file director-facing results bundle |
+| `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_CURVATURE_EXTENSION_001_COMPLETE_OUTPUT.zip` | Standard complete-output curvature-extension bundle; excludes raw external cache but includes its checksum ledger |
+
 Baseline executable hashes:
 
 - `cactus_ATLAS_TOV3_SCOUT`:
@@ -198,3 +212,25 @@ detailed numerical and execution notebook.
 | Kinematics harvest (raw receipt + derived) | `analysis/et_tov3_scout/KINEMATICS_HARVEST_001/` |
 | Commons/dynamic bake + survey scripts | `scripts/et_tov3_scout/commons_*.mjs`, `bake_commons_atlas.mjs`, `bake_magnetic_weyl.mjs`, `harvest_kinematics.mjs`, `obs042_kappa_crosscheck.mjs` |
 | Index backups (session roots) | `backups/atlas_platform/index_pre_{commons_link,commons_layers}_20260717.html`, `index_pre_pvec_20260718.html` |
+
+### Temporal Pilot I Psi4 time ladder
+
+- Packet: `/Users/danski2017/Desktop/Atlas_Solver_Project/analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001/`
+- Processed viewer payload: `/Users/danski2017/Desktop/Atlas_Solver_Project/analysis/et_tov3_scout/pinch_lab_viewer/datasets/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001/temporal_scene.json`
+- Raw selective cache: `/Users/danski2017/Desktop/EinsteinToolkit/atlas_external_data/zenodo_155394/GW150914_28/`
+- Raw cache stays outside the frontend and complete-output ZIP.
+
+### SXS horizon dynamics bridge
+
+- Packet: `/Users/danski2017/Desktop/Atlas_Solver_Project/analysis/atlas_temporal_pilot/ATLAS_SXS_HORIZON_DYNAMICS_001/`
+- Viewer payload: `/Users/danski2017/Desktop/Atlas_Solver_Project/analysis/et_tov3_scout/pinch_lab_viewer/datasets/SXS_HORIZON_DYNAMICS_001/temporal_scene.json`
+- External SXS cache: `/Users/danski2017/Desktop/EinsteinToolkit/atlas_external_data/sxs/`
+- Adapter/builder: `scripts/atlas_temporal_pilot/sxs_horizon_adapter.py`, `build_sxs_horizon_dynamics.py`
+- Raw cache remains outside the frontend; no full catalog mirror or local SXS evolution exists.
+
+### SXS event-centered coherence audit
+
+- Packet: `/Users/danski2017/Desktop/Atlas_Solver_Project/analysis/atlas_temporal_pilot/ATLAS_SXS_EVENT_CENTERED_COHERENCE_001/`
+- Config: `configs/atlas_temporal_pilot/ATLAS_SXS_EVENT_CENTERED_COHERENCE_001.json`
+- Analysis/validation: `scripts/atlas_temporal_pilot/event_centered_coherence.py`, `run_sxs_event_centered_coherence.py`, `validate_sxs_event_centered_coherence.py`
+- Input is the existing compact SXS viewer payload; no raw-cache change, download, viewer payload, or ET artifact was produced.

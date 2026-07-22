@@ -6,6 +6,29 @@ created: 2026-05-13
 
 # Next Simulation Queue
 
+## ATLAS TEMPORAL PILOT I — Archived ET Evolution
+
+Status: completed 2026-07-19 / infrastructure and bounded scientific pilot.
+
+Result: two genuine archived Einstein Toolkit 3D `ML_BSSN::phi` slices at
+`t=0` and `t=898.711912089024`, five selected horizon surfaces, puncture
+centers, and 10,179 coordinate-registered probes are available through the
+existing Atlas Instrument's fifth `Temporal NR` lane. Five unit tests,
+fourteen integration checks, deterministic rebuild, and browser QA passed.
+
+Claim boundary: the registered residual is coordinate-dependent,
+interpolation-dependent, non-invariant, and not gauge-free. The published
+archive subset lacks full `gamma_ij`, `K_ij`, constraints, and `E_ij`; none
+were fabricated.
+
+Packet: `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001/`.
+Director share: `analysis/atlas_temporal_pilot/ATLAS_TEMPORAL_PILOT_I_ET_ARCHIVE_001_DIRECTOR_SHARE_26_FILES.zip`.
+
+Next gate, not automatically authorized: acquire or generate on safe external
+compute a provenance-complete multi-time-slice ADM/Hydro/constraint bundle
+capable of curvature and electric-Weyl interrogation, then compare it against
+this frozen public/archive baseline.
+
 ## Active Work-Order Candidates
 
 ### C5 Dimensional Preflight
@@ -843,3 +866,7 @@ Required correction:
 
 - first earn analytic parity-zero worldline certification,
 - then attempt connection-witness comparison in a later gate.
+
+## Next high-leverage temporal lane
+
+SXS cross-family horizon dynamics, separately passported, using `ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001` as the frozen ET baseline. The GW150914_28 archive has no additional common full-3D phi/Psi4/I/J timestamps, so another same-archive spatial extension is not currently preferred.
