@@ -2,7 +2,7 @@
 type: atlas_platform_home
 status: canonical
 created: 2026-07-15
-updated: 2026-07-18
+updated: 2026-07-26
 aliases:
   - ATLAS Field Metric Viewer
   - Atlas Instrument
@@ -44,8 +44,10 @@ Read these notes in order:
 4. [[04 Operations and Validation Runbook|Operations and Validation Runbook]]
 5. [[05 Dataset and Model Registry|Dataset and Model Registry]]
 6. [[06 Current State and Development Contract|Current State and Development Contract]]
-7. [[Evolution Log|Evolution Log]]
-8. [[10 Vault GitHub Mirror Sync|Vault GitHub Mirror Sync]] for the controlled
+7. [[11 ET Temporal Harness Master Specification|ET Temporal Harness Master Specification]]
+   for the sole current ET evolution/orchestration design basis
+8. [[Evolution Log|Evolution Log]]
+9. [[10 Vault GitHub Mirror Sync|Vault GitHub Mirror Sync]] for the controlled
    one-way Mac-source-to-GitHub vault publication routine
 
 For the shortest safe handoff, point a new thread to this note and tell it to
@@ -74,6 +76,8 @@ follow [[01 New Thread Orientation]].
 | FUKA source | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus/repos/fuka` |
 | Public mirror checkout | `/Users/danski2017/Desktop/danski2017.github.io` |
 | Vault mirror routine | `scripts/repo_tools/sync_vault_to_github_mirror.py` |
+| ET temporal-harness master | `Atlas Codex Bridge/Atlas Platform/11 ET Temporal Harness Master Specification.md` |
+| Reserved internal research frame | `Atlas Codex Bridge/Atlas Platform/12 Constraint Geometry and Return Maps - Internal Research Frame.md` |
 
 ## Viewer Launch
 

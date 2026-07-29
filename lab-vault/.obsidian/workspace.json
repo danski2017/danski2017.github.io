@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "ad781405c3472e66",
+        "id": "63991159af027bd1",
         "type": "tabs",
         "children": [
           {
-            "id": "fbd2a9acea6c2c8b",
+            "id": "99874aac3ca82fa6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Atlas Codex Bridge/Architecture/GFRO Emitter Architecture.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "GFRO Emitter Architecture"
+              "title": "New tab"
             }
           }
         ]
@@ -180,43 +176,43 @@
       "bases:Create new base": false
     }
   },
-  "active": "fbd2a9acea6c2c8b",
+  "active": "dbb37580c3caa893",
   "lastOpenFiles": [
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-26 Atlas Temporal Harness Phase II-A Stop Receipt.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-26 Atlas Temporal Harness Phase I Implementation Receipt.md",
+    "Papers/Current Papers/Attribution_Compression_Nonseparability_v0_5(1).pdf copy.pdf",
+    "Atlas Codex Bridge/Repo/Analysis Map.md",
+    "Atlas Mission Statement.md",
+    "Atlas Platform Dashboard.md",
     "Atlas Strategic Direction - External Tether and Grounding.md",
+    "Lab Goals and Milestones.md",
+    "Parking Lot and Experiment Queue.md",
+    "Atlas Codex Bridge/Future Experiments/Gaia and Extreme-Source Lane Work Order.md",
+    "Atlas Codex Bridge/Future Experiments/G001P2 Grammar-Matched Parity Null Audit Work Order.md",
+    "Atlas Codex Bridge/Future Experiments/G001P Gaia Parity-Delta Overlay Work Order.md",
+    "Atlas Codex Bridge/Templates/Simulation Run Template.md",
+    "Atlas Codex Bridge/Templates/Experiment Note Template.md",
+    "Atlas Codex Bridge/Architecture/GFRO Emitter Architecture.md",
+    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-22 Vault GitHub Mirror First Publication Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-22 Vault GitHub Mirror Sync Routine Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/10 Vault GitHub Mirror Sync.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 Atlas SXS Event-Centered Coherence Audit Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 eigen_gap_full Diagnostic Contract Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/ATLAS Diagnostic Contract — eigen_gap_full.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 Atlas SXS Horizon Dynamics Bridge Receipt.md",
-    "Lab Goals and Milestones.md",
-    "Parking Lot and Experiment Queue.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-21 External Tether Strategic Direction Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I Psi4 Time Ladder Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I Curvature Extension Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Atlas Temporal Pilot I ET Archive Receipt.md",
     "Atlas Codex Bridge/Atlas Platform/08 Boot Loader Prompt.md",
-    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Public Clone Guidance Ingest Receipt.md",
-    "Atlas Codex Bridge/Best Practices/RL_PUBLICATION_PROTOCOL.md",
-    "Atlas Codex Bridge/Atlas Platform/RL_PUBLIC_CLONE_SKILL.md",
-    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Public Clone Boot Orientation Receipt.md",
-    "Atlas Codex Bridge/Codex Bridge Home.md",
-    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Public Clone Receipt.md",
-    "Atlas Codex Bridge/Architecture/RL_DOCTRINE_CANDIDATE_MATURE_NODE_GRAMMAR_v0_1.md",
-    "Atlas Codex Bridge/Synthesis/RL_LAB_NOTE_NODE0_DELTA_ACCOUNTING_001_004_CLOSEOUT_v0_1.md",
-    "Atlas Codex Bridge/Architecture/RL_NOTE_NODE0_DELTA_BUNDLE_STABILIZATION_v0_1.md",
     "Atlas Codex Bridge/Architecture/RL_DOCTRINE_CANDIDATE_MATURE_NODE_GRAMMAR_v0_1.txt",
     "Atlas Codex Bridge/Synthesis/RL_LAB_NOTE_NODE0_DELTA_ACCOUNTING_001_004_CLOSEOUT_v0_1.txt",
     "Atlas Codex Bridge/Architecture/RL_NOTE_NODE0_DELTA_BUNDLE_STABILIZATION_v0_1.txt",
-    "Atlas Codex Bridge/Atlas Platform/2026-07-19 Claude Wing Review - Commons White Paper v0.4.md",
-    "Atlas Codex Bridge/Atlas Platform/Archive/2026-07-19 Node 0 Witness Coherence and Delta Bundle Receipt.md",
-    "Atlas Codex Bridge/Architecture/Atlas Node Taxonomy for Simulations.md",
     "Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized.docx",
     "Papers/Current Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized 2.docx",
     "Papers/Current Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized 1.docx",
     "Papers/Current Papers/Relational_Commons_Internal_White_Paper_v0_4_Stabilized.docx",
     "Papers/Current Papers/Proof_of_Concept_Extraction_GCS_IV_Revised_v0_3.pdf",
-    "Papers/Current Papers/The_Gravitational_Coherence_Surface_Revised_v0_5.pdf",
-    "Papers/Current Papers/three_measures_of_gravitational_identity_v1.pdf"
+    "Papers/Current Papers/The_Gravitational_Coherence_Surface_Revised_v0_5.pdf"
   ]
 }

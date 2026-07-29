@@ -2,7 +2,7 @@
 type: architecture
 status: canonical
 created: 2026-07-15
-updated: 2026-07-19
+updated: 2026-07-26
 tags:
   - atlas-platform
   - architecture
@@ -145,6 +145,16 @@ a genuinely coupled compact-object slice; the intended future flow is:
 constraint HDF5 -> Atlas certification -> compact viewer adapter`.
 
 That route has not yet completed for a binary. See [[05 Dataset and Model Registry]].
+
+## ET Temporal Harness Authority — 2026-07-26
+
+[[11 ET Temporal Harness Master Specification]] is the sole current design basis
+for governed ET evolution. ET owns spacetime evolution; Atlas owns orchestration,
+temporal segments, extraction, witnessing, registration, provenance, three
+separate gate families, continuation, and claim discipline. The cadence is
+`STEP -> CHECKPOINT -> EXTRACT -> WITNESS -> ADJUDICATE -> RESUME`. An ET
+checkpoint is restart state; an Atlas extraction is a versioned witness product.
+This architecture note is a pointer and overview, not a second harness spec.
 
 
 ## Addendum 2026-07-18 — Commons + Dynamic Witnesses Data Flow

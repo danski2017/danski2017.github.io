@@ -58,6 +58,14 @@ link is asserted.
 
 ## Ordering conventions
 
+Convention note (2026-07-26): the trace-free R3 substrate is canonical
+`electric_weyl_ij` under `atlas-3plus1-curvature-v1.0`. The stretch-positive
+tidal acceleration operator is `-E_ij`. Because this contract orders by
+absolute eigenvalue magnitude, a global `E -> -E` negates each value without
+changing its payload slot; eigenvectors remain the same up to their arbitrary
+vector sign and `eigen_gap_full` is unchanged. Signed physical labels are not
+therefore inherited from the gap. See [[13 Curvature Convention Registry]].
+
 The payload channel names `lambda0_full`, `lambda1_full`, and `lambda2_full` do
 **not** use algebraic ascending order. The recovered generator applies
 `np.linalg.eigh` and then reorders by descending absolute magnitude. To avoid
@@ -314,4 +322,3 @@ interior-residual debts. Remaining owed items are:
 3. run the separately passported baked-channel Petrov-structure null audit if
    adjudicated;
 4. test observer and foliation dependence under GA2.
-

@@ -1095,3 +1095,322 @@ remain in `logs/et_tov3_scout_lab_log.txt` and versioned analysis manifests.
   baseline for comparison. The current vault delta was previewed; no sync commit
   or GitHub push occurred. Receipt:
   [[Archive/2026-07-22 Vault GitHub Mirror Sync Routine Receipt]].
+
+## 2026-07-22 — First Vault Mirror Publication Completed Through PR #58
+
+- Published the Mac vault source of truth to GitHub `lab-vault/`: 16 additions,
+  15 changes, 0 deletions, 324 unchanged across 355 files. Pre-publication scan
+  returned no findings.
+- The runbook's direct push to `main` was REJECTED by repository rule `GH013`
+  (changes must arrive through a pull request). Recovered via branch
+  `vault-sync-2026-07-22` and PR #58, merged as `252b4d3`; local `main`
+  fast-forwarded to match the remote.
+- One-way direction held throughout. No GitHub vault content entered the Mac
+  source, including during failed-push recovery.
+- Post-merge verification preview reports zero delta; the mirror is
+  byte-for-byte identical to the Mac vault for all eligible files.
+- [[10 Vault GitHub Mirror Sync]] corrected to document the pull-request path.
+  `.obsidian/workspace.json` flagged as churn-prone local UI state and proposed
+  for exclusion, not changed pending founder approval. Receipt:
+  [[Archive/2026-07-22 Vault GitHub Mirror First Publication Receipt]].
+
+## 2026-07-22 — Boot Loader Standing State Reconciled Through 2026-07-22
+
+- Found the canonical boot loader stale: `08 Boot Loader Prompt.md` had been
+  touched on 2026-07-22 to add the vault sync rule while its standing-state,
+  temporal-capability, and adjudicated-register sections remained at their
+  2026-07-19 content. The stale version had already reached the public mirror
+  through PR #58.
+- Reconciled `08` against the Dashboard and this log: added the Strategic
+  Direction sheet to the read order; declared the Temporal NR lane's two
+  substrate kinds (ET `FULL_SPATIAL_SLICE_ARCHIVE` with the Psi4 time ladder,
+  and SXS `HORIZON_TRAJECTORY_SERIES` with its non-impersonation list); added
+  the `eigen_gap_full` Observed/Definitional contract; and recorded the
+  outstanding manual SXS<->ET visual pass.
+- Added a Standing NEGATIVE result block so no future thread can boot without
+  knowing `ATLAS_SXS_EVENT_CENTERED_COHERENCE_001` closed negative
+  (`p=0.0661`, jitter max `+20 M`, decision `C_STOP_REFRAME`, no Ext-CCE
+  rescue). This was the drift's real hazard.
+- Commons-era claim register, public-clone orientation, vault sync rule,
+  scientific boundary, ET orientation rule, and open-gate order preserved
+  verbatim. Documentation only: no run, viewer edit, dataset, claim promotion,
+  or demotion. The public mirror remains stale pending a founder-requested sync.
+- Receipt: [[Archive/2026-07-22 Boot Loader Standing-State Reconciliation Receipt]].
+
+## 2026-07-22 — SXS<->ET Manual Visual Pass Completed (Work Order 2 follow-up closed)
+
+- Completed the manual browser visual pass deferred from Work Order 2, using the
+  in-app browser runtime that was unavailable on 2026-07-21. Verification only:
+  no viewer, dataset, script, claim, or doctrine changed; viewer SHA-256
+  `1b59e1e9…b95beb3e` unchanged before and after.
+- Substrate separation confirmed on screen. The SXS `HORIZON_TRAJECTORY_SERIES`
+  exposes no field, refinement, or 3D-region selector at all, so a trajectory
+  series cannot be read as a spatial field. The ET
+  `FULL_SPATIAL_SLICE_ARCHIVE` shows `E_ij` and `constraints` as visible
+  UNAVAILABLE entries rather than hiding them.
+- Psi4 time ladder verified live: three common full-3D rungs, two adjacent
+  residuals, two cross-witness pairs, multipolar Psi4 (2,±2)/(2,±1)/(2,0) at
+  seven radii.
+- In-instrument numbers reproduce the receipts exactly: `T_CH=3685.496268 M`,
+  strain peak `3692.646900 M`, offset `7.150632 M`, samples 7,376/7,376/5,464,
+  `no hidden shift`.
+- Independent payload check of `SXS_HORIZON_DYNAMICS_001/temporal_scene.json`:
+  A/B end `3687.500000 M` against C start `3685.496268 M`, so **A/B persist
+  exactly `2.003732 M` past C onset** — reproducing the audit receipt and
+  independently confirming the endpoint-sensitivity behind `C_STOP_REFRAME`.
+- All five lanes exercised; 0 console errors; 20/20 network requests 200; desktop
+  and mobile both reflow cleanly. One cosmetic passport/overlay text overlap in
+  Recovery Lab at an intermediate viewport recorded, not fixed.
+- The SXS event-centered negative remains closed; nothing here reopens it.
+- Receipt: [[Archive/2026-07-22 SXS-ET Manual Visual Pass Receipt]].
+
+## 2026-07-22 — Ablation Plates 001 + Instrument Tour 001 (internal/exploratory)
+
+- Founder-directed presentation experiment. Five witness plates over frozen BL
+  ablation arrangements plus a 143 s Playwright screen recording of the live
+  instrument. Marked INTERNAL / EXPLORATORY — NOT FOR PUBLICATION and written to
+  `analysis/et_tov3_scout/ABLATION_PLATES_001/`, outside the vault mirror path.
+- Ablation selection was by declared numeric criterion (p99 of relative
+  |dFroTF|), never by eye: Family S `- pair I (ember+ash)` (0.9983) and Gaia
+  `- van_maanen_star` (0.8924). Full ranking in `plates_report.json`.
+- New generators: `scripts/et_tov3_scout/render_ablation_plates_001.py` and
+  `record_instrument_tour_001.py`. Playwright + Chromium installed additively
+  into the existing lab `.venv`; the tour harness is reusable for demo/QA capture.
+- Viewer untouched — `index.html` SHA-256 `1b59e1e9…b95beb3e` unchanged, tour
+  overlays injected at runtime only, 0 console errors across 20 beats.
+- THREE CORRECTIONS caught before rendering, each of which would have produced a
+  handsome and wrong picture:
+  1. `allegiance` is cos^2(removed contribution, total field) with the full scene
+     HARD-SET to 1 by convention — it must be reported directly, never
+     differenced. Restated: for `- van_maanen_star` the removed contribution is
+     more tensorially orthogonal than aligned on 85.4% of points while median
+     relative |dFroTF| is 5.9e-4.
+  2. `eigen_gap_full` is bounded above by 0.5 for a trace-free symmetric 3x3
+     (axisymmetric spectrum), not 1.0; Family S median 0.438 sits near that
+     ceiling. Colour scales corrected, and the plate's claim rewritten — the
+     declared 0.02 floor excludes only 0.83% of the lattice, so gating does not
+     rescue the picture here; the eigenframe is admissible almost everywhere.
+  3. The H>=0.85 backbone is NOT drawable from `COMMONS_ATLAS_001/webbing.f32`
+     (entropy maxes at 0.8455); it lives on the COMMONS_SURVEY_001 64^3
+     disputed-region lattice. No instrument defect — the viewer note (L543)
+     correctly renders the certified H=0.75 surface and only cites the H>=0.85
+     adjudication. The conflation was the plate script's and was corrected there.
+- Trough parsing fixed (`islands.troughs`, keyed `x`); idx-7 at
+  (0.809, 1.481, -7.843) confirmed and ringed as the permanent canary.
+- Receipt: [[Archive/2026-07-22 Ablation Plates and Instrument Tour Receipt]].
+
+## 2026-07-26 — Master ET Temporal Harness Design Integrated
+
+- Created [[11 ET Temporal Harness Master Specification]] v1.0 as the sole
+  current design basis: ET owns evolution; Atlas owns temporal-segment
+  orchestration, extraction, witnessing, registration, provenance, three
+  independent gate families, machine-health adjudication, continuation, and
+  claim discipline.
+- Locked the cadence `STEP -> CHECKPOINT -> EXTRACT -> WITNESS -> ADJUDICATE ->
+  RESUME`, the E/B/W minimum aperture and `weyl_complex_ij` naming, observer vs
+  invariant channels, Temporal Passport, validation battery, no-swap safety
+  posture, H0/H1/H2 planning ladder, and backend-neutral ET Adapter boundary.
+- Created [[12 Constraint Geometry and Return Maps - Internal Research Frame]]
+  v0.1 with INTERNAL / ZERO PROMOTION fences for CG-1, CG-2, and TR-1. The lanes
+  are designed but unexecuted and are not public doctrine.
+- Reconciled current boot, architecture, location, runbook, state, safety,
+  dashboard, goals, and queue surfaces. Preserved historical receipts. No ET
+  run, simulation, source/viewer/dataset change, claim promotion, commit, push,
+  or vault-mirror sync occurred.
+- Receipt: [[Archive/2026-07-26 Master ET Harness Vault Integration Receipt]].
+
+## 2026-07-26 — Atlas Temporal Harness Phase I Implemented / Mock Validated
+
+- Implemented the backend-neutral temporal control spine under
+  `scripts/atlas_temporal_harness/`: canonical segment state machine, stable
+  run/segment/checkpoint/extraction/witness/adjudication identities, Temporal
+  Passport, distinct restart-checkpoint and extraction contracts, minimal
+  witness, machine telemetry, three independent gates, fail-closed continuation,
+  manifests, append-only ledgers, bounded configuration, and operator CLI.
+- Added deterministic `MOCK_ET` fixtures for healthy evolution, evolution
+  failure, checkpoint failure, extraction failure, machine YELLOW/RED, and
+  interpretation hold. The healthy demonstration completed two resumable
+  segments with validated checkpoint ancestry and an explicit restore receipt.
+- Phase-I suite: 19/19 pass without Einstein Toolkit. Existing Temporal Pilot
+  regression: 20/20 pass. Canonical viewer embedded-JavaScript syntax and
+  Recovery Lab static audit pass. All six emitted demo segment manifests verify.
+- Claim state: **ATLAS TEMPORAL HARNESS CONTROL SPINE — IMPLEMENTED /
+  MOCK-BACKEND VALIDATED**. No real ET execution, source modification,
+  backend/envelope certification, scientific field evaluation, or claim
+  promotion occurred.
+- Receipt: [[Archive/2026-07-26 Atlas Temporal Harness Phase I Implementation Receipt]].
+
+## 2026-07-26 — Phase II-A LOCAL_ET Implemented; Real Smoke Stopped Before Launch
+
+- Read-only discovered `/Users/danski2017/Desktop/EinsteinToolkit`, froze the
+  `ATLAS_TOV3_EVOLVE` executable/configuration/source identity, and implemented
+  `LOCAL_ET` behind the unchanged Phase-I adapter/state-machine/gate spine.
+- Hardened passive macOS telemetry for physical/process/system/compressed
+  memory, swap start/peak/end/growth, pressure, CPU/load, wall time, and disk
+  growth. Thermal remains honestly unavailable. Provisional policy makes any
+  swap growth YELLOW and growth above 16 MiB RED/stop; YELLOW/RED/UNKNOWN never
+  auto-resume.
+- Selected the smallest known-completed compatible scene: an Atlas-owned,
+  two-iteration, one-level, coarse single-TOV derivative. The frozen executable
+  does not contain the installed vacuum example thorns; no ET file was edited.
+- During telemetry command-format probing, `memory_pressure -l critical -s 1`
+  was mistakenly invoked as though passive. It is an active load generator.
+  The tool session was terminated immediately, the surviving child was found
+  and terminated, and no Cactus process existed. Swap rose materially and did
+  not return to its initial baseline. The work-order stop condition was honored:
+  `execution_enabled=false`, no real ET launch, restart, or control.
+- Harness tests 30/30 pass (19 retained + 11 new); Temporal Pilot regression
+  20/20 passes. The actual execution-disabled LOCAL_ET preflight emitted
+  `HALT`, `launch_attempted=false`, ledger, gates, and manifest.
+- Claim ceiling: **LOCAL_ET ADAPTER IMPLEMENTED / UNIT- AND FAIL-CLOSED-
+  VALIDATED; REAL SMOKE BLOCKED BY MACHINE-HEALTH STOP CONDITION**. The target
+  real-segment claim and continuation claim are not earned. Receipt:
+  [[Archive/2026-07-26 Atlas Temporal Harness Phase II-A Stop Receipt]].
+
+## 2026-07-26 — Phase II-A Real ET Checkpoint/Restart Completed
+
+- Began after host reset with zero observed swap and GREEN pressure; certified
+  all executable harness telemetry paths as passive.
+- The frozen `ATLAS_TOV3_EVOLVE` executable completed SEGMENT_A (iteration 0→2,
+  time 0→0.5, 1.020096834 s) and SEGMENT_B from its exact checkpoint (iteration
+  2→4, time 0.5→1.0, 1.018397250 s). Both segments held swap at 0/0/0 and
+  pressure GREEN.
+- Genuine CarpetIOHDF5 restart states, finite rho/H extraction, provenance,
+  witness, and all operational gates passed. Machine-readable restart
+  continuity passed, including ET recovery acknowledgment and absence of TOV
+  reinitialization.
+- Preserved two fail-closed corrections as evidence: an initial relative-path
+  pre-evolution failure and an original A adjudication false positive on the
+  harmless `NaNsFound` symbol. Both were corrected with regression coverage;
+  finalized artifacts were not rewritten.
+- The optional uninterrupted control was passported but not launched after a
+  fresh snapshot found 216,929,403 bytes of swap. Full Phase II-A completion is
+  earned; strong completion is not. Tests pass 35/35 + 20/20.
+- Receipt: [[Archive/2026-07-26 Atlas Temporal Harness Phase II-A Completion Receipt]].
+
+## 2026-07-26 — Phase II-B Field-Complete; E Convention Gate Stopped
+
+- Inspected the actual immutable Phase-II-A Carpet checkpoints, not thorn names.
+  Both A (iteration 2/time 0.5) and B (iteration 4/time 1.0) contain 420 HDF5
+  datasets, including timelevel-0 physical `gamma_ij`, all six `K_ij`, lapse,
+  shift, GRHydro primitives, all six lower `T_ij`, and H/M1/M2/M3 on the same
+  29^3 level-0 grid with three ghost zones.
+- Source-traced matter stress: TmunuBase declares `eTxx...eTzz` as lower
+  spatial `T_ij`; GRHydro implements
+  `T_ij=W^2[rho(1+eps)+p]v_i v_j+p gamma_ij`. Matter data are therefore ready;
+  no vacuum omission or guessed zero was used.
+- Drafted a versioned evolved-slice contract and exact A/B read-only reference
+  manifests. They remain unpromoted because the required convention validation
+  failed before curvature extraction.
+- Reproducible time-symmetric isotropic-Schwarzschild audit: the work-order
+  static limit `[R3_ij]^TF` through the existing Atlas Ricci/TF operator gives
+  radial `-0.009221774`; the founder-ratified stretch-positive Atlas lane
+  requires `+0.009031583`. Magnitudes differ 2.106%; signs oppose.
+- Honored the explicit stop condition. No evolved E arrays, B, complex Weyl,
+  render, ET rerun, ET source change, scientific interpretation, or claim
+  promotion occurred. Accepted regressions remain 35/35 + 20/20 pass.
+- Current gate: **E HOLD / DIRECTOR-FOUNDER SIGN ADJUDICATION REQUIRED**.
+  Recommended next action is Phase II-B FIX, not Phase II-C. Receipt:
+  [[Archive/2026-07-26 Atlas Temporal Harness Phase II-B Convention Stop Receipt]].
+
+## 2026-07-26 — Phase II-B Electric-Weyl Convention Fixed; Resume Authorized
+
+- Froze `atlas-3plus1-curvature-v1.0`: canonical
+  `E_ij=C_{i alpha j beta}n^alpha n^beta` is radial-negative for the
+  Schwarzschild principal radial eigenvalue; stretch-positive relative
+  acceleration is the distinct derived `tidal_acceleration_ij=-E_ij`.
+- Added convention-explicit implementation, witness schema v2, legacy API
+  deprecation, and fail-closed protection against rebaking mixed-sign magnetic
+  payloads.
+- Passed the exact and finite-difference Schwarzschild sign regression, static
+  reduction, eigen-slot, sign-even parity/norm, schema, and deprecation tests.
+- Completed the migration/claim audit: norm-based GCS, budget, and compression
+  results survive unchanged; signed products require relabeling/recomputation;
+  legacy B/super-Poynting/complex-Weyl claims remain held.
+- Current gate: **PHASE II-B RESUME AUTHORIZED FOR CANONICAL ELECTRIC-WEYL
+  EXTRACTION**. No ET evolution was run. General B/complex-Weyl promotion is
+  outside this authorization. Receipt:
+  [[Archive/2026-07-26 Atlas Temporal Harness Phase II-B Convention Fix Receipt]].
+
+## 2026-07-26 — Phase II-B Resumed Real Electric-Weyl A/B Witness Earned
+
+- Hash-verified and read the immutable Phase-II-A Segment A/B Carpet HDF5
+  checkpoints offline. No ET process was launched and no source artifact was
+  changed.
+- Promoted `ATLAS_EVOLVED_SLICE_V1`; ingested the complete timelevel-0 metric,
+  extrinsic curvature, and lower spatial matter stress; independently matched
+  `T_ij` to the GRHydro primitive reconstruction to relative error below
+  `1.1e-20`.
+- Constructed canonical real `E_ij` with the frozen
+  `atlas-3plus1-curvature-v1.0` convention, physical trace-free projection,
+  metric-aware norms, and generalized metric eigenpairs on all 12,167 active
+  cells of each slice. A and B extraction, schema, lineage, finite-value,
+  symmetry, trace, norm, matter, Schwarzschild, static, flat-reference, and
+  continuity gates pass.
+- Retained the coordinate finite-difference Ricci antisymmetry before enforcing
+  the exact Levi-Civita symmetry identity: 2.7207% of peak `||E||` at worst.
+  This is an explicit discretization diagnostic; no convergence uncertainty or
+  physical interpretation is claimed.
+- Engineering history records A at iteration 2/time 0.5 and its exact child B
+  at iteration 4/time 1.0. Constraint fields are numerical-health witnesses
+  only. Harness tests pass 64/64 and Temporal Pilot regressions pass 20/20.
+- Current gate: **CANONICAL REAL ELECTRIC-WEYL A/B ENGINEERING WITNESS EARNED
+  FOR THE TWO NAMED CHECKPOINTS**. `B_ij`, complex Weyl, production-envelope
+  certification, attribution, and physical-change claims remain held.
+- Receipt: [[Archive/2026-07-26 Atlas Temporal Harness Phase II-B Resumed E-Witness Receipt]].
+
+## 2026-07-27 — Phase II-C Curvature Robustness + Full Evolved Weyl Bundle
+
+- Demonstrated controlled second-order E convergence on a three-rung analytic
+  Schwarzschild ladder: RMS orders 2.010/2.063, radial point error
+  2.106%→0.489%, and raw Ricci antisymmetry 1.854%→0.538% of exact peak E.
+- Implemented an independent explicit-stencil Christoffel/Ricci/E path that
+  reproduces the inherited production discretization on references and both
+  immutable real epochs. A diagnostic fourth-order path converges at
+  4.117/4.058 and defines an operator-disagreement budget; production was not
+  silently replaced.
+- Implemented canonical evolved `B_ij=STF[epsilon_i^{kl}D_kK_lj]` with frozen
+  K sign/orientation. Static K=0, independently calculable nonzero manufactured
+  sign/amplitude, symmetry, trace, finite support, and second/fourth-order
+  resolution validations pass.
+- Implemented `weyl_complex_ij=E_ij+iB_ij` with complex128 plus exact real/imag
+  mirrors and B=0→W=E reduction. An integrated regression caught and corrected
+  invalid-mask NaN contamination of the complex real channel before promotion.
+- Emitted full A/B curvature packages on 9,261 common valid cells, a 14-render
+  audit, full restart-continuity history, and the first structured extraction
+  uncertainty floor. E floor peak/RMS: `3.17128e-4/1.11497e-4`; B:
+  `2.32498e-5/3.94910e-6`. Neither A→B E nor B change clears its floor.
+- C1/C2/C3 PASS; C4 **PASS WITH BOUND**. `weyl_gap` remains definition-blocked
+  because its complex spectral/singular-value choice is not frozen. No ET run,
+  physical interpretation, attribution, memory, Commons, or new-physics claim.
+  Peak RSS 1,297,317,888 bytes; swap unchanged at 207.44 MiB. Tests pass 84/84
+  plus 20/20 Temporal Pilot.
+- Receipt: [[Archive/2026-07-27 Atlas Temporal Harness Phase II-C Curvature Robustness and Full Weyl Receipt]].
+
+## 2026-07-27 — Temporal Pilot I Resolved Dynamic Curvature Full Pass
+
+- Selected the installed even-parity m=2 Teukolsky Eppley packet as the
+  smallest trustworthy dynamic vacuum benchmark with expected nonzero E and B.
+  Calibration attempt 001 failed closed on coordinate-axis analytic-data NaNs;
+  the documented half-cell-staggered 33^3 physical grid passed calibration and
+  became the production scene.
+- Certified t0/t1/t2 at iterations 0/2/4 and coordinate times 0/0.125/0.25.
+  Segment B loaded Segment A's exact t1 raw HDF5 checkpoint, SHA-256
+  `fd024eb5781dc1b6b21c0a0b032188708d6b20ed9b220b335415e53cc7b4f2be`.
+- All Evolution and Extraction Gates passed. Peak production RSS was
+  140,132,352 bytes, pressure remained green, and swap growth was zero. The
+  bounded segments were classified safe for unattended execution within this
+  exact envelope.
+- Under the declared peak statistic, E change remained unresolved: ratios
+  0.072365 and 0.366740. B change was resolved on both transitions: ratios
+  10.040853 and 4.938681, exceeding the stronger ratio-3 target. Maximum
+  resolved B change was 0.0415441 against a 0.00413751 floor.
+- Constraints remained finite and bounded. Eigenvalue/eigenframe evolution is
+  retained as a spectral-confidence-gated diagnostic only; no temporal angular
+  uncertainty floor was certified.
+- Current gate: **RESOLVED TEMPORAL CURVATURE HISTORY OBSERVED /
+  ENGINEERING-VALIDATED IN THE DECLARED TEUKOLSKY BENCHMARK**. The E/B witness
+  pipeline and bounded ET-to-Atlas loop are operational within that scope. No
+  continuum, general production, invariant-history, astrophysical, Commons,
+  memory, attribution, or new-physics claim is promoted.
+- Receipt: [[Archive/2026-07-27 Atlas Temporal Pilot I Resolved Dynamic Curvature 001 Receipt]].

@@ -2,7 +2,7 @@
 type: thread_boot
 status: canonical
 created: 2026-07-15
-updated: 2026-07-19
+updated: 2026-07-26
 tags:
   - atlas-platform
   - handoff
@@ -38,7 +38,9 @@ Do not design from memory and do not begin by building a new viewer.
    (founder directives 1-9, phase history, base-model doctrine).
 8. Read [[09 Findings Digest 2026-07-18]] — one-document catch-up on the
    commons era and the adjudicated claim register.
-9. Read [[../Best Practices/Compute Safety and Remote Execution Policy|Compute Safety and Remote Execution Policy]] before running any model job.
+9. Read [[11 ET Temporal Harness Master Specification]] before designing or
+   running evolved ET work. It is the sole current harness design basis.
+10. Read [[../Best Practices/Compute Safety and Remote Execution Policy|Compute Safety and Remote Execution Policy]] before running any model job.
 
 ## First Inspection Commands
 
@@ -129,6 +131,8 @@ A newly oriented thread should be able to answer, before editing:
   OBS_042 numeric Riemann crosscheck; resolved by the ratified E-sign
   map — Atlas E = stretch-positive = -C_i0j0.)
 - Where does Einstein Toolkit enter the pipeline?
+- What are the ET/Atlas ownership split, the three temporal cadences, the three
+  independent gate families, and the no-swap continuation rule?
 - Which genuine evolved ET fields are present in Temporal Pilot I, which full
   Cauchy/constraint/curvature fields are absent, and why is the registered
   residual not gauge-free?

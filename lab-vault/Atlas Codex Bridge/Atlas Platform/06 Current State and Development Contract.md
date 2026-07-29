@@ -2,7 +2,7 @@
 type: current_state
 status: active
 created: 2026-07-15
-updated: 2026-07-19
+updated: 2026-07-27
 tags:
   - atlas-platform
   - current-state
@@ -150,6 +150,98 @@ feature cannot be safely isolated in the existing platform.
 
 ## Immediate Frontier
 
+### ET temporal harness implementation state — 2026-07-26
+
+[[11 ET Temporal Harness Master Specification]] v1.0 is now the sole integrated
+design basis for future ET evolution orchestration. It defines ET evolution
+ownership, Atlas temporal-segment governance, checkpoint/extraction separation,
+Evolution/Extraction/Interpretation gates, the E/B/W witness contract, Temporal
+Passport, validation battery, Mac no-swap safety posture, and backend-neutral ET
+Adapter boundary. The Phase-I Atlas control spine is now **IMPLEMENTED /
+MOCK-BACKEND VALIDATED** at `scripts/atlas_temporal_harness/`, with deterministic
+fixtures, fail-closed continuation, explicit checkpoint restoration, manifests,
+append-only state/decision ledgers, and five demonstration runs under
+`analysis/atlas_temporal_harness/`. This does **not** mean ET integration is
+complete or that a temporal GR harness is operational. No ET run, ET source
+change, calibration, or physical simulation was performed. CG-1, CG-2, and TR-1
+remain zero-promotion reserved lanes in the separate internal research note.
+
+Phase II-A engineering advanced the same spine on 2026-07-26: the existing local
+ET installation was read-only discovered and hash-frozen, macOS swap telemetry
+was made enforceable, and a `LOCAL_ET` adapter was implemented behind the
+unchanged Phase-I interface with identity/disk/checkpoint/output preflight,
+bounded process monitoring, real HDF5 metadata discovery, and restart ancestry.
+The first telemetry-probe incident caused material host swap escalation; the
+probe was terminated, no Cactus process ran, and the stop condition was honored.
+That history remains binding in
+[[Archive/2026-07-26 Atlas Temporal Harness Phase II-A Stop Receipt]].
+
+After host reset, work order `ATLAS_TEMPORAL_HARNESS_PHASE_IIA_COMPLETION_001`
+completed one real two-iteration segment and exactly one child recovered from
+its genuine CarpetIOHDF5 checkpoint. The child resumed at iteration 2/time 0.5
+and reached iteration 4/time 1.0; ancestry, extraction, provenance, and restart
+continuity passed. Both segments held swap at 0/0/0 and pressure GREEN. The
+optional uninterrupted control was not launched because its later passive
+preflight observed elevated swap. Current status is therefore **FULL PHASE II-A
+ENGINEERING COMPLETION / STRONG-COMPLETION CONTROL NOT EARNED**. Tests pass
+35/35 plus 20/20. This is not production-envelope or physics certification. See
+[[Archive/2026-07-26 Atlas Temporal Harness Phase II-A Completion Receipt]].
+
+Phase II-B has now completed the narrowly authorized offline electric-Weyl
+resume on those two immutable checkpoints. `ATLAS_EVOLVED_SLICE_V1` is promoted
+for this extraction path; canonical real `E_ij`, metric norms, and generalized
+eigenpairs were emitted for 12,167 finite active cells in both A and B. Required
+source identity, field inventory, matter mapping, Schwarzschild sign, static
+reduction, trace, symmetry, norm, schema, lineage, and continuity gates pass.
+The exact Ricci symmetry identity is enforced with the pre-projection 2.721%
+finite-difference antisymmetry retained as a discretization diagnostic. No ET
+run occurred. This earns an **A/B ENGINEERING E-WITNESS FOR THE TWO NAMED
+CHECKPOINTS**, not `B_ij`/complex-Weyl, convergence, production-envelope,
+attribution, or physical interpretation certification. See
+[[Archive/2026-07-26 Atlas Temporal Harness Phase II-B Resumed E-Witness Receipt]].
+
+Phase II-C now provides the first bounded full evolved curvature subsystem.
+The inherited E path demonstrates second-order reference convergence and is
+reproduced by an independently coded same-order route; a fourth-order
+diagnostic supplies the operator-disagreement term. Canonical evolved
+`B_ij=STF[epsilon_i^{kl}D_kK_lj]` passes static, nonzero manufactured, symmetry,
+trace, and resolution tests. `weyl_complex_ij=E_ij+iB_ij` is serialized with
+exact channel provenance. C1/C2/C3 pass and C4 is **PASS WITH BOUND**. The first
+conservative E and B extraction floors are implemented, and neither A-to-B
+change clears them. `weyl_gap` is definition-blocked rather than invented.
+This is an engineering-validated measurement subsystem, not resolved physical
+dynamics or production-NR certification. See
+[[Archive/2026-07-27 Atlas Temporal Harness Phase II-C Curvature Robustness and Full Weyl Receipt]].
+
+Temporal Pilot I — Resolved Dynamic Curvature 001 has now exercised that
+subsystem in a genuinely dynamic vacuum benchmark. A full-3D, one-level,
+half-cell-staggered, even-parity `m=2` Teukolsky packet was evolved with
+ML_BSSN through certified epochs `(iteration,time)=(0,0),(2,0.125),(4,0.25)`.
+Segment B recovered the exact raw Segment-A checkpoint bytes
+(`fd024eb…b7da`) and advanced from iteration 2 to 4. Both two-step production
+segments completed in about 0.81 s, held memory pressure GREEN and swap at
+zero, and peaked at 133,103,616 and 140,132,352 bytes ET RSS.
+
+The production temporal budget declares peak as its comparison statistic.
+Electric changes remain below the conservative scene/operator envelopes:
+ratios `0.07236` and `0.36674`. Magnetic changes are strongly resolved on both
+adjacent transitions: `ΔB_peak=0.0415441` over floor `0.00413751` (ratio
+`10.0409`) and `ΔB_peak=0.0400386` over floor `0.00810714` (ratio `4.93868`).
+Hamiltonian RMS changes from `2.80178e-4` to `2.88508e-4`; momentum coordinate-
+norm RMS reaches `8.31024e-5`; all valid curvature values remain finite. This
+earns **FULL PASS / RESOLVED TEMPORAL CURVATURE HISTORY in the declared
+benchmark engineering scope** and an operational bounded ET-to-Atlas restart
+loop. It does not earn continuum, invariant, astrophysical, ownership, memory,
+Commons, or new-physics promotion. Eigenframe changes are definition-gated by
+`eigen_gap_full` but remain diagnostic because no angular-change uncertainty
+floor is certified.
+
+Current next gate: preserve this single-scene control and prepare a separately
+authorized minimal Temporal Pilot II resolved-versus-compressed comparison.
+Do not expand directly to a five-source or long compact-object production run
+on the 8 GiB Mac. See
+[[Archive/2026-07-27 Atlas Temporal Pilot I Resolved Dynamic Curvature 001 Receipt]].
+
 The highest-value scientific frontier remains a genuinely coupled,
 constraint-solved compact-object scene that can complete this route:
 
@@ -164,8 +256,9 @@ passing label.
 ## Safety Boundary
 
 The 8 GiB Mac mini may serve and develop the viewer, inspect data, run compact
-audits, and perform bounded smoke tests. It may not run coupled FUKA binaries,
-production ET evolutions, or other unbounded heavy solves. See
+audits, and perform the specifically calibrated bounded ET envelopes named
+above. It may not run coupled FUKA binaries, enlarged or sustained production
+ET evolutions, or other unbounded heavy solves. See
 [[../Best Practices/Compute Safety and Remote Execution Policy]].
 
 

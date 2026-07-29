@@ -2,7 +2,7 @@
 type: operations_runbook
 status: canonical
 created: 2026-07-15
-updated: 2026-07-18
+updated: 2026-07-26
 tags:
   - atlas-platform
   - runbook
@@ -138,6 +138,13 @@ do not overwrite the certified baseline merely to reuse this command.
 
 ## New ET Model Promotion Order
 
+For any future evolved ET campaign, [[11 ET Temporal Harness Master Specification]]
+governs the segment cadence, ET/Atlas ownership boundary, checkpoint-versus-
+extraction distinction, Temporal Passport, three independent gate families,
+minimum witness package, validation battery, and no-swap continuation rule. The
+steps below remain the current ingestion/promotion order; they do not constitute
+a second harness specification.
+
 1. Preserve raw ET output and solver transcript.
 2. Inventory HDF5 variables, iterations, refinement levels, components, shapes,
    coordinates, and dtypes.
@@ -173,6 +180,9 @@ Read [[../Best Practices/Compute Safety and Remote Execution Policy|Compute Safe
   the 8 GiB Mac mini.
 - The interrupted resolution-9 FUKA BNS case requires at least 32 GiB remotely;
   64 GiB is preferred.
+- Swap is a first-class evolution stop gate. The planned H0/H1/H2 and fixed-step
+  `32^3/48^3/64^3` calibration ladder is queued and uncertified; do not run it
+  without a separate authorized work order.
 
 ## Failure Recovery
 

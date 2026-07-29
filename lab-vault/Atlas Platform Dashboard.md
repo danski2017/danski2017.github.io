@@ -1,12 +1,14 @@
 ---
 type: dashboard
 status: active
-updated: 2026-07-22
+updated: 2026-07-27
 ---
 
 # Atlas Platform Dashboard
 
-## Current Focus (2026-07-21 — Commons + Genuine Temporal NR)
+## Current Focus (2026-07-27 — Commons + Resolved Temporal Curvature)
+
+- [[Atlas Codex Bridge/Atlas Platform/11 ET Temporal Harness Master Specification|ET Temporal Harness Master Specification v1.0]] — sole current design basis for the ET/Atlas temporal harness. Phase I control, bounded real-ET checkpoint/restart, canonical E/B/complex-Weyl extraction, and the first uncertainty-qualified dynamic benchmark are implemented. [[Atlas Codex Bridge/Atlas Platform/Archive/2026-07-27 Atlas Temporal Pilot I Resolved Dynamic Curvature 001 Receipt|Resolved Dynamic Curvature 001]] completed t0->t1->t2 on a 33^3 Teukolsky-wave scene with an exact restart, passing Evolution/Extraction Gates, zero swap growth, and B temporal-resolution ratios 10.0409 and 4.9387. E change remained below its matching floor. This is a named engineering envelope, not general production or continuum NR certification.
 
 - [[Atlas Codex Bridge/Atlas Platform/09 Findings Digest 2026-07-18|Findings Digest]] — one-document catch-up on the commons discoveries, the adjudicated claim register, and the new instrument lanes
 - [[Atlas Codex Bridge/Atlas Platform/2026-07-18 Commons Promotion Brief for GPT Adjudication|Commons Promotion Brief]] (adjudicated) + [[Atlas Codex Bridge/Atlas Platform/2026-07-18 A5 Carrier-Persistence Addendum|A5 Addendum]] (adjudicated)
@@ -26,6 +28,7 @@ updated: 2026-07-22
 - [[Atlas Codex Bridge/Atlas Platform/01 New Thread Orientation|New Thread Orientation]]
 - [[Atlas Codex Bridge/Atlas Platform/07 One-Model Redesign Blueprint|One-Model Redesign Blueprint]]
 - [[Atlas Codex Bridge/Atlas Platform/08 Boot Loader Prompt|Boot Loader Prompt]]
+- [[Atlas Codex Bridge/Atlas Platform/11 ET Temporal Harness Master Specification|ET Temporal Harness Master Specification]]
 - [[Atlas Codex Bridge/Atlas Platform/06 Current State and Development Contract|Current State and Development Contract]]
 - [[Atlas Codex Bridge/Atlas Platform/Evolution Log|Atlas Platform Evolution Log]]
 
