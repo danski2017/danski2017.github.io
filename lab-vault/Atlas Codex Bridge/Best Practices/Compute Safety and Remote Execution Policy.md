@@ -1,7 +1,7 @@
 ---
 title: Compute Safety and Remote Execution Policy
 status: active
-date: 2026-07-15
+date: 2026-07-26
 tags:
   - atlas
   - operations
@@ -41,6 +41,31 @@ On the Mac mini, coupled FUKA binaries, production ET evolutions, jobs estimated
 above 2 GiB before overhead, jobs expected to swap, and unattended heavy compute
 are prohibited without a specific written founder override.
 
+## Temporal Harness Machine Gate — 2026-07-26
+
+[[../Atlas Platform/11 ET Temporal Harness Master Specification]] governs future
+segment-level machine adjudication. Swap is a first-class evolution gate. The
+local objective is the largest stable **NO-SWAP** envelope, not the largest run
+that can be forced to finish.
+
+- GREEN: no swap activity/growth and stable pressure, thermals, throughput, and I/O.
+- YELLOW: an uncertified compression, pressure, thermal, I/O, or slowdown trend;
+  checkpoint, shorten/hold, and diagnose.
+- RED: swap use/growth, hardware warning, severe pressure/throttling, unbounded
+  I/O, stalled progress, or unsafe process state; stop and preserve restart evidence.
+
+These traffic lights are qualitative until measured. Do not invent permanent
+numeric swap or thermal thresholds. The existing 2 GiB and related prohibitions
+remain conservative incident-derived launch bounds, not calibration results.
+
+The future local ladder is H0 at approximately `48^3` or smaller, H1 at
+approximately `64^3`, and H2 at approximately `96^3` only after clear no-swap
+headroom. `128^3` is not routine; AMR is a separate resource multiplier. The
+fixed-step `32^3/48^3/64^3` calibration is queued, not authorized by this note.
+Prefer a dedicated Linux backend for sustained ET work. The portable flow is
+Mac cockpit -> ET Adapter -> backend -> checkpoint + extraction -> Atlas; Apple
+eGPU support is not a dependency.
+
 ## 2026-07-11 FUKA Incident
 
 The near miss was a FUKA/Kadath unequal-mass BNS XCTS initial-data solve: one
@@ -62,4 +87,3 @@ For this case, use at least 32 GiB RAM remotely; 64 GiB is preferred.
 - `analysis/et_tov3_scout/FUKA_BNS_BRIDGE_001/run/bns_scout/RESOURCE_STOP_001.json`
 
 This note is the Obsidian operational mirror. The repo policy controls execution.
-

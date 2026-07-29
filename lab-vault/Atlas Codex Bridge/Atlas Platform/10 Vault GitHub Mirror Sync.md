@@ -57,6 +57,24 @@ python3 scripts/repo_tools/sync_vault_to_github_mirror.py sync \
 
 If any gate fails, the sync is not complete. Do not work around a failure by pulling GitHub vault files into the Mac vault.
 
+## Step 10 in practice — `main` is protected (2026-07-22)
+
+The public repository enforces a rule that changes to `main` must arrive through a pull request. A direct push therefore fails with `GH013: Repository rule violations`. This is expected, not a tool defect. The tool's local work — manifests, scan, replacement, verification, and the `lab-vault/`-only commit — completes normally; only the final push is refused.
+
+When that happens, complete the publication this way from the mirror checkout:
+
+```bash
+git branch vault-sync-<date>
+git push -u origin vault-sync-<date>
+gh pr create --base main --head vault-sync-<date> --title "Vault mirror sync from Mac SOT (<date>)"
+gh pr merge <n> --merge --delete-branch
+git checkout main && git pull --ff-only
+```
+
+The final fast-forward matters: it leaves local `main` equal to the remote so the next run's fast-forward-only gate passes. Confirm success by re-running `preview` and seeing a zero delta.
+
+This path changes nothing about direction or authority. The Mac vault remains the source of truth, and no GitHub vault content may enter the Mac source during recovery from a failed push.
+
 ## Configuration and implementation
 
 - Config: `configs/repo_tools/vault_github_mirror.json`

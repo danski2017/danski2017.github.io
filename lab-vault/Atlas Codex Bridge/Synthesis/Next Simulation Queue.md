@@ -2,11 +2,41 @@
 type: simulation_queue
 status: active
 created: 2026-05-13
+updated: 2026-07-27
 ---
 
 # Next Simulation Queue
 
-## ATLAS TEMPORAL PILOT I — Archived ET Evolution
+## ATLAS TEMPORAL PILOT I — Resolved Dynamic Curvature 001
+
+Status: **FULL PASS completed 2026-07-27 / bounded dynamic engineering
+benchmark**.
+
+Result: the installed even-parity m=2 Teukolsky Eppley packet evolved on a
+one-level, half-cell-staggered 33^3 physical grid through certified epochs
+t=0, 0.125, and 0.25. Segment B genuinely restarted from the exact t1 Segment
+A checkpoint. Evolution, extraction, registration, restart, and resource gates
+passed; peak RSS was 140,132,352 bytes and swap growth was zero. Under the
+declared peak statistic, E change remained unresolved (ratios 0.0724 and
+0.3667), while B change was resolved on both transitions (10.0409 and 4.9387).
+
+Claim boundary: this earns a resolved temporal-curvature history, operational
+temporal E/B witness pipeline, and bounded ET-to-Atlas loop only for the named
+benchmark. It does not earn continuum convergence, a general Mac production
+envelope, gauge-independent or invariant history, astrophysical prediction,
+source-resolved history, Commons, memory, or new physics.
+
+Packet:
+`analysis/atlas_temporal_harness/temporal_pilot_i_resolved_dynamic_curvature_001/`.
+Receipt: [[../Atlas Platform/Archive/2026-07-27 Atlas Temporal Pilot I Resolved Dynamic Curvature 001 Receipt]].
+
+Next gate, not automatically authorized: design the smallest source-model-
+agnostic **TEMPORAL PILOT II — RESOLVED VS COMPRESSED CURVATURE RETENTION**
+experiment, preserving exact registration, checkpoint ancestry, the Pilot I
+uncertainty currencies, and bounded resource preflight. Do not enlarge the
+scene or launch compute without a separate work order.
+
+## Historical ATLAS TEMPORAL PILOT I — Archived ET Evolution
 
 Status: completed 2026-07-19 / infrastructure and bounded scientific pilot.
 
@@ -869,4 +899,11 @@ Required correction:
 
 ## Next high-leverage temporal lane
 
-SXS cross-family horizon dynamics, separately passported, using `ATLAS_TEMPORAL_PILOT_I_PSI4_TIME_LADDER_001` as the frozen ET baseline. The GW150914_28 archive has no additional common full-3D phi/Psi4/I/J timestamps, so another same-archive spatial extension is not currently preferred.
+Design, under separate authorization, the smallest Temporal Pilot II
+resolved-versus-compressed curvature-retention experiment using Resolved
+Dynamic Curvature 001 as the complete-state control and preserving its exact
+registration, ancestry, uncertainty currencies, and resource gates. SXS
+cross-family horizon dynamics remains a distinct archived-source-context lane,
+not a substitute for the E/B/W comparison. The GW150914_28 archive has no
+additional common full-3D phi/Psi4/I/J timestamps, so another same-archive
+spatial extension is not currently preferred.

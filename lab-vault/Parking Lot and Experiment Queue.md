@@ -2,7 +2,7 @@
 type: parking_lot
 status: active
 created: 2026-07-18
-updated: 2026-07-19
+updated: 2026-07-26
 tags: [relational-labs, parking-lot, experiment-queue, backlog]
 ---
 
@@ -23,6 +23,16 @@ is the historical stratum this note supersedes as the LIVING tracker.
   [[Atlas Codex Bridge/Atlas Platform/2026-07-18 Stabilized Gate Brief for GPT Adjudication]].
 
 ## Bench — designed and ready to run
+
+- **ET harness Mac no-swap calibration ladder** (2026-07-26, QUEUED / DO NOT
+  RUN from this entry) — after Passport, adapter, machine capture, safe-stop,
+  checkpoint, and extraction plumbing exist, run fixed-step `32^3`, `48^3`, and
+  `64^3` vacuum cases under a separate work order. Record wall time, time/step,
+  peak RSS, compressed memory, swap, checkpoint/extraction size and time, E/B
+  derivation time, thermal observations, and slowdown. H0 ~`48^3` or smaller;
+  H1 ~`64^3`; H2 ~`96^3` only after clear no-swap headroom. `128^3` is not
+  routine; AMR and hydrodynamics require separate envelopes. Authority:
+  [[Atlas Codex Bridge/Atlas Platform/11 ET Temporal Harness Master Specification]].
 
 - **Temporal Psi4 same-archive consistency pass** (2026-07-19, from Work Order
   1B) — ingest archived multipolar Psi4 and additional available output times,
@@ -59,6 +69,11 @@ is the historical stratum this note supersedes as the LIVING tracker.
   hypothesis set untested.
 
 ## Parking lot (ideas, not yet designed)
+
+- **CG-1 / CG-2 / TR-1 reserved certification lanes** (2026-07-26) — internal
+  philosophy/research design only, zero promotion and no execution until the ET
+  temporal harness is certified. Definitions, prohibited shortcuts, and future
+  packet requirements live only in [[Atlas Codex Bridge/Atlas Platform/12 Constraint Geometry and Return Maps - Internal Research Frame]].
 
 - **Lumen successor: observer-declared Jacobi congruence / tidal
   microscope** (2026-07-19, founder conversation; conceptual redesign,

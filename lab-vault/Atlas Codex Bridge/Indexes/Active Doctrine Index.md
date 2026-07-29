@@ -87,6 +87,7 @@ The current largest breakthrough arc is finite-source curvature identity: budget
 - Scene passports are required before serious builds.
 - Renders are communication artifacts, not evidence by themselves.
 - Full electric-Weyl/eigenstructure is important where curvature-side claims are being tested.
+- [[../Atlas Platform/13 Curvature Convention Registry|Curvature Convention Registry]] is the frozen authority: `electric_weyl_ij` is GR-native `E_ij`, while stretch-positive relative acceleration is the derived `tidal_acceleration_ij=-E_ij`.
 - New serious architecture should use GFRO same-time-slice language: declared scene, shared time slice, source roster, observer/sampler convention, field branch, datum/witness roles, ledger, diagnostic geometry, validation, claim status.
 - Lumen Lattice and wireframe work should be treated as a ledger-first correspondence lane: GFRO emission, tensor/eigen/Weyl witnesses, released datum response, matched controls, resolution checks, then retention.
 - Finite-source work should separate curvature budget, jurisdiction, compression, Ricci-side scalar/source account, Weyl-electric tensor account, and static-vs-dynamic claim status.

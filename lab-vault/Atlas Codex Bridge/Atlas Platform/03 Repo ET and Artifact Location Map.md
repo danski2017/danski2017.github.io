@@ -2,7 +2,7 @@
 type: location_map
 status: canonical
 created: 2026-07-15
-updated: 2026-07-18
+updated: 2026-07-27
 tags:
   - atlas-platform
   - repo-map
@@ -173,6 +173,33 @@ preserve it when working on that lane.
 
 ## Documentation And Logs
 
+Canonical temporal-harness documents:
+
+| Role | Location |
+|---|---|
+| Sole current master design basis | `Relational_Labs/Relational_Labs/Atlas Codex Bridge/Atlas Platform/11 ET Temporal Harness Master Specification.md` |
+| Fenced internal CG-1/CG-2/TR-1 frame | `Relational_Labs/Relational_Labs/Atlas Codex Bridge/Atlas Platform/12 Constraint Geometry and Return Maps - Internal Research Frame.md` |
+| Vault compute-safety authority | `Relational_Labs/Relational_Labs/Atlas Codex Bridge/Best Practices/Compute Safety and Remote Execution Policy.md` |
+| Repo execution policy | `docs/COMPUTE_SAFETY_POLICY.md` |
+| Phase-I harness implementation | `scripts/atlas_temporal_harness/` |
+| Phase-I mock configuration | `configs/atlas_temporal_harness/ATLAS_TEMPORAL_HARNESS_PHASE_I_MOCK.json` |
+| Phase-I architecture and inventory | `docs/atlas_temporal_harness/` |
+| Phase-I mock demonstrations | `analysis/atlas_temporal_harness/temporal_runs/` |
+| Phase-II-A LOCAL_ET discovery/profile/config | `analysis/atlas_temporal_harness/phase_ii_a/`, `configs/atlas_temporal_harness/local_et/` |
+| Phase-II-A fail-closed blocked run | `analysis/atlas_temporal_harness/temporal_runs/PHASE_IIA_LOCAL_ET_BLOCKED_20260726/` |
+| Phase-II-A real completion receipt/bundle | `analysis/atlas_temporal_harness/phase_ii_a_completion_001/` |
+| Phase-II-A successful A→B restart run | `analysis/atlas_temporal_harness/temporal_runs/ATLAS_TEMPORAL_HARNESS_PHASE_IIA_COMPLETION_001_RUN2/` |
+| Phase-II-A optional control passport (not launched) | `analysis/atlas_temporal_harness/temporal_runs/ATLAS_TEMPORAL_HARNESS_PHASE_IIA_COMPLETION_001_CONTROL/` |
+
+The Atlas temporal control spine and backend-neutral ET Adapter interface exist,
+are mock-backend validated, and now have a bounded real `LOCAL_ET` completion
+receipt. One microscopic two-iteration segment produced a genuine checkpoint;
+one exact restart child advanced two more iterations with closed ancestry and
+zero measured swap growth. This certifies the named Phase-II-A engineering
+smoke path only, not a production envelope or physics result. The optional
+uninterrupted control was not launched after its own preflight found elevated
+swap. See [[Archive/2026-07-26 Atlas Temporal Harness Phase II-A Completion Receipt]].
+
 Repo policies and status:
 
 - `docs/COMPUTE_SAFETY_POLICY.md`
@@ -234,3 +261,41 @@ detailed numerical and execution notebook.
 - Config: `configs/atlas_temporal_pilot/ATLAS_SXS_EVENT_CENTERED_COHERENCE_001.json`
 - Analysis/validation: `scripts/atlas_temporal_pilot/event_centered_coherence.py`, `run_sxs_event_centered_coherence.py`, `validate_sxs_event_centered_coherence.py`
 - Input is the existing compact SXS viewer payload; no raw-cache change, download, viewer payload, or ET artifact was produced.
+
+## Addendum 2026-07-27 — Resolved Dynamic Curvature Pilot
+
+Temporal Pilot I now has a bounded, genuine local ET evolution/restart evidence
+root. This is separate from the older archived-Psi4 packet and does not replace
+its viewer role.
+
+| Role | Location |
+|---|---|
+| Frozen ET executable | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus/exe/cactus_ATLAS_TEUKOLSKY_WAVE` |
+| Frozen ET configuration | `/Users/danski2017/Desktop/EinsteinToolkit/Cactus/configs/ATLAS_TEUKOLSKY_WAVE/` |
+| Atlas scene/configuration inputs | `configs/atlas_temporal_harness/temporal_pilot_i/` |
+| Vacuum curvature adapter | `scripts/atlas_temporal_harness/temporal_pilot_i_curvature.py` |
+| Production materializer | `scripts/atlas_temporal_harness/run_temporal_pilot_i_production.py` |
+| Audit renderer | `scripts/atlas_temporal_harness/render_temporal_pilot_i.py` |
+| Fail-closed certifier/bundler | `scripts/atlas_temporal_harness/certify_temporal_pilot_i.py` |
+| Complete evidence root | `analysis/atlas_temporal_harness/temporal_pilot_i_resolved_dynamic_curvature_001/` |
+| Completion ZIP | `ATLAS_TEMPORAL_PILOT_I_RESOLVED_DYNAMIC_CURVATURE_001_COMPLETE_OUTPUT.zip` |
+| Pre-vault rollback set | `backups/atlas_temporal_harness/temporal_pilot_i_pre_vault_20260727/` |
+
+The evidence root retains both calibration attempts, both production segments,
+raw ordinary/checkpoint HDF5, the exact Segment-B restart input, three canonical
+E/B/W epochs, two registered differences, uncertainty/history/passport
+objects, 32 PNG audits, the final executable, build metadata, source/schema
+snapshot, tests, manifests, and receipts. The external ET derived object tree
+is not duplicated: it is 411 MiB of compiler intermediates. The completion
+bundle instead carries the exact 11 MiB arm64 executable, configuration inputs,
+generated configuration metadata, linkage receipt, source revisions, and
+relevant Atlas source.
+
+Load-bearing identities:
+
+- executable SHA-256 `f73db961bfc995a9157d10c46c2144d50b93afbb77faebdd9ff1140e4ccfc65b`;
+- canonical parameter SHA-256 `765dbd8e322eed647274d6948ae4ddfd6ba5af6adc6d235e1526354b291dbd8b`;
+- Segment-A raw checkpoint SHA-256 `fd024eb5781dc1b6b21c0a0b032188708d6b20ed9b220b335415e53cc7b4f2be`;
+- Segment-B raw checkpoint SHA-256 `2b7d25d3529786ca290ecaa6c9d2c0d2bac8f9755826ff6b76ea49153f650057`.
+
+See [[Archive/2026-07-27 Atlas Temporal Pilot I Resolved Dynamic Curvature 001 Receipt]].

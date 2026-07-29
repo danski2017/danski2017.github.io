@@ -78,8 +78,10 @@ possible single-source removals.
   phi<=0.3), Gaia LSN-66 punctures (roster embedded from the certified
   atlas_parity_foam_v3 payload, mu = m/2), two-ball interior parity shell lab
   (probe mu=0.16, R=0.6)
-- Witness: R3_ij assembled from the conformal factor; trace-free E_ij branch
-  is the default lawful tidal witness; Frobenius norm is the coordinate-chart
+- Witness: R3_ij assembled from the conformal factor; the trace-free branch is
+  canonical `electric_weyl_ij=R3_<ij>` under `atlas-3plus1-curvature-v1.0`;
+  stretch-positive reading uses `tidal_acceleration_ij=-electric_weyl_ij`;
+  Frobenius norm is the coordinate-chart
   ||.||_delta under shared Euclidean chart identification
 - Comparison contract: rho_s = ||Delta_s E||_F / ||context||_F with DEN A
   (fused re-solved ablated) and DEN B (pasted isolated-E sum); ledger d_AB
@@ -105,6 +107,10 @@ possible single-source removals.
 - Eigen substrate (2026-07-16): per-scene omni-radial lattice with per-config
   trace-free E_ij eigen-decomposition ([lam0,lam1,lam2,e0,froTF]); feeds the
   Base-Model Eigen Layers; eigenvectors gated by eigen-gap per GFRO
+- Convention migration: baked R3/TF arrays already have the canonical electric-
+  Weyl sign. Their signed eigenvalues are electric-Weyl values; any historical
+  stretch/compression wording must be interpreted through `-E`. Norm, gap, and
+  eigenvector geometry are unchanged.
 - Claim ceiling: identical to the BL analytic scenes entry above
 
 ### Gaia LSN 20-pc Raw Catalog (holding, 2026-07-16)
@@ -130,6 +136,11 @@ The current native schema exposes, in manifest-declared order:
 The viewer also reads full and removed principal eigenvectors, flags, positions,
 and grid indexes from separate binary arrays. Eigenvector angle is sign-invariant
 and must be conditioned on eigen-gap stability for interpretation.
+
+Signed `lambda0..2` and `delta_lambda0..2` are sign-odd. Under a global
+historical acceleration-operator to canonical-electric-Weyl conversion they
+negate; `absWeyl`, `delta_absWeyl`, `eigen_gap_full`, and eigenvector angle are
+sign-even or sign-insensitive. See [[13 Curvature Convention Registry]].
 
 ### `eigen_gap_full` Diagnostic Contract
 
@@ -267,6 +278,13 @@ These outputs are advisory until promoted through an explicit validation gate.
 | `COMMONS_ATLAS_001/` | webbing.f32 (3,325 near-parity nodes, 64^3 declared lattice), islands.json (9 troughs + certified H=0.75 surface), manifest | Troughs/backbone REPRODUCED-in-family (adjudicated 2026-07-18); webbing Observed; render-as-witness |
 | `MAGNETIC_WEYL_001/` | dynwit.f32 + pvec.f32 + kinematics.json (declared synthetic, seed 2026, beta 1e-4) | Implemented/Observed; kappa=-2 LOCKED (OBS_042); not radiative/conservation/prediction |
 | `MAGNETIC_WEYL_002/` | same schema, harvested SIMBAD kinematics (frame recovered, 0.78 deg) | as 001; kinematics = declared approximate astrometry, NOT ephemeris |
+
+The two `MAGNETIC_WEYL_*` payloads predate the convention freeze and combine
+legacy positive-radial proxy construction with canonical R3/TF construction.
+They are retained as archival displays only: signed `B_ij`, super-Poynting, and
+complex-Weyl interpretation is on claim hold pending convention-coherent
+recomputation. The generator now fails closed unless its legacy override is
+explicitly enabled.
 
 Evidence packets (repo, hashed in the promotion brief):
 `analysis/et_tov3_scout/COMMONS_{SURVEY_001,SURVEY_002,CONTEXT_SWEEP_001,DENSITY_PROBE_001,FRONTIER_PROBE_001,PERSISTENCE_SWEEP_001,CARRIER_PERSISTENCE_001}/`,

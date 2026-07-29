@@ -14,6 +14,14 @@ topics:
 
 # Three Measures of Gravitational Identity
 
+> **Current convention addendum (2026-07-26):** the paper's positive-radial
+> weak-field trace-free Hessian is the stretch-positive
+> `tidal_acceleration_ij=-electric_weyl_ij` under the frozen Atlas GR convention.
+> Its Weyl-electric square budget, Frobenius norms, parity surfaces, and
+> compression magnitudes are unchanged by this global sign clarification.
+> Signed eigenvalues and stretch/compression wording must use the appropriate
+> operator name. The historical PDF itself is preserved unchanged.
+
 This paper is one of the lab's largest breakthroughs to date. It gives Atlas a compact grammar for finite-source gravitational identity:
 
 ```text
@@ -100,10 +108,11 @@ Do not overstate:
 - compression is not a physical wall,
 - static identity measures are not a causal handoff theory,
 - particle entries depend on declared effective radii.
+- the paper's signed weak-field tensor notation is historical; current work
+  separates canonical electric Weyl `E_ij` from tidal acceleration `-E_ij`.
 
 Preferred lab sentence:
 
 ```text
 The field is seamless, but finite-source gravitational identity is structured.
 ```
-
