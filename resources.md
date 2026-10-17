@@ -58,3 +58,26 @@ permalink: /resources/
 ## Mathematical Foundations
 * [Classical Potential Theory](https://en.wikipedia.org/wiki/Potential_theory) – *Wikipedia.* The mathematical study of harmonic and superharmonic functions, including the Newtonian gravitational potential, Green's functions, and solutions to the Poisson equation (∇²Φ = 4πGρ). The entire Atlas framework rests on the structure of superposed Newtonian potentials; potential theory provides the rigorous analytic foundation for their behavior, boundary conditions, and decomposition.
 * [Multipole Expansion](https://en.wikipedia.org/wiki/Multipole_expansion) – *Wikipedia.* A systematic decomposition of a gravitational potential into contributions at increasing angular resolution: monopole (total mass), dipole (mass offset), quadrupole (mass distribution shape), and higher moments. As the declared resolution of a GCS scene coarsens, internal source structure is progressively folded into higher multipole terms — the formal mathematical description of how geometric detail is lost when crossing scale boundaries.
+
+## Initial Data, Parameter Spaces & Curvature Response
+* [Interaction Energy in Geometrostatics](https://inspirehep.net/literature/45090) – *D. R. Brill and R. W. Lindquist, Phys. Rev. 131, 471 (1963).* The founding paper on time-symmetric multi-black-hole initial data. It defines a bare mass for each Einstein–Rosen bridge and shows that the total mass falls short of their sum by a negative interaction energy. Atlas Scene Studio uses this construction as its exact static lane.
+* [On Superposition of Relativistic Point Sources](https://arxiv.org/pdf/2002.12281) – A modern treatment of Brill–Lindquist-type superposition, including the bare mass and the effective (total) mass of each source.
+* [Improved Initial Data for Black Hole Collisions](https://arxiv.org/pdf/gr-qc/9708022) – Work in the initial-data tradition that treats families of solved slices, varied in a parameter, as objects of study. It is a precedent for the parameterised slice sequences used in Atlas.
+* [Parameter Space Metric for 3.5PN Compact-Binary Inspirals](https://ar5iv.arxiv.org/html/1305.5381) – An example of the gravitational-wave template-bank metric, which builds a metric on source-parameter space from derivatives of the signal (the Fisher information matrix). It is structurally analogous to the source-space metric explored in Atlas delta-webbing work.
+* [Template-Space Metric for Searches for Gravitational Waves](https://ar5iv.arxiv.org/html/1501.04418) – A careful treatment of parameter-space metrics, including projection of extrinsic parameters, a technique relevant to making response metrics independent of registration choices.
+* [A Linear Response Relation in General Relativity](https://arxiv.org/pdf/2507.19922) – Curvature perturbations treated as a linear response to source perturbations, a kernel viewpoint on how a geometry responds when a source is varied.
+* [Properties of Quasi-Local Mass in Binary Black Hole Mergers](https://arxiv.org/pdf/2308.10906) – Applies the Wang–Yau quasi-local mass to Brill–Lindquist head-on data. A useful contrast to attribution by registered response: it assigns mass by enclosing surface.
+
+## Superspace & Curvature Energy
+* [What Is the Geometry of Superspace?](https://arxiv.org/pdf/gr-qc/9311017) – On DeWitt's metric on the space of three-geometries, including why the pure conformal (scale) direction is its negative direction.
+* [Overview of the Geometries of Shape Spaces and Diffeomorphism Groups](https://arxiv.org/pdf/1305.1150) – A mathematical survey that includes the Ebin (DeWitt-type) L² metric on the space of Riemannian metrics.
+* [Dynamical Laws of Superenergy in General Relativity](https://arxiv.org/pdf/0707.1475) – The Bel–Robinson superenergy, built from the electric and magnetic Weyl tensors, and its conservation laws. A possible route toward the dynamical handoff problem.
+* [On the Energy Content of Electromagnetic and Gravitational Plane Waves Through Super-Energy Tensors](https://arxiv.org/pdf/1809.05305) – Superenergy density expressed through E·E + B·B, the same quadratic structure as tidal-budget integrals.
+
+## Visualizing the Weyl Tensor
+* [Frame-Dragging Vortexes and Tidal Tendexes Attached to Colliding Black Holes](https://arxiv.org/pdf/1012.4869) – *Owen et al. (2011).* Visualises the electric (tidal) and magnetic (frame-drag) parts of the Weyl tensor through eigenvector field lines. The closest professional relative of the Atlas tensor-witness renders.
+* [Visualizing Spacetime Curvature via Frame-Drag Vortexes and Tidal Tendexes](https://ar5iv.arxiv.org/html/1208.3038) – The general theory paper of the tendex/vortex programme.
+
+## Spectral Methods for Collective Structure
+* [Spectral Clustering](https://en.wikipedia.org/wiki/Spectral_clustering) – *Wikipedia.* Grouping elements using the eigenvectors of a similarity matrix. Relevant to reading collective source groups from the eigenmodes of a source-space response metric.
+* [Spectral Analysis of the Gram Matrix of Mixture Models](https://arxiv.org/pdf/1510.03463) – Theory of how Gram-matrix spectra reveal class structure, a statistical foundation for eigenmode-based group detection.
