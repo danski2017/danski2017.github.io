@@ -44,3 +44,10 @@ defaults:
     values:
       render_with_liquid: false
       layout: "page"
+
+# Deep Gravity, 2026-10-19: the legacy vault and instrument clones are no
+# longer served as pages. The files stay in the repo for the record and for
+# any sync routine that writes here; only the Pages build skips them.
+exclude:
+  - lab-vault
+  - atlas-instrument
