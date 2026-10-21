@@ -86,6 +86,11 @@ description: Relational Labs is an independent research platform for multi-body 
     <h1>Foundational Results</h1>
     <p><em>Core findings of the Atlas program — results that stand independent of the construction methods used to reach them.</em></p>
 
+    <h3><strong>Attribution, Compression, and Nonseparability</strong></h3>
+    <p><em>in Multi-Source Conformally Flat Initial Data</em><br>
+    <a href="Attribution_Compression_Nonseparability_v0_5.pdf">Read Paper</a>
+    &nbsp;<small>(v0.5, July 2026)</small></p>
+
     <h3><strong>Three Measures of Gravitational Identity</strong></h3>
     <p><em>Budget, Jurisdiction, and Compression in Weak-Field Curvature Attribution</em><br>
     <a href="Three_Measures_of_Gravitational_Identity.pdf">Read Paper</a></p>
@@ -126,6 +131,7 @@ description: Relational Labs is an independent research platform for multi-body 
 
   <div class="index-updates">
     <h1>Lab Updates</h1>
+    <p><strong>July 2026 —</strong> <em>Attribution, Compression, and Nonseparability</em> posted. The ablation response of a fused scene is split into a part that per-source reweighting can carry and a collective remainder that no reweighting removes, with the test that would show whether that remainder is slice-reconstructible or history-bearing.</p>
     <p><strong>May 2026 —</strong> <em>Three Measures of Gravitational Identity</em> released. Budget, jurisdiction, and compression identified as three independent measures of gravitational identity for finite sources in weak-field general relativity.</p>
     <p><strong>Current focus:</strong> Dynamical handoff problem — the causal mechanism by which curvature attribution propagates when sources change.</p>
   </div>
