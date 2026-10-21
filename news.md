@@ -86,6 +86,18 @@ description: Research headlines, lab notes, and results from Relational Labs.
 
 # Headlines
 
+<div class="news-section-head">July 2026</div>
+
+<div class="news-entry">
+  <div class="news-date">July 2026</div>
+  <div class="news-body">
+    <span class="news-badge news-badge-paper">Paper</span>
+    <div class="news-title"><a href="/Attribution_Compression_Nonseparability_v0_5.pdf">Attribution, Compression, and Nonseparability</a></div>
+    <div class="news-desc">Registered ablation on fused Family-S scenes, a one-fixed-point reconstruction codec, and the split of the reconstruction residual into a reweightable part and a basis-relative collective component (&delta;&psi;<sub>&perp;</sub>, &Delta;E<sub>&perp;</sub>). States the program's far question: is the collective component slice-reconstructible or history-bearing? v0.5 working paper; the quoted residual percentages are under re-measurement on a converged solver.</div>
+    <a class="news-link" href="/Attribution_Compression_Nonseparability_v0_5.pdf">Read paper &rarr;</a>
+  </div>
+</div>
+
 <div class="news-section-head">May 2026</div>
 
 <div class="news-entry">
